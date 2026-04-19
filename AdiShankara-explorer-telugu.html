@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Complete catalogue లో Adi Shankaracharya's రచనలు — stotras, prakaranas and bhashyas across all deity traditions, with AI insights, quiz mode, bookmarks and learning guides.">
+<meta property="og:title" content="శంకర అన్వేషణ — రచనలు లో Adi Shankaracharya">
+<meta property="og:description" content="Explore 100+ రచనలు లో Jagadguru Adi Shankaracharya with scholar insights, quiz mode, bookmarks and YouTube recordings.">
+<title>శంకర అన్వేషణ — ఆది శంకరాచార్య రచనలు</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Telugu:wght@300;400;600&display=swap&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET ════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:18px}
+body{
+  background:#0D0400;color:#F5F0E8;
+  font-family:'Noto Serif Telugu', 'Noto Serif', serif;
+  min-height:100vh;overflow-x:hidden;
+  line-height:1.7;
+}
+/* Scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#0D0400}
+::-webkit-scrollbar-thumb{background:rgba(212,160,23,.4);border-radius:4px}
+/* Background OM */
+body::before{content:'ॐ';position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);font-size:420px;
+  color:rgba(212,160,23,.015);pointer-events:none;z-index:0;
+  line-height:1;user-select:none;font-family:serif}
+
+/* ═══ LAYOUT ════════════════════════════════════════════════ */
+#app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 20px 100px}
+
+/* ═══ TEXT SIZE CONTROL ══════════════════════════════════════ */
+.text-ctrl-bar{
+  position:fixed;top:0;right:0;z-index:400;
+  display:flex;gap:0;background:rgba(13,4,0,.95);
+  border-bottom:1px solid rgba(212,160,23,.2);
+  border-left:1px solid rgba(212,160,23,.2);
+}
+.txt-btn{
+  background:transparent;border:none;
+  color:rgba(212,160,23,.7);cursor:pointer;
+  padding:10px 14px;font-family:Georgia,serif;
+  font-size:14px;transition:all .2s;
+  min-width:44px;min-height:44px;
+}
+.txt-btn:hover,.txt-btn.active{color:#D4A017;background:rgba(212,160,23,.1)}
+.txt-btn-label{font-size:11px;letter-spacing:.08em;color:rgba(212,160,23,.5);
+  padding:10px 12px 10px 4px;display:flex;align-items:center;font-family:Georgia,serif}
+
+/* Font size levels */
+html.text-lg  {font-size:21px}
+html.text-xl  {font-size:24px}
+
+/* ═══ HEADER ════════════════════════════════════════════════ */
+header{
+  text-align:center;padding:52px 20px 32px;
+  border-bottom:1px solid rgba(212,160,23,.15);
+  margin-bottom:24px;
+}
+.om-glyph{
+  font-size:56px;display:block;margin-bottom:12px;
+  animation:omglow 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 16px rgba(212,160,23,.5));
+}
+@keyframes omglow{
+  0%,100%{filter:drop-shadow(0 0 12px rgba(212,160,23,.4))}
+  50%{filter:drop-shadow(0 0 40px rgba(212,160,23,.8))}
+}
+h1{
+  font-family:Georgia,serif;font-weight:700;
+  font-size:clamp(26px,5vw,42px);
+  letter-spacing:.04em;line-height:1.2;
+  background:linear-gradient(135deg,#F0C040 0%,#E8651A 50%,#C9626B 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:8px;
+}
+.tagline{
+  font-size:1rem;color:rgba(245,240,232,.6);
+  font-style:italic;margin-bottom:16px;
+}
+.header-stats{
+  display:flex;justify-content:center;gap:28px;
+  flex-wrap:wrap;margin-top:16px;
+}
+.stat-item{text-align:center;cursor:pointer;padding:8px 16px;
+  border:1px solid rgba(212,160,23,.15);transition:border-color .2s}
+.stat-item:hover{border-color:rgba(212,160,23,.4)}
+.stat-n{font-size:1.5rem;font-weight:700;display:block;color:#F0C040;line-height:1.2}
+.stat-l{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(212,160,23,.6);display:block;margin-top:2px}
+
+/* ═══ TABS — large, always visible ══════════════════════════ */
+.tabs{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:6px;margin-bottom:24px;
+}
+.tab-btn-wrap{display:flex}
+.tab-btn{
+  flex:1;background:rgba(20,8,0,.8);
+  border:2px solid rgba(212,160,23,.2);
+  color:rgba(245,240,232,.55);
+  font-family:Georgia,serif;font-size:.85rem;
+  padding:14px 6px;cursor:pointer;
+  transition:all .25s;
+  display:flex;flex-direction:column;
+  align-items:center;gap:5px;
+  min-height:72px;
+}
+.tab-btn .tab-icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px;line-height:1}
+.tab-btn .tab-lbl{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase}
+.tab-btn.active{
+  background:rgba(212,160,23,.14);
+  border-color:#D4A017;color:#F0C040;
+}
+.tab-btn:hover:not(.active){
+  background:rgba(212,160,23,.07);
+  border-color:rgba(212,160,23,.4);color:#FAF6EE;
+}
+.tab-badge{
+  background:#D4A017;color:#0D0400;
+  border-radius:10px;padding:1px 7px;
+  font-size:.65rem;font-weight:700;
+  position:absolute;top:-6px;right:-6px;
+}
+.tab-btn-wrap{position:relative}
+
+/* ═══ WOTD ═══════════════════════════════════════════════════ */
+.wotd-banner{
+  background:rgba(20,8,0,.8);
+  border:2px solid rgba(212,160,23,.3);
+  border-left:5px solid #D4A017;
+  padding:20px 22px;margin-bottom:28px;
+  cursor:pointer;transition:all .25s;
+  display:flex;align-items:center;gap:18px;
+}
+.wotd-banner:hover{border-color:rgba(212,160,23,.6);background:rgba(30,10,0,.9)}
+.wotd-icon{width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.wotd-body{flex:1;min-width:0}
+.wotd-label{
+  font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
+  color:#D4A017;margin-bottom:5px;font-family:Georgia,serif;
+}
+.wotd-name{
+  font-size:1.3rem;font-weight:700;color:#FAF6EE;
+  margin-bottom:3px;line-height:1.3;
+}
+.wotd-sub{font-size:.9rem;color:rgba(245,240,232,.55);line-height:1.4}
+.wotd-cta{
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#E8651A;flex-shrink:0;font-family:Georgia,serif;font-weight:700;
+  padding:8px 14px;border:1px solid rgba(232,101,26,.4);
+  white-space:nowrap;
+}
+
+/* ═══ SEARCH ══════════════════════════════════════════════════ */
+.search-hero{margin-bottom:20px}
+.search-label{
+  font-size:.85rem;color:rgba(212,160,23,.7);
+  margin-bottom:8px;letter-spacing:.06em;display:block;
+}
+.search-wrap{
+  display:flex;border:2px solid rgba(212,160,23,.4);
+  background:rgba(20,8,0,.9);transition:all .3s;
+}
+.search-wrap:focus-within{
+  border-color:#D4A017;
+  box-shadow:0 0 0 3px rgba(212,160,23,.15);
+}
+.search-icon{
+  padding:0 14px;color:#9A6B4B;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+#searchInput{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:Georgia,serif;font-size:1.1rem;color:#FAF6EE;
+  padding:16px 0;caret-color:#D4A017;
+}
+#searchInput::placeholder{color:rgba(154,107,75,.5);font-style:italic}
+.clear-btn{
+  background:transparent;border:none;color:#9A6B4B;
+  cursor:pointer;padding:0 18px;font-size:1.2rem;display:none;
+  transition:color .2s;min-width:56px;
+}
+.clear-btn:hover{color:#D4A017}
+.search-hint{
+  font-size:.85rem;color:rgba(154,107,75,.5);
+  margin-top:8px;font-style:italic;text-align:center;
+}
+
+/* ═══ DEITY CHIPS ════════════════════════════════════════════ */
+.deity-filter-label{
+  font-size:.8rem;color:rgba(212,160,23,.6);
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:12px;display:block;
+}
+.deity-scroll-wrap{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  margin-bottom:20px;padding-bottom:6px;
+}
+.deity-scroll-wrap::-webkit-scrollbar{height:3px}
+.deity-scroll-wrap::-webkit-scrollbar-thumb{background:rgba(212,160,23,.25)}
+.deity-bar{display:flex;gap:10px;width:max-content;padding:2px 0}
+.deity-chip,.deity-btn{
+  background:rgba(20,8,0,.8);
+  border:2px solid rgba(212,160,23,.18);
+  color:rgba(245,240,232,.65);
+  font-family:Georgia,serif;font-size:.88rem;
+  padding:9px 16px;cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+  display:flex;align-items:center;gap:7px;
+  border-radius:24px;min-height:44px;
+}
+.deity-chip:hover,.deity-btn:hover{border-color:rgba(212,160,23,.5);color:#FAF6EE}
+.deity-chip.active-all,.deity-btn.active-all{
+  border-color:#D4A017;color:#F0C040;
+  background:rgba(212,160,23,.15);
+}
+.deity-chip.active,.deity-btn.active{
+  border-color:var(--dc);color:var(--dc);
+  background:var(--dbg);
+}
+.deity-chip-count{font-size:.75rem;opacity:.55}
+.deity-btn-icon{display:inline-flex;vertical-align:middle;margin-right:4px}
+.card-deity-icon{display:inline-flex;vertical-align:middle;flex-shrink:0}
+
+/* ═══ QUICK TAGS ═════════════════════════════════════════════ */
+.quick-tags-wrap{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  margin-bottom:20px;
+}
+.quick-tags{display:flex;gap:10px;width:max-content;padding:2px 0}
+.qtag{
+  background:transparent;
+  border:1px solid rgba(212,160,23,.2);
+  color:rgba(245,240,232,.6);
+  font-family:Georgia,serif;font-style:italic;font-size:.9rem;
+  padding:9px 18px;cursor:pointer;transition:all .2s;
+  white-space:nowrap;border-radius:20px;min-height:44px;
+}
+.qtag:hover{color:#D4A017;border-color:rgba(212,160,23,.5);background:rgba(212,160,23,.07)}
+
+/* ═══ RESULTS BAR ════════════════════════════════════════════ */
+.results-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;gap:10px;flex-wrap:wrap;
+  padding:8px 0;border-bottom:1px solid rgba(212,160,23,.1);
+}
+.results-count{font-size:1rem;color:rgba(245,240,232,.6)}
+.results-count b{color:#D4A017;font-size:1.1rem}
+.results-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.clear-filters-btn{
+  background:rgba(212,160,23,.1);
+  border:1px solid rgba(212,160,23,.3);color:#D4A017;
+  cursor:pointer;font-size:.85rem;padding:8px 16px;
+  font-family:Georgia,serif;transition:all .2s;display:none;min-height:44px;
+}
+.sort-select{
+  background:rgba(20,8,0,.9);border:2px solid rgba(212,160,23,.25);
+  color:rgba(245,240,232,.7);font-family:Georgia,serif;
+  font-size:.85rem;padding:8px 12px;cursor:pointer;
+  outline:none;transition:border-color .2s;min-height:44px;
+}
+.sort-select:focus{border-color:#D4A017}
+
+/* ═══ WORK CARDS — single column, large ═════════════════════ */
+#రచనలుGrid{
+  display:flex;flex-direction:column;gap:14px;
+}
+.work-card{
+  background:rgba(18,6,0,.85);
+  border:1px solid rgba(212,160,23,.18);
+  border-left:4px solid var(--dc,rgba(212,160,23,.4));
+  padding:20px 22px 18px;cursor:pointer;
+  transition:border-color .2s,box-shadow .2s;
+}
+.work-card:hover{
+  border-color:rgba(212,160,23,.5);
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.work-card:active{opacity:.85}
+.card-top{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:10px;gap:10px;
+}
+.card-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.badge-type{
+  font-family:Georgia,serif;font-size:.8rem;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid;
+}
+.badge-attr{
+  font-size:.72rem;padding:3px 8px;
+  background:rgba(212,160,23,.06);
+  border:1px solid rgba(212,160,23,.2);
+  color:rgba(212,160,23,.5);
+}
+.badge-శ్లోకాలు{
+  font-size:.8rem;padding:4px 10px;
+  background:rgba(212,160,23,.07);
+  border:1px solid rgba(212,160,23,.15);
+  color:rgba(245,240,232,.55);
+}
+.card-name{
+  font-size:1.2rem;font-weight:700;
+  color:#FAF6EE;line-height:1.3;margin-bottom:4px;
+}
+.card-sanskrit{
+  font-size:.9rem;color:rgba(212,160,23,.45);
+  margin-bottom:9px;
+}
+.card-desc{
+  font-size:1rem;color:rgba(245,240,232,.62);
+  line-height:1.65;margin-bottom:12px;
+}
+.card-footer{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:10px;flex-wrap:wrap;
+}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.card-tag{
+  font-size:.78rem;padding:4px 10px;
+  background:rgba(212,160,23,.07);
+  border:1px solid rgba(212,160,23,.15);
+  color:rgba(245,240,232,.55);border-radius:3px;
+}
+.card-prog-pip{
+  width:10px;height:10px;border-radius:50%;border:2px solid;flex-shrink:0;
+}
+.card-prog-pip.heard{background:rgba(91,168,212,.4);border-color:rgba(91,168,212,.7)}
+.card-prog-pip.studied{background:rgba(126,200,160,.4);border-color:rgba(126,200,160,.7)}
+.card-prog-pip.memorised{background:rgba(212,160,23,.5);border-color:#D4A017}
+/* Bookmark button — large, labelled */
+.bookmark-btn{
+  background:transparent;border:1px solid rgba(212,160,23,.2);
+  cursor:pointer;font-size:.8rem;
+  padding:7px 14px;transition:all .2s;
+  color:rgba(212,160,23,.4);flex-shrink:0;
+  display:flex;align-items:center;gap:5px;
+  font-family:Georgia,serif;min-height:44px;
+}
+.bookmark-btn.bookmarked{
+  color:#D4A017;border-color:rgba(212,160,23,.5);
+  background:rgba(212,160,23,.08);
+}
+.bookmark-btn:hover{color:#D4A017;border-color:rgba(212,160,23,.5)}
+
+/* Empty state */
+#emptyState{display:none;text-align:center;padding:60px 20px}
+.empty-om{font-size:48px;display:block;margin-bottom:16px;opacity:.2}
+.empty-title{font-size:1.2rem;color:rgba(245,240,232,.55);margin-bottom:8px}
+.empty-sub{font-size:1rem;color:rgba(154,107,75,.5);font-style:italic}
+.empty-clear{
+  background:rgba(212,160,23,.1);
+  border:2px solid rgba(212,160,23,.3);color:#D4A017;
+  font-family:Georgia,serif;font-size:1rem;
+  padding:12px 24px;cursor:pointer;margin-top:18px;
+  transition:all .2s;min-height:48px;
+}
+.empty-clear:hover{background:rgba(212,160,23,.2)}
+
+/* ═══ PANEL ══════════════════════════════════════════════════ */
+#panelOverlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:rgba(2,0,0,.92);backdrop-filter:blur(8px);
+}
+#panelOverlay.open{display:block}
+#panel{
+  position:fixed;right:0;top:0;bottom:0;
+  width:min(640px,100vw);background:#0E0300;
+  overflow-y:auto;border-left:3px solid var(--dc,rgba(212,160,23,.4));
+}
+.panel-close-zone{
+  padding:12px 20px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(14,3,0,.95);
+  position:sticky;top:0;z-index:10;
+  border-bottom:1px solid rgba(212,160,23,.1);
+}
+.panel-close-hint{font-size:.82rem;color:rgba(245,240,232,.4);font-style:italic}
+.close-btn{
+  background:rgba(212,160,23,.1);
+  border:2px solid rgba(212,160,23,.35);
+  color:#D4A017;cursor:pointer;padding:10px 20px;
+  font-size:.9rem;letter-spacing:.08em;
+  font-family:Georgia,serif;transition:all .2s;
+  min-height:48px;font-weight:700;
+}
+.close-btn:hover{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.6)}
+.panel-header{padding:18px 22px 16px}
+.panel-header-top{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:12px;
+}
+.panel-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.panel-name{
+  font-size:1.5rem;font-weight:700;color:#FAF6EE;
+  line-height:1.25;margin-bottom:4px;
+}
+.panel-sanskrit{font-size:1rem;color:rgba(212,160,23,.45);margin-bottom:6px}
+.panel-deity-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panel-deity{font-size:1rem;font-style:italic}
+.panel-bm-btn{
+  background:transparent;border:2px solid rgba(212,160,23,.25);
+  color:rgba(212,160,23,.5);cursor:pointer;padding:10px 18px;
+  transition:all .2s;font-family:Georgia,serif;font-size:.85rem;
+  display:flex;align-items:center;gap:6px;min-height:48px;
+}
+.panel-bm-btn.bookmarked{
+  border-color:rgba(212,160,23,.6);color:#D4A017;
+  background:rgba(212,160,23,.1);
+}
+.panel-bm-btn:hover{border-color:rgba(212,160,23,.5);color:#D4A017}
+.panel-body{padding:18px 22px 32px;display:flex;flex-direction:column;gap:22px}
+.section-label{
+  font-family:Georgia,serif;font-size:.8rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(212,160,23,.55);margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(212,160,23,.12)}
+.about-text{font-size:1.05rem;line-height:1.8;color:rgba(245,240,232,.85)}
+.attr-note{
+  background:rgba(212,160,23,.05);
+  border:1px solid rgba(212,160,23,.15);
+  border-left:3px solid rgba(212,160,23,.4);
+  padding:12px 16px;font-size:.9rem;
+  color:rgba(212,160,23,.6);line-height:1.7;
+}
+.insight-box{
+  padding:16px 20px;background:rgba(14,4,0,.7);
+  border:1px solid rgba(212,160,23,.15);
+  border-left:4px solid #D4A017;
+}
+.insight-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.insight-gem{color:#D4A017;font-size:.9rem}
+.insight-label{
+  font-family:Georgia,serif;font-size:.8rem;
+  letter-spacing:.14em;text-transform:uppercase;color:#D4A017;
+}
+.insight-text{
+  font-size:1rem;line-height:1.85;
+  color:rgba(245,240,232,.78);font-style:italic;
+}
+.loading-row{display:flex;gap:12px;align-items:center}
+.spinner{display:inline-block;animation:spin 3s linear infinite;font-size:1.1rem}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.loading-txt{font-size:.95rem;color:#9A6B4B;font-style:italic}
+.tags-row{display:flex;gap:8px;flex-wrap:wrap}
+.panel-tag{
+  font-size:.9rem;padding:6px 14px;
+  background:rgba(212,160,23,.07);
+  border:1px solid rgba(212,160,23,.15);
+  color:rgba(245,240,232,.7);border-radius:4px;
+}
+/* Progress radios — large */
+.prog-radio-group{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.prog-radio{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:14px 8px;border:2px solid rgba(212,160,23,.15);
+  cursor:pointer;transition:all .2s;text-align:center;min-height:88px;
+  justify-content:center;
+}
+.prog-radio:hover{border-color:rgba(212,160,23,.4)}
+.prog-radio.selected-heard{border-color:rgba(91,168,212,.6);background:rgba(91,168,212,.1)}
+.prog-radio.selected-studied{border-color:rgba(126,200,160,.6);background:rgba(126,200,160,.1)}
+.prog-radio.selected-memorised{border-color:rgba(212,160,23,.7);background:rgba(212,160,23,.12)}
+.prog-radio-icon{font-size:1.6rem;line-height:1}
+.prog-radio-label{
+  font-family:Georgia,serif;font-size:.82rem;
+  letter-spacing:.06em;text-transform:uppercase;color:rgba(245,240,232,.55);
+}
+.prog-radio.selected-heard .prog-radio-label{color:#5BA8D4}
+.prog-radio.selected-studied .prog-radio-label{color:#7EC8A0}
+.prog-radio.selected-memorised .prog-radio-label{color:#D4A017}
+.prog-radio-check{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid rgba(212,160,23,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:transparent;
+}
+.prog-radio.selected-heard .prog-radio-check{border-color:#5BA8D4;color:#5BA8D4}
+.prog-radio.selected-studied .prog-radio-check{border-color:#7EC8A0;color:#7EC8A0}
+.prog-radio.selected-memorised .prog-radio-check{border-color:#D4A017;background:#D4A017;color:#0D0400}
+/* Video */
+.video-placeholder{
+  width:100%;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;cursor:pointer;
+  border:2px solid rgba(212,160,23,.2);transition:all .2s;
+  text-decoration:none;background:rgba(14,4,0,.7);
+}
+.video-placeholder:hover{border-color:rgba(212,160,23,.5)}
+.play-icon{font-size:2rem;opacity:.55}
+.play-label{
+  font-size:.95rem;color:#9A6B4B;
+  letter-spacing:.06em;font-family:Georgia,serif;
+  text-align:center;padding:0 16px;
+}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.video-card{
+  background:rgba(12,2,0,.9);
+  border:1px solid rgba(212,160,23,.15);
+  overflow:hidden;transition:all .2s;text-decoration:none;display:block;
+}
+.video-card:hover{border-color:rgba(212,160,23,.4)}
+.video-thumb{
+  aspect-ratio:16/9;display:flex;align-items:center;
+  justify-content:center;font-size:1.4rem;position:relative;cursor:pointer;
+}
+.video-play-btn{
+  position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;background:rgba(0,0,0,.3);
+  opacity:0;transition:opacity .2s;
+}
+.video-thumb:hover .video-play-btn{opacity:1}
+.video-play-icon{font-size:1.5rem;color:#FAF6EE}
+.video-info{padding:10px 12px 12px}
+.video-title{
+  font-size:.9rem;font-weight:600;color:#FAF6EE;
+  line-height:1.4;margin-bottom:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.video-channel{font-size:.8rem;color:#9A6B4B;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yt-link{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px;border:2px solid rgba(212,160,23,.3);
+  color:#E8651A;text-decoration:none;
+  font-family:Georgia,serif;font-size:.9rem;
+  letter-spacing:.1em;text-transform:uppercase;transition:all .2s;
+  min-height:52px;
+}
+.yt-link:hover{background:rgba(232,101,26,.08);border-color:rgba(212,160,23,.6)}
+
+/* ═══ BOOKMARKS TAB ══════════════════════════════════════════ */
+.tab-page-header{margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(212,160,23,.12)}
+.tab-page-title{font-size:1.4rem;font-weight:700;color:#FAF6EE;margin-bottom:4px}
+.tab-page-sub{font-size:1rem;color:#9A6B4B;font-style:italic}
+.empty-bm{text-align:center;padding:56px 20px}
+.bm-grid{display:flex;flex-direction:column;gap:14px}
+
+/* ═══ QUIZ ════════════════════════════════════════════════════ */
+.quiz-wrap{max-width:680px;margin:0 auto}
+.quiz-start{padding:8px 0 28px}
+.quiz-start-header{margin-bottom:22px}
+.quiz-start-title{font-size:1.3rem;font-weight:700;color:#FAF6EE;margin-bottom:6px}
+.quiz-start-sub{font-size:1rem;color:#9A6B4B;font-style:italic;line-height:1.7}
+.quiz-what-box{
+  background:rgba(212,160,23,.05);
+  border:1px solid rgba(212,160,23,.15);
+  padding:16px 20px;margin-bottom:22px;
+}
+.quiz-what-title{
+  font-family:Georgia,serif;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:#D4A017;margin-bottom:12px;
+}
+.quiz-what-list{display:flex;flex-direction:column;gap:8px}
+.quiz-what-item{font-size:1rem;color:rgba(245,240,232,.7);display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.quiz-mode-label{
+  font-family:Georgia,serif;font-size:.85rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(212,160,23,.6);margin-bottom:12px;
+}
+.quiz-settings{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.quiz-set-btn{
+  background:rgba(18,6,0,.85);
+  border:2px solid rgba(212,160,23,.2);
+  color:rgba(245,240,232,.65);
+  font-family:Georgia,serif;font-size:.95rem;
+  padding:10px 20px;cursor:pointer;transition:all .2s;min-height:48px;
+}
+.quiz-set-btn.active{border-color:#D4A017;color:#D4A017;background:rgba(212,160,23,.1)}
+.quiz-set-btn:hover:not(.active){border-color:rgba(212,160,23,.4);color:#FAF6EE}
+.quiz-start-btn{
+  width:100%;background:linear-gradient(135deg,#E8651A,#C44E0A);
+  border:none;color:#FAF6EE;
+  font-family:Georgia,serif;font-size:1.1rem;
+  letter-spacing:.14em;padding:18px;cursor:pointer;
+  text-transform:uppercase;transition:all .2s;min-height:60px;
+}
+.quiz-start-btn:hover{box-shadow:0 4px 24px rgba(232,101,26,.45)}
+.quiz-card{
+  background:rgba(16,5,0,.9);border:1px solid rgba(212,160,23,.18);
+  padding:26px;margin-bottom:16px;
+}
+.quiz-progress-bar-wrap{height:4px;background:rgba(212,160,23,.1);margin-bottom:22px}
+.quiz-progress-bar{height:4px;background:linear-gradient(90deg,#E8651A,#D4A017);transition:width .4s}
+.quiz-meta{
+  font-family:Georgia,serif;font-size:.85rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(245,240,232,.4);margin-bottom:16px;
+  display:flex;justify-content:space-between;
+}
+.quiz-q{font-size:1.15rem;font-weight:700;color:#FAF6EE;line-height:1.55;margin-bottom:20px}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-opt{
+  background:rgba(22,8,0,.75);
+  border:2px solid rgba(212,160,23,.18);
+  color:rgba(245,240,232,.75);
+  font-family:Georgia,serif;font-size:1rem;
+  padding:14px 18px;cursor:pointer;transition:all .2s;
+  text-align:left;width:100%;line-height:1.4;min-height:52px;
+  display:flex;align-items:center;gap:12px;
+}
+.quiz-opt::before{content:'○';font-size:.9rem;flex-shrink:0;color:rgba(212,160,23,.4)}
+.quiz-opt:hover:not(:disabled){border-color:rgba(212,160,23,.5);color:#FAF6EE;background:rgba(30,10,0,.9)}
+.quiz-opt:hover:not(:disabled)::before{color:#D4A017}
+.quiz-opt.సరైనది{border-color:#7EC8A0;color:#7EC8A0;background:rgba(126,200,160,.08)}
+.quiz-opt.సరైనది::before{content:'●';color:#7EC8A0}
+.quiz-opt.wrong{border-color:#C9626B;color:#C9626B;background:rgba(201,98,107,.08)}
+.quiz-opt.wrong::before{content:'✕';color:#C9626B}
+.quiz-opt:disabled{cursor:default}
+.quiz-result{
+  background:rgba(14,4,0,.75);border:1px solid rgba(212,160,23,.15);
+  border-left:4px solid var(--rb,#D4A017);padding:14px 18px;margin-top:14px;
+}
+.quiz-result-text{font-size:1rem;line-height:1.75;color:rgba(245,240,232,.78)}
+.quiz-next-btn{
+  background:rgba(212,160,23,.1);border:2px solid rgba(212,160,23,.35);
+  color:#D4A017;font-family:Georgia,serif;font-size:.95rem;
+  letter-spacing:.1em;padding:14px;cursor:pointer;
+  text-transform:uppercase;transition:all .2s;
+  margin-top:12px;width:100%;min-height:52px;
+}
+.quiz-next-btn:hover{background:rgba(212,160,23,.18)}
+.quiz-score{text-align:center;padding:36px 20px}
+.quiz-score-ring{
+  width:120px;height:120px;border-radius:50%;
+  border:3px solid rgba(212,160,23,.25);
+  margin:0 auto 18px;display:flex;align-items:center;justify-content:center;
+}
+.quiz-score-num{font-size:2.2rem;color:#D4A017;font-weight:700;line-height:1;display:block}
+.quiz-score-sub{font-size:.75rem;color:#9A6B4B;letter-spacing:.1em;text-transform:uppercase}
+.quiz-score-label{font-size:1.05rem;color:#9A6B4B;margin-bottom:14px}
+.quiz-score-msg{
+  font-style:italic;font-size:1.05rem;
+  color:rgba(245,240,232,.7);margin-bottom:26px;
+  line-height:1.75;max-width:440px;margin-left:auto;margin-right:auto;
+}
+.quiz-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.quiz-restart-btn{
+  background:linear-gradient(135deg,#E8651A,#C44E0A);border:none;
+  color:#FAF6EE;font-family:Georgia,serif;font-size:.9rem;
+  letter-spacing:.12em;padding:12px 26px;cursor:pointer;
+  text-transform:uppercase;transition:all .2s;min-height:50px;
+}
+.quiz-secondary-btn{
+  background:transparent;border:2px solid rgba(212,160,23,.3);
+  color:#9A6B4B;font-family:Georgia,serif;font-size:.9rem;
+  letter-spacing:.1em;padding:12px 22px;cursor:pointer;
+  text-transform:uppercase;transition:all .2s;min-height:50px;
+}
+.quiz-secondary-btn:hover{border-color:rgba(212,160,23,.6);color:#D4A017}
+
+/* ═══ PROGRESS TAB — summary row ═════════════════════════════ */
+.prog-summary-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:10px;margin-bottom:28px;
+}
+@media(max-width:500px){ .prog-summary-row{grid-template-columns:repeat(2,1fr);} }
+.prog-summary-card{
+  background:rgba(16,5,0,.8);border:1px solid rgba(212,160,23,.12);
+  padding:14px 14px 12px;text-align:center;
+}
+.prog-summary-num{font-size:1.8rem;font-weight:700;line-height:1.1;display:block;margin-bottom:3px}
+.prog-summary-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(212,160,23,.45);margin-bottom:10px;display:block}
+.prog-summary-bar-wrap{height:3px;background:rgba(212,160,23,.08);border-radius:2px}
+.prog-summary-bar{height:3px;border-radius:2px;transition:width .6s ease}
+
+/* ═══ PROGRESS TAB — per-deity bars ══════════════════════════ */
+.prog-bars-section{display:flex;flex-direction:column;gap:0}
+.prog-bar-row{
+  display:flex;align-items:center;gap:14px;
+  padding:11px 0;border-bottom:1px solid rgba(212,160,23,.07);
+}
+.prog-bar-row:last-child{border-bottom:none}
+.prog-bar-label-col{
+  display:flex;align-items:center;gap:8px;
+  min-width:140px;flex-shrink:0;
+}
+@media(max-width:500px){.prog-bar-label-col{min-width:110px}}
+.prog-bar-icon{display:inline-flex;flex-shrink:0}
+.prog-bar-name{font-size:.85rem;color:rgba(245,240,232,.75);font-family:Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog-bar-track-col{flex:1;display:flex;align-items:center;gap:10px}
+.prog-stacked-track{
+  flex:1;height:8px;background:rgba(212,160,23,.08);
+  border-radius:4px;overflow:hidden;display:flex;
+}
+.prog-stacked-seg{height:100%;transition:width .6s ease;flex-shrink:0}
+.prog-bar-meta{
+  font-size:.75rem;color:rgba(212,160,23,.45);
+  min-width:38px;text-align:right;flex-shrink:0;
+  font-family:Georgia,serif;
+}
+
+/* ═══ PROGRESS TAB — రచనలు list ══════════════════════════════ */
+.prog-section-title{
+  font-family:Georgia,serif;font-size:.85rem;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(212,160,23,.5);
+  margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(212,160,23,.12);
+}
+.prog-list{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.prog-item{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;background:rgba(16,5,0,.6);
+  border:1px solid rgba(212,160,23,.1);cursor:pointer;
+  transition:border-color .2s;
+}
+.prog-item:hover{border-color:rgba(212,160,23,.3)}
+.prog-item-icon{flex-shrink:0;display:inline-flex}
+.prog-item-body{flex:1;min-width:0}
+.prog-item-name{font-size:.95rem;color:#FAF6EE;line-height:1.3;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog-item-bar-track{height:3px;background:rgba(212,160,23,.1);border-radius:2px}
+.prog-item-bar-fill{height:3px;border-radius:2px;transition:width .5s ease}
+.prog-item-status{
+  font-family:Georgia,serif;font-size:.75rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid;flex-shrink:0;
+}
+.prog-item-status.heard{border-color:rgba(91,168,212,.4);color:#5BA8D4}
+.prog-item-status.studied{border-color:rgba(126,200,160,.4);color:#7EC8A0}
+.prog-item-status.memorised{border-color:rgba(212,160,23,.5);color:#D4A017}
+.prog-empty{
+  color:rgba(245,240,232,.4);font-style:italic;font-size:1rem;
+  text-align:center;padding:28px 0;line-height:1.7;
+}
+.prog-reset-btn{
+  background:transparent;border:1px solid rgba(212,160,23,.15);
+  color:rgba(245,240,232,.35);font-family:Georgia,serif;
+  font-size:.85rem;letter-spacing:.08em;padding:10px 18px;
+  cursor:pointer;text-transform:uppercase;transition:all .2s;min-height:44px;
+}
+.prog-reset-btn:hover{border-color:rgba(212,160,23,.35);color:rgba(245,240,232,.6)}
+
+/* ═══ BOTTOM NAV ══════════════════════════════════════════════ */
+.bottom-nav{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(10,2,0,.97);backdrop-filter:blur(12px);
+  border-top:2px solid rgba(212,160,23,.2);
+  padding:6px 0 env(safe-area-inset-bottom,6px);
+}
+.bottom-nav-inner{display:flex;max-width:580px;margin:0 auto}
+.bnav-btn{
+  flex:1;background:transparent;border:none;
+  color:rgba(245,240,232,.45);cursor:pointer;
+  padding:8px 4px;display:flex;flex-direction:column;
+  align-items:center;gap:4px;transition:all .2s;position:relative;
+  min-height:62px;
+}
+.bnav-btn.active{color:#D4A017}
+.bnav-icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px;line-height:1}
+.bnav-label{
+  font-family:Georgia,serif;font-size:.65rem;
+  letter-spacing:.05em;text-transform:uppercase;
+}
+.bnav-badge{
+  position:absolute;top:4px;right:calc(50% - 18px);
+  background:rgba(212,160,23,.25);color:#D4A017;
+  border-radius:8px;padding:0 5px;font-size:.65rem;
+  min-width:16px;text-align:center;font-weight:700;
+}
+
+/* ═══ FOOTER ══════════════════════════════════════════════════ */
+footer{
+  text-align:center;padding:28px 16px 20px;
+  margin-top:36px;border-top:1px solid rgba(212,160,23,.1);
+}
+.footer-text{font-size:.82rem;color:rgba(245,240,232,.28);font-style:italic}
+.footer-om{font-size:1.2rem;display:block;margin-top:8px;color:rgba(212,160,23,.15)}
+
+/* ═══ ANIMATIONS ══════════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ RESPONSIVE ══════════════════════════════════════════════ */
+@media(max-width:660px){
+  html{font-size:17px}
+  .tabs{display:none}
+  .bottom-nav{display:block}
+  #app{padding-bottom:80px}
+  .video-grid{grid-template-columns:1fr}
+  .path-grid{grid-template-columns:1fr}
+  .prog-summary-row{grid-template-columns:repeat(2,1fr)}
+  .wotd-cta{display:none}
+}
+@media(min-width:661px){
+  .bottom-nav{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TEXT SIZE CONTROL -->
+  <div class="text-ctrl-bar">
+    <span class="txt-btn-label">అక్షర పరిమాణం:</span>
+    <button class="txt-btn active" id="txt-normal" onclick="setTextSize('normal')" title="Normal text">A</button>
+    <button class="txt-btn" id="txt-lg" onclick="setTextSize('lg')" title="Larger text">A+</button>
+    <button class="txt-btn" id="txt-xl" onclick="setTextSize('xl')" title="Largest text">A++</button>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <span class="om-glyph">ॐ</span>
+    <h1>శంకర అన్వేషణ</h1>
+    <div class="tagline">ఆది శంకరాచార్య సంపూర్ణ రచనలు · క్రీ.శ. ౭౮౮–౮౨౦</div>
+    <div class="header-stats">
+      <div class="stat-item"><span class="stat-n" id="statTotal" style="color:#F0C040"></span><span class="stat-l">రచనలు</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">సేవ్ చేసినవి</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statఅధ్యయనం" style="color:#7EC8A0">0</span><span class="stat-l">అధ్యయనం</span></div>
+    </div>
+  </header>
+
+  <!-- DESKTOP TABS -->
+  <div class="tabs" id="desktopTabs">
+    <div class="tab-btn-wrap"><button class="tab-btn active" data-tab="explore" onclick="switchTab('explore')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h16M4 9h10M4 13h12M4 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="tab-lbl">అన్వేషించు</span></button></div>
+    <div class="tab-btn-wrap" style="position:relative"><button class="tab-btn" data-tab="bookmarks" onclick="switchTab('bookmarks')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><span class="tab-lbl">సేవ్ చేసినవి</span></button><span class="tab-badge" id="bmBadge" style="display:none">0</span></div>
+    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5C9.5 8 10.5 7 12 7s2.5 1 2.5 2.5c0 1.5-1.5 2-2.5 2.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg></span><span class="tab-lbl">క్విజ్</span></button></div>
+    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="progress" onclick="switchTab('progress')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="9" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="4" width="4" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="tab-lbl">పురోగతి</span></button></div>
+  </div>
+
+  <!-- EXPLORE TAB -->
+  <div id="tab-explore">
+
+    <!-- WORK OF THE DAY -->
+    <div class="wotd-banner" id="wotdBanner" onclick="openWOTD()">
+      <div class="wotd-icon" id="wotdEmoji" style="color:#D4A017"></div>
+      <div class="wotd-body">
+        <div class="wotd-label">✦ నేటి రచన</div>
+        <div class="wotd-name" id="wotdName"></div>
+        <div class="wotd-sub" id="wotdSub"></div>
+      </div>
+      <div class="wotd-cta">అన్వేషించు →</div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-hero">
+      <label class="search-label" for="searchInput">పేరు, దేవత లేదా విషయం ద్వారా వెతకండి:</label>
+      <div class="search-wrap">
+        <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        <input type="text" id="searchInput" placeholder="స్తోత్రాలు, భాష్యాలు, దేవతలు వెతకండి…" oninput="handleSearch()" autocomplete="లోf">
+        <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+      </div>
+      <div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
+    </div>
+
+    <!-- DEITY FILTER -->
+    <div class="deity-filter-label">దేవత ద్వారా వడపోయండి — పక్కకు స్క్రోల్ చేయండి:</div>
+    <div class="deity-scroll-wrap">
+      <div class="deity-bar" id="deityBar"></div>
+    </div>
+
+    <!-- POPULAR SEARCHES — scrollable -->
+    <div class="quick-tags-wrap">
+      <div class="quick-tags" id="quickTags"></div>
+    </div>
+
+    <!-- RESULTS BAR -->
+    <div class="results-bar">
+      <div class="results-count" id="resultsCount"><b id="countNum">0</b> రచనలు</div>
+      <div class="results-right">
+        <button class="clear-filters-btn" id="clearFilters" onclick="clearAll()">✕ ఫిల్టర్ తొలగించు</button>
+        <select class="sort-select" onchange="handleSort(this.value)">
+          <option value="default">డిఫాల్ట్</option>
+          <option value="name">A – Z</option>
+          <option value="శ్లోకాలు">ఎక్కువ శ్లోకాలు</option>
+          <option value="progress">నా పురోగతి</option>
+        </select>
+
+      </div>
+    </div>
+
+    <div id="రచనలుGrid"></div>
+    <div id="emptyState">
+      <span class="empty-om" style="font-size:3rem;opacity:.15;display:block;margin-bottom:16px">ॐ</span>
+      <div class="empty-title">No రచనలు found</div>
+      <div class="empty-sub">వేరే శోధన ప్రయత్నించండి</div>
+      <button class="empty-clear" onclick="clearAll()">అన్ని ఫిల్టర్లు తొలగించు</button>
+    </div>
+  </div>
+
+  <!-- BOOKMARKS TAB -->
+  <div id="tab-bookmarks" style="display:none">
+    <div class="tab-page-header">
+      <div class="tab-page-title" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#D4A017" stroke-width="1.5" stroke-linejoin="round"/></svg> సేవ్ చేసినవి రచనలు</div>
+      <div class="tab-page-sub" id="bmSubline">ఏదైనా రచనలో ☆ నొక్కి ఇక్కడ సేవ్ చేయండి</div>
+    </div>
+    <div id="bmGrid" class="bm-grid"></div>
+    <div id="bmEmpty" class="empty-bm" style="display:none">
+      <span class="empty-om" style="font-size:2.5rem;opacity:.15;display:block;margin-bottom:16px">ॐ</span>
+      <div class="empty-title">ఇంకా ఏమీ సేవ్ కాలేదు</div>
+      <div class="empty-sub">కార్డుపై ☆ నొక్కి బుక్‌మార్క్ చేయండి</div>
+      <button class="empty-clear" onclick="switchTab('explore')">Browse రచనలు →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ TAB -->
+  <div id="tab-quiz" style="display:none">
+    <div class="quiz-wrap" id="quizWrap"></div>
+  </div>
+
+  <!-- PROGRESS TAB -->
+  <div id="tab-progress" style="display:none">
+    <div class="tab-page-header">
+      <div class="tab-page-title" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" stroke="#D4A017" stroke-width="1.5"/><rect x="10" y="9" width="4" height="12" rx="1" stroke="#D4A017" stroke-width="1.5"/><rect x="17" y="4" width="4" height="17" rx="1" stroke="#D4A017" stroke-width="1.5"/></svg> మీ పురోగతి</div>
+      <div class="tab-page-sub">Track which రచనలు you've heard, studied or memorised</div>
+    </div>
+    <div class="prog-summary-row" id="progSummaryRow"></div>
+    <div class="prog-bars-section" id="progressOverview"></div>
+    <div class="prog-section-title" style="margin-top:28px">రచనలు with progress</div>
+    <div class="prog-list" id="progressList"></div>
+    <button class="prog-reset-btn" onclick="confirmResetProgress()">అన్ని పురోగతి రీసెట్ చేయి</button>
+  </div>
+
+
+  <footer>
+    <p class="footer-text" id="footerText"></p>
+    <span class="footer-om">ॐ</span>
+  </footer>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-btn active" id="bnav-explore" onclick="switchTab('explore')"><span class="bnav-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h16M4 9h10M4 13h12M4 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="bnav-label">అన్వేషించు</span></button>
+    <button class="bnav-btn" id="bnav-bookmarks" onclick="switchTab('bookmarks')" style="position:relative"><span class="bnav-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><span class="bnav-label">సేవ్ చేసినవి</span><span class="bnav-badge" id="bnavBadge" style="display:none">0</span></button>
+    <button class="bnav-btn" id="bnav-quiz" onclick="switchTab('quiz')"><span class="bnav-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5C9.5 8 10.5 7 12 7s2.5 1 2.5 2.5c0 1.5-1.5 2-2.5 2.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg></span><span class="bnav-label">క్విజ్</span></button>
+    <button class="bnav-btn" id="bnav-progress" onclick="switchTab('progress')"><span class="bnav-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="9" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="4" width="4" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="bnav-label">పురోగతి</span></button>
+  </div>
+</nav>
+
+<!-- DETAIL PANEL -->
+<div id="panelOverlay" onclick="closePanelOutside(event)">
+  <div id="panel">
+    <span class="panel-handle"></span>
+    <div class="panel-close-zone">
+      <span class="panel-close-hint">బయట నొక్కండి లేదా Esc నొక్కి మూసివేయండి</span>
+      <button class="close-btn" onclick="closePanel()">✕  మూసివేయి</button>
+    </div>
+    <div class="panel-header" id="panelHeader"></div>
+    <div class="panel-body" id="panelBody"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════ DATA ═══════════════════════════
+const DEITY_ICONS={
+  // Shiva — trishula (trident), his primary symbol
+  shiva:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <line x1="16" y1="7" x2="16" y2="28" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M16 7 L13 12 M16 7 L19 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M10 7 Q10 4 12 4 Q12 9 10 10 Q8 9 10 7Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <path d="M22 7 Q22 4 20 4 Q20 9 22 10 Q24 9 22 7Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <line x1="11" y1="22" x2="21" y2="22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </svg>`,
+  // Devi — Sri Chakra (bindu within triangle within circle) her yantra
+  devi:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.2"/>
+    <polygon points="16,6 26,22 6,22" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <polygon points="16,26 6,10 26,10" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+  </svg>`,
+  // Vishnu — Sudarshana Chakra (spinning disc with spokes)
+  vishnu:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.3"/>
+    <circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="1.2"/>
+    <line x1="16" y1="5" x2="16" y2="11" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="16" y1="21" x2="16" y2="27" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="5" y1="16" x2="11" y2="16" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="21" y1="16" x2="27" y2="16" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="8.5" y1="8.5" x2="12.5" y2="12.5" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="19.5" y1="19.5" x2="23.5" y2="23.5" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="23.5" y1="8.5" x2="19.5" y2="12.5" stroke="currentColor" stroke-width="1.1"/>
+    <line x1="8.5" y1="23.5" x2="12.5" y2="19.5" stroke="currentColor" stroke-width="1.1"/>
+  </svg>`,
+  // Lakshmi — lotus in full bloom (8 petals), her symbol
+  lakshmi:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M16 12 C14 8 10 7 10 10 C10 13 14 13 16 12Z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+    <path d="M20 16 C24 14 25 10 22 10 C19 10 19 14 20 16Z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+    <path d="M16 20 C18 24 22 25 22 22 C22 19 18 19 16 20Z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+    <path d="M12 16 C8 18 7 22 10 22 C13 22 13 18 12 16Z" stroke="currentColor" stroke-width="1.1" fill="none"/>
+    <path d="M13 13 C10 9 6 9 7 12 C8 15 12 14 13 13Z" stroke="currentColor" stroke-width="1" fill="none"/>
+    <path d="M19 13 C22 9 26 9 25 12 C24 15 20 14 19 13Z" stroke="currentColor" stroke-width="1" fill="none"/>
+    <path d="M19 19 C22 23 26 23 25 20 C24 17 20 18 19 19Z" stroke="currentColor" stroke-width="1" fill="none"/>
+    <path d="M13 19 C10 23 6 23 7 20 C8 17 12 18 13 19Z" stroke="currentColor" stroke-width="1" fill="none"/>
+  </svg>`,
+  // Ganesha — prలోile: large head, curved trunk, small tusk
+  ganesha:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <ellipse cx="16" cy="12" rx="8" ry="7" stroke="currentColor" stroke-width="1.4" fill="none"/>
+    <path d="M8 10 Q3 8 3 5 Q5 2 8 4 Q9 7 8 10Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <path d="M8 16 Q6 22 10 26 Q14 28 16 24 Q14 20 13 17" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <line x1="19" y1="15" x2="21" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="12" cy="12" rx="1.5" ry="2" fill="currentColor" opacity="0.7"/>
+  </svg>`,
+  // Subramanya — Vel (divine spear/lance), his weapon
+  subramanya:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <line x1="16" y1="14" x2="16" y2="29" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M16 3 L20 10 L16 14 L12 10 Z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+    <path d="M13 8 L10 6 M19 8 L22 6" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <line x1="13" y1="22" x2="19" y2="22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+  // Hanuman — Gada (mace) and tail curled overhead, his icons
+  hanuman:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <line x1="14" y1="12" x2="22" y2="28" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <ellipse cx="12" cy="10" rx="4" ry="3" stroke="currentColor" stroke-width="1.4" fill="none" transform="rotate(-20 12 10)"/>
+    <path d="M16 4 Q22 3 24 7 Q26 12 22 14 Q18 16 16 13" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </svg>`,
+  // Sacred Sites — temple gopuram / shikara silhouette
+  sacred:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <line x1="16" y1="3" x2="16" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M13 6 L19 6 L21 10 L22 14 L10 14 L11 10 Z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+    <rect x="9" y="14" width="14" height="4" rx="0.5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <rect x="7" y="18" width="18" height="3" rx="0.5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    <rect x="11" y="21" width="4" height="7" rx="0.5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+    <rect x="17" y="21" width="4" height="7" rx="0.5" stroke="currentColor" stroke-width="1.1" fill="none"/>
+  </svg>`,
+  // Misc — eight-pointed star (ashtadala, common auspicious symbol)
+  misc:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <path d="M16 4 L17.5 13 L26 8 L19 15 L28 16 L19 17 L26 24 L17.5 19 L16 28 L14.5 19 L6 24 L13 17 L4 16 L13 15 L6 8 L14.5 13 Z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+  </svg>`,
+  // Prakarana — open palm-leaf manuscript with visible lines
+  prakarana:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <path d="M4 10 Q4 7 7 7 L25 7 Q28 7 28 10 L28 24 Q28 27 25 27 L7 27 Q4 27 4 24 Z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+    <line x1="8" y1="12" x2="24" y2="12" stroke="currentColor" stroke-width="1"/>
+    <line x1="8" y1="15.5" x2="24" y2="15.5" stroke="currentColor" stroke-width="1"/>
+    <line x1="8" y1="19" x2="20" y2="19" stroke="currentColor" stroke-width="1"/>
+    <line x1="8" y1="22.5" x2="16" y2="22.5" stroke="currentColor" stroke-width="1"/>
+    <line x1="16" y1="4" x2="16" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>`,
+  // Bhashya — two-column open scroll (commentary format)
+  bhashya:`<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+    <path d="M5 6 L5 26 Q9 24 16 26 Q23 24 27 26 L27 6 Q23 8 16 6 Q9 8 5 6Z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+    <line x1="16" y1="6" x2="16" y2="26" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
+    <line x1="7" y1="11" x2="14" y2="10" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <line x1="7" y1="14.5" x2="14" y2="13.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <line x1="7" y1="18" x2="13" y2="17" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <line x1="18" y1="10" x2="25" y2="11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <line x1="18" y1="13.5" x2="25" y2="14.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    <line x1="18" y1="17" x2="24" y2="18" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+  </svg>`,
+};
+function deityIcon(id,size){
+  const ic=DEITY_ICONS[id]||DEITY_ICONS.misc;
+  return ic.replace(/width="22" height="22"/g,`width="${size||22}" height="${size||22}"`);
+}
+
+const DEITIES=[
+  {id:"shiva",   label:"Shiva",        color:"#5BA8D4",bg:"rgba(91,168,212,.08)", border:"rgba(91,168,212,.28)"},
+  {id:"devi",    label:"Devi / Shakti",color:"#C9626B",bg:"rgba(201,98,107,.08)",border:"rgba(201,98,107,.28)"},
+  {id:"vishnu",  label:"Vishnu",       color:"#7EC8A0",bg:"rgba(126,200,160,.08)",border:"rgba(126,200,160,.28)"},
+  {id:"lakshmi", label:"Lakshmi",      color:"#E8C840",bg:"rgba(232,200,64,.08)", border:"rgba(232,200,64,.28)"},
+  {id:"ganesha", label:"Ganesha",      color:"#E8A840",bg:"rgba(232,168,64,.08)", border:"rgba(232,168,64,.28)"},
+  {id:"subramanya",label:"Subramanya", color:"#A07ED4",bg:"rgba(160,126,212,.08)",border:"rgba(160,126,212,.28)"},
+  {id:"hanuman", label:"Hanuman",      color:"#E87840",bg:"rgba(232,120,64,.08)", border:"rgba(232,120,64,.28)"},
+  {id:"sacred",  label:"Sacred Sites", color:"#9AB87A",bg:"rgba(154,184,122,.08)",border:"rgba(154,184,122,.28)"},
+  {id:"misc",    label:"Miscellaneous",color:"#C8905A",bg:"rgba(200,144,90,.08)", border:"rgba(200,144,90,.28)"},
+  {id:"prakarana",label:"Prakarana",   color:"#D4A017",bg:"rgba(212,160,23,.08)", border:"rgba(212,160,23,.28)"},
+  {id:"bhashya", label:"Bhashya",      color:"#C8905A",bg:"rgba(200,144,90,.08)", border:"rgba(200,144,90,.28)"},
+];
+
+const WORKS=[
+  // GANESHA
+  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"Five jewel-like శ్లోకాలు in praise లో Ganesha — the destroyer లో obstacles and lord లో all beginnings. Each stanza is a gem లో devotional poetry."},
+  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",శ్లోకాలు:8,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Serpentine Metre","Musical","Ganesha"],description:"A serpentine hymn to Ganesha in the flowing bhujanga metre — invoking the elephant-headed Lord who clears every path for his devotees."},
+  // SUBRAMANYA
+  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",శ్లోకాలు:33,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Major Work","South India","33 Verses","Very Popular"],description:"A 33-verse serpentine hymn to Subrahmanya — Shiva's son, the god లో war and wisdom. One లో the most musically beautiful Bhujangam compositions."},
+  // SHIVA
+  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",శ్లోకాలు:9,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"Nine శ్లోకాలు on Ardhanariswara — Shiva and Shakti in one androgynous form. A philosophical gem on the unity లో consciousness and energy."},
+  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",శ్లోకాలు:10,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Ten Verses","Self-Declaration","Advaita"],description:"Ten శ్లోకాలు లో self-declaration — Shankara declares the ultimate nature లో the Self in ten compact, thunderbolt-like శ్లోకాలు."},
+  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",శ్లోకాలు:10,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Advaita","Guru","Key Work","Silence"],description:"Shiva as the silent teacher facing south — the universe as a reflection in Brahman, like a city seen in a mirror. The supreme Advaitic hymn."},
+  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",శ్లోకాలు:19,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Advaita","Guru","Extended","Philosophy"],description:"The extended stotra on Dakshinamurthy — 19 శ్లోకాలు on Shiva as the cosmic teacher who transmits wisdom through silence to the four Kumaras."},
+  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",శ్లోకాలు:25,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"A varnamala (alphabetical garland) లో 25 శ్లోకాలు on Dakshinamurthy — each verse beginning with successive Sanskrit letters."},
+  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Kashi","Fierce","Time","Liberation"],description:"Eight fierce శ్లోకాలు on Kalabhairava లో Kashi — the Lord లో Time. Those who recite this at Varanasi are liberated from the cycle లో time itself."},
+  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",శ్లోకాలు:46,type:"Manasa Puja",auth:"నిర్ధారించబడింది",tags:["Death","Liberation","Long Work","Mental Worship"],description:"46 శ్లోకాలు లో elaborate mental worship లో Mrityunjaya — the Conqueror లో Death. Every element లో ceremonial worship లోfered in the inner mind."},
+  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",శ్లోకాలు:17,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Forgiveness","Surrender","Post-Puja"],description:"A heartfelt hymn లో forgiveness — confessing all shortcomings లో body, speech and mind before Shiva. Recited after Shiva puja as complete surrender."},
+  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",శ్లోకాలు:100,type:"Lahari",auth:"నిర్ధారించబడింది",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"100 శ్లోకాలు లో ecstatic devotion composed at Srisailam. Shankara's most extensive Shaiva hymn, blending bhakti, philosophy and sublime poetry."},
+  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",శ్లోకాలు:4,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Serpentine Metre","Musical","Short"],description:"Four serpentine శ్లోకాలు to Shiva whose undulating metre mimics the movement లో the Lord's own serpent ornament — hypnotic to recite."},
+  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",శ్లోకాలు:29,type:"Varnana",auth:"నిర్ధారించబడింది",tags:["Head to Toe","Visual Meditation","Form లో Shiva"],description:"A head-to-toe description లో Shiva in 29 శ్లోకాలు — from the crescent moon in his matted locks down to his lotus feet. A complete visual meditation."},
+  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",శ్లోకాలు:5,type:"Manasa Puja",auth:"నిర్ధారించబడింది",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"Mental worship లో Shiva — లోfering gem thrones, divine bath and sacred garments entirely within the heart. One లో Shankara's most tender compositions."},
+  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Names లో Shiva","Garland","Epithets"],description:"Nine శ్లోకాలు structured as a garland లో Shiva's names — each a necklace లో divine epithets revealing different aspects లో the Lord's infinite nature."},
+  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",శ్లోకాలు:41,type:"Varnana",auth:"నిర్ధారించబడింది",tags:["Toe to Head","Visual Meditation","Long Work"],description:"The companion piece ascending from Shiva's lotus feet to his crown — 41 rapturous శ్లోకాలు rising up the divine form."},
+  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",శ్లోకాలు:6,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"Six శ్లోకాలు each dedicated to one syllable లో Na-Ma-Shi-Va-Ya, meditating on the five elements through the five syllables లో Shiva's name."},
+  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",శ్లోకాలు:28,type:"Nakshatramala",auth:"నిర్ధారించబడింది",tags:["27 Stars","Astronomy","Unique Structure"],description:"A star-garland లో 28 శ్లోకాలు connecting each లో the 27 lunar mansions to a specific quality లో Shiva — a rare synthesis లో Jyotisha and Shaiva devotion."},
+  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",శ్లోకాలు:50,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Alphabet","Acrostic","50 Verses"],description:"A golden garland లో 50 శ్లోకాలు — one for each Sanskrit letter. An alphabetical acrostic hymn where the entire alphabet becomes praise లో Shiva."},
+  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",శ్లోకాలు:13,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Divine Couple","Marriage","Creation"],description:"13 శ్లోకాలు praising Shiva and Parvati as Uma-Maheshwara — the divine couple whose union is the source లో all creation. The canonical wedding hymn."},
+  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",శ్లోకాలు:11,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Vedas","Shivaratri","Brahman"],description:"The Essence లో the Vedas in praise లో Shiva — 11 శ్లోకాలు showing Shiva as both formed God and formless Brahman. Written for Maha Shivaratri."},
+  // DEVI
+  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Annapoorna","Kashi","Food"],description:"Eight శ్లోకాలు to Annapoorna (Amba) Devi at Kashi — Parvati as the goddess లో nourishment and abundance."},
+  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",శ్లోకాలు:12,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Kashi","Food","Liberation"],description:"12 శ్లోకాలు to Annapoorna at Kashi ending with Shankara's prayer: 'O Parvati, make Kashi my home and feed me with the alms లో knowledge.'"},
+  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",శ్లోకాలు:11,type:"Manasa Puja",auth:"నిర్ధారించబడింది",tags:["Devi","Mental Worship"],description:"An eleven-verse mental worship లో Bhagavathi — the Divine Mother — లోfering all sacred substances and worship inwardly."},
+  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Surrender","Refugee","Key Work"],description:"Nine శ్లోకాలు లో total surrender to Bhavani — each confessing complete helplessness: 'I have no one else, O Mother.' The most intense Shakta sharanagati."},
+  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",శ్లోకాలు:17,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Serpentine","Musical","Bhavani"],description:"A 17-verse serpentine hymn to Bhavani in the rolling bhujanga metre — evoking the fierce energy లో the Goddess who destroys the demons లో the ego."},
+  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Bhramaramba","Srisailam","Regional"],description:"Eight శ్లోకాలు to Bhramaramba — the consort లో Mallikarjuna at Srisailam, worshipped as the Goddess who takes the form లో a bee."},
+  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",శ్లోకాలు:28,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Serpentine","Shakti","28 Verses"],description:"A 28-verse serpentine hymn to the Goddess in her universal form — flowing through her attributes like a serpent through water."},
+  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",శ్లోకాలు:72,type:"Manasa Puja",auth:"నిర్ధారించబడింది",tags:["64 Services","Most Elaborate","Navratri"],description:"A 72-verse mental లోfering లో all sixty-four services to the Goddess — the most elaborate లో Shankara's Devi worship compositions."},
+  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Five Gems","Devi","Short"],description:"Five jewel-like శ్లోకాలు in praise లో Devi — a short but potent gem లో Shakta devotion covering the Goddess's attributes లో power, grace and liberation."},
+  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",శ్లోకాలు:17,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Forgiveness","Durga","Post-Puja"],description:"17 శ్లోకాలు asking Durga's forgiveness for all transgressions — the Shakta equivalent లో Shiva Aparadha Kshamapana."},
+  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",శ్లోకాలు:11,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Gauri","Parvati","Devotion"],description:"Ten శ్లోకాలు to Gauri — the golden-complexioned, gentle form లో Parvati. A sలోter, more intimate portrait లో the Goddess as cosmic mother."},
+  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Shiva-Parvati","Together","Marriage"],description:"Eight శ్లోకాలు praising Hara (Shiva) and Gauri (Parvati) together — their eternal union and role as the divine parents లో the cosmos."},
+  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",శ్లోకాలు:17,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Kali","Forgiveness","Fierce"],description:"17 శ్లోకాలు seeking Kali's forgiveness — acknowledging that Kali the fierce destroyer also has a mother's heart. A rare hymn combining terror and tenderness."},
+  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Lalitha","Bliss","Morning"],description:"Five jewel-like శ్లోకాలు in praise లో Lalitha — the blissful Goddess. Recitation in the morning grants luck, knowledge, riches and endless fame."},
+  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",శ్లోకాలు:17,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"A garland లో mantras connecting each Sanskrit syllable to a form లో Devi — a Tantric-devotional work linking mantra, language and the Goddess."},
+  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Mother","Gratitude","Personal","Moving"],description:"Five deeply personal శ్లోకాలు to Shankara's own mother — gratitude for the gift లో life and the wisdom to renounce it. One లో his most touching compositions."},
+  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Meenakshi","Madurai","South India"],description:"Eight శ్లోకాలు to Goddess Meenakshi లో Madurai — the fish-eyed Goddess who grants liberation and prosperity to all who approach her lotus feet."},
+  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Meenakshi","Madurai","Five Gems"],description:"Five gems in praise లో Meenakshi లో Madurai — evidence లో Shankara's pan-India pilgrimage and reverence for the fish-eyed Goddess లో Tamil Nadu."},
+  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"Eight శ్లోకాలు to Raja Rajeshwari — the supreme queen, the Goddess who rules over the three cities లో creation, preservation and dissolution."},
+  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",శ్లోకాలు:8,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Saraswati","Sringeri","Learning"],description:"A serpentine hymn to Goddess Sharada (Saraswati) at Sringeri — where Shankara established his first matha. A deeply personal tribute to his patron Goddess."},
+  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",శ్లోకాలు:100,type:"Lahari",auth:"నిర్ధారించబడింది",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"The Wave లో Beauty — 100 శ్లోకాలు లో transcendent poetry praising Devi Parvati. Considered Shankara's supreme achievement in Shakta devotion."},
+  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",శ్లోకాలు:12,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Syamala","Nine Gems","Tantric"],description:"A nine-jewel garland in praise లో Syamala (Matangi) — the dark goddess లో speech, music and arts."},
+  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"Eight శ్లోకాలు to Tripurasundari — the Beautiful One లో the Three Cities, the supreme Tantric Goddess."},
+  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",శ్లోకాలు:127,type:"Manasa Puja",auth:"నిర్ధారించబడింది",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"The most extensive లో Shankara's mental worship compositions at 127 శ్లోకాలు — a complete internal worship లో Tripurasundari."},
+  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",శ్లోకాలు:10,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Vedas","Tripura Sundari","Philosophical"],description:"Ten శ్లోకాలు establishing Tripurasundari as the supreme Vedic Goddess — her feet are the four Vedas, her form is Vedic knowledge itself."},
+  // LAKSHMI
+  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",శ్లోకాలు:21,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"Composed spontaneously to invoke Lakshmi's grace for a poor woman who లోfered her only amla fruit. Showers లో golden amla fell from the sky miraculously."},
+  // VISHNU
+  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Achyuta","Infallible","Devotion"],description:"Nine శ్లోకాలు to Achyuta — the Infallible One. A heartfelt prayer to the Lord who never falls, seeking refuge in his eternal grace."},
+  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",శ్లోకాలు:18,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Narayana","Meditation","18 Verses"],description:"18 శ్లోకాలు లో meditative praise to Narayana — contemplating the Lord in his cosmic form resting on Adi Shesha."},
+  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",శ్లోకాలు:12,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Very Popular","Renunciation","Life Lesson"],description:"'Seek Govinda!' — composed when Shankara saw a scholar memorizing grammar in old age. A thunderbolt call to abandon illusion."},
+  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",శ్లోకాలు:10,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Ten Avatars","Vishnu","Evolution"],description:"Ten శ్లోకాలు praising each లో Vishnu's ten avatars — from Matsya (fish) to Kalki — tracing the divine descent through evolutionary stages."},
+  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Govinda","Krishna","Vrindavana"],description:"Nine శ్లోకాలు glorifying Govinda — Krishna as the cowherd లో Vrindavana, the enchanter లో Gopis, the flute-player who steals all hearts."},
+  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",శ్లోకాలు:44,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Hari","44 Verses","Extended"],description:"44 శ్లోకాలు లో praise to Hari (Vishnu) — an extended devotional work covering the Lord's avatars, qualities, cosmic form and salvific grace."},
+  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",శ్లోకాలు:19,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Names లో Hari","Garland","Epithets"],description:"19 శ్లోకాలు stringing together the divine names లో Hari (Vishnu) like pearls in a garland — each name a different aspect లో the Lord."},
+  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Refuge","Surrender","Sharanagati"],description:"Eight శ్లోకాలు లో taking refuge in Hari — a Vaishnava sharanagati (surrender) hymn where Shankara లోfers himself at Vishnu's lotus feet."},
+  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Jagannatha","Puri","Equality"],description:"Eight శ్లోకాలు to Lord Jagannatha లో Puri — the Lord who accepts all equally, composed when Shankara established Govardhana Matha."},
+  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Krishna","Vrindavana","Butter Thief"],description:"Eight శ్లోకాలు to Krishna — the dark blue one, the flute-player, the butter thief లో Vrindavana. A portrait లో the playful, enchanting child-god."},
+  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Narasimha","Five Gems","Fierce"],description:"Five jewel-like శ్లోకాలు to Lakshmi Narasimha — the fierce lion-man avatar లో Vishnu. A concentrated gem లో Narasimha devotion."},
+  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",శ్లోకాలు:30,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Narayana","30 Verses","Cosmic"],description:"30 శ్లోకాలు praising Narayana — Vishnu's cosmic form resting on the primeval waters. An extended meditation on the Lord as source, sustainer and end లో all."},
+  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Panduranga","Vitthal","Maharashtra"],description:"Nine శ్లోకాలు to Panduranga (Vitthal) లో Pandharpur — showing Shankara's integration లో the Maharashtra Bhakti tradition into his pan-India synthesis."},
+  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",శ్లోకాలు:29,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Rama","29 Verses","Serpentine"],description:"A 29-verse serpentine hymn praising Rama's divine deeds from birth in Ayodhya to the slaying లో Ravana."},
+  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"Eight శ్లోకాలు to Ranganatha లో Srirangam — composed when Shankara stood before the reclining Vishnu at the greatest Vaishnava temple."},
+  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",శ్లోకాలు:17,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Narasimha","Protection","Key Work"],description:"A desperate cry for Narasimha's protecting hand — each లో 17 శ్లోకాలు ends 'Lakshmi Narasimha, Mama Dehi Karavalambam' (Please lend me your protecting hand)."},
+  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",శ్లోకాలు:7,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Seven Verses","Liberation","Brief"],description:"Seven శ్లోకాలు లో intense devotion to Vishnu seeking liberation — a brief but powerful prayer covering the essence లో Vaishnava surrender."},
+  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",శ్లోకాలు:14,type:"Bhujangam",auth:"నిర్ధారించబడింది",tags:["Serpentine","14 Verses","Adi Shesha"],description:"14 serpentine శ్లోకాలు to Vishnu — evoking the Lord resting on Adi Shesha, the cosmic serpent, at the beginning లో creation."},
+  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",శ్లోకాలు:52,type:"Varnana",auth:"నిర్ధారించబడింది",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"A 52-verse ascending meditation on Vishnu's divine form — from his lotus feet through his body to his radiant crown."},
+  // HANUMAN
+  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Hanuman","Five Gems","Protection"],description:"Five jewel-like శ్లోకాలు to Hanuman — the great devotee లో Rama, the overcomer లో obstacles, the destroyer లో sorrow."},
+  // SACRED SITES
+  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",శ్లోకాలు:5,type:"Panchakam",auth:"నిర్ధారించబడింది",tags:["Kashi","Non-Dual","Advaita"],description:"Five శ్లోకాలు identifying Kashi not with the physical city but with Brahman — the real Kashi is the luminous heart, the eternal city లో pure consciousness."},
+  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",శ్లోకాలు:9,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Kashi","Varanasi","Pilgrimage"],description:"Nine శ్లోకాలు praising the sacred city లో Kashi — where Shiva himself grants liberation at the moment లో death through the Taraka Mantra."},
+  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Cremation Ghat","Death","Liberation"],description:"Nine శ్లోకాలు on Manikarnika Ghat — the most sacred cremation ground where Shiva whispers the Taraka Mantra to the dying, granting liberation beyond karma."},
+  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",శ్లోకాలు:13,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"A devotional tour లో all twelve Jyotirlinga shrines from Somanatha to Grishneshwara — visiting all లో India's holiest Shiva sites in thirteen శ్లోకాలు."},
+  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",శ్లోకాలు:9,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Ganga","River","Purification"],description:"Nine శ్లోకాలు praising the sacred Ganga as the liberator లో all beings — she who flows from Shiva's matted locks and washes away all sins."},
+  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",శ్లోకాలు:14,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Ganga","14 Verses","River Goddess"],description:"An extended 14-verse stotra to River Ganga — the universal purifier who grants moksha to all who touch her sacred waters."},
+  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Narmada","River","Central India"],description:"Eight శ్లోకాలు to the sacred Narmada river — the daughter లో Shiva whose very sight purifies, unlike the Ganga which purifies only by touch."},
+  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Yamuna","Krishna","Vrindavana"],description:"Eight శ్లోకాలు to the sacred Yamuna river — the dark, beautiful river లో Vrindavana, beloved లో Krishna."},
+  // MISCELLANEOUS (new!)
+  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",శ్లోకాలు:16,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Auspicious","Blessings","Rain లో Grace"],description:"A shower లో auspicious blessings — 16 శ్లోకాలు invoking divine grace and prosperity. One లో Shankara's Miscellaneous hymns from the Samata Books Granthavali."},
+  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",శ్లోకాలు:10,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Nine Gems","General","Praise"],description:"A nine-jewel garland — ten శ్లోకాలు లో praise to the Supreme in a general, non-sectarian form, honouring the divine beyond specific deity forms."},
+  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"Eight శ్లోకాలు to the sacred lake లో Pushkar in Rajasthan — the only major temple dedicated to Brahma in India, where the creator God is worshipped."},
+  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",శ్లోకాలు:3,type:"Stotra",auth:"నిర్ధారించబడింది",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"Three morning శ్లోకాలు — one each for mind (manas), speech (vak) and body (kaya) — surrendering all thoughts, words and actions to the Lord at dawn."},
+  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",శ్లోకాలు:8,type:"Ashtakam",auth:"నిర్ధారించబడింది",tags:["Guru","Sandals","Devotion","Tradition"],description:"Eight శ్లోకాలు venerating the sandals లో the Guru (Guru Paduka) — a distinctive form లో worship unique to the Indian tradition, honouring the Guru's very footsteps."},
+  // PRAKARANA
+  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",శ్లోకాలు:581,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"The Crown Jewel లో Discrimination — 581 శ్లోకాలు, the most comprehensive guide to Advaita Vedanta. A Guru-disciple dialogue leading step by step to liberation."},
+  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",శ్లోకాలు:68,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Self","Beginner Friendly","Key Work"],description:"Self-Knowledge in 68 crystal-clear శ్లోకాలు. The most accessible introduction to Advaita Vedanta — explaining the Self, Maya and Liberation systematically."},
+  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",శ్లోకాలు:42,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Primer","Definitions","Beginner"],description:"An introduction to Vedantic categories — the four-fold qualifications, three bodies, five sheaths. The essential primer for all students beginning Vedanta study."},
+  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",శ్లోకాలు:null,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["1000 Teachings","Authentic","Prose"],description:"A Thousand Teachings — Shankara's only undisputed prose work. A structured Guru-disciple dialogue covering the entire path to Self-realisation."},
+  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",శ్లోకాలు:144,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Direct Experience","Meditation","Practice"],description:"Direct Experience లో Reality — 144 శ్లోకాలు on the immediate recognition లో the Self, including specific meditation practices."},
+  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",శ్లోకాలు:6,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"Six thunderbolt శ్లోకాలు: 'Chidananda Rupah, Shivo Hum' — I am Shiva, pure Consciousness-Bliss. One లో the most famous spiritual compositions ever written."},
+  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",శ్లోకాలు:9,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Equality","Story","Non-Duality","Outcaste"],description:"Nine శ్లోకాలు composed when an outcaste blocked Shankara's path: 'Do you wish me to move my eternal Self, or this body లో clay?' Shankara prostrated before him."},
+  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",శ్లోకాలు:null,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Cosmology","Five Elements","Creation"],description:"Vedantic cosmology — how the five subtle elements quintuply combine to produce the gross material world. How Brahman becomes the universe through Maya."},
+  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",శ్లోకాలు:10,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"Ten శ్లోకాలు composed when Guru Govindapada asked 'Who are you?' — Shankara's spontaneous declaration లో his own non-dual identity."},
+  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",శ్లోకాలు:6,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Practice","Path","Practical"],description:"Five to six practical శ్లోకాలు listing the means and methods for spiritual realisation — Shankara's most concise guide for spiritual seekers."},
+  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",శ్లోకాలు:10,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Guru","Gratitude","Teacher","Key Work"],description:"Ten శ్లోకాలు declaring that above all worldly possessions and achievements, only the Guru matters — without the Guru, all else is worthless."},
+  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",శ్లోకాలు:5,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Sannyasa","Renunciation","Joy"],description:"Five joyful శ్లోకాలు glorifying the life లో a Sannyasi who possesses nothing but a loincloth — and yet is the richest లో all, resting in the Self."},
+  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",శ్లోకాలు:19,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"19 శ్లోకాలు describing the bliss లో the one liberated while living — who sees Brahman everywhere and lives in perpetual joy even while in the body."},
+  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",శ్లోకాలు:5,type:"Prakarana",auth:"నిర్ధారించబడింది",tags:["Maya","Illusion","Philosophy"],description:"Five శ్లోకాలు on the nature లో Maya — the cosmic illusion that makes the one appear as many. Shankara's most concentrated analysis లో ignorance."},
+  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",శ్లోకాలు:53,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"53 శ్లోకాలు exploring the Mahavakya 'Tat Tvam Asi' (That Thou Art) — a technical Advaita text analysing the great sayings through direct experience."},
+  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",శ్లోకాలు:29,type:"Prakarana",auth:"ఆపాదించబడింది",tags:["Yoga","Vedantic Yoga","Breath"],description:"29 శ్లోకాలు on Yoga from a Vedantic perspective — Shankara integrating breath control, meditation and non-dual knowledge into a unified path."},
+  // BHASHYA
+  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Masterwork","Vedanta","Definitive"],description:"Shankara's magnum opus — commentary on Badarayana's 555 Brahma Sutras, establishing Advaita as the సరైనది interpretation లో all Vedantic scripture."},
+  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Gita","Jnana","Commentary","Foundational"],description:"Commentary on all 18 chapters లో the Gita — Shankara shows jnana (knowledge) is the Gita's ultimate teaching."},
+  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Isa","Short"],description:"Commentary on the Isa Upanishad — the shortest principal Upanishad, reconciling karma (action) and jnana (knowledge)."},
+  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Kena","Witness"],description:"Commentary on 'By whom is the mind directed?' — Shankara's treatment లో the witness consciousness behind all cognition."},
+  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Death","Nachiketa"],description:"Commentary on Nachiketa's dialogue with Yama (Death) about the immortal Self — the Upanishad that directly confronts death."},
+  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Higher Knowledge","Brahman"],description:"Commentary distinguishing Para Vidya (higher knowledge — Brahman) from Apara Vidya (lower knowledge — all sciences)."},
+  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"ఆపాదించబడింది",tags:["Upanishad","Three States","Consciousness","AUM"],description:"Commentary on 12 శ్లోకాలు and Gaudapada's Karika — the definitive Advaita treatment లో the three states లో consciousness and AUM."},
+  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Rigveda","Consciousness"],description:"Commentary on the Aitareya Upanishad — the creation లో the cosmos and identification లో Consciousness with Brahman."},
+  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Five Sheaths","Bliss"],description:"Commentary covering the Panchakoshas (five sheaths) and the famous teaching on the nature లో bliss as the innermost layer లో being."},
+  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"Commentary on one లో the longest Upanishads, containing 'Tat Tvam Asi' (That Thou Art). The definitive interpretation లో this Mahavakya."},
+  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"Commentary on the oldest and longest Upanishad — containing 'Aham Brahmasmi' (I am Brahman) and the teachings లో Yajnavalkya."},
+  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"ఆపాదించబడింది",tags:["1000 Names","Vishnu","Mahabharat"],description:"Commentary on Vishnu Sahasranama from the Mahabharata — the thousand names లో Vishnu, each a window into the non-dual Brahman."},
+  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"నిర్ధారించబడింది",tags:["Mahabharat","Death","Brahmacharya"],description:"Commentary on Sanatsujata's teachings to Dhritarashtra — on the nature లో death, non-death and the path లో Brahmacharya."},
+  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",శ్లోకాలు:null,type:"Bhashya",auth:"ఆపాదించబడింది",tags:["Patanjali","Yoga","Meditation"],description:"Commentary on Patanjali's Yoga Sutras — Shankara reconciling the Yoga system with Advaita Vedanta."},
+];
+
+const QUICK_TAGS=["Bhaja Govindam","Soundarya Lahari","Nirvana Shatakam","Manasa Puja","Bhujangam","Jyotirlinga","Liberation","Forgiveness","Very Popular","Key Work"];
+
+
+// ═══════════════════════════════════════════ STATE ══════════════════════════
+let currentDeity="all", currentSearch="", currentSort="default", currentView="grid";
+let currentQuizPhase="start", currentQuizMode="all";
+let quizప్రశ్నs=[], quizIndex=0, quizScore=0;
+
+// localStorage keys
+const LS_BM="shankara_bookmarks_telugu", LS_PROG="shankara_progress_telugu";
+function loadBM(){ try{return JSON.parse(localStorage.getItem(LS_BM)||"[]");}catch{return [];} }
+function saveBM(arr){ try{localStorage.setItem(LS_BM,JSON.stringify(arr));}catch{} }
+function loadProg(){ try{return JSON.parse(localStorage.getItem(LS_PROG)||"{}");}catch{return {};} }
+function saveProg(obj){ try{localStorage.setItem(LS_PROG,JSON.stringify(obj));}catch{} }
+
+// ═══════════════════════════════════════════ HELPERS ════════════════════════
+function getDeity(id){ return DEITIES.find(d=>d.id===id)||{id:"misc",label:"Misc",color:"#9A6B4B",bg:"rgba(154,107,75,.08)",border:"rgba(154,107,75,.28)"}; }
+function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ═══════════════════════════════════════════ INIT ═══════════════════════════
+function init(){
+  const నిర్ధారించబడింది=WORKS.filter(w=>w.auth==="నిర్ధారించబడింది").length;
+  document.getElementById("statTotal").textContent=WORKS.length;
+  document.getElementById("footerText").textContent=`${WORKS.length} రచనలు catalogued · ${నిర్ధారించబడింది} నిర్ధారించబడింది · సమత బుక్స్ గ్రంథావళి ఆధారంగా ధృవీకరించబడింది`;
+  buildDeityBar(); buildQuickTags();
+  setupWOTD(); renderGrid(); renderQuizStart(); updateStats();
+  // Keyboard
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePanel(); });
+}
+
+function updateStats(){
+  const bm=loadBM(); const prog=loadProg();
+  document.getElementById("statBm").textContent=bm.length;
+  const bmBadgeEl=document.getElementById("bmBadge");
+  if(bmBadgeEl){bmBadgeEl.textContent=bm.length;bmBadgeEl.style.display=bm.length>0?"inline":"none";}
+  const bnavBadgeEl=document.getElementById("bnavBadge");
+  if(bnavBadgeEl){bnavBadgeEl.textContent=bm.length;bnavBadgeEl.style.display=bm.length>0?"inline":"none";}
+  const studied=Object.values(prog).filter(v=>v==="studied"||v==="memorised").length;
+  document.getElementById("statఅధ్యయనం").textContent=studied;
+}
+
+// ═══════════════════════════════════════════ WOTD ═══════════════════════════
+function setupWOTD(){
+  const dayIndex=Math.floor(Date.now()/(1000*60*60*24))%WORKS.length;
+  const w=WORKS[dayIndex];
+  document.getElementById("wotdName").textContent=w.name;
+  const wotdSubEl=document.getElementById("wotdSub");
+  const wotdEmojiEl=document.getElementById("wotdEmoji");
+  const d=getDeity(w.deity);
+  if(wotdSubEl) wotdSubEl.textContent=d.label+" · "+w.type+(w.శ్లోకాలు?" · "+w.శ్లోకాలు+" శ్లోకాలు":"");
+  if(wotdEmojiEl) wotdEmojiEl.innerHTML=deityIcon(w.deity,32);
+  document.getElementById("wotdBanner")._workId=w.id;
+}
+function openWOTD(){ const id=document.getElementById("wotdBanner")._workId; if(id) openPanel(id); }
+
+// ═══════════════════════════════════════════ DEITY BAR ══════════════════════
+function buildDeityBar(){
+  const counts={};
+  WORKS.forEach(w=>{counts[w.deity]=(counts[w.deity]||0)+1;});
+  const bar=document.getElementById("deityBar");
+  let html=`<button class="deity-btn active-all" onclick="setDeity('all')">All <span style="opacity:.5;font-size:8px">(${WORKS.length})</span></button>`;
+  DEITIES.forEach(d=>{ const cnt=counts[d.id]||0; if(!cnt)return;
+    html+=`<button class="deity-btn" id="dbtn-${d.id}" style="--dc:${d.color};--dbg:${d.bg};color:${d.color}" onclick="setDeity('${d.id}')"><span class="deity-btn-icon" style="color:${d.color}">${deityIcon(d.id,16)}</span><span style="color:rgba(245,240,232,.75)">${d.label}</span> <span style="opacity:.5;font-size:8px">(${cnt})</span></button>`;
+  });
+  bar.innerHTML=html;
+}
+function setDeity(id){
+  currentDeity=id;
+  document.querySelectorAll(".deity-btn").forEach(b=>b.classList.remove("active","active-all"));
+  if(id==="all") document.querySelector(".deity-btn").classList.add("active-all");
+  else { const btn=document.getElementById("dbtn-"+id); if(btn)btn.classList.add("active"); }
+  renderGrid();
+}
+function buildQuickTags(){
+  document.getElementById("quickTags").innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
+}
+
+// ═══════════════════════════════════════════ SEARCH / SORT ═════════════════
+function handleSearch(){ currentSearch=document.getElementById("searchInput").value; document.getElementById("clearBtn").style.display=currentSearch?"inline":"none"; renderGrid(); }
+function clearSearch(){ document.getElementById("searchInput").value=""; currentSearch=""; document.getElementById("clearBtn").style.display="none"; renderGrid(); }
+function setSearch(q){ document.getElementById("searchInput").value=q; currentSearch=q; document.getElementById("clearBtn").style.display=q?"inline":"none"; renderGrid(); }
+function clearAll(){ clearSearch(); setDeity("all"); }
+function handleSort(v){ currentSort=v; renderGrid(); }
+function setView(v){
+  // Senior version always uses single column — no toggle
+  currentView="list";
+}
+
+function filterరచనలు(){
+  const q=currentSearch.toLowerCase();
+  let రచనలు=WORKS.filter(w=>{
+    const mD=currentDeity==="all"||w.deity===currentDeity;
+    const mS=!q||w.name.toLowerCase().includes(q)||(w.sanskrit||"").includes(q)||w.description.toLowerCase().includes(q)||w.tags.some(t=>t.toLowerCase().includes(q));
+    return mD&&mS;
+  });
+  if(currentSort==="name") రచనలు=[...రచనలు].sort((a,b)=>a.name.localeCompare(b.name));
+  else if(currentSort==="శ్లోకాలు") రచనలు=[...రచనలు].sort((a,b)=>(b.శ్లోకాలు||0)-(a.శ్లోకాలు||0));
+  else if(currentSort==="progress"){ const prog=loadProg(); const order={memorised:0,studied:1,heard:2,undefined:3}; రచనలు=[...రచనలు].sort((a,b)=>(order[prog[a.id]]??3)-(order[prog[b.id]]??3)); }
+  return రచనలు;
+}
+
+// ═══════════════════════════════════════════ GRID ═══════════════════════════
+function renderGrid(){
+  const రచనలు=filterరచనలు();
+  const bm=loadBM(); const prog=loadProg();
+  document.getElementById("countNum").textContent=రచనలు.length;
+  const hasFilter=currentDeity!=="all"||currentSearch;
+  document.getElementById("clearFilters").style.display=hasFilter?"inline":"none";
+  const grid=document.getElementById("రచనలుGrid");
+  const empty=document.getElementById("emptyState");
+  if(!రచనలు.length){ grid.style.display="none"; empty.style.display="block"; return; }
+  grid.style.display="grid"; empty.style.display="none";
+  grid.innerHTML=రచనలు.map((w,i)=>{
+    const d=getDeity(w.deity); const isBm=bm.includes(w.id); const p=prog[w.id];
+    const progLabel=p?`<span style="font-size:.78rem;padding:4px 10px;border:1px solid;${p==="memorised"?"border-color:rgba(212,160,23,.5);color:#D4A017":p==="studied"?"border-color:rgba(126,200,160,.4);color:#7EC8A0":"border-color:rgba(91,168,212,.4);color:#5BA8D4"}">${p==="heard"?"◑ విన్నాను":p==="studied"?"◕ అధ్యయనం":"● కంఠస్థం"}</span>`:"";
+    return `<div class="work-card" onclick="openPanel('${w.id}')" style="--dc:${d.color};animation:fadeUp .3s ease ${Math.min(i,8)*0.04}s both">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="card-deity-icon" style="color:${d.color}">${deityIcon(w.deity,18)}</span>
+          <span class="badge-type" style="color:${d.color};background:${d.bg};border-color:${d.border}">${esc(w.type)}</span>
+          ${w.auth==="ఆపాదించబడింది"?`<span class="badge-attr">ఆపాదించబడింది</span>`:""}
+          ${progLabel}
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          ${w.శ్లోకాలు?`<span class="badge-శ్లోకాలు">${w.శ్లోకాలు} శ్లోకాలు</span>`:""}
+          <button class="bookmark-btn ${isBm?"bookmarked":""}" onclick="toggleBM(event,'${w.id}')">${isBm?"★ సేవ్ చేసినవి":"☆ సేవ్"}</button>
+        </div>
+      </div>
+      <div class="card-name">${esc(w.name)}</div>
+      ${w.sanskrit?`<div class="card-sanskrit">${esc(w.sanskrit)}</div>`:""}
+      <div class="card-desc" style="display:block;-webkit-line-clamp:unset">${esc(w.description)}</div>
+      <div class="card-footer" style="margin-top:12px">
+        <div class="card-tags">${w.tags.slice(0,4).map(t=>`<span class="card-tag">${esc(t)}</span>`).join("")}</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ═══════════════════════════════════════════ BOOKMARKS ══════════════════════
+function toggleBM(e,id){
+  e.stopPropagation();
+  const bm=loadBM(); const idx=bm.indexOf(id);
+  if(idx===-1)bm.push(id); else bm.splice(idx,1);
+  saveBM(bm); renderGrid(); renderBM(); updateStats();
+}
+function renderBM(){
+  const bm=loadBM(); const prog=loadProg();
+  const bmCount=null; // removed element
+  const grid=document.getElementById("bmGrid");
+  const empty=document.getElementById("bmEmpty");
+  if(!bm.length){ grid.style.display="none"; empty.style.display="block"; return; }
+  grid.style.display="grid"; empty.style.display="none";
+  const రచనలు=WORKS.filter(w=>bm.includes(w.id));
+  grid.innerHTML=రచనలు.map(w=>{
+    const d=getDeity(w.deity);
+    return `<div class="work-card" onclick="openPanel('${w.id}')">
+      <div class="card-accent" style="background:linear-gradient(90deg,${d.color},#D4A017)"></div>
+      <div class="card-top">
+        <div class="card-badges"><span class="card-deity-icon" style="color:${d.color};display:inline-flex;vertical-align:middle">${deityIcon(w.deity,14)}</span><span class="badge-type" style="color:${d.color};background:${d.bg};border-color:${d.border}">${esc(w.type)}</span></div>
+        ${w.శ్లోకాలు?`<span class="badge-శ్లోకాలు">${w.శ్లోకాలు}v</span>`:""}
+      </div>
+      <div class="card-name">${esc(w.name)}</div>
+      ${w.sanskrit?`<div class="card-sanskrit">${esc(w.sanskrit)}</div>`:""}
+      <div class="card-desc">${esc(w.description)}</div>
+      <div class="card-footer">
+        <div class="card-tags">${w.tags.slice(0,3).map(t=>`<span class="card-tag">${esc(t)}</span>`).join("")}</div>
+        <button class="bookmark-btn bookmarked" onclick="toggleBM(event,'${w.id}')">★</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ═══════════════════════════════════════════ PROGRESS ═══════════════════════
+function setProgress(id,status){
+  const prog=loadProg();
+  if(prog[id]===status) delete prog[id]; else prog[id]=status;
+  saveProg(prog); renderGrid(); renderProgress(); updateStats();
+  // refresh panel buttons
+  const btns=document.querySelectorAll(".progress-btn");
+  const newProg=loadProg()[id];
+  btns.forEach(b=>{
+    b.classList.remove("heard","studied","memorised");
+    const s=b.dataset.status;
+    b.classList.add(newProg===s?s:"none");
+  });
+  const panelBmBtn=document.querySelector(".panel-bm-btn");
+  if(panelBmBtn) panelBmBtn.textContent=(loadBM().includes(id)?"★ బుక్‌మార్క్":"☆ బుక్‌మార్క్");
+}
+
+function renderProgress(){
+  const prog=loadProg();
+  const byDeity={};
+  DEITIES.forEach(d=>byDeity[d.id]={total:0,heard:0,studied:0,memorised:0});
+  WORKS.forEach(w=>{
+    if(byDeity[w.deity]){
+      byDeity[w.deity].total++;
+      const s=prog[w.id];
+      if(s==="heard") byDeity[w.deity].heard++;
+      else if(s==="studied") byDeity[w.deity].studied++;
+      else if(s==="memorised") byDeity[w.deity].memorised++;
+    }
+  });
+
+  // Summary totals
+  const totals={total:WORKS.length,heard:0,studied:0,memorised:0};
+  WORKS.forEach(w=>{ const s=prog[w.id]; if(s) totals[s]++; });
+  const summaryEl=document.getElementById("progSummaryRow");
+  if(summaryEl){
+    summaryEl.innerHTML=`
+      <div class="prog-summary-card">
+        <div class="prog-summary-num" style="color:#5BA8D4">${totals.heard}</div>
+        <div class="prog-summary-label">విన్నాను</div>
+        <div class="prog-summary-bar-wrap"><div class="prog-summary-bar" style="width:${Math.round(totals.heard/totals.total*100)}%;background:#5BA8D4"></div></div>
+      </div>
+      <div class="prog-summary-card">
+        <div class="prog-summary-num" style="color:#7EC8A0">${totals.studied}</div>
+        <div class="prog-summary-label">అధ్యయనం</div>
+        <div class="prog-summary-bar-wrap"><div class="prog-summary-bar" style="width:${Math.round(totals.studied/totals.total*100)}%;background:#7EC8A0"></div></div>
+      </div>
+      <div class="prog-summary-card">
+        <div class="prog-summary-num" style="color:#D4A017">${totals.memorised}</div>
+        <div class="prog-summary-label">కంఠస్థం</div>
+        <div class="prog-summary-bar-wrap"><div class="prog-summary-bar" style="width:${Math.round(totals.memorised/totals.total*100)}%;background:#D4A017"></div></div>
+      </div>
+      <div class="prog-summary-card">
+        <div class="prog-summary-num" style="color:rgba(245,240,232,.5)">${totals.total - totals.heard - totals.studied - totals.memorised}</div>
+        <div class="prog-summary-label">ఇంకా ప్రారంభించలేదు</div>
+        <div class="prog-summary-bar-wrap"><div class="prog-summary-bar" style="width:${Math.round((totals.total-totals.heard-totals.studied-totals.memorised)/totals.total*100)}%;background:rgba(245,240,232,.15)"></div></div>
+      </div>`;
+  }
+
+  // Per-deity horizontal progress bars
+  const overview=document.getElementById("progressOverview");
+  overview.innerHTML=`<div class="prog-section-title" style="margin-bottom:16px">సంప్రదాయం వారీగా</div>`+DEITIES.map(d=>{
+    const {total,heard,studied,memorised}=byDeity[d.id]||{total:0,heard:0,studied:0,memorised:0};
+    if(!total)return "";
+    const done=heard+studied+memorised;
+    const heardPct=Math.round(heard/total*100);
+    const studiedPct=Math.round(studied/total*100);
+    const memorisedPct=Math.round(memorised/total*100);
+    return `<div class="prog-bar-row">
+      <div class="prog-bar-label-col">
+        <span class="prog-bar-icon" style="color:${d.color}">${deityIcon(d.id,15)}</span>
+        <span class="prog-bar-name">${d.label}</span>
+      </div>
+      <div class="prog-bar-track-col">
+        <div class="prog-stacked-track">
+          <div class="prog-stacked-seg" style="width:${memorisedPct}%;background:#D4A017" title="కంఠస్థం: ${memorised}"></div>
+          <div class="prog-stacked-seg" style="width:${studiedPct}%;background:#7EC8A0" title="అధ్యయనం: ${studied}"></div>
+          <div class="prog-stacked-seg" style="width:${heardPct}%;background:#5BA8D4" title="విన్నాను: ${heard}"></div>
+        </div>
+        <div class="prog-bar-meta">${done} లో ${total}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  // Worked items list
+  const list=document.getElementById("progressList");
+  const withProg=WORKS.filter(w=>prog[w.id]).sort((a,b)=>{
+    const order={memorised:0,studied:1,heard:2};
+    return (order[prog[a.id]]??3)-(order[prog[b.id]]??3)||a.name.localeCompare(b.name);
+  });
+  if(!withProg.length){
+    list.innerHTML=`<p class="prog-empty">ఇంకా పురోగతి నమోదు కాలేదు — ఏదైనా రచన తెరచి స్థితి సెట్ చేయండి.</p>`;
+    return;
+  }
+  list.innerHTML=withProg.map(w=>{
+    const s=prog[w.id]; const d=getDeity(w.deity);
+    const statusColor=s==="memorised"?"#D4A017":s==="studied"?"#7EC8A0":"#5BA8D4";
+    const dotW=s==="memorised"?100:s==="studied"?66:33;
+    return `<div class="prog-item" onclick="switchTab('explore');openPanel('${w.id}')">
+      <span class="prog-item-icon" style="color:${d.color}">${deityIcon(w.deity,14)}</span>
+      <div class="prog-item-body">
+        <div class="prog-item-name">${esc(w.name)}</div>
+        <div class="prog-item-bar-track"><div class="prog-item-bar-fill" style="width:${dotW}%;background:${statusColor}"></div></div>
+      </div>
+      <span class="prog-item-status ${s}">${s}</span>
+    </div>`;
+  }).join("");
+}
+function confirmResetProgress(){
+  if(confirm("అన్ని పురోగతి రీసెట్ చేయి? This cannot be undone.")) { saveProg({}); renderProgress(); renderGrid(); updateStats(); }
+}
+
+// ═══════════════════════════════════════════ QUIZ ═══════════════════════════
+function renderQuizStart(){
+  document.getElementById("quizWrap").innerHTML=`
+    <div class="quiz-start">
+      <div class="quiz-title">మీ జ్ఞానాన్ని పరీక్షించుకోండి</div>
+      <p class="quiz-sub">Answer questions about Shankara's రచనలు — their deity, verse count, type, and teachings.</p>
+      <div class="quiz-settings">
+        ${["all","shiva","devi","vishnu","prakarana"].map(m=>`<button class="quiz-set-btn ${currentQuizMode===m?"active":""}" onclick="setQuizMode('${m}')">${m==="all"?"All రచనలు":m.charAt(0).toUpperCase()+m.slice(1)}</button>`).join("")}
+      </div>
+      <button class="quiz-start-btn" onclick="startQuiz()">క్విజ్ ప్రారంభించు ✦</button>
+    </div>`;
+}
+function setQuizMode(m){ currentQuizMode=m; renderQuizStart(); }
+
+function generateప్రశ్నs(pool){
+  const shuffled=[...pool].sort(()=>Math.random()-.5).slice(0,10);
+  return shuffled.map(w=>{
+    const type=Math.floor(Math.random()*4);
+    if(type===0){
+      const wrongs=WORKS.filter(x=>x.id!==w.id).sort(()=>Math.random()-.5).slice(0,3).map(x=>getDeity(x.deity).label);
+      const opts=[...new Set([getDeity(w.deity).label,...wrongs])].sort(()=>Math.random()-.5);
+      return {q:`Which deity tradition does "${w.name}" belong to?`,answer:getDeity(w.deity).label,options:opts,insight:w.description,work:w};
+    } else if(type===1&&w.శ్లోకాలు){
+      const v=w.శ్లోకాలు; const wrongs=[v*2,Math.max(1,v-3),v+8,Math.round(v*1.5)].filter(x=>x!==v).slice(0,3);
+      const opts=[v,...wrongs].sort(()=>Math.random()-.5).map(String);
+      return {q:`How many శ్లోకాలు does "${w.name}" have?`,answer:String(v),options:opts,insight:w.description,work:w};
+    } else if(type===2){
+      const wrongs=["Stotra","Bhujangam","Ashtakam","Lahari","Panchakam","Prakarana","Bhashya","Manasa Puja"].filter(t=>t!==w.type).sort(()=>Math.random()-.5).slice(0,3);
+      const opts=[w.type,...wrongs].sort(()=>Math.random()-.5);
+      return {q:`What type లో composition is "${w.name}"?`,answer:w.type,options:[...new Set(opts)].slice(0,4),insight:w.description,work:w};
+    } else {
+      const cands=WORKS.filter(x=>x.id!==w.id).sort(()=>Math.random()-.5).slice(0,3);
+      const opts=[w,...cands].sort(()=>Math.random()-.5);
+      const snippet=w.description.substring(0,80)+"…";
+      return {q:`Which work is described as: "${snippet}"`,answer:w.name,options:opts.map(x=>x.name),insight:w.description,work:w};
+    }
+  }).filter(q=>q.options.length>=2);
+}
+
+function startQuiz(){
+  const pool=currentQuizMode==="all"?WORKS:WORKS.filter(w=>w.deity===currentQuizMode);
+  quizప్రశ్నs=generateప్రశ్నs(pool); quizIndex=0; quizScore=0;
+  if(!quizప్రశ్నs.length){ alert("Not enough రచనలు to quiz on this category."); return; }
+  renderQuizప్రశ్న();
+}
+
+function renderQuizప్రశ్న(){
+  if(quizIndex>=quizప్రశ్నs.length){ renderQuizScore(); return; }
+  const q=quizప్రశ్నs[quizIndex]; const total=quizప్రశ్నs.length; const pct=Math.round(quizIndex/total*100);
+  document.getElementById("quizWrap").innerHTML=`
+    <div class="quiz-card">
+      <div class="quiz-progress-bar-wrap"><div class="quiz-progress-bar" style="width:${pct}%"></div></div>
+      <div class="quiz-meta">${quizScore} సరైనది · ప్రశ్న ${quizIndex+1} లో ${total}</div>
+      <div class="quiz-q">${esc(q.q)}</div>
+      <div class="quiz-options">${q.options.map((opt,i)=>`<button class="quiz-opt" id="qopt${i}" onclick="answerQuiz(${i})" data-val="${esc(opt)}">${esc(opt)}</button>`).join("")}</div>
+      <div id="quizResult"></div>
+    </div>`;
+}
+
+function answerQuiz(idx){
+  const q=quizప్రశ్నs[quizIndex];
+  document.querySelectorAll(".quiz-opt").forEach(b=>b.disabled=true);
+  const selected=document.getElementById("qopt"+idx);
+  const isCorrect=selected.dataset.val===q.answer;
+  if(isCorrect){ quizScore++; selected.classList.add("సరైనది"); }
+  else {
+    selected.classList.add("wrong");
+    document.querySelectorAll(".quiz-opt").forEach(b=>{ if(b.dataset.val===q.answer)b.classList.add("సరైనది"); });
+  }
+  document.getElementById("quizResult").innerHTML=`
+    <div class="quiz-result">
+      <div class="quiz-result-text">${isCorrect?"✓ Correct! ":"✗ The answer was: <strong>${esc(q.answer)}</strong>. "}<br>${esc(q.work.description)}</div>
+    </div>
+    <button class="quiz-next-btn" onclick="quizNext()">${quizIndex+1<quizప్రశ్నs.length?"తదుపరి ప్రశ్న →":"ఫలితాలు చూడు"}</button>`;
+}
+
+function quizNext(){ quizIndex++; renderQuizప్రశ్న(); }
+
+function renderQuizScore(){
+  const pct=Math.round(quizScore/quizప్రశ్నs.length*100);
+  const msg=pct===100?"అద్భుతం! శంకరులే ఆనందించేవారు.":pct>=80?"Excellent — a dedicated student లో the tradition.":pct>=60?"Good progress — keep exploring the రచనలు.":pct>=40?"A solid start — revisit the రచనలు you missed.":"The ocean లో Shankara's wisdom is vast — keep diving in.";
+  document.getElementById("quizWrap").innerHTML=`
+    <div class="quiz-score">
+      <span class="quiz-score-num">${pct}%</span>
+      <div class="quiz-score-label">${quizScore} లో ${quizప్రశ్నs.length} సరైనది</div>
+      <p class="quiz-score-msg">${msg}</p>
+      <button class="quiz-restart-btn" onclick="startQuiz()">మళ్ళీ ప్రయత్నించు</button>
+      <button class="quiz-restart-btn" style="background:transparent;border:1px solid rgba(212,160,23,.3);margin-left:8px" onclick="renderQuizStart()">వర్గం మార్చు</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════ PANEL ══════════════════════════
+function openPanel(id){
+  const work=WORKS.find(w=>w.id===id); if(!work)return;
+  const d=getDeity(work.deity); const bm=loadBM(); const prog=loadProg(); const isBm=bm.includes(id); const p=prog[id];
+  document.getElementById("panel").style.borderLeft=`4px solid ${d.color}`;
+  document.getElementById("panelHeader").style.background=`linear-gradient(135deg,${d.bg},transparent)`;
+  document.getElementById("panelHeader").innerHTML=`
+    <div class="panel-header-top">
+      <div class="panel-badges">
+        <span class="card-deity-icon" style="color:${d.color}">${deityIcon(work.deity,16)}</span>
+        <span class="badge-type" style="color:${d.color};background:${d.bg};border-color:${d.border}">${esc(work.type)}</span>
+        ${work.శ్లోకాలు?`<span class="badge-శ్లోకాలు">${work.శ్లోకాలు} శ్లోకాలు</span>`:""}
+        ${work.auth==="ఆపాదించబడింది"?`<span class="badge-attr">ఆపాదించబడింది</span>`:""}
+      </div>
+      <button class="close-btn" onclick="closePanel()">✕ CLOSE</button>
+    </div>
+    <div class="panel-name">${esc(work.name)}</div>
+    ${work.sanskrit?`<div class="panel-sanskrit">${esc(work.sanskrit)}</div>`:""}
+    <div class="panel-deity-row">
+      <div class="panel-deity" style="color:${d.color}"><span style="display:inline-flex;vertical-align:middle;margin-right:6px">${deityIcon(work.deity,14)}</span>${d.label}</div>
+      <button class="panel-bm-btn ${isBm?"bookmarked":""}" onclick="toggleBMPanel('${id}')">${isBm?"★ సేవ్ చేసినవి":"☆ సేవ్"}</button>
+    </div>`;
+
+  document.getElementById("panelBody").innerHTML=`
+    <div>
+      <div class="section-label">గురించి</div>
+      <p class="about-text">${esc(work.description)}</p>
+    </div>
+    ${work.auth==="ఆపాదించబడింది"?`<div class="attr-note"><span style="font-family:Georgia,serif;font-size:.9rem;color:rgba(212,160,23,.7)">※</span> <strong>రచయిత గమనిక:</strong> శంకరులకు ఆపాదించబడినది, కానీ పండితులలో చర్చాస్పదం. సంప్రదాయంలో లోతుగా పాతుకుపోయింది.</div>`:""}
+    <div>
+      <div class="section-label">మీ పురోగతి</div>
+      <div class="progress-row">
+        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s:"none"}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ విన్నాను":s==="studied"?"◕ అధ్యయనం":"● కంఠస్థం"}</button>`).join("")}
+      </div>
+    </div>
+    <div class="insight-box">
+      <div class="insight-header"><span class="insight-gem">✦</span><span class="insight-label">పండిత అంతర్దృష్టి</span></div>
+      <div id="insightContent"><div class="loading-row"><span class="spinner">✿</span><span class="loading-txt">జ్ఞానం వెతుకుతున్నాం…</span></div></div>
+    </div>
+    <div>
+      <div class="section-label">విషయాలు</div>
+      <div class="tags-row">${work.tags.map(t=>`<span class="panel-tag">${esc(t)}</span>`).join("")}</div>
+    </div>
+    <div>
+      <div class="section-label">ఉత్తమ రికార్డింగ్ వెతకు</div>
+      <div id="featuredVideo"><div class="loading-row"><span class="spinner">✿</span><span class="loading-txt">ఉత్తమ శోధన కనుగొంటున్నాం…</span></div></div>
+    </div>
+    <div>
+      <div class="section-label">పాడే విధానం వారీగా వెతకు</div>
+      <div id="videoContent"><div class="loading-row"><span class="spinner">✿</span><span class="loading-txt">శోధన లింకులు నిర్మిస్తున్నాం…</span></div></div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent("Adi Shankaracharya "+work.name)}" target="_blank" rel="noopener">అన్నీ వెతకు "${esc(work.name)}" YouTube లో ↗</a>
+  `;
+  document.getElementById("panelOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+  document.getElementById("panel").scrollTop=0;
+  loadInsight(work); loadVideos(work,d);
+}
+
+
+function toggleBMPanel(id){
+  const bm=loadBM(); const idx=bm.indexOf(id);
+  if(idx===-1)bm.push(id); else bm.splice(idx,1);
+  saveBM(bm);
+  const btn=document.querySelector(".panel-bm-btn");
+  const isBm=bm.includes(id);
+  if(btn){ btn.textContent=isBm?"★ బుక్‌మార్క్":"☆ బుక్‌మార్క్"; btn.classList.toggle("bookmarked",isBm); }
+  renderGrid(); renderBM(); updateStats();
+}
+
+function closePanel(){ document.getElementById("panelOverlay").classList.remove("open"); document.body.style.overflow=""; }
+function closePanelOutside(e){ if(e.target===document.getElementById("panelOverlay")) closePanel(); }
+
+async function loadInsight(work){
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
+        system:"You are a scholar లో Adi Shankaracharya's రచనలు. Give a 3-4 sentence scholarly insight: central teaching, poetic/structural features, significance in Shankara's corpus, one remarkable detail. Be direct — no preamble.",
+        messages:[{role:"user",content:`Explain "${work.name}" (${work.sanskrit||""}) by Adi Shankaracharya. Verses: ${work.శ్లోకాలు||"unknown"}. Type: ${work.type}. Context: ${work.description}`}]
+      })});
+    const data=await res.json();
+    const text=data?.content?.find(c=>c.type==="text")?.text||"అంతర్దృష్టి అందుబాటులో లేదు.";
+    const el=document.getElementById("insightContent");
+    if(el) el.innerHTML=`<p class="insight-text">${esc(text)}</p>`;
+  }catch(e){
+    const el=document.getElementById("insightContent");
+    if(el) el.innerHTML=`<p class="insight-text" style="color:rgba(154,107,75,.5)">Insight unavailable.</p>`;
+  }
+}
+
+// Video IDs are not reliably generatable by AI — we use YouTube search URLs
+// which always work, and build a rich search panel instead.
+async function loadVideos(work, d){
+  // Build 6 targeted search queries for different renditions
+  const queries = [
+    { label: "Carnatic Vocal",       q: `${work.name} Shankaracharya MS Subbulakshmi` },
+    { label: "Classical Rendering",  q: `${work.name} Adi Shankaracharya traditional` },
+    { label: "Discourse & Meaning",  q: `${work.name} Shankaracharya meaning lecture` },
+    { label: "SP Balasubrahmanyam",  q: `${work.name} SPB Balasubrahmanyam` },
+    { label: "Chinmaya / Vedanta",   q: `${work.name} Chinmaya Mission Vedanta` },
+    { label: "Sanskrit Recitation",  q: `${work.name} Sanskrit chanting full` },
+  ];
+
+  // Use Claude to suggest the single best search term for this specific work
+  let bestQuery = `Adi Shankaracharya ${work.name}`;
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        model:"claude-sonnet-4-20250514", max_tokens:200,
+        system: "You suggest the single best YouTube search query for finding a high-quality audio/video లో a specific Shankaracharya stotra. Return ONLY the search query string, nothing else. Keep it under 60 characters. Include the work name and one famous singer or channel known for this work.",
+        messages:[{ role:"user", content:`Best YouTube search for: "${work.name}" by Adi Shankaracharya. Deity: ${work.deity}. Tags: ${work.tags.join(", ")}.` }]
+      })
+    });
+    const data = await res.json();
+    const suggested = data?.content?.find(c=>c.type==="text")?.text?.trim();
+    if(suggested && suggested.length < 80) bestQuery = suggested;
+  } catch(e) { /* use default */ }
+
+  // Featured: a prominent search link styled like a player
+  const featEl = document.getElementById("featuredVideo");
+  if(featEl) {
+    const featURL = `https://www.youtube.com/results?search_query=${encodeURIComponent(bestQuery)}`;
+    featEl.innerHTML = `
+      <a href="${featURL}" target="_blank" rel="noopener" style="text-decoration:none;display:block">
+        <div class="video-placeholder" style="background:linear-gradient(135deg,${d.bg},rgba(20,6,0,.7))">
+          <span style="color:${d.color};display:inline-flex">${deityIcon(work.deity,36)}</span>
+          <span class="play-icon" style="font-size:22px;margin-top:4px">▶</span>
+          <span class="play-label">వెతకు: ${esc(bestQuery.substring(0,48))}…</span>
+          <span style="font-size:9px;color:rgba(154,107,75,.5);margin-top:2px">YouTube శోధన తెరుస్తుంది ↗</span>
+        </div>
+      </a>
+      <div style="font-size:10px;color:#9A6B4B;padding:5px 0 0">ఉత్తమ పోలిక "${esc(work.name)}"</div>`;
+  }
+
+  // Grid: 6 targeted search tiles
+  const gridEl = document.getElementById("videoContent");
+  if(gridEl) {
+    gridEl.innerHTML = `<div class="video-grid">${queries.map(item => {
+      const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(item.q)}`;
+      return `<a class="video-card" href="${url}" target="_blank" rel="noopener">
+        <div class="video-thumb" style="background:linear-gradient(135deg,${d.bg},rgba(20,6,0,.5))">
+          <span style="color:${d.color};opacity:0.4;display:inline-flex">${deityIcon(work.deity,18)}</span>
+          <div class="video-play-btn"><span class="video-play-icon">▶</span></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">${esc(item.label)}</div>
+          <div class="video-channel" style="font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(item.q)}</div>
+        </div>
+      </a>`;
+    }).join("")}</div>`;
+  }
+}
+
+// ═══════════════════════════════════════════ TABS ═══════════════════════════
+function switchTab(tab){
+  ["explore","bookmarks","quiz","progress"].forEach(t=>{
+    const el=document.getElementById("tab-"+t); if(el) el.style.display=t===tab?"block":"none";
+  });
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
+  document.querySelectorAll(".bnav-btn").forEach(b=>b.classList.toggle("active",b.id==="bnav-"+tab));
+  if(tab==="bookmarks")renderBM();
+  if(tab==="progress")renderProgress();
+}
+
+
+const _style=document.createElement("style");
+_style.textContent="@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}";
+document.head.appendChild(_style);
+
+// ── TEXT SIZE CONTROL ────────────────────────────────────────────────────────
+function setTextSize(size){
+  document.documentElement.classList.remove("text-lg","text-xl");
+  if(size==="lg") document.documentElement.classList.add("text-lg");
+  if(size==="xl") document.documentElement.classList.add("text-xl");
+  document.querySelectorAll(".txt-btn").forEach(b=>b.classList.remove("active"));
+  const btn=document.getElementById("txt-"+size);
+  if(btn) btn.classList.add("active");
+  try{localStorage.setItem("shankara_textsize",size);}catch(e){}
+}
+// Restore saved text size
+try{
+  const saved=localStorage.getItem("shankara_textsize");
+  if(saved) setTextSize(saved);
+}catch(e){}
+
+init();
+</script>
+</body>
+</html>
