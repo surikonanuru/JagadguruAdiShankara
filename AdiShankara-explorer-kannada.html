@@ -484,55 +484,101 @@ h1{
 .prog-radio.selected-heard .prog-radio-check{border-color:#5BA8D4;color:#5BA8D4}
 .prog-radio.selected-studied .prog-radio-check{border-color:#7EC8A0;color:#7EC8A0}
 .prog-radio.selected-memorised .prog-radio-check{border-color:#D4A017;background:#D4A017;color:#0D0400}
+
+
 /* Video */
 .video-placeholder{
   width:100%;aspect-ratio:16/9;
   display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:12px;cursor:pointer;
-  border:2px solid rgba(212,160,23,.2);transition:all .2s;
-  text-decoration:none;background:rgba(14,4,0,.7);
+  flex-direction:column;gap:10px;cursor:pointer;
+  border:2px solid rgba(212,160,23,.45);transition:all .25s;
+  text-decoration:none;background:rgba(20,6,0,.85);
+  position:relative;overflow:hidden;
 }
-.video-placeholder:hover{border-color:rgba(212,160,23,.5)}
-.play-icon{font-size:2rem;opacity:.55}
+.video-placeholder::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(212,160,23,.06),transparent 60%);
+  transition:opacity .25s;
+}
+.video-placeholder:hover{
+  border-color:#D4A017;
+  background:rgba(30,10,0,.9);
+  box-shadow:0 4px 24px rgba(212,160,23,.15);
+}
+.play-icon{
+  font-size:2.4rem;color:#D4A017;opacity:.9;
+  text-shadow:0 0 20px rgba(212,160,23,.5);
+  transition:transform .2s;
+}
+.video-placeholder:hover .play-icon{transform:scale(1.15)}
 .play-label{
-  font-size:.95rem;color:#9A6B4B;
-  letter-spacing:.06em;font-family:Georgia,serif;
-  text-align:center;padding:0 16px;
+  font-size:.92rem;color:#FAF6EE;
+  letter-spacing:.04em;font-family:Georgia,serif;
+  text-align:center;padding:0 16px;line-height:1.4;
+  font-weight:600;
 }
 .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .video-card{
-  background:rgba(12,2,0,.9);
-  border:1px solid rgba(212,160,23,.15);
-  overflow:hidden;transition:all .2s;text-decoration:none;display:block;
+  background:rgba(16,4,0,.9);
+  border:2px solid rgba(212,160,23,.3);
+  border-left:3px solid rgba(212,160,23,.5);
+  overflow:hidden;transition:all .22s;text-decoration:none;display:block;
 }
-.video-card:hover{border-color:rgba(212,160,23,.4)}
+.video-card:hover{
+  border-color:rgba(212,160,23,.7);
+  border-left-color:#D4A017;
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,.5);
+}
 .video-thumb{
   aspect-ratio:16/9;display:flex;align-items:center;
   justify-content:center;font-size:1.4rem;position:relative;cursor:pointer;
 }
 .video-play-btn{
   position:absolute;inset:0;display:flex;align-items:center;
-  justify-content:center;background:rgba(0,0,0,.3);
-  opacity:0;transition:opacity .2s;
+  justify-content:center;background:rgba(0,0,0,.25);
+  opacity:1;transition:background .2s;
 }
-.video-thumb:hover .video-play-btn{opacity:1}
-.video-play-icon{font-size:1.5rem;color:#FAF6EE}
-.video-info{padding:10px 12px 12px}
+.video-card:hover .video-play-btn{background:rgba(0,0,0,.45)}
+.video-play-icon{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(212,160,23,.85);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:#0D0400;padding-left:3px;
+  box-shadow:0 2px 12px rgba(0,0,0,.5);
+  transition:transform .2s, background .2s;
+}
+.video-card:hover .video-play-icon{
+  background:#D4A017;
+  transform:scale(1.1);
+}
+.video-info{padding:10px 12px 12px;border-top:1px solid rgba(212,160,23,.12)}
 .video-title{
-  font-size:.9rem;font-weight:600;color:#FAF6EE;
-  line-height:1.4;margin-bottom:4px;
+  font-size:.92rem;font-weight:700;color:#FAF6EE;
+  line-height:1.4;margin-bottom:5px;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
-.video-channel{font-size:.8rem;color:#9A6B4B;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.yt-link{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px;border:2px solid rgba(212,160,23,.3);
-  color:#E8651A;text-decoration:none;
-  font-family:Georgia,serif;font-size:.9rem;
-  letter-spacing:.1em;text-transform:uppercase;transition:all .2s;
-  min-height:52px;
+.video-channel{
+  font-size:.78rem;color:rgba(212,160,23,.6);
+  font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
-.yt-link:hover{background:rgba(232,101,26,.08);border-color:rgba(212,160,23,.6)}
+.yt-link{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px;
+  background:rgba(232,101,26,.12);
+  border:2px solid rgba(232,101,26,.5);
+  color:#F07040;text-decoration:none;
+  font-family:Georgia,serif;font-size:.95rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;transition:all .22s;
+  min-height:54px;
+}
+.yt-link::before{content:'▶';font-size:.7rem;opacity:.8}
+.yt-link:hover{
+  background:rgba(232,101,26,.22);
+  border-color:#E8651A;
+  color:#FAB080;
+  box-shadow:0 0 20px rgba(232,101,26,.2);
+}
 
 /* ═══ BOOKMARKS TAB ══════════════════════════════════════════ */
 .tab-page-header{margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid rgba(212,160,23,.12)}
@@ -1062,127 +1108,127 @@ const DEITIES=[
 
 const WORKS=[
   // GANESHA
-  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"Five jewel-like ಶ್ಲೋಕಗಳು in praise ರಲ್ಲಿ Ganesha — the destroyer ರಲ್ಲಿ obstacles and lord ರಲ್ಲಿ all beginnings. Each stanza is a gem ರಲ್ಲಿ devotional poetry."},
-  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",ಶ್ಲೋಕಗಳು:8,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Serpentine Metre","Musical","Ganesha"],description:"A serpentine hymn to Ganesha in the flowing bhujanga metre — invoking the elephant-headed Lord who clears every path for his devotees."},
+  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"ಗಣೇಶನ ಸ್ತುತಿಯಲ್ಲಿ ಐದು ರತ್ನದಂತಹ ಶ್ಲೋಕಗಳು — ವಿಘ್ನಗಳ ನಾಶಕ ಮತ್ತು ಎಲ್ಲ ಆರಂಭಗಳ ಅಧಿಪತಿ. ಪ್ರತಿ ಪದ್ಯವೂ ಭಕ್ತಿ ಕಾವ್ಯದ ರತ್ನ."},
+  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"ಭುಜಂಗ ಛಂದಸ್ಸಿನಲ್ಲಿ ಗಣೇಶನಿಗೆ ಸರ್ಪಗತಿಯ ಸ್ತೋತ್ರ — ಭಕ್ತರ ಎಲ್ಲ ಮಾರ್ಗಗಳನ್ನು ಸ್ವಚ್ಛಗೊಳಿಸುವ ಗಜಮುಖ ಪ್ರಭುವನ್ನು ಆಹ್ವಾನಿಸುತ್ತದೆ."},
   // SUBRAMANYA
-  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",ಶ್ಲೋಕಗಳು:33,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Major Work","South India","33 Verses","Very Popular"],description:"A 33-verse serpentine hymn to Subrahmanya — Shiva's son, the god ರಲ್ಲಿ war and wisdom. One ರಲ್ಲಿ the most musically beautiful Bhujangam compositions."},
+  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"ಸುಬ್ರಹ್ಮಣ್ಯನಿಗೆ 33 ಶ್ಲೋಕಗಳ ಭುಜಂಗ ಸ್ತೋತ್ರ — ಶಿವನ ಪುತ್ರ, ಯುದ್ಧ ಮತ್ತು ಜ್ಞಾನದ ದೇವರು. ಅತ್ಯಂತ ಸಂಗೀತಾತ್ಮಕ ಭುಜಂಗಂ ರಚನೆಗಳಲ್ಲಿ ಒಂದು."},
   // SHIVA
-  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",ಶ್ಲೋಕಗಳು:9,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"Nine ಶ್ಲೋಕಗಳು on Ardhanariswara — Shiva and Shakti in one androgynous form. A philosophical gem on the unity ರಲ್ಲಿ consciousness and energy."},
-  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",ಶ್ಲೋಕಗಳು:10,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Ten Verses","Self-Declaration","Advaita"],description:"Ten ಶ್ಲೋಕಗಳು ರಲ್ಲಿ self-declaration — Shankara declares the ultimate nature ರಲ್ಲಿ the Self in ten compact, thunderbolt-like ಶ್ಲೋಕಗಳು."},
-  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",ಶ್ಲೋಕಗಳು:10,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Advaita","Guru","Key Work","Silence"],description:"Shiva as the silent teacher facing south — the universe as a reflection in Brahman, like a city seen in a mirror. The supreme Advaitic hymn."},
-  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",ಶ್ಲೋಕಗಳು:19,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Advaita","Guru","Extended","Philosophy"],description:"The extended stotra on Dakshinamurthy — 19 ಶ್ಲೋಕಗಳು on Shiva as the cosmic teacher who transmits wisdom through silence to the four Kumaras."},
-  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",ಶ್ಲೋಕಗಳು:25,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"A varnamala (alphabetical garland) ರಲ್ಲಿ 25 ಶ್ಲೋಕಗಳು on Dakshinamurthy — each verse beginning with successive Sanskrit letters."},
-  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Kashi","Fierce","Time","Liberation"],description:"Eight fierce ಶ್ಲೋಕಗಳು on Kalabhairava ರಲ್ಲಿ Kashi — the Lord ರಲ್ಲಿ Time. Those who recite this at Varanasi are liberated from the cycle ರಲ್ಲಿ time itself."},
-  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",ಶ್ಲೋಕಗಳು:46,type:"Manasa Puja",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Death","Liberation","Long Work","Mental Worship"],description:"46 ಶ್ಲೋಕಗಳು ರಲ್ಲಿ elaborate mental worship ರಲ್ಲಿ Mrityunjaya — the Conqueror ರಲ್ಲಿ Death. Every element ರಲ್ಲಿ ceremonial worship ರಲ್ಲಿfered in the inner mind."},
-  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",ಶ್ಲೋಕಗಳು:17,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Forgiveness","Surrender","Post-Puja"],description:"A heartfelt hymn ರಲ್ಲಿ forgiveness — confessing all shortcomings ರಲ್ಲಿ body, speech and mind before Shiva. Recited after Shiva puja as complete surrender."},
-  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",ಶ್ಲೋಕಗಳು:100,type:"Lahari",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"100 ಶ್ಲೋಕಗಳು ರಲ್ಲಿ ecstatic devotion composed at Srisailam. Shankara's most extensive Shaiva hymn, blending bhakti, philosophy and sublime poetry."},
-  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",ಶ್ಲೋಕಗಳು:4,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Serpentine Metre","Musical","Short"],description:"Four serpentine ಶ್ಲೋಕಗಳು to Shiva whose undulating metre mimics the movement ರಲ್ಲಿ the Lord's own serpent ornament — hypnotic to recite."},
-  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",ಶ್ಲೋಕಗಳು:29,type:"Varnana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Head to Toe","Visual Meditation","Form ರಲ್ಲಿ Shiva"],description:"A head-to-toe description ರಲ್ಲಿ Shiva in 29 ಶ್ಲೋಕಗಳು — from the crescent moon in his matted locks down to his lotus feet. A complete visual meditation."},
-  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",ಶ್ಲೋಕಗಳು:5,type:"Manasa Puja",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"Mental worship ರಲ್ಲಿ Shiva — ರಲ್ಲಿfering gem thrones, divine bath and sacred garments entirely within the heart. One ರಲ್ಲಿ Shankara's most tender compositions."},
-  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Names ರಲ್ಲಿ Shiva","Garland","Epithets"],description:"Nine ಶ್ಲೋಕಗಳು structured as a garland ರಲ್ಲಿ Shiva's names — each a necklace ರಲ್ಲಿ divine epithets revealing different aspects ರಲ್ಲಿ the Lord's infinite nature."},
-  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",ಶ್ಲೋಕಗಳು:41,type:"Varnana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Toe to Head","Visual Meditation","Long Work"],description:"The companion piece ascending from Shiva's lotus feet to his crown — 41 rapturous ಶ್ಲೋಕಗಳು rising up the divine form."},
-  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",ಶ್ಲೋಕಗಳು:6,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"Six ಶ್ಲೋಕಗಳು each dedicated to one syllable ರಲ್ಲಿ Na-Ma-Shi-Va-Ya, meditating on the five elements through the five syllables ರಲ್ಲಿ Shiva's name."},
-  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",ಶ್ಲೋಕಗಳು:28,type:"Nakshatramala",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["27 Stars","Astronomy","Unique Structure"],description:"A star-garland ರಲ್ಲಿ 28 ಶ್ಲೋಕಗಳು connecting each ರಲ್ಲಿ the 27 lunar mansions to a specific quality ರಲ್ಲಿ Shiva — a rare synthesis ರಲ್ಲಿ Jyotisha and Shaiva devotion."},
-  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",ಶ್ಲೋಕಗಳು:50,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Alphabet","Acrostic","50 Verses"],description:"A golden garland ರಲ್ಲಿ 50 ಶ್ಲೋಕಗಳು — one for each Sanskrit letter. An alphabetical acrostic hymn where the entire alphabet becomes praise ರಲ್ಲಿ Shiva."},
-  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",ಶ್ಲೋಕಗಳು:13,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Divine Couple","Marriage","Creation"],description:"13 ಶ್ಲೋಕಗಳು praising Shiva and Parvati as Uma-Maheshwara — the divine couple whose union is the source ರಲ್ಲಿ all creation. The canonical wedding hymn."},
-  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",ಶ್ಲೋಕಗಳು:11,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Vedas","Shivaratri","Brahman"],description:"The Essence ರಲ್ಲಿ the Vedas in praise ರಲ್ಲಿ Shiva — 11 ಶ್ಲೋಕಗಳು showing Shiva as both formed God and formless Brahman. Written for Maha Shivaratri."},
+  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"ಅರ್ಧನಾರೀಶ್ವರನ ಮೇಲೆ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಏಕ ರೂಪದಲ್ಲಿ ಶಿವ ಮತ್ತು ಶಕ್ತಿ. ಚೇತನ ಮತ್ತು ಶಕ್ತಿಯ ಏಕತೆಯ ತಾತ್ವಿಕ ರತ್ನ."},
+  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"ಸ್ವಯಂ-ಘೋಷಣೆಯ ಹತ್ತು ಶ್ಲೋಕಗಳು — ಶಂಕರರು ಹತ್ತು ಸಂಕ್ಷಿಪ್ತ, ವಜ್ರದಂತಹ ಶ್ಲೋಕಗಳಲ್ಲಿ ಆತ್ಮನ ಅಂತಿಮ ಸ್ವರೂಪವನ್ನು ಘೋಷಿಸುತ್ತಾರೆ."},
+  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"ದಕ್ಷಿಣಾಭಿಮುಖವಾಗಿ ಮೌನ ಗುರುವಾಗಿ ಶಿವ — ಬ್ರಹ್ಮನಲ್ಲಿ ಕನ್ನಡಿಯಲ್ಲಿ ಕಾಣುವ ನಗರದಂತೆ ವಿಶ್ವ. ಪರಮ ಅದ್ವೈತ ಸ್ತೋತ್ರ."},
+  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"ದಕ್ಷಿಣಾಮೂರ್ತಿಯ ವಿಸ್ತೃತ ಸ್ತೋತ್ರ — ನಾಲ್ಕು ಕುಮಾರರಿಗೆ ಮೌನದ ಮೂಲಕ ಜ್ಞಾನ ದಾಟಿಸುವ ವಿಶ್ವ ಗುರುವಾಗಿ ಶಿವನ ಮೇಲೆ 19 ಶ್ಲೋಕಗಳು."},
+  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"ದಕ್ಷಿಣಾಮೂರ್ತಿಯ ಮೇಲೆ 25 ಶ್ಲೋಕಗಳ ವರ್ಣಮಾಲ — ಪ್ರತಿ ಶ್ಲೋಕವೂ ಅನುಕ್ರಮ ಸಂಸ್ಕೃತ ಅಕ್ಷರದಿಂದ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ."},
+  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"ಕಾಶಿಯ ಕಾಲಭೈರವನ ಮೇಲೆ ಎಂಟು ತೀವ್ರ ಶ್ಲೋಕಗಳು — ಕಾಲದ ಪ್ರಭು. ವಾರಾಣಸಿಯಲ್ಲಿ ಇದನ್ನು ಪಠಿಸಿದವರು ಕಾಲಚಕ್ರದಿಂದ ಮುಕ್ತರಾಗುತ್ತಾರೆ."},
+  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"ಮೃತ್ಯುಂಜಯನ ವಿಸ್ತಾರವಾದ ಮಾನಸ ಪೂಜೆಯ 46 ಶ್ಲೋಕಗಳು — ಮೃತ್ಯು ವಿಜೇತ. ಮನಸ್ಸಿನಲ್ಲಿ ಅರ್ಪಿಸಲಾದ ಆಚಾರ ಪೂಜೆಯ ಪ್ರತಿ ಅಂಶ."},
+  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"ಕ್ಷಮಾಯಾಚನೆಯ ಹೃದ್ಯ ಸ್ತೋತ್ರ — ಶಿವನ ಮುಂದೆ ದೇಹ, ವಾಕ್ ಮತ್ತು ಮನಸ್ಸಿನ ಎಲ್ಲ ನ್ಯೂನತೆಗಳನ್ನು ಒಪ್ಪಿಕೊಳ್ಳುವುದು. ಶಿವ ಪೂಜೆಯ ನಂತರ ಸಂಪೂರ್ಣ ಶರಣಾಗತಿಯಾಗಿ ಪಠಿಸಲಾಗುತ್ತದೆ."},
+  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"ಶ್ರೀಶೈಲದಲ್ಲಿ ರಚಿಸಿದ ಉನ್ಮತ್ತ ಭಕ್ತಿಯ 100 ಶ್ಲೋಕಗಳು. ಶಂಕರರ ಅತ್ಯಂತ ವಿಸ್ತೃತ ಶೈವ ಸ್ತೋತ್ರ — ಭಕ್ತಿ, ತತ್ವಶಾಸ್ತ್ರ ಮತ್ತು ಉದಾತ್ತ ಕಾವ್ಯದ ಸಮ್ಮಿಶ್ರಣ."},
+  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"ಶಿವನ ಸ್ವಂತ ಸರ್ಪಾಭರಣದ ಚಲನೆಯನ್ನು ಅನುಕರಿಸುವ ಅಲೆಯಂತಹ ಛಂದಸ್ಸಿನಲ್ಲಿ ಶಿವನಿಗೆ ನಾಲ್ಕು ಭುಜಂಗ ಶ್ಲೋಕಗಳು — ಪಠಿಸಲು ಮೋಡಿ ಮಾಡುವ."},
+  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"29 ಶ್ಲೋಕಗಳಲ್ಲಿ ಶಿವನ ತಲೆಯಿಂದ ಪಾದದವರೆಗೆ ವರ್ಣನೆ — ಜಡೆಯ ತಲೆಕೂದಲಿನ ಚಂದ್ರಕಲೆಯಿಂದ ಕಮಲ ಪಾದಗಳವರೆಗೆ. ಸಂಪೂರ್ಣ ದೃಶ್ಯ ಧ್ಯಾನ."},
+  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"ಶಿವನ ಮಾನಸ ಪೂಜೆ — ಹೃದಯದೊಳಗೇ ರತ್ನ ಸಿಂಹಾಸನ, ದಿವ್ಯ ಸ್ನಾನ ಮತ್ತು ಪವಿತ್ರ ವಸ್ತ್ರಗಳನ್ನು ಅರ್ಪಿಸುವುದು. ಶಂಕರರ ಅತ್ಯಂತ ಕೋಮಲ ರಚನೆಗಳಲ್ಲಿ ಒಂದು."},
+  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"ಶಿವನ ನಾಮಗಳ ಮಾಲೆಯಾಗಿ ರಚಿಸಿದ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಭಗವಂತನ ಅನಂತ ಸ್ವಭಾವದ ವಿವಿಧ ಅಂಶಗಳನ್ನು ಬಿಚ್ಚಿಡುವ ದಿವ್ಯ ಉಪಮೆಗಳ ಮಾಲೆ."},
+  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"ಶಿವನ ಕಮಲ ಪಾದಗಳಿಂದ ಕಿರೀಟದವರೆಗೆ ಆರೋಹಿಸುವ ಸಂಗಾತಿ ರಚನೆ — ದಿವ್ಯ ರೂಪವನ್ನೇರುವ 41 ಉತ್ಸಾಹಿ ಶ್ಲೋಕಗಳು."},
+  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"ನ-ಮ-ಶಿ-ವ-ಯ ಪ್ರತಿ ಅಕ್ಷರಕ್ಕೆ ಅರ್ಪಿತ ಆರು ಶ್ಲೋಕಗಳು, ಶಿವನ ನಾಮದ ಐದು ಅಕ್ಷರಗಳ ಮೂಲಕ ಪಂಚಭೂತಗಳನ್ನು ಧ್ಯಾನಿಸುವ."},
+  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 ನಕ್ಷತ್ರ ಮಂಡಲಗಳನ್ನು ಶಿವನ ಗುಣಗಳಿಗೆ ಸಂಪರ್ಕಿಸುವ 28 ಶ್ಲೋಕಗಳ ನಕ್ಷತ್ರ ಮಾಲೆ — ಜ್ಯೋತಿಷ ಮತ್ತು ಶೈವ ಭಕ್ತಿಯ ಅಪರೂಪದ ಸಂಯೋಜನೆ."},
+  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"50 ಶ್ಲೋಕಗಳ ಸ್ವರ್ಣ ಮಾಲೆ — ಪ್ರತಿ ಸಂಸ್ಕೃತ ಅಕ್ಷರಕ್ಕೊಂದು. ಸಂಪೂರ್ಣ ವರ್ಣಮಾಲೆ ಶಿವನ ಸ್ತುತಿಯಾಗುವ ಅಕ್ಷರ ಮಾಲೆ ಸ್ತೋತ್ರ."},
+  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"ಉಮಾ-ಮಹೇಶ್ವರನಾಗಿ ಶಿವ ಮತ್ತು ಪಾರ್ವತಿಯನ್ನು ಸ್ತುತಿಸುವ 13 ಶ್ಲೋಕಗಳು — ದಿವ್ಯ ದಂಪತಿಗಳ ಮಿಲನ ಎಲ್ಲ ಸೃಷ್ಟಿಯ ಮೂಲ. ಮಾನ್ಯ ವಿವಾಹ ಸ್ತೋತ್ರ."},
+  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"ಶಿವನ ಸ್ತುತಿಯಲ್ಲಿ ವೇದಗಳ ಸಾರ — ಶಿವನನ್ನು ಸಾಕಾರ ದೇವರು ಮತ್ತು ನಿರಾಕಾರ ಬ್ರಹ್ಮ ಎರಡರ ರೂಪದಲ್ಲಿ ತೋರಿಸುವ 11 ಶ್ಲೋಕಗಳು. ಮಹಾ ಶಿವರಾತ್ರಿಗಾಗಿ ರಚಿಸಲಾಗಿದೆ."},
   // DEVI
-  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Annapoorna","Kashi","Food"],description:"Eight ಶ್ಲೋಕಗಳು to Annapoorna (Amba) Devi at Kashi — Parvati as the goddess ರಲ್ಲಿ nourishment and abundance."},
-  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",ಶ್ಲೋಕಗಳು:12,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Kashi","Food","Liberation"],description:"12 ಶ್ಲೋಕಗಳು to Annapoorna at Kashi ending with Shankara's prayer: 'O Parvati, make Kashi my home and feed me with the alms ರಲ್ಲಿ knowledge.'"},
-  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",ಶ್ಲೋಕಗಳು:11,type:"Manasa Puja",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Devi","Mental Worship"],description:"An eleven-verse mental worship ರಲ್ಲಿ Bhagavathi — the Divine Mother — ರಲ್ಲಿfering all sacred substances and worship inwardly."},
-  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Surrender","Refugee","Key Work"],description:"Nine ಶ್ಲೋಕಗಳು ರಲ್ಲಿ total surrender to Bhavani — each confessing complete helplessness: 'I have no one else, O Mother.' The most intense Shakta sharanagati."},
-  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",ಶ್ಲೋಕಗಳು:17,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Serpentine","Musical","Bhavani"],description:"A 17-verse serpentine hymn to Bhavani in the rolling bhujanga metre — evoking the fierce energy ರಲ್ಲಿ the Goddess who destroys the demons ರಲ್ಲಿ the ego."},
-  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Bhramaramba","Srisailam","Regional"],description:"Eight ಶ್ಲೋಕಗಳು to Bhramaramba — the consort ರಲ್ಲಿ Mallikarjuna at Srisailam, worshipped as the Goddess who takes the form ರಲ್ಲಿ a bee."},
-  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",ಶ್ಲೋಕಗಳು:28,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Serpentine","Shakti","28 Verses"],description:"A 28-verse serpentine hymn to the Goddess in her universal form — flowing through her attributes like a serpent through water."},
-  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",ಶ್ಲೋಕಗಳು:72,type:"Manasa Puja",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["64 Services","Most Elaborate","Navratri"],description:"A 72-verse mental ರಲ್ಲಿfering ರಲ್ಲಿ all sixty-four services to the Goddess — the most elaborate ರಲ್ಲಿ Shankara's Devi worship compositions."},
-  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Five Gems","Devi","Short"],description:"Five jewel-like ಶ್ಲೋಕಗಳು in praise ರಲ್ಲಿ Devi — a short but potent gem ರಲ್ಲಿ Shakta devotion covering the Goddess's attributes ರಲ್ಲಿ power, grace and liberation."},
-  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",ಶ್ಲೋಕಗಳು:17,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Forgiveness","Durga","Post-Puja"],description:"17 ಶ್ಲೋಕಗಳು asking Durga's forgiveness for all transgressions — the Shakta equivalent ರಲ್ಲಿ Shiva Aparadha Kshamapana."},
-  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",ಶ್ಲೋಕಗಳು:11,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Gauri","Parvati","Devotion"],description:"Ten ಶ್ಲೋಕಗಳು to Gauri — the golden-complexioned, gentle form ರಲ್ಲಿ Parvati. A sರಲ್ಲಿter, more intimate portrait ರಲ್ಲಿ the Goddess as cosmic mother."},
-  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Shiva-Parvati","Together","Marriage"],description:"Eight ಶ್ಲೋಕಗಳು praising Hara (Shiva) and Gauri (Parvati) together — their eternal union and role as the divine parents ರಲ್ಲಿ the cosmos."},
-  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",ಶ್ಲೋಕಗಳು:17,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Kali","Forgiveness","Fierce"],description:"17 ಶ್ಲೋಕಗಳು seeking Kali's forgiveness — acknowledging that Kali the fierce destroyer also has a mother's heart. A rare hymn combining terror and tenderness."},
-  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Lalitha","Bliss","Morning"],description:"Five jewel-like ಶ್ಲೋಕಗಳು in praise ರಲ್ಲಿ Lalitha — the blissful Goddess. Recitation in the morning grants luck, knowledge, riches and endless fame."},
-  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",ಶ್ಲೋಕಗಳು:17,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"A garland ರಲ್ಲಿ mantras connecting each Sanskrit syllable to a form ರಲ್ಲಿ Devi — a Tantric-devotional work linking mantra, language and the Goddess."},
-  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Mother","Gratitude","Personal","Moving"],description:"Five deeply personal ಶ್ಲೋಕಗಳು to Shankara's own mother — gratitude for the gift ರಲ್ಲಿ life and the wisdom to renounce it. One ರಲ್ಲಿ his most touching compositions."},
-  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Meenakshi","Madurai","South India"],description:"Eight ಶ್ಲೋಕಗಳು to Goddess Meenakshi ರಲ್ಲಿ Madurai — the fish-eyed Goddess who grants liberation and prosperity to all who approach her lotus feet."},
-  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Meenakshi","Madurai","Five Gems"],description:"Five gems in praise ರಲ್ಲಿ Meenakshi ರಲ್ಲಿ Madurai — evidence ರಲ್ಲಿ Shankara's pan-India pilgrimage and reverence for the fish-eyed Goddess ರಲ್ಲಿ Tamil Nadu."},
-  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"Eight ಶ್ಲೋಕಗಳು to Raja Rajeshwari — the supreme queen, the Goddess who rules over the three cities ರಲ್ಲಿ creation, preservation and dissolution."},
-  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",ಶ್ಲೋಕಗಳು:8,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Saraswati","Sringeri","Learning"],description:"A serpentine hymn to Goddess Sharada (Saraswati) at Sringeri — where Shankara established his first matha. A deeply personal tribute to his patron Goddess."},
-  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",ಶ್ಲೋಕಗಳು:100,type:"Lahari",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"The Wave ರಲ್ಲಿ Beauty — 100 ಶ್ಲೋಕಗಳು ರಲ್ಲಿ transcendent poetry praising Devi Parvati. Considered Shankara's supreme achievement in Shakta devotion."},
-  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",ಶ್ಲೋಕಗಳು:12,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Syamala","Nine Gems","Tantric"],description:"A nine-jewel garland in praise ರಲ್ಲಿ Syamala (Matangi) — the dark goddess ರಲ್ಲಿ speech, music and arts."},
-  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"Eight ಶ್ಲೋಕಗಳು to Tripurasundari — the Beautiful One ರಲ್ಲಿ the Three Cities, the supreme Tantric Goddess."},
-  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",ಶ್ಲೋಕಗಳು:127,type:"Manasa Puja",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"The most extensive ರಲ್ಲಿ Shankara's mental worship compositions at 127 ಶ್ಲೋಕಗಳು — a complete internal worship ರಲ್ಲಿ Tripurasundari."},
-  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",ಶ್ಲೋಕಗಳು:10,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Vedas","Tripura Sundari","Philosophical"],description:"Ten ಶ್ಲೋಕಗಳು establishing Tripurasundari as the supreme Vedic Goddess — her feet are the four Vedas, her form is Vedic knowledge itself."},
+  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Annapoorna","Kashi","Food"],description:"ಕಾಶಿಯ ಅನ್ನಪೂರ್ಣ ದೇವಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಪೋಷಣೆ ಮತ್ತು ಸಮೃದ್ಧಿಯ ದೇವತೆಯಾಗಿ ಪಾರ್ವತಿ."},
+  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"ಕಾಶಿಯ ಅನ್ನಪೂರ್ಣೆಗೆ 12 ಶ್ಲೋಕಗಳು, ಶಂಕರರ ಪ್ರಾರ್ಥನೆಯೊಂದಿಗೆ ಮುಕ್ತಾಯ: 'ಹೇ ಪಾರ್ವತಿ, ಕಾಶಿಯನ್ನು ನನ್ನ ಮನೆಯನ್ನಾಗಿ ಮಾಡು ಮತ್ತು ಜ್ಞಾನದ ಭಿಕ್ಷೆಯಿಂದ ನನ್ನನ್ನು ಪೋಷಿಸು.'"},
+  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"ಭಗವತಿಯ ಹನ್ನೊಂದು ಶ್ಲೋಕಗಳ ಮಾನಸ ಪೂಜೆ — ದಿವ್ಯ ತಾಯಿ — ಎಲ್ಲ ಪವಿತ್ರ ವಸ್ತುಗಳನ್ನು ಮತ್ತು ಪೂಜೆಯನ್ನು ಅಂತರಂಗದಲ್ಲಿ ಅರ್ಪಿಸುವ."},
+  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"ಭವಾನಿಗೆ ಸಂಪೂರ್ಣ ಶರಣಾಗತಿಯ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಪ್ರತಿಯೊಂದೂ ಸಂಪೂರ್ಣ ಅಸಹಾಯಕತೆಯನ್ನು ತೋರಿಸುತ್ತದೆ: 'ನನಗೆ ಬೇರೆ ಯಾರೂ ಇಲ್ಲ, ಹೇ ತಾಯಿ.' ಅತ್ಯಂತ ತೀವ್ರ ಶಾಕ್ತ ಶರಣಾಗತಿ."},
+  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"ರೋಲಿಂಗ್ ಭುಜಂಗ ಛಂದಸ್ಸಿನಲ್ಲಿ ಭವಾನಿಗೆ 17 ಶ್ಲೋಕಗಳ ಸರ್ಪಗತಿ ಸ್ತೋತ್ರ — ಅಹಂಕಾರದ ಅಸುರರನ್ನು ನಾಶ ಮಾಡುವ ದೇವಿಯ ಉಗ್ರ ಶಕ್ತಿಯನ್ನು ಜಾಗೃತಗೊಳಿಸುತ್ತದೆ."},
+  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"ಭ್ರಮರಾಂಬೆಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಶ್ರೀಶೈಲದ ಮಲ್ಲಿಕಾರ್ಜುನನ ಸಂಗಾತಿ, ದುಂಬಿಯ ರೂಪ ತಾಳುವ ದೇವಿಯಾಗಿ ಪೂಜಿಸಲ್ಪಡುವ."},
+  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"ಸಾರ್ವತ್ರಿಕ ರೂಪದಲ್ಲಿ ದೇವಿಗೆ 28 ಶ್ಲೋಕಗಳ ಸರ್ಪಗತಿ ಸ್ತೋತ್ರ — ನೀರಿನಲ್ಲಿ ಸರ್ಪದಂತೆ ಆಕೆಯ ಗುಣಗಳ ಮೂಲಕ ಹರಿಯುತ್ತದೆ."},
+  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"ದೇವಿಗೆ ಅರವತ್ನಾಲ್ಕು ಸೇವೆಗಳ ಮಾನಸ ಅರ್ಪಣೆಯ 72 ಶ್ಲೋಕಗಳು — ಶಂಕರರ ದೇವಿ ಪೂಜಾ ರಚನೆಗಳಲ್ಲಿ ಅತ್ಯಂತ ವಿಸ್ತಾರವಾದ."},
+  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"ದೇವಿಯ ಸ್ತುತಿಯಲ್ಲಿ ಐದು ರತ್ನದಂತಹ ಶ್ಲೋಕಗಳು — ಶಕ್ತಿ, ಕರುಣೆ ಮತ್ತು ಮೋಕ್ಷದ ದೇವಿಯ ಗುಣಗಳನ್ನು ತೋರಿಸುವ ಸಂಕ್ಷಿಪ್ತ ಆದರೆ ಶಕ್ತಿಶಾಲಿ ಶಾಕ್ತ ಭಕ್ತಿ ರತ್ನ."},
+  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"ಎಲ್ಲ ಅಪರಾಧಗಳಿಗಾಗಿ ದುರ್ಗೆಯ ಕ್ಷಮೆ ಬೇಡುವ 17 ಶ್ಲೋಕಗಳು — ಶಿವ ಅಪರಾಧ ಕ್ಷಮಾಪಣದ ಶಾಕ್ತ ಸಮಾನ."},
+  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"ಗೌರಿಗೆ ಹತ್ತು ಶ್ಲೋಕಗಳು — ಪಾರ್ವತಿಯ ಸುವರ್ಣ ವರ್ಣ, ಕೋಮಲ ರೂಪ. ವಿಶ್ವ ತಾಯಿಯಾಗಿ ದೇವಿಯ ಮೃದು, ಆತ್ಮೀಯ ಚಿತ್ರಣ."},
+  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"ಹರ (ಶಿವ) ಮತ್ತು ಗೌರಿ (ಪಾರ್ವತಿ) ಒಟ್ಟಾಗಿ ಸ್ತುತಿಸುವ ಎಂಟು ಶ್ಲೋಕಗಳು — ಅವರ ಶಾಶ್ವತ ಮಿಲನ ಮತ್ತು ವಿಶ್ವದ ದಿವ್ಯ ಪಾಲಕರಾಗಿ ಅವರ ಪಾತ್ರ."},
+  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"ಕಾಳಿಯ ಕ್ಷಮೆ ಬೇಡುವ 17 ಶ್ಲೋಕಗಳು — ಉಗ್ರ ವಿನಾಶಕ ಕಾಳಿಯ ಹೃದಯದಲ್ಲೂ ತಾಯಿ ಇರುತ್ತಾಳೆ ಎಂದು ಒಪ್ಪಿಕೊಳ್ಳುವ. ಭಯ ಮತ್ತು ವಾತ್ಸಲ್ಯವನ್ನು ಸಂಯೋಜಿಸುವ ಅಪರೂಪದ ಸ್ತೋತ್ರ."},
+  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"ಲಲಿತೆಯ ಸ್ತುತಿಯಲ್ಲಿ ಐದು ರತ್ನದಂತಹ ಶ್ಲೋಕಗಳು — ಆನಂದಮಯ ದೇವಿ. ಬೆಳಿಗ್ಗೆ ಪಠಿಸಿದರೆ ಅದೃಷ್ಟ, ಜ್ಞಾನ, ಸಂಪತ್ತು ಮತ್ತು ಯಶಸ್ಸು ಲಭಿಸುತ್ತದೆ."},
+  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"ಪ್ರತಿ ಸಂಸ್ಕೃತ ಅಕ್ಷರವನ್ನು ದೇವಿಯ ರೂಪಕ್ಕೆ ಸಂಪರ್ಕಿಸುವ ಮಂತ್ರಗಳ ಮಾಲೆ — ಮಂತ್ರ, ಭಾಷೆ ಮತ್ತು ದೇವಿಯನ್ನು ಸಂಪರ್ಕಿಸುವ ತಾಂತ್ರಿಕ-ಭಕ್ತಿ ರಚನೆ."},
+  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"ಶಂಕರರ ತಮ್ಮ ತಾಯಿಗೆ ಐದು ಆಳವಾದ ವೈಯಕ್ತಿಕ ಶ್ಲೋಕಗಳು — ಜೀವನದ ಕೊಡುಗೆ ಮತ್ತು ಅದನ್ನು ತ್ಯಜಿಸುವ ಜ್ಞಾನಕ್ಕಾಗಿ ಕೃತಜ್ಞತೆ. ಅವರ ಅತ್ಯಂತ ಮಾರ್ಮಿಕ ರಚನೆಗಳಲ್ಲಿ ಒಂದು."},
+  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"ಮದುರೈ ಮೀನಾಕ್ಷಿ ದೇವಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಮೀನ ಕಣ್ಣಿನ ದೇವಿ, ಆಕೆಯ ಕಮಲ ಪಾದ ತಲುಪಿದವರಿಗೆ ಮೋಕ್ಷ ಮತ್ತು ಸಮೃದ್ಧಿ ನೀಡುತ್ತಾಳೆ."},
+  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"ಮದುರೈ ಮೀನಾಕ್ಷಿಯ ಸ್ತುತಿಯಲ್ಲಿ ಐದು ರತ್ನಗಳು — ಶಂಕರರ ಅಖಿಲ ಭಾರತ ತೀರ್ಥಯಾತ್ರೆ ಮತ್ತು ತಮಿಳುನಾಡಿನ ಮೀನ ಕಣ್ಣಿನ ದೇವಿಯ ಪ್ರತಿ ಗೌರವದ ಪ್ರಮಾಣ."},
+  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"ರಾಜ ರಾಜೇಶ್ವರಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಸರ್ವೋಚ್ಚ ರಾಣಿ, ಸೃಷ್ಟಿ, ಸ್ಥಿತಿ ಮತ್ತು ಲಯದ ಮೂರು ಲೋಕಗಳ ಮೇಲೆ ಆಳ್ವಿಕೆ ಮಾಡುವ ದೇವಿ."},
+  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"ಶೃಂಗೇರಿಯ ಶಾರದ (ಸರಸ್ವತಿ) ದೇವಿಗೆ ಸರ್ಪಗತಿ ಸ್ತೋತ್ರ — ಶಂಕರರು ತಮ್ಮ ಮೊದಲ ಮಠ ಸ್ಥಾಪಿಸಿದ ಸ್ಥಳ. ತಮ್ಮ ಆರಾಧ್ಯ ದೇವಿಗೆ ಆಳವಾಗಿ ವೈಯಕ್ತಿಕ ಗೌರವ."},
+  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"ಸೌಂದರ್ಯದ ಅಲೆ — ದೇವಿ ಪಾರ್ವತಿಯನ್ನು ಸ್ತುತಿಸುವ ಉದಾತ್ತ ಕಾವ್ಯದ 100 ಶ್ಲೋಕಗಳು. ಶಾಕ್ತ ಭಕ್ತಿಯಲ್ಲಿ ಶಂಕರರ ಅತ್ಯುತ್ತಮ ಸಾಧನೆ ಎಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ."},
+  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"ಶ್ಯಾಮಲ (ಮಾತಂಗಿ) ಸ್ತುತಿಯಲ್ಲಿ ಒಂಬತ್ತು ರತ್ನಗಳ ಮಾಲೆ — ವಾಕ್, ಸಂಗೀತ ಮತ್ತು ಕಲೆಗಳ ಕಪ್ಪು ದೇವಿ."},
+  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"ತ್ರಿಪುರಸುಂದರಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಮೂರು ನಗರಗಳ ಸುಂದರಿ, ಸರ್ವೋಚ್ಚ ತಾಂತ್ರಿಕ ದೇವಿ."},
+  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"127 ಶ್ಲೋಕಗಳ ಶಂಕರರ ಅತ್ಯಂತ ವಿಸ್ತೃತ ಮಾನಸ ಪೂಜಾ ರಚನೆ — ತ್ರಿಪುರಸುಂದರಿಯ ಸಂಪೂರ್ಣ ಆಂತರಿಕ ಪೂಜೆ."},
+  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"ತ್ರಿಪುರಸುಂದರಿಯನ್ನು ಸರ್ವೋಚ್ಚ ವೈದಿಕ ದೇವಿಯಾಗಿ ಸ್ಥಾಪಿಸುವ ಹತ್ತು ಶ್ಲೋಕಗಳು — ಆಕೆಯ ಪಾದಗಳು ನಾಲ್ಕು ವೇದಗಳು, ಆಕೆಯ ರೂಪ ವೇದ ಜ್ಞಾನ."},
   // LAKSHMI
-  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",ಶ್ಲೋಕಗಳು:21,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"Composed spontaneously to invoke Lakshmi's grace for a poor woman who ರಲ್ಲಿfered her only amla fruit. Showers ರಲ್ಲಿ golden amla fell from the sky miraculously."},
+  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"ಒಂದೇ ಒಂದು ನೆಲ್ಲಿಕಾಯಿ ಅರ್ಪಿಸಿದ ಬಡ ಮಹಿಳೆಗಾಗಿ ಲಕ್ಷ್ಮಿಯ ಅನುಗ್ರಹ ಬೇಡಲು ಸ್ವಯಂಪ್ರೇರಿತವಾಗಿ ರಚಿಸಿದ ಸ್ತೋತ್ರ. ಆಕಾಶದಿಂದ ಸ್ವರ್ಣ ನೆಲ್ಲಿಕಾಯಿಗಳ ಮಳೆ ಸುರಿಯಿತು."},
   // VISHNU
-  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Achyuta","Infallible","Devotion"],description:"Nine ಶ್ಲೋಕಗಳು to Achyuta — the Infallible One. A heartfelt prayer to the Lord who never falls, seeking refuge in his eternal grace."},
-  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",ಶ್ಲೋಕಗಳು:18,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Narayana","Meditation","18 Verses"],description:"18 ಶ್ಲೋಕಗಳು ರಲ್ಲಿ meditative praise to Narayana — contemplating the Lord in his cosmic form resting on Adi Shesha."},
-  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",ಶ್ಲೋಕಗಳು:12,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Very Popular","Renunciation","Life Lesson"],description:"'Seek Govinda!' — composed when Shankara saw a scholar memorizing grammar in old age. A thunderbolt call to abandon illusion."},
-  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",ಶ್ಲೋಕಗಳು:10,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Ten Avatars","Vishnu","Evolution"],description:"Ten ಶ್ಲೋಕಗಳು praising each ರಲ್ಲಿ Vishnu's ten avatars — from Matsya (fish) to Kalki — tracing the divine descent through evolutionary stages."},
-  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Govinda","Krishna","Vrindavana"],description:"Nine ಶ್ಲೋಕಗಳು glorifying Govinda — Krishna as the cowherd ರಲ್ಲಿ Vrindavana, the enchanter ರಲ್ಲಿ Gopis, the flute-player who steals all hearts."},
-  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",ಶ್ಲೋಕಗಳು:44,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Hari","44 Verses","Extended"],description:"44 ಶ್ಲೋಕಗಳು ರಲ್ಲಿ praise to Hari (Vishnu) — an extended devotional work covering the Lord's avatars, qualities, cosmic form and salvific grace."},
-  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",ಶ್ಲೋಕಗಳು:19,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Names ರಲ್ಲಿ Hari","Garland","Epithets"],description:"19 ಶ್ಲೋಕಗಳು stringing together the divine names ರಲ್ಲಿ Hari (Vishnu) like pearls in a garland — each name a different aspect ರಲ್ಲಿ the Lord."},
-  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Refuge","Surrender","Sharanagati"],description:"Eight ಶ್ಲೋಕಗಳು ರಲ್ಲಿ taking refuge in Hari — a Vaishnava sharanagati (surrender) hymn where Shankara ರಲ್ಲಿfers himself at Vishnu's lotus feet."},
-  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Jagannatha","Puri","Equality"],description:"Eight ಶ್ಲೋಕಗಳು to Lord Jagannatha ರಲ್ಲಿ Puri — the Lord who accepts all equally, composed when Shankara established Govardhana Matha."},
-  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Krishna","Vrindavana","Butter Thief"],description:"Eight ಶ್ಲೋಕಗಳು to Krishna — the dark blue one, the flute-player, the butter thief ರಲ್ಲಿ Vrindavana. A portrait ರಲ್ಲಿ the playful, enchanting child-god."},
-  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Narasimha","Five Gems","Fierce"],description:"Five jewel-like ಶ್ಲೋಕಗಳು to Lakshmi Narasimha — the fierce lion-man avatar ರಲ್ಲಿ Vishnu. A concentrated gem ರಲ್ಲಿ Narasimha devotion."},
-  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",ಶ್ಲೋಕಗಳು:30,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Narayana","30 Verses","Cosmic"],description:"30 ಶ್ಲೋಕಗಳು praising Narayana — Vishnu's cosmic form resting on the primeval waters. An extended meditation on the Lord as source, sustainer and end ರಲ್ಲಿ all."},
-  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Panduranga","Vitthal","Maharashtra"],description:"Nine ಶ್ಲೋಕಗಳು to Panduranga (Vitthal) ರಲ್ಲಿ Pandharpur — showing Shankara's integration ರಲ್ಲಿ the Maharashtra Bhakti tradition into his pan-India synthesis."},
-  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",ಶ್ಲೋಕಗಳು:29,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Rama","29 Verses","Serpentine"],description:"A 29-verse serpentine hymn praising Rama's divine deeds from birth in Ayodhya to the slaying ರಲ್ಲಿ Ravana."},
-  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"Eight ಶ್ಲೋಕಗಳು to Ranganatha ರಲ್ಲಿ Srirangam — composed when Shankara stood before the reclining Vishnu at the greatest Vaishnava temple."},
-  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",ಶ್ಲೋಕಗಳು:17,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Narasimha","Protection","Key Work"],description:"A desperate cry for Narasimha's protecting hand — each ರಲ್ಲಿ 17 ಶ್ಲೋಕಗಳು ends 'Lakshmi Narasimha, Mama Dehi Karavalambam' (Please lend me your protecting hand)."},
-  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",ಶ್ಲೋಕಗಳು:7,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Seven Verses","Liberation","Brief"],description:"Seven ಶ್ಲೋಕಗಳು ರಲ್ಲಿ intense devotion to Vishnu seeking liberation — a brief but powerful prayer covering the essence ರಲ್ಲಿ Vaishnava surrender."},
-  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",ಶ್ಲೋಕಗಳು:14,type:"Bhujangam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Serpentine","14 Verses","Adi Shesha"],description:"14 serpentine ಶ್ಲೋಕಗಳು to Vishnu — evoking the Lord resting on Adi Shesha, the cosmic serpent, at the beginning ರಲ್ಲಿ creation."},
-  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",ಶ್ಲೋಕಗಳು:52,type:"Varnana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"A 52-verse ascending meditation on Vishnu's divine form — from his lotus feet through his body to his radiant crown."},
+  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"ಅಚ್ಯುತನಿಗೆ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಅಕ್ಷಯ. ಎಂದಿಗೂ ಬೀಳದ ಭಗವಂತನ ಶಾಶ್ವತ ಕರುಣೆಯಲ್ಲಿ ಆಶ್ರಯ ಬೇಡುವ ಹೃದಯಸ್ಪರ್ಶಿ ಪ್ರಾರ್ಥನೆ."},
+  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"ಆದಿ ಶೇಷನ ಮೇಲೆ ವಿಶ್ವ ರೂಪದಲ್ಲಿ ವಿರಮಿಸುವ ನಾರಾಯಣನ ಧ್ಯಾನಾತ್ಮಕ ಸ್ತುತಿಯ 18 ಶ್ಲೋಕಗಳು."},
+  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'ಗೋವಿಂದನನ್ನು ಹುಡುಕು!' — ಮುದಿ ವಯಸ್ಸಿನಲ್ಲಿ ವ್ಯಾಕರಣ ಕಂಠಪಾಠ ಮಾಡುವ ವಿದ್ವಾಂಸನನ್ನು ಕಂಡಾಗ ರಚಿಸಿದ ಸ್ತೋತ್ರ. ಭ್ರಮೆಯನ್ನು ತ್ಯಜಿಸಲು ವಜ್ರದಂತಹ ಕರೆ."},
+  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"ಮತ್ಸ್ಯದಿಂದ ಕಲ್ಕಿವರೆಗೆ ವಿಷ್ಣುವಿನ ಹತ್ತು ಅವತಾರಗಳನ್ನು ಸ್ತುತಿಸುವ ಹತ್ತು ಶ್ಲೋಕಗಳು — ವಿಕಾಸಾತ್ಮಕ ಹಂತಗಳಲ್ಲಿ ದಿವ್ಯ ಅವತರಣ."},
+  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"ಗೋವಿಂದನನ್ನು ಮಹಿಮೆ ಪಡಿಸುವ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ವೃಂದಾವನದ ಗೋಪಾಲಕ ಕೃಷ್ಣ, ಗೋಪಿಯರ ಆಕರ್ಷಕ, ಎಲ್ಲ ಹೃದಯಗಳನ್ನು ಕದಿಯುವ ಕೊಳಲು ವಾದಕ."},
+  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"ಹರಿ (ವಿಷ್ಣು)ಗೆ 44 ಶ್ಲೋಕಗಳ ಸ್ತುತಿ — ಭಗವಂತನ ಅವತಾರಗಳು, ಗುಣಗಳು, ವಿಶ್ವ ರೂಪ ಮತ್ತು ಮೋಕ್ಷ ಕರುಣೆಯನ್ನು ಒಳಗೊಂಡ ವಿಸ್ತೃತ ಭಕ್ತಿ ರಚನೆ."},
+  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"ಹರಿ (ವಿಷ್ಣು)ಯ ದಿವ್ಯ ನಾಮಗಳನ್ನು ಮಾಲೆಯಲ್ಲಿ ಮುತ್ತುಗಳಂತೆ ಪೋಣಿಸಿದ 19 ಶ್ಲೋಕಗಳು — ಪ್ರತಿ ನಾಮ ಭಗವಂತನ ಭಿನ್ನ ಅಂಶ."},
+  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"ಹರಿಯಲ್ಲಿ ಆಶ್ರಯ ಪಡೆಯುವ ಎಂಟು ಶ್ಲೋಕಗಳು — ಶಂಕರರು ವಿಷ್ಣುವಿನ ಕಮಲ ಪಾದಗಳಲ್ಲಿ ತಮ್ಮನ್ನು ಅರ್ಪಿಸಿಕೊಳ್ಳುವ ವೈಷ್ಣವ ಶರಣಾಗತಿ ಸ್ತೋತ್ರ."},
+  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"ಪುರಿಯ ಜಗನ್ನಾಥ ಭಗವಂತನಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಎಲ್ಲರನ್ನೂ ಸಮಾನವಾಗಿ ಸ್ವೀಕರಿಸುವ ಭಗವಂತ, ಶಂಕರರು ಗೋವರ್ಧನ ಮಠ ಸ್ಥಾಪಿಸಿದಾಗ ರಚಿಸಿದ."},
+  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"ಕೃಷ್ಣನಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ನೀಲ ಮೇಘ ಶ್ಯಾಮ, ಕೊಳಲು ವಾದಕ, ವೃಂದಾವನದ ಬೆಣ್ಣೆ ಕಳ್ಳ. ತುಂಟ, ಆಕರ್ಷಕ ಬಾಲ ದೇವರ ಚಿತ್ರಣ."},
+  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"ಲಕ್ಷ್ಮೀ ನರಸಿಂಹನಿಗೆ ಐದು ರತ್ನದಂತಹ ಶ್ಲೋಕಗಳು — ವಿಷ್ಣುವಿನ ಉಗ್ರ ಸಿಂಹ-ಮಾನವ ಅವತಾರ. ನರಸಿಂಹ ಭಕ್ತಿಯ ಸಂಕ್ಷಿಪ್ತ ರತ್ನ."},
+  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"ನಾರಾಯಣನನ್ನು ಸ್ತುತಿಸುವ 30 ಶ್ಲೋಕಗಳು — ಆದಿ ಜಲಗಳ ಮೇಲೆ ವಿರಮಿಸುವ ವಿಷ್ಣುವಿನ ವಿಶ್ವ ರೂಪ. ಎಲ್ಲದರ ಮೂಲ, ಪಾಲಕ ಮತ್ತು ಅಂತ್ಯವಾಗಿ ಭಗವಂತನ ಮೇಲೆ ವಿಸ್ತೃತ ಧ್ಯಾನ."},
+  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"ಪಂಢರಪುರದ ಪಾಂಡುರಂಗ (ವಿಠ್ಠಲ)ನಿಗೆ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಶಂಕರರ ಅಖಿಲ ಭಾರತ ಸಂಶ್ಲೇಷಣೆಯಲ್ಲಿ ಮಹಾರಾಷ್ಟ್ರ ಭಕ್ತಿ ಸಂಪ್ರದಾಯದ ಸಂಯೋಜನೆ."},
+  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"ಅಯೋಧ್ಯೆಯಲ್ಲಿ ರಾಮನ ಜನ್ಮದಿಂದ ರಾವಣ ಸಂಹಾರದವರೆಗೆ ದಿವ್ಯ ಕಾರ್ಯಗಳನ್ನು ಸ್ತುತಿಸುವ 29 ಶ್ಲೋಕಗಳ ಸರ್ಪಗತಿ ಸ್ತೋತ್ರ."},
+  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"ಶ್ರೀರಂಗದ ರಂಗನಾಥನಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಶಂಕರರು ಅತ್ಯಂತ ಮಹಾ ವೈಷ್ಣವ ದೇವಾಲಯದಲ್ಲಿ ಮಲಗಿರುವ ವಿಷ್ಣುವಿನ ಮುಂದೆ ನಿಂತಾಗ ರಚಿಸಿದ."},
+  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"ನರಸಿಂಹನ ರಕ್ಷಾ ಕರಗಕ್ಕಾಗಿ ನಿರ್ಭಾಗ್ಯ ಕೂಗು — 17 ಶ್ಲೋಕಗಳಲ್ಲಿ ಪ್ರತಿಯೊಂದೂ 'ಲಕ್ಷ್ಮೀ ನರಸಿಂಹ, ಮಮ ದೇಹಿ ಕರಾವಲಂಬಂ' ಎಂದು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ."},
+  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"ಮೋಕ್ಷ ಬೇಡುವ ವಿಷ್ಣುಗೆ ತೀವ್ರ ಭಕ್ತಿಯ ಏಳು ಶ್ಲೋಕಗಳು — ವೈಷ್ಣವ ಶರಣಾಗತಿಯ ಸಾರವನ್ನು ಒಳಗೊಂಡ ಸಂಕ್ಷಿಪ್ತ ಆದರೆ ಶಕ್ತಿಶಾಲಿ ಪ್ರಾರ್ಥನೆ."},
+  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"ವಿಷ್ಣುಗೆ 14 ಸರ್ಪಗತಿ ಶ್ಲೋಕಗಳು — ಸೃಷ್ಟಿಯ ಆರಂಭದಲ್ಲಿ ವಿಶ್ವ ಸರ್ಪ ಆದಿ ಶೇಷನ ಮೇಲೆ ವಿರಮಿಸುವ ಭಗವಂತನನ್ನು ಜಾಗೃತಗೊಳಿಸುತ್ತದೆ."},
+  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"ವಿಷ್ಣುವಿನ ದಿವ್ಯ ರೂಪದ ಮೇಲೆ 52 ಶ್ಲೋಕಗಳ ಆರೋಹಣ ಧ್ಯಾನ — ಕಮಲ ಪಾದಗಳಿಂದ ದೇಹದ ಮೂಲಕ ತೇಜೋಮಯ ಕಿರೀಟದವರೆಗೆ."},
   // HANUMAN
-  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Hanuman","Five Gems","Protection"],description:"Five jewel-like ಶ್ಲೋಕಗಳು to Hanuman — the great devotee ರಲ್ಲಿ Rama, the overcomer ರಲ್ಲಿ obstacles, the destroyer ರಲ್ಲಿ sorrow."},
+  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"ಹನುಮಂತನಿಗೆ ಐದು ರತ್ನದಂತಹ ಶ್ಲೋಕಗಳು — ರಾಮನ ಮಹಾ ಭಕ್ತ, ವಿಘ್ನಗಳ ವಿಜೇತ, ದುಃಖದ ನಾಶಕ."},
   // SACRED SITES
-  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",ಶ್ಲೋಕಗಳು:5,type:"Panchakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Kashi","Non-Dual","Advaita"],description:"Five ಶ್ಲೋಕಗಳು identifying Kashi not with the physical city but with Brahman — the real Kashi is the luminous heart, the eternal city ರಲ್ಲಿ pure consciousness."},
-  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",ಶ್ಲೋಕಗಳು:9,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Kashi","Varanasi","Pilgrimage"],description:"Nine ಶ್ಲೋಕಗಳು praising the sacred city ರಲ್ಲಿ Kashi — where Shiva himself grants liberation at the moment ರಲ್ಲಿ death through the Taraka Mantra."},
-  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Cremation Ghat","Death","Liberation"],description:"Nine ಶ್ಲೋಕಗಳು on Manikarnika Ghat — the most sacred cremation ground where Shiva whispers the Taraka Mantra to the dying, granting liberation beyond karma."},
-  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",ಶ್ಲೋಕಗಳು:13,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"A devotional tour ರಲ್ಲಿ all twelve Jyotirlinga shrines from Somanatha to Grishneshwara — visiting all ರಲ್ಲಿ India's holiest Shiva sites in thirteen ಶ್ಲೋಕಗಳು."},
-  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",ಶ್ಲೋಕಗಳು:9,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Ganga","River","Purification"],description:"Nine ಶ್ಲೋಕಗಳು praising the sacred Ganga as the liberator ರಲ್ಲಿ all beings — she who flows from Shiva's matted locks and washes away all sins."},
-  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",ಶ್ಲೋಕಗಳು:14,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Ganga","14 Verses","River Goddess"],description:"An extended 14-verse stotra to River Ganga — the universal purifier who grants moksha to all who touch her sacred waters."},
-  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Narmada","River","Central India"],description:"Eight ಶ್ಲೋಕಗಳು to the sacred Narmada river — the daughter ರಲ್ಲಿ Shiva whose very sight purifies, unlike the Ganga which purifies only by touch."},
-  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Yamuna","Krishna","Vrindavana"],description:"Eight ಶ್ಲೋಕಗಳು to the sacred Yamuna river — the dark, beautiful river ರಲ್ಲಿ Vrindavana, beloved ರಲ್ಲಿ Krishna."},
+  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"ಕಾಶಿಯನ್ನು ಭೌತಿಕ ನಗರದೊಂದಿಗಲ್ಲ, ಬ್ರಹ್ಮನೊಂದಿಗೆ ಗುರುತಿಸುವ ಐದು ಶ್ಲೋಕಗಳು — ನಿಜವಾದ ಕಾಶಿ ಪ್ರಕಾಶಮಾನ ಹೃದಯ, ಶುದ್ಧ ಚೇತನದ ಶಾಶ್ವತ ನಗರ."},
+  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"ಕಾಶಿ ಪವಿತ್ರ ನಗರವನ್ನು ಸ್ತುತಿಸುವ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಮರಣ ಸಮಯದಲ್ಲಿ ಸ್ವತಃ ಶಿವ ತಾರಕ ಮಂತ್ರ ಉಪದೇಶಿಸಿ ಮೋಕ್ಷ ನೀಡುವ ಸ್ಥಳ."},
+  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"ಮಣಿಕರ್ಣಿಕಾ ಘಾಟ್ ಮೇಲೆ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಅತ್ಯಂತ ಪವಿತ್ರ ಶ್ಮಶಾನ ಭೂಮಿ, ಶಿವ ಮರಣಿಸುವವರ ಕಿವಿಯಲ್ಲಿ ತಾರಕ ಮಂತ್ರ ಉಸುರಿ ಕರ್ಮದಾಚೆ ಮೋಕ್ಷ ನೀಡುವ ಸ್ಥಳ."},
+  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"ಸೋಮನಾಥದಿಂದ ಗ್ರಿಷ್ಣೇಶ್ವರದವರೆಗೆ ಹನ್ನೆರಡು ಜ್ಯೋತಿರ್ಲಿಂಗ ಕ್ಷೇತ್ರಗಳ ಭಕ್ತಿ ತೀರ್ಥಯಾತ್ರೆ — ಭಾರತದ ಪವಿತ್ರ ಶಿವ ಕ್ಷೇತ್ರಗಳನ್ನೆಲ್ಲ ಹದಿಮೂರು ಶ್ಲೋಕಗಳಲ್ಲಿ ಸಂದರ್ಶಿಸುವ."},
+  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"ಪವಿತ್ರ ಗಂಗೆಯನ್ನು ಎಲ್ಲ ಜೀವಿಗಳ ವಿಮೋಚಕಳಾಗಿ ಸ್ತುತಿಸುವ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು — ಶಿವನ ಜಡೆಯ ತಲೆಕೂದಲಿನಿಂದ ಹರಿದು ಎಲ್ಲ ಪಾಪಗಳನ್ನು ತೊಳೆಯುವ."},
+  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"ನದಿ ಗಂಗೆಗೆ ವಿಸ್ತೃತ 14 ಶ್ಲೋಕಗಳ ಸ್ತೋತ್ರ — ಪವಿತ್ರ ಜಲವನ್ನು ಸ್ಪರ್ಶಿಸಿದ ಎಲ್ಲರಿಗೂ ಮೋಕ್ಷ ನೀಡುವ ಸಾರ್ವತ್ರಿಕ ಶುದ್ಧಕಾರಿ."},
+  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"ಪವಿತ್ರ ನರ್ಮದಾ ನದಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಶಿವನ ಪುತ್ರಿ, ಕೇವಲ ದರ್ಶನದಿಂದ ಶುದ್ಧಗೊಳಿಸುವ, ಗಂಗೆಯ ಸ್ಪರ್ಶಕ್ಕಿಂತ ಭಿನ್ನ."},
+  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"ಪವಿತ್ರ ಯಮುನಾ ನದಿಗೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ವೃಂದಾವನದ ಕಪ್ಪು, ಸುಂದರ ನದಿ, ಕೃಷ್ಣನ ಪ್ರಿಯ."},
   // MISCELLANEOUS (new!)
-  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",ಶ್ಲೋಕಗಳು:16,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Auspicious","Blessings","Rain ರಲ್ಲಿ Grace"],description:"A shower ರಲ್ಲಿ auspicious blessings — 16 ಶ್ಲೋಕಗಳು invoking divine grace and prosperity. One ರಲ್ಲಿ Shankara's Miscellaneous hymns from the Samata Books Granthavali."},
-  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",ಶ್ಲೋಕಗಳು:10,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Nine Gems","General","Praise"],description:"A nine-jewel garland — ten ಶ್ಲೋಕಗಳು ರಲ್ಲಿ praise to the Supreme in a general, non-sectarian form, honouring the divine beyond specific deity forms."},
-  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"Eight ಶ್ಲೋಕಗಳು to the sacred lake ರಲ್ಲಿ Pushkar in Rajasthan — the only major temple dedicated to Brahma in India, where the creator God is worshipped."},
-  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",ಶ್ಲೋಕಗಳು:3,type:"Stotra",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"Three morning ಶ್ಲೋಕಗಳು — one each for mind (manas), speech (vak) and body (kaya) — surrendering all thoughts, words and actions to the Lord at dawn."},
-  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",ಶ್ಲೋಕಗಳು:8,type:"Ashtakam",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Guru","Sandals","Devotion","Tradition"],description:"Eight ಶ್ಲೋಕಗಳು venerating the sandals ರಲ್ಲಿ the Guru (Guru Paduka) — a distinctive form ರಲ್ಲಿ worship unique to the Indian tradition, honouring the Guru's very footsteps."},
+  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"ಶುಭಾಶೀರ್ವಾದಗಳ ವರ್ಷ — ದಿವ್ಯ ಕರುಣೆ ಮತ್ತು ಸಮೃದ್ಧಿ ಬೇಡುವ 16 ಶ್ಲೋಕಗಳು. ಸಮತಾ ಬುಕ್ಸ್ ಗ್ರಂಥಾವಳಿಯ ಶಂಕರರ ವಿವಿಧ ಸ್ತೋತ್ರಗಳಲ್ಲಿ ಒಂದು."},
+  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"ಒಂಬತ್ತು ರತ್ನಗಳ ಮಾಲೆ — ಸಾಮಾನ್ಯ, ಸಾಂಪ್ರದಾಯಿಕ ರೂಪದಲ್ಲಿ ಪರಮ ಶಕ್ತಿಗೆ ಹತ್ತು ಶ್ಲೋಕಗಳ ಸ್ತುತಿ, ನಿರ್ದಿಷ್ಟ ದೇವತಾ ರೂಪಕ್ಕಿಂತ ಮೀರಿ ದಿವ್ಯತ್ವವನ್ನು ಗೌರವಿಸುವ."},
+  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"ರಾಜಸ್ಥಾನದ ಪುಷ್ಕರ ಸರೋವರಕ್ಕೆ ಎಂಟು ಶ್ಲೋಕಗಳು — ಭಾರತದ ಏಕೈಕ ಬ್ರಹ್ಮ ದೇವಾಲಯ, ಸೃಷ್ಟಿಕರ್ತ ದೇವರನ್ನು ಪೂಜಿಸುವ ಸ್ಥಳ."},
+  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"ಮನಸ್ಸು (ಮನಸ್), ವಾಕ್ (ವಾಕ್) ಮತ್ತು ದೇಹ (ಕಾಯ)ಕ್ಕೆ ತಲಾ ಒಂದು ಶ್ಲೋಕ — ಮುಂಜಾನೆ ಎಲ್ಲ ಆಲೋಚನೆ, ಮಾತು ಮತ್ತು ಕಾರ್ಯಗಳನ್ನು ಭಗವಂತನಿಗೆ ಶರಣಾಗಿಸುವ."},
+  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"ಗುರು ಪಾದುಕೆಯನ್ನು ನಮಿಸುವ ಎಂಟು ಶ್ಲೋಕಗಳು — ಭಾರತೀಯ ಸಂಪ್ರದಾಯಕ್ಕೆ ವಿಶಿಷ್ಟ ಪೂಜಾ ರೂಪ, ಗುರುವಿನ ಪಾದ ಗುರುತುಗಳನ್ನೇ ಗೌರವಿಸುವ."},
   // PRAKARANA
-  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",ಶ್ಲೋಕಗಳು:581,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"The Crown Jewel ರಲ್ಲಿ Discrimination — 581 ಶ್ಲೋಕಗಳು, the most comprehensive guide to Advaita Vedanta. A Guru-disciple dialogue leading step by step to liberation."},
-  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",ಶ್ಲೋಕಗಳು:68,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Self","Beginner Friendly","Key Work"],description:"Self-Knowledge in 68 crystal-clear ಶ್ಲೋಕಗಳು. The most accessible introduction to Advaita Vedanta — explaining the Self, Maya and Liberation systematically."},
-  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",ಶ್ಲೋಕಗಳು:42,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Primer","Definitions","Beginner"],description:"An introduction to Vedantic categories — the four-fold qualifications, three bodies, five sheaths. The essential primer for all students beginning Vedanta study."},
-  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",ಶ್ಲೋಕಗಳು:null,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["1000 Teachings","Authentic","Prose"],description:"A Thousand Teachings — Shankara's only undisputed prose work. A structured Guru-disciple dialogue covering the entire path to Self-realisation."},
-  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",ಶ್ಲೋಕಗಳು:144,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Direct Experience","Meditation","Practice"],description:"Direct Experience ರಲ್ಲಿ Reality — 144 ಶ್ಲೋಕಗಳು on the immediate recognition ರಲ್ಲಿ the Self, including specific meditation practices."},
-  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",ಶ್ಲೋಕಗಳು:6,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"Six thunderbolt ಶ್ಲೋಕಗಳು: 'Chidananda Rupah, Shivo Hum' — I am Shiva, pure Consciousness-Bliss. One ರಲ್ಲಿ the most famous spiritual compositions ever written."},
-  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",ಶ್ಲೋಕಗಳು:9,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Equality","Story","Non-Duality","Outcaste"],description:"Nine ಶ್ಲೋಕಗಳು composed when an outcaste blocked Shankara's path: 'Do you wish me to move my eternal Self, or this body ರಲ್ಲಿ clay?' Shankara prostrated before him."},
-  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",ಶ್ಲೋಕಗಳು:null,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Cosmology","Five Elements","Creation"],description:"Vedantic cosmology — how the five subtle elements quintuply combine to produce the gross material world. How Brahman becomes the universe through Maya."},
-  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",ಶ್ಲೋಕಗಳು:10,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"Ten ಶ್ಲೋಕಗಳು composed when Guru Govindapada asked 'Who are you?' — Shankara's spontaneous declaration ರಲ್ಲಿ his own non-dual identity."},
-  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",ಶ್ಲೋಕಗಳು:6,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Practice","Path","Practical"],description:"Five to six practical ಶ್ಲೋಕಗಳು listing the means and methods for spiritual realisation — Shankara's most concise guide for spiritual seekers."},
-  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",ಶ್ಲೋಕಗಳು:10,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Guru","Gratitude","Teacher","Key Work"],description:"Ten ಶ್ಲೋಕಗಳು declaring that above all worldly possessions and achievements, only the Guru matters — without the Guru, all else is worthless."},
-  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",ಶ್ಲೋಕಗಳು:5,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Sannyasa","Renunciation","Joy"],description:"Five joyful ಶ್ಲೋಕಗಳು glorifying the life ರಲ್ಲಿ a Sannyasi who possesses nothing but a loincloth — and yet is the richest ರಲ್ಲಿ all, resting in the Self."},
-  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",ಶ್ಲೋಕಗಳು:19,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"19 ಶ್ಲೋಕಗಳು describing the bliss ರಲ್ಲಿ the one liberated while living — who sees Brahman everywhere and lives in perpetual joy even while in the body."},
-  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",ಶ್ಲೋಕಗಳು:5,type:"Prakarana",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Maya","Illusion","Philosophy"],description:"Five ಶ್ಲೋಕಗಳು on the nature ರಲ್ಲಿ Maya — the cosmic illusion that makes the one appear as many. Shankara's most concentrated analysis ರಲ್ಲಿ ignorance."},
-  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",ಶ್ಲೋಕಗಳು:53,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"53 ಶ್ಲೋಕಗಳು exploring the Mahavakya 'Tat Tvam Asi' (That Thou Art) — a technical Advaita text analysing the great sayings through direct experience."},
-  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",ಶ್ಲೋಕಗಳು:29,type:"Prakarana",auth:"ಆರೋಪಿತ",tags:["Yoga","Vedantic Yoga","Breath"],description:"29 ಶ್ಲೋಕಗಳು on Yoga from a Vedantic perspective — Shankara integrating breath control, meditation and non-dual knowledge into a unified path."},
+  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"ವಿವೇಕದ ಮಣಿ ಮಕುಟ — 581 ಶ್ಲೋಕಗಳ ಅದ್ವೈತ ವೇದಾಂತದ ಅತ್ಯಂತ ಸಮಗ್ರ ಮಾರ್ಗದರ್ಶಿ. ಮೋಕ್ಷಕ್ಕೆ ಹೆಜ್ಜೆ ಹೆಜ್ಜೆ ನಡೆಸುವ ಗುರು-ಶಿಷ್ಯ ಸಂವಾದ."},
+  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"68 ಸ್ಫಟಿಕ ಸ್ಪಷ್ಟ ಶ್ಲೋಕಗಳಲ್ಲಿ ಆತ್ಮ ಜ್ಞಾನ. ಅದ್ವೈತ ವೇದಾಂತದ ಅತ್ಯಂತ ಸರಳ ಪರಿಚಯ — ಆತ್ಮ, ಮಾಯ ಮತ್ತು ಮೋಕ್ಷವನ್ನು ವ್ಯವಸ್ಥಿತವಾಗಿ ವಿವರಿಸುವ."},
+  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"ವೇದಾಂತ ವರ್ಗಗಳ ಪರಿಚಯ — ನಾಲ್ಕು ಅರ್ಹತೆಗಳು, ಮೂರು ದೇಹಗಳು, ಐದು ಕೋಶಗಳು. ವೇದಾಂತ ಅಧ್ಯಯನ ಆರಂಭಿಸುವ ಎಲ್ಲ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಮೂಲ ಪ್ರವೇಶಿಕಾ."},
+  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"ಸಾವಿರ ಬೋಧನೆಗಳು — ಶಂಕರರ ಏಕೈಕ ನಿರ್ವಿವಾದ ಗದ್ಯ ರಚನೆ. ಆತ್ಮ ಸಾಕ್ಷಾತ್ಕಾರದ ಸಂಪೂರ್ಣ ಮಾರ್ಗವನ್ನು ಒಳಗೊಂಡ ಸಂರಚಿತ ಗುರು-ಶಿಷ್ಯ ಸಂವಾದ."},
+  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"ವಾಸ್ತವತೆಯ ನೇರ ಅನುಭವ — ನಿರ್ದಿಷ್ಟ ಧ್ಯಾನ ಅಭ್ಯಾಸಗಳನ್ನು ಒಳಗೊಂಡ ಆತ್ಮನ ತಕ್ಷಣ ಗ್ರಹಿಕೆಯ 144 ಶ್ಲೋಕಗಳು."},
+  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"ಆರು ವಜ್ರದಂತಹ ಶ್ಲೋಕಗಳು: 'ಚಿದಾನಂದ ರೂಪಃ, ಶಿವೋಹಮ್' — ನಾನು ಶಿವ, ಶುದ್ಧ ಚೇತನ-ಆನಂದ. ಎಂದಾದರೂ ಬರೆಯಲಾದ ಅತ್ಯಂತ ಪ್ರಸಿದ್ಧ ಆಧ್ಯಾತ್ಮಿಕ ರಚನೆಗಳಲ್ಲಿ ಒಂದು."},
+  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"ಅಂತ್ಯಜ ಶಂಕರರ ಮಾರ್ಗ ತಡೆದಾಗ ರಚಿಸಿದ ಒಂಬತ್ತು ಶ್ಲೋಕಗಳು: 'ನಿನ್ನ ಶಾಶ್ವತ ಆತ್ಮವನ್ನೋ, ಈ ಮಣ್ಣಿನ ದೇಹವನ್ನೋ ಸರಿಸಲು ಬಯಸುವೆಯಾ?' ಶಂಕರರು ಅವನಿಗೆ ನಮಸ್ಕರಿಸಿದರು."},
+  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"ವೇದಾಂತ ವಿಶ್ವಶಾಸ್ತ್ರ — ಐದು ಸೂಕ್ಷ್ಮ ಭೂತಗಳು ಐದು ಮಡಿಯಾಗಿ ಸ್ಥೂಲ ಪ್ರಪಂಚ ನಿರ್ಮಿಸುವ ವಿಧ. ಮಾಯದ ಮೂಲಕ ಬ್ರಹ್ಮ ವಿಶ್ವವಾಗುವ ರಹಸ್ಯ."},
+  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"ಗುರು ಗೋವಿಂದಪಾದರು 'ನೀನು ಯಾರು?' ಎಂದಾಗ ರಚಿಸಿದ ಹತ್ತು ಶ್ಲೋಕಗಳು — ಶಂಕರರ ಸ್ವಂತ ಅದ್ವೈತ ಅಸ್ತಿತ್ವದ ಸ್ವಯಂಪ್ರೇರಿತ ಘೋಷಣೆ."},
+  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"ಆಧ್ಯಾತ್ಮಿಕ ಸಾಧನೆಯ ಸಾಧನ ಮತ್ತು ವಿಧಾನಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡುವ ಐದರಿಂದ ಆರು ಪ್ರಾಯೋಗಿಕ ಶ್ಲೋಕಗಳು — ಆಧ್ಯಾತ್ಮಿಕ ಸಾಧಕರಿಗೆ ಶಂಕರರ ಅತ್ಯಂತ ಸಂಕ್ಷಿಪ್ತ ಮಾರ್ಗದರ್ಶಿ."},
+  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"ಎಲ್ಲ ಐಹಿಕ ಸ್ವತ್ತು ಮತ್ತು ಸಾಧನೆಗಳಿಗಿಂತ ಮೇಲೆ ಕೇವಲ ಗುರು ಮುಖ್ಯ ಎಂದು ಘೋಷಿಸುವ ಹತ್ತು ಶ್ಲೋಕಗಳು — ಗುರು ಇಲ್ಲದೆ ಉಳಿದೆಲ್ಲ ನಿಷ್ಪ್ರಯೋಜಕ."},
+  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"ಒಂದು ಕೌಪೀನ ಮಾತ್ರ ಹೊಂದಿ ಎಲ್ಲ ತ್ಯಜಿಸಿದ ಸಂನ್ಯಾಸಿಯ ಜೀವನವನ್ನು ಮಹಿಮೆ ಪಡಿಸುವ ಐದು ಆನಂದಮಯ ಶ್ಲೋಕಗಳು — ಆದರೂ ಆತ್ಮದಲ್ಲಿ ವಿಶ್ರಮಿಸಿ ಎಲ್ಲರಿಗಿಂತ ಶ್ರೀಮಂತ."},
+  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"ಜೀವಂತವಾಗಿ ಮುಕ್ತರಾದವರ ಆನಂದವನ್ನು ವರ್ಣಿಸುವ 19 ಶ್ಲೋಕಗಳು — ಎಲ್ಲೆಡೆ ಬ್ರಹ್ಮ ಕಾಣುವ ಮತ್ತು ದೇಹದಲ್ಲಿರುವಾಗಲೂ ನಿರಂತರ ಆನಂದದಲ್ಲಿ ಜೀವಿಸುವ."},
+  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"ಮಾಯದ ಸ್ವಭಾವದ ಐದು ಶ್ಲೋಕಗಳು — ಒಂದನ್ನು ಅನೇಕವಾಗಿ ತೋರಿಸುವ ವಿಶ್ವ ಭ್ರಮೆ. ಅಜ್ಞಾನದ ಶಂಕರರ ಅತ್ಯಂತ ಕೇಂದ್ರೀಕೃತ ವಿಶ್ಲೇಷಣೆ."},
+  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"ಮಹಾವಾಕ್ಯ 'ತತ್ ತ್ವಮ್ ಅಸಿ' (ಅದು ನೀನು) ಅನ್ವೇಷಿಸುವ 53 ಶ್ಲೋಕಗಳು — ನೇರ ಅನುಭವದ ಮೂಲಕ ಮಹಾ ವಾಕ್ಯಗಳನ್ನು ವಿಶ್ಲೇಷಿಸುವ ತಾಂತ್ರಿಕ ಅದ್ವೈತ ಗ್ರಂಥ."},
+  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"ವೇದಾಂತ ದೃಷ್ಟಿಕೋನದಿಂದ ಯೋಗದ 29 ಶ್ಲೋಕಗಳು — ಶಂಕರರು ಪ್ರಾಣಾಯಾಮ, ಧ್ಯಾನ ಮತ್ತು ಅದ್ವೈತ ಜ್ಞಾನವನ್ನು ಏಕೀಕೃತ ಮಾರ್ಗದಲ್ಲಿ ಸಂಯೋಜಿಸುವ."},
   // BHASHYA
-  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Masterwork","Vedanta","Definitive"],description:"Shankara's magnum opus — commentary on Badarayana's 555 Brahma Sutras, establishing Advaita as the ಸರಿ interpretation ರಲ್ಲಿ all Vedantic scripture."},
-  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Gita","Jnana","Commentary","Foundational"],description:"Commentary on all 18 chapters ರಲ್ಲಿ the Gita — Shankara shows jnana (knowledge) is the Gita's ultimate teaching."},
-  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Isa","Short"],description:"Commentary on the Isa Upanishad — the shortest principal Upanishad, reconciling karma (action) and jnana (knowledge)."},
-  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Kena","Witness"],description:"Commentary on 'By whom is the mind directed?' — Shankara's treatment ರಲ್ಲಿ the witness consciousness behind all cognition."},
-  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Death","Nachiketa"],description:"Commentary on Nachiketa's dialogue with Yama (Death) about the immortal Self — the Upanishad that directly confronts death."},
-  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Higher Knowledge","Brahman"],description:"Commentary distinguishing Para Vidya (higher knowledge — Brahman) from Apara Vidya (lower knowledge — all sciences)."},
-  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ಆರೋಪಿತ",tags:["Upanishad","Three States","Consciousness","AUM"],description:"Commentary on 12 ಶ್ಲೋಕಗಳು and Gaudapada's Karika — the definitive Advaita treatment ರಲ್ಲಿ the three states ರಲ್ಲಿ consciousness and AUM."},
-  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Rigveda","Consciousness"],description:"Commentary on the Aitareya Upanishad — the creation ರಲ್ಲಿ the cosmos and identification ರಲ್ಲಿ Consciousness with Brahman."},
-  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Five Sheaths","Bliss"],description:"Commentary covering the Panchakoshas (five sheaths) and the famous teaching on the nature ರಲ್ಲಿ bliss as the innermost layer ರಲ್ಲಿ being."},
-  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"Commentary on one ರಲ್ಲಿ the longest Upanishads, containing 'Tat Tvam Asi' (That Thou Art). The definitive interpretation ರಲ್ಲಿ this Mahavakya."},
-  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"Commentary on the oldest and longest Upanishad — containing 'Aham Brahmasmi' (I am Brahman) and the teachings ರಲ್ಲಿ Yajnavalkya."},
-  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ಆರೋಪಿತ",tags:["1000 Names","Vishnu","Mahabharat"],description:"Commentary on Vishnu Sahasranama from the Mahabharata — the thousand names ರಲ್ಲಿ Vishnu, each a window into the non-dual Brahman."},
-  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ದೃಢಪಡಿಸಲಾಗಿದೆ",tags:["Mahabharat","Death","Brahmacharya"],description:"Commentary on Sanatsujata's teachings to Dhritarashtra — on the nature ರಲ್ಲಿ death, non-death and the path ರಲ್ಲಿ Brahmacharya."},
-  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",ಶ್ಲೋಕಗಳು:null,type:"Bhashya",auth:"ಆರೋಪಿತ",tags:["Patanjali","Yoga","Meditation"],description:"Commentary on Patanjali's Yoga Sutras — Shankara reconciling the Yoga system with Advaita Vedanta."},
+  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"ಶಂಕರರ ಮಹಾ ರಚನೆ — ಅದ್ವೈತವನ್ನು ಎಲ್ಲ ವೇದಾಂತ ಶಾಸ್ತ್ರದ ಸರಿಯಾದ ವ್ಯಾಖ್ಯಾನವೆಂದು ಸ್ಥಾಪಿಸಿ ಬಾದರಾಯಣನ 555 ಬ್ರಹ್ಮ ಸೂತ್ರಗಳ ಮೇಲೆ ಭಾಷ್ಯ."},
+  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"ಗೀತೆಯ ಎಲ್ಲ 18 ಅಧ್ಯಾಯಗಳ ಮೇಲೆ ಭಾಷ್ಯ — ಜ್ಞಾನ ಗೀತೆಯ ಅಂತಿಮ ಬೋಧನೆ ಎಂದು ಶಂಕರರು ತೋರಿಸುತ್ತಾರೆ."},
+  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ಈಶ ಉಪನಿಷತ್ ಮೇಲೆ ಭಾಷ್ಯ — ಅತ್ಯಂತ ಸಂಕ್ಷಿಪ್ತ ಮುಖ್ಯ ಉಪನಿಷತ್, ಕರ್ಮ ಮತ್ತು ಜ್ಞಾನ ಸಮನ್ವಯ."},
+  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'ಮನಸ್ಸನ್ನು ಯಾರು ನಿರ್ದೇಶಿಸುತ್ತಾರೆ?' ಎಂಬ ಪ್ರಶ್ನೆಯ ಮೇಲೆ ಭಾಷ್ಯ — ಎಲ್ಲ ಅರಿವಿನ ಹಿಂದಿನ ಸಾಕ್ಷಿ ಚೇತನದ ಶಂಕರರ ಚಿಕಿತ್ಸೆ."},
+  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"ಅಮರ ಆತ್ಮದ ಬಗ್ಗೆ ಯಮ (ಮೃತ್ಯು) ದೇವರೊಂದಿಗೆ ನಚಿಕೇತನ ಸಂವಾದದ ಮೇಲೆ ಭಾಷ್ಯ — ನೇರವಾಗಿ ಮೃತ್ಯುವನ್ನು ಎದುರಿಸುವ ಉಪನಿಷತ್."},
+  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"ಪರ ವಿದ್ಯ (ಉನ್ನತ ಜ್ಞಾನ — ಬ್ರಹ್ಮ) ಮತ್ತು ಅಪರ ವಿದ್ಯ (ಕೆಳ ಜ್ಞಾನ — ಎಲ್ಲ ವಿಜ್ಞಾನಗಳು) ಭೇದ ತೋರಿಸುವ ಭಾಷ್ಯ."},
+  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 ಶ್ಲೋಕಗಳು ಮತ್ತು ಗೌಡಪಾದರ ಕಾರಿಕಾ ಮೇಲೆ ಭಾಷ್ಯ — ಚೇತನದ ಮೂರು ಅವಸ್ಥೆಗಳು ಮತ್ತು ಓಂಕಾರದ ಅಂತಿಮ ಅದ್ವೈತ ಚಿಕಿತ್ಸೆ."},
+  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ಐತರೇಯ ಉಪನಿಷತ್ ಮೇಲೆ ಭಾಷ್ಯ — ವಿಶ್ವ ಸೃಷ್ಟಿ ಮತ್ತು ಚೇತನವನ್ನು ಬ್ರಹ್ಮದೊಂದಿಗೆ ಗುರುತಿಸುವ."},
+  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"ಪಂಚಕೋಶಗಳ (ಐದು ಕೋಶಗಳ) ಮೇಲೆ ಮತ್ತು ಅಸ್ತಿತ್ವದ ಅಂತರಿಕ ಪದರವಾಗಿ ಆನಂದದ ಸ್ವಭಾವದ ಪ್ರಸಿದ್ಧ ಬೋಧನೆಯನ್ನು ಒಳಗೊಂಡ ಭಾಷ್ಯ."},
+  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"'ತತ್ ತ್ವಮ್ ಅಸಿ' (ಅದು ನೀನು) ಒಳಗೊಂಡ ದೀರ್ಘ ಉಪನಿಷತ್‌ಗಳಲ್ಲಿ ಒಂದರ ಮೇಲೆ ಭಾಷ್ಯ. ಈ ಮಹಾವಾಕ್ಯದ ಅಂತಿಮ ವ್ಯಾಖ್ಯಾನ."},
+  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"ಹಳೆಯ ಮತ್ತು ದೀರ್ಘ ಉಪನಿಷತ್ ಮೇಲೆ ಭಾಷ್ಯ — 'ಅಹಂ ಬ್ರಹ್ಮಾಸ್ಮಿ' (ನಾನು ಬ್ರಹ್ಮ) ಮತ್ತು ಯಾಜ್ಞವಲ್ಕ್ಯರ ಬೋಧನೆಗಳನ್ನು ಒಳಗೊಂಡ."},
+  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"ಮಹಾಭಾರತದ ವಿಷ್ಣು ಸಹಸ್ರನಾಮ ಮೇಲೆ ಭಾಷ್ಯ — ವಿಷ್ಣುವಿನ ಸಾವಿರ ನಾಮಗಳು, ಪ್ರತಿಯೊಂದೂ ಅದ್ವೈತ ಬ್ರಹ್ಮದ ಕಿಟಕಿ."},
+  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"ಧೃತರಾಷ್ಟ್ರನಿಗೆ ಸನತ್ಸುಜಾತರ ಬೋಧನೆಗಳ ಮೇಲೆ ಭಾಷ್ಯ — ಮೃತ್ಯು, ಅಮರತ್ವ ಮತ್ತು ಬ್ರಹ್ಮಚರ್ಯ ಮಾರ್ಗದ ಬಗ್ಗೆ."},
+  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Patanjali","Yoga","Meditation"],description:"ಪತಂಜಲಿಯ ಯೋಗ ಸೂತ್ರಗಳ ಮೇಲೆ ಭಾಷ್ಯ — ಶಂಕರರು ಯೋಗ ಪದ್ಧತಿಯನ್ನು ಅದ್ವೈತ ವೇದಾಂತದೊಂದಿಗೆ ಸಮನ್ವಯಿಸುವ."},
 ];
 
 const QUICK_TAGS=["Bhaja Govindam","Soundarya Lahari","Nirvana Shatakam","Manasa Puja","Bhujangam","Jyotirlinga","Liberation","Forgiveness","Very Popular","Key Work"];
@@ -1650,18 +1696,28 @@ async function loadInsight(work){
   }
 }
 
+// ═══ LANGUAGE CONFIG (Kannada) ══════════════════════════════
+const LANG_CONFIG = {
+  hl: 'kn', gl: 'IN',
+  langLabel: 'Kannada',
+  queries: (name) => [
+    { label: "ಕರ್ನಾಟಕ ಸಂಗೀತ",        q: `${name} ಕನ್ನಡ MS Subbulakshmi` },
+    { label: "ಪಾರಂಪರಿಕ ಗಾಯನ",         q: `${name} ಶಂಕರಾಚಾರ್ಯ ಕನ್ನಡ` },
+    { label: "ಅರ್ಥ ಮತ್ತು ಪ್ರವಚನ",     q: `${name} ಶಂಕರ ಅರ್ಥ ಕನ್ನಡ ಪ್ರವಚನ` },
+    { label: "SP ಬಾಲಸುಬ್ರಹ್ಮಣ್ಯಂ",    q: `${name} SPB ಕನ್ನಡ` },
+    { label: "ಚಿನ್ಮಯ / ವೇದಾಂತ",       q: `${name} Chinmaya Mission Kannada` },
+    { label: "ಸಂಸ್ಕೃತ ಪಾರಾಯಣ",        q: `${name} Sanskrit chanting Kannada` },
+  ],
+  bestQueryPrompt: (name, deity, tags) =>
+    `Best YouTube search for: "${name}" by Adi Shankaracharya. Deity: ${deity}. Tags: ${tags}. Prefer Kannada language results or Karnataka classical music renditions.`,
+  ytLinkSuffix: 'YouTube ನಲ್ಲಿ ↗',
+};
+
 // Video IDs are not reliably generatable by AI — we use YouTube search URLs
 // which always work, and build a rich search panel instead.
 async function loadVideos(work, d){
-  // Build 6 targeted search queries for different renditions
-  const queries = [
-    { label: "Carnatic Vocal",       q: `${work.name} Shankaracharya MS Subbulakshmi` },
-    { label: "Classical Rendering",  q: `${work.name} Adi Shankaracharya traditional` },
-    { label: "Discourse & Meaning",  q: `${work.name} Shankaracharya meaning lecture` },
-    { label: "SP Balasubrahmanyam",  q: `${work.name} SPB Balasubrahmanyam` },
-    { label: "Chinmaya / Vedanta",   q: `${work.name} Chinmaya Mission Vedanta` },
-    { label: "Sanskrit Recitation",  q: `${work.name} Sanskrit chanting full` },
-  ];
+  const L = LANG_CONFIG;
+  const queries = L.queries(work.name);
 
   // Use Claude to suggest the single best search term for this specific work
   let bestQuery = `Adi Shankaracharya ${work.name}`;
@@ -1670,8 +1726,8 @@ async function loadVideos(work, d){
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({
         model:"claude-sonnet-4-20250514", max_tokens:200,
-        system: "You suggest the single best YouTube search query for finding a high-quality audio/video ರಲ್ಲಿ a specific Shankaracharya stotra. Return ONLY the search query string, nothing else. Keep it under 60 characters. Include the work name and one famous singer or channel known for this work.",
-        messages:[{ role:"user", content:`Best YouTube search for: "${work.name}" by Adi Shankaracharya. Deity: ${work.deity}. Tags: ${work.tags.join(", ")}.` }]
+        system: `You suggest the single best YouTube search query for finding a high-quality audio/video of a specific Shankaracharya stotra. Return ONLY the search query string, nothing else. Keep it under 60 characters. Include the work name and one famous singer or channel known for this work. Prefer results in ${L.langLabel}.`,
+        messages:[{ role:"user", content: L.bestQueryPrompt(work.name, work.deity, work.tags.join(", ")) }]
       })
     });
     const data = await res.json();
@@ -1679,31 +1735,34 @@ async function loadVideos(work, d){
     if(suggested && suggested.length < 80) bestQuery = suggested;
   } catch(e) { /* use default */ }
 
+  // Build YouTube URL with language params
+  const ytBase = `https://www.youtube.com/results?hl=${L.hl}&gl=${L.gl}&search_query=`;
+
   // Featured: a prominent search link styled like a player
   const featEl = document.getElementById("featuredVideo");
   if(featEl) {
-    const featURL = `https://www.youtube.com/results?search_query=${encodeURIComponent(bestQuery)}`;
+    const featURL = ytBase + encodeURIComponent(bestQuery);
     featEl.innerHTML = `
       <a href="${featURL}" target="_blank" rel="noopener" style="text-decoration:none;display:block">
         <div class="video-placeholder" style="background:linear-gradient(135deg,${d.bg},rgba(20,6,0,.7))">
           <span style="color:${d.color};display:inline-flex">${deityIcon(work.deity,36)}</span>
-          <span class="play-icon" style="font-size:22px;margin-top:4px">▶</span>
-          <span class="play-label">ಹುಡುಕಿ: ${esc(bestQuery.substring(0,48))}…</span>
-          <span style="font-size:9px;color:rgba(154,107,75,.5);margin-top:2px">YouTube ಹುಡುಕಾಟ ತೆರೆಯುತ್ತದೆ ↗</span>
+          <span class="play-icon" style="font-size:28px;margin-top:4px">▶</span>
+          <span class="play-label">Search: ${esc(bestQuery.substring(0,48))}…</span>
+          <span style="font-size:.72rem;color:rgba(212,160,23,.55);margin-top:2px;letter-spacing:.08em;text-transform:uppercase;font-family:Georgia,serif">Opens YouTube ↗</span>
         </div>
       </a>
-      <div style="font-size:10px;color:#9A6B4B;padding:5px 0 0">ಅತ್ಯುತ್ತಮ ಹೊಂದಾಣಿಕೆ "${esc(work.name)}"</div>`;
+      <div style="font-size:.82rem;color:rgba(212,160,23,.6);padding:6px 0 0;font-style:italic;font-family:Georgia,serif">Best match search for "${esc(work.name)}"</div>`;
   }
 
   // Grid: 6 targeted search tiles
   const gridEl = document.getElementById("videoContent");
   if(gridEl) {
     gridEl.innerHTML = `<div class="video-grid">${queries.map(item => {
-      const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(item.q)}`;
+      const url = ytBase + encodeURIComponent(item.q);
       return `<a class="video-card" href="${url}" target="_blank" rel="noopener">
         <div class="video-thumb" style="background:linear-gradient(135deg,${d.bg},rgba(20,6,0,.5))">
           <span style="color:${d.color};opacity:0.4;display:inline-flex">${deityIcon(work.deity,18)}</span>
-          <div class="video-play-btn"><span class="video-play-icon">▶</span></div>
+          <div class="video-play-btn"><div class="video-play-icon">▶</div></div>
         </div>
         <div class="video-info">
           <div class="video-title">${esc(item.label)}</div>
