@@ -85,7 +85,7 @@ h1{
   display:flex;justify-content:center;gap:28px;
   flex-wrap:wrap;margin-top:16px;
 }
-.stat-item{text-align:center;cursor:pointer;padding:8px 16px;
+.stat-item{text-align:center;cursor:pointer;padding:6px 10px;
   border:1px solid rgba(212,160,23,.15);transition:border-color .2s}
 .stat-item:hover{border-color:rgba(212,160,23,.4)}
 .stat-n{font-size:1.5rem;font-weight:700;display:block;color:#F0C040;line-height:1.2}
@@ -381,14 +381,14 @@ h1{
 }
 .panel-close-hint{font-size:.82rem;color:rgba(245,240,232,.4);font-style:italic}
 .close-btn{
-  background:rgba(212,160,23,.1);
-  border:2px solid rgba(212,160,23,.35);
-  color:#D4A017;cursor:pointer;padding:10px 20px;
-  font-size:.9rem;letter-spacing:.08em;
+  background:rgba(201,98,107,.15);
+  border:2px solid rgba(201,98,107,.5);
+  color:#E8858C;cursor:pointer;padding:9px 18px;
+  font-size:.88rem;letter-spacing:.1em;
   font-family:Georgia,serif;transition:all .2s;
-  min-height:48px;font-weight:700;
+  min-height:44px;font-weight:700;white-space:nowrap;
 }
-.close-btn:hover{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.6)}
+.close-btn:hover{background:rgba(201,98,107,.3);border-color:#C9626B;color:#fff}
 .panel-header{padding:18px 22px 16px}
 .panel-header-top{
   display:flex;justify-content:space-between;
@@ -833,6 +833,36 @@ footer{
 @media(min-width:661px){
   .bottom-nav{display:none!important}
 }
+
+/* ── Feedback section ──────────────────────────── */
+.feedback-box{background:rgba(16,5,0,.6);border:1px solid rgba(212,160,23,.2);padding:16px 18px;border-radius:2px}
+.star-row{display:flex;gap:6px;margin:10px 0 12px}
+.star-btn{background:none;border:none;font-size:1.6rem;cursor:pointer;color:rgba(212,160,23,.25);padding:2px 4px;transition:color .15s;line-height:1}
+.star-btn.lit{color:#F0C040}
+.star-btn:hover{color:#D4A017}
+.fb-textarea{width:100%;min-height:80px;background:rgba(8,2,0,.8);border:1.5px solid rgba(212,160,23,.2);color:#FAF6EE;font-family:Georgia,serif;font-size:.88rem;padding:10px 12px;resize:vertical;outline:none;transition:border-color .2s;box-sizing:border-box}
+.fb-textarea:focus{border-color:rgba(212,160,23,.5)}
+.fb-actions{display:flex;gap:10px;margin-top:10px}
+.fb-save-btn{flex:1;padding:10px;background:linear-gradient(135deg,rgba(212,160,23,.2),rgba(212,160,23,.1));border:1.5px solid rgba(212,160,23,.4);color:#D4A017;font-family:Georgia,serif;font-size:.85rem;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.fb-save-btn:hover{background:rgba(212,160,23,.25);border-color:#D4A017}
+.fb-save-btn.saved{color:#7EC8A0;border-color:rgba(126,200,160,.4)}
+.fb-clear-btn{padding:10px 14px;background:none;border:1.5px solid rgba(212,160,23,.15);color:rgba(212,160,23,.4);font-family:Georgia,serif;font-size:.8rem;cursor:pointer;transition:all .2s}
+.fb-clear-btn:hover{border-color:rgba(212,160,23,.35);color:rgba(212,160,23,.6)}
+
+
+/* ── Panel progress buttons ─────────────────────── */
+.progress-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.progress-btn{
+  padding:12px 6px;border:2px solid rgba(212,160,23,.18);
+  background:rgba(16,5,0,.6);color:rgba(245,240,232,.45);
+  font-family:Georgia,serif;font-size:.8rem;letter-spacing:.05em;
+  cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;
+}
+.progress-btn:hover{border-color:rgba(212,160,23,.4);color:rgba(245,240,232,.7)}
+.progress-btn.heard,.progress-btn.active-prog.heard{border-color:rgba(91,168,212,.7);background:rgba(91,168,212,.12);color:#5BA8D4;font-weight:700}
+.progress-btn.studied,.progress-btn.active-prog.studied{border-color:rgba(126,200,160,.7);background:rgba(126,200,160,.12);color:#7EC8A0;font-weight:700}
+.progress-btn.memorised,.progress-btn.active-prog.memorised{border-color:#D4A017;background:rgba(212,160,23,.15);color:#F0C040;font-weight:700}
+
 </style>
 </head>
 <body>
@@ -853,51 +883,23 @@ footer{
     <div class="tagline">आदि शंकराचार्य की सम्पूर्ण रचनाएँ · ७८८–८२० ई.</div>
     <div class="header-stats">
       <div class="stat-item"><span class="stat-n" id="statTotal" style="color:#F0C040"></span><span class="stat-l">रचनाएँ</span></div>
-      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">सहेजी</span></div>
-      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statअध्ययन" style="color:#7EC8A0">0</span><span class="stat-l">अध्ययन</span></div>
-    </div>
-  </header>
-
-  <!-- DESKTOP TABS -->
-  <div class="tabs" id="desktopTabs">
-    <div class="tab-btn-wrap"><button class="tab-btn active" data-tab="explore" onclick="switchTab('explore')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h16M4 9h10M4 13h12M4 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="tab-lbl">अन्वेषण</span></button></div>
-    <div class="tab-btn-wrap" style="position:relative"><button class="tab-btn" data-tab="bookmarks" onclick="switchTab('bookmarks')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><span class="tab-lbl">सहेजी</span></button><span class="tab-badge" id="bmBadge" style="display:none">0</span></div>
-    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5C9.5 8 10.5 7 12 7s2.5 1 2.5 2.5c0 1.5-1.5 2-2.5 2.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg></span><span class="tab-lbl">प्रश्नोत्तरी</span></button></div>
-    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="progress" onclick="switchTab('progress')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="9" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="4" width="4" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="tab-lbl">प्रगति</span></button></div>
-  </div>
-
-  <!-- EXPLORE TAB -->
-  <div id="tab-explore">
-
-    <!-- WORK OF THE DAY -->
-    <div class="wotd-banner" id="wotdBanner" onclick="openWOTD()">
-      <div class="wotd-icon" id="wotdEmoji" style="color:#D4A017"></div>
-      <div class="wotd-body">
-        <div class="wotd-label">✦ आज की रचना</div>
-        <div class="wotd-name" id="wotdName"></div>
-        <div class="wotd-sub" id="wotdSub"></div>
-      </div>
-      <div class="wotd-cta">अन्वेषण →</div>
-    </div>
-
-    <!-- SEARCH -->
-    <div class="search-hero">
-      <label class="search-label" for="searchInput">नाम, देवता या विषय से खोजें:</label>
-      <div class="search-wrap">
-        <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-        <input type="text" id="searchInput" placeholder="स्तोत्र, भाष्य, देवता, विषय खोजें…" oninput="handleSearch()" autocomplete="में सेf">
-        <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
-      </div>
-      <div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">सहेजे</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statHeard" style="color:#5BA8D4">0</span><span class="stat-l">◑ सुना</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statStudied" style="color:#7EC8A0">0</span><span class="stat-l">◕ अध्ययन</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statMemorised" style="color:#D4A017">0</span><span class="stat-l">● कंठस्थ</span></div>
+    </div><div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
     </div>
 
     <!-- DEITY FILTER -->
+    <div id="deityFilterSection">
     <div class="deity-filter-label">देवता के अनुसार फ़िल्टर करें — बगल में स्क्रोल करें:</div>
     <div class="deity-scroll-wrap">
       <div class="deity-bar" id="deityBar"></div>
     </div>
+    </div><!-- /deityFilterSection -->
 
-    <!-- POPULAR SEARCHES — scrollable -->
+    <div id="tab-explore">
+<!-- POPULAR SEARCHES — scrollable -->
     <div class="quick-tags-wrap">
       <div class="quick-tags" id="quickTags"></div>
     </div>
@@ -926,7 +928,9 @@ footer{
     </div>
   </div>
 
-  <!-- BOOKMARKS TAB -->
+  </div>
+
+<!-- BOOKMARKS TAB -->
   <div id="tab-bookmarks" style="display:none">
     <div class="tab-page-header">
       <div class="tab-page-title" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#D4A017" stroke-width="1.5" stroke-linejoin="round"/></svg> सहेजी रचनाएँ</div>
@@ -1108,126 +1112,126 @@ const DEITIES=[
 
 const WORKS=[
   // GANESHA
-  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"गणेश की स्तुति में पाँच रत्न श्लोक — विघ्नों के नाशक और सभी आरम्भों के स्वामी। प्रत्येक पद्य भक्ति काव्य का एक रत्न है।"},
-  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"भुजंग छंद में गणेश को सर्पगतिमय स्तोत्र — हाथी-मुख प्रभु का आह्वान जो भक्तों के सभी मार्ग खोलते हैं।"},
+  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"गणेश की स्तुति में पाँच रत्न श्लोक — विघ्नहर्ता और सभी आरम्भों के स्वामी। प्रत्येक पद्य भक्ति काव्य का एक बहुमूल्य रत्न है।"},
+  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"भुजंग छन्द में गणेश स्तोत्र — भक्तों के हर मार्ग को प्रशस्त करने वाले गजानन का आवाहन।"},
   // SUBRAMANYA
-  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"सुब्रह्मण्य को 33 श्लोकों का भुजंग स्तोत्र — शिव के पुत्र, युद्ध और ज्ञान के देवता। सबसे अधिक संगीतात्मक भुजंगम रचनाओं में से एक।"},
+  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"सुब्रह्मण्य की स्तुति में 33 श्लोकों का भुजंग स्तोत्र — शिव के पुत्र, युद्ध और ज्ञान के देवता। सर्वाधिक संगीतात्मक भुजंगम रचनाओं में एक।"},
   // SHIVA
-  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"अर्धनारीश्वर पर नौ श्लोक — एक उभयलिंगी रूप में शिव और शक्ति। चेतना और ऊर्जा की एकता पर दार्शनिक रत्न।"},
-  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"स्वयं-घोषणा के दस श्लोक — शंकर दस वज्र जैसे श्लोकों में आत्मा के परम स्वरूप की घोषणा करते हैं।"},
-  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"दक्षिण की ओर मौन गुरु के रूप में शिव — ब्रह्म में कण्णाडि में दिखती नगरी की तरह विश्व। परम अद्वैत स्तोत्र।"},
-  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"दक्षिणामूर्ति का विस्तृत स्तोत्र — चार कुमारों को मौन से ज्ञान देने वाले विश्व गुरु शिव पर 19 श्लोक।"},
-  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"दक्षिणामूर्ति पर 25 श्लोकों की वर्णमाला — प्रत्येक श्लोक क्रमिक संस्कृत अक्षर से प्रारम्भ होता है।"},
-  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"काशी के कालभैरव पर आठ उग्र श्लोक — काल के स्वामी। वाराणसी में इसे पढ़ने वाले काल के चक्र से मुक्त हो जाते हैं।"},
-  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"मृत्युंजय की विस्तृत मानस पूजा के 46 श्लोक — मृत्यु के विजेता। मन में अर्पित आचार पूजा का प्रत्येक अंग।"},
-  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"क्षमायाचना का हृदयस्पर्शी स्तोत्र — शिव के समक्ष शरीर, वाणी और मन की सभी कमियाँ स्वीकार करना। शिव पूजा के बाद पूर्ण शरणागति के रूप में पठित।"},
-  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"श्रीशैलम में रचे परमभक्ति के 100 श्लोक। शंकर का सर्वाधिक विस्तृत शैव स्तोत्र — भक्ति, दर्शन और उत्कृष्ट काव्य का संगम।"},
-  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"शिव के सर्पाभरण की गति को अनुकरण करते लहरिल छंद में शिव को चार भुजंग श्लोक — पाठ में मनमोहक।"},
-  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"29 श्लोकों में शिव का मस्तक से पाद तक वर्णन — जटाजूट की चंद्रकला से कमल-चरणों तक। पूर्ण दृश्य ध्यान।"},
-  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"शिव की मानस पूजा — हृदय में ही रत्न सिंहासन, दिव्य स्नान और पवित्र वस्त्र अर्पण। शंकर की सबसे कोमल रचनाओं में से एक।"},
-  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"शिव के नामों की माला के रूप में नौ श्लोक — प्रभु के अनन्त स्वरूप के विविध पहलुओं को प्रकट करने वाले दिव्य विशेषणों की माला।"},
-  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"शिव के कमल-चरणों से मुकुट तक आरोहण करती सहयोगी रचना — दिव्य रूप पर आरोहण करते 41 उत्साहपूर्ण श्लोक।"},
-  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"नमशिवाय के प्रत्येक अक्षर को समर्पित छह श्लोक, शिव के नाम के पाँच अक्षरों से पंचभूतों का ध्यान।"},
-  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 नक्षत्रों को शिव के गुणों से जोड़ने वाले 28 श्लोकों की नक्षत्रमाला — ज्योतिष और शैव भक्ति का अपूर्व संगम।"},
-  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"50 श्लोकों की सुवर्ण माला — प्रत्येक संस्कृत अक्षर के लिए एक। सम्पूर्ण वर्णमाला शिव-स्तुति बन जाने वाला स्तोत्र।"},
-  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"उमा-महेश्वर के रूप में शिव-पार्वती की स्तुति के 13 श्लोक — दिव्य दम्पती का मिलन सृष्टि का स्रोत। विवाह का मानक स्तोत्र।"},
-  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"शिव-स्तुति में वेदों का सार — शिव को साकार देव और निराकार ब्रह्म दोनों रूपों में दिखाने वाले 11 श्लोक। महाशिवरात्रि के लिए रचित।"},
+  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"अर्धनारीश्वर पर नौ श्लोक — शिव और शक्ति एक ही उभयलिंगी स्वरूप में। चेतना और ऊर्जा की एकता पर एक दार्शनिक रत्न।"},
+  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"आत्म-घोषणा के दस श्लोक — शंकर दस संक्षिप्त, वज्र-सदृश श्लोकों में आत्मा का परम स्वरूप उद्घोष करते हैं।"},
+  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"दक्षिणाभिमुख मौन गुरु के रूप में शिव — ब्रह्म में प्रतिबिम्बित नगर की भाँति विश्व दर्पण में दिखता है। सर्वश्रेष्ठ अद्वैत स्तोत्र।"},
+  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"दक्षिणामूर्ति पर विस्तृत स्तोत्र — चार कुमारों को मौन के माध्यम से ज्ञान देने वाले विश्व गुरु शिव पर 19 श्लोक।"},
+  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"दक्षिणामूर्ति पर 25 श्लोकों की वर्णमाला — प्रत्येक श्लोक क्रमशः संस्कृत अक्षरों से आरम्भ होने वाली अकृत्रिम रचना।"},
+  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"काशी के कालभैरव पर आठ उग्र श्लोक — काल के स्वामी। वाराणसी में इसका पाठ करने वाले कालचक्र से मुक्त हो जाते हैं।"},
+  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"मृत्युञ्जय की मानस पूजा — 46 श्लोकों में मृत्यु को जीतने वाले की विस्तृत मानस आराधना। पूजा का प्रत्येक उपचार मन में समर्पित।"},
+  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"क्षमायाचना का हृदयस्पर्शी स्तोत्र — शिव के समक्ष शरीर, वाणी और मन के सभी दोषों को स्वीकार करने वाली रचना। शिव पूजा के पश्चात् पूर्ण समर्पण के रूप में पढ़ी जाती है।"},
+  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"श्रीशैलम में रचित परमानन्द भक्ति के 100 श्लोक। भक्ति, दर्शन और उदात्त काव्य का समन्वय करने वाला शंकर का सर्वाधिक व्यापक शैव स्तोत्र।"},
+  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"शिव के सर्पाभरण की गति का अनुकरण करने वाले चार भुजंग श्लोक — पाठ करने के लिए मन्त्रमुग्धकारी रचना।"},
+  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"29 श्लोकों में शिव का मस्तक से पाद तक वर्णन — जटाओं में चन्द्रकला से लेकर चरण कमल तक। एक सम्पूर्ण दृश्य ध्यान।"},
+  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"शिव मानस पूजा — हृदय के भीतर ही रत्न-सिंहासन, दिव्य स्नान और पवित्र वस्त्र अर्पित करने वाली मानस आराधना। शंकर की अत्यन्त कोमल रचनाओं में एक।"},
+  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"शिव के नामों की माला के रूप में नौ श्लोक — प्रत्येक श्लोक भगवान के अनन्त स्वरूप के विभिन्न पक्षों को प्रकट करने वाले दिव्य विशेषणों की माला।"},
+  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"शिव के चरण-कमल से मुकुट तक आरोहण — 41 भावपूर्ण श्लोकों में दिव्य स्वरूप का ऊर्ध्वगामी वर्णन।"},
+  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"न-म-शि-व-य के प्रत्येक अक्षर को एक श्लोक अर्पित करने वाले छह श्लोक — शिव के नाम के पंचाक्षर के माध्यम से पाँच तत्त्वों का ध्यान।"},
+  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 चन्द्र नक्षत्रों को शिव के विशिष्ट गुणों से जोड़ने वाले 28 श्लोकों की नक्षत्रमाला — ज्योतिष और शैव भक्ति का दुर्लभ समन्वय।"},
+  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"प्रत्येक संस्कृत अक्षर के लिए एक — 50 श्लोकों की स्वर्णमाला। सम्पूर्ण वर्णमाला शिव की स्तुति बन जाने वाला अक्रोस्टिक स्तोत्र।"},
+  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"उमा-महेश्वर के रूप में शिव और पार्वती की स्तुति करने वाले 13 श्लोक — दिव्य दम्पति का मिलन सम्पूर्ण सृष्टि का स्रोत। विवाह का प्रामाणिक स्तोत्र।"},
+  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"शिव की स्तुति में वेदों का सार — शिव को साकार देव और निराकार ब्रह्म दोनों के रूप में दर्शाने वाले 11 श्लोक। महाशिवरात्रि के लिए रचित।"},
   // DEVI
   {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Annapoorna","Kashi","Food"],description:"काशी की अन्नपूर्णा देवी को आठ श्लोक — पोषण और समृद्धि की देवी के रूप में पार्वती।"},
-  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"काशी की अन्नपूर्णा को 12 श्लोक, अन्त में शंकर की प्रार्थना: 'हे पार्वती, काशी को मेरा घर बनाओ और ज्ञान की भिक्षा से मुझे पोषित करो।'"},
-  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"भगवती की ग्यारह श्लोकों की मानस पूजा — दिव्य माता — समस्त पवित्र वस्तुएँ और पूजा मन में ही अर्पित करना।"},
-  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"भवानी को पूर्ण शरणागति के नौ श्लोक — प्रत्येक पूर्ण असहायता स्वीकारता है: 'मेरा और कोई नहीं, हे माँ।' सबसे तीव्र शाक्त शरणागति।"},
-  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"लुढ़कते भुजंग छंद में भवानी को 17 श्लोकों का स्तोत्र — अहंकार के असुरों को नष्ट करने वाली देवी की प्रचण्ड शक्ति का आह्वान।"},
-  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"भ्रमराम्बा को आठ श्लोक — श्रीशैलम में मल्लिकार्जुन की सहचरी, भ्रमर-रूप धारण करने वाली देवी।"},
-  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"विश्व रूप में देवी को 28 श्लोकों का सर्पगतिमय स्तोत्र — जल में सर्प की भाँति उनके गुणों से प्रवाहित।"},
-  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"देवी को चौंसठ सेवाओं की मानस अर्पण के 72 श्लोक — शंकर की देवी-पूजा रचनाओं में सर्वाधिक विस्तृत।"},
-  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"देवी-स्तुति में पाँच रत्न श्लोक — शक्ति, अनुग्रह और मुक्ति के देवी गुणों को समेटने वाला संक्षिप्त किन्तु शक्तिशाली शाक्त भक्ति रत्न।"},
-  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"समस्त अपराधों के लिए दुर्गा-क्षमायाचना के 17 श्लोक — शिव-अपराध-क्षमापन का शाक्त समतुल्य।"},
-  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"गौरी को दस श्लोक — पार्वती का स्वर्णिम, कोमल रूप। विश्वमाता के रूप में देवी का मृदुल, आत्मीय चित्रण।"},
-  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"हर (शिव) और गौरी (पार्वती) दोनों की स्तुति के आठ श्लोक — उनका नित्य मिलन और विश्व के दिव्य माता-पिता के रूप में उनकी भूमिका।"},
-  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"काली-क्षमायाचना के 17 श्लोक — यह स्वीकार करना कि उग्र संहारक काली के हृदय में भी माँ का स्नेह है। भय और वात्सल्य को जोड़ने वाला दुर्लभ स्तोत्र।"},
-  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"ललिता-स्तुति में पाँच रत्न श्लोक — आनन्दमयी देवी। प्रातः पाठ से भाग्य, ज्ञान, सम्पदा और यश प्राप्त होते हैं।"},
-  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"प्रत्येक संस्कृत अक्षर को देवी के एक रूप से जोड़ने वाले मन्त्रों की माला — मन्त्र, भाषा और देवी को जोड़ने वाली तांत्रिक-भक्ति रचना।"},
-  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"शंकर की अपनी माँ को पाँच गहरे व्यक्तिगत श्लोक — जीवन के वरदान और उसे त्यागने की प्रज्ञा के लिए कृतज्ञता। उनकी सर्वाधिक मार्मिक रचनाओं में से एक।"},
-  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"मदुरई की मीनाक्षी देवी को आठ श्लोक — मीन-नयनी देवी, जो उनके कमल-चरणों तक आने वालों को मुक्ति और समृद्धि देती हैं।"},
-  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"मदुरई मीनाक्षी-स्तुति में पाँच रत्न — शंकर की अखिल-भारत यात्रा और तमिलनाडु की मीन-नयनी देवी के प्रति श्रद्धा का प्रमाण।"},
-  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"राजा राजेश्वरी को आठ श्लोक — परम रानी, सृष्टि-पालन-संहार के तीन नगरों पर शासन करने वाली देवी।"},
-  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"शृंगेरी में शारदा (सरस्वती) देवी को सर्पगतिमय स्तोत्र — जहाँ शंकर ने अपना प्रथम मठ स्थापित किया। अपनी अधिष्ठात्री देवी को गहरी व्यक्तिगत श्रद्धांजलि।"},
-  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"सौन्दर्य की लहर — देवी पार्वती की स्तुति में उत्कृष्ट काव्य के 100 श्लोक। शाक्त भक्ति में शंकर की सर्वश्रेष्ठ उपलब्धि।"},
-  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"श्यामला (मातंगी) की स्तुति में नौ रत्नों की माला — वाणी, संगीत और कलाओं की श्याम देवी।"},
-  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"त्रिपुरसुन्दरी को आठ श्लोक — तीन नगरों की सुन्दरी, परम तांत्रिक देवी।"},
-  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"127 श्लोकों में शंकर की सर्वाधिक विस्तृत मानस पूजा रचना — त्रिपुरसुन्दरी की पूर्ण आन्तरिक पूजा।"},
-  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"त्रिपुरसुन्दरी को परम वैदिक देवी के रूप में स्थापित करते दस श्लोक — उनके चरण चार वेद हैं, उनका स्वरूप वैदिक ज्ञान।"},
+  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"काशी की अन्नपूर्णा को 12 श्लोक, शंकर की प्रार्थना के साथ समाप्त होते हैं: 'हे पार्वती, काशी को मेरा घर बनाओ और ज्ञान की भिक्षा दो।'"},
+  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"भगवती — दिव्य माता की मानस पूजा के ग्यारह श्लोक। सभी पवित्र पदार्थों को अन्तर्मन में समर्पित करने की आन्तरिक आराधना।"},
+  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"भवानी को पूर्ण समर्पण के नौ श्लोक — प्रत्येक श्लोक सम्पूर्ण निराश्रयता स्वीकार करता है: 'मेरे पास और कोई नहीं है, हे माँ।' सर्वाधिक तीव्र शाक्त शरणागति।"},
+  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"भवानी भुजंगम् — 17 श्लोकों का भुजंग छन्द स्तोत्र। अहंकार के दैत्यों को नष्ट करने वाली देवी की उग्र शक्ति का आवाहन।"},
+  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"श्रीशैलम में मल्लिकार्जुन की पत्नी भ्रमराम्बा को आठ श्लोक — भ्रमरी (भौंरे) का रूप धारण करने वाली देवी।"},
+  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"देवी के विश्व-स्वरूप को 28 श्लोकों का भुजंग स्तुति — जल में सर्प की भाँति देवी के गुणों से प्रवाहित होने वाली रचना।"},
+  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"देवी को 64 सेवाएँ अर्पित करने वाली 72 श्लोकों की मानस पूजा — शंकर की देवी आराधना रचनाओं में सर्वाधिक विस्तृत।"},
+  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"देवी की स्तुति में पाँच रत्न श्लोक — देवी की शक्ति, कृपा और मोक्षदायित्व को समेटे संक्षिप्त किन्तु शक्तिशाली शाक्त रचना।"},
+  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"सभी अपराधों के लिए दुर्गा से क्षमायाचना के 17 श्लोक — शिव अपराध क्षमापण स्तोत्र का शाक्त समतुल्य।"},
+  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"गौरी दशकम् — पार्वती का सुनहरे वर्ण वाला, सौम्य रूप। विश्व माता का अधिक आत्मीय चित्रण देने वाले दस श्लोक।"},
+  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"हर (शिव) और गौरी (पार्वती) दोनों की स्तुति करने वाले आठ श्लोक — दिव्य माता-पिता का नित्य मिलन और ब्रह्माण्ड में उनकी भूमिका।"},
+  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"काली से क्षमायाचना के 17 श्लोक — उग्र संहारक काली का भी माँ का हृदय है, यह दर्शाने वाली दुर्लभ रचना।"},
+  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"ललिता की स्तुति में पाँच रत्न श्लोक — आनन्द की देवी। प्रातःकाल पाठ करने से भाग्य, ज्ञान, धन और अनन्त कीर्ति प्राप्त होती है।"},
+  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"प्रत्येक संस्कृत अक्षर को देवी के स्वरूप से जोड़ने वाली मन्त्र-मातृका-पुष्पमाला — मन्त्र, भाषा और शक्ति को आपस में जोड़ने वाली तान्त्रिक-भक्ति रचना।"},
+  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"शंकर की अपनी माता को पाँच गहन व्यक्तिगत श्लोक — जीवन देने के लिए और उसे त्यागने का ज्ञान देने के लिए कृतज्ञता। उनकी सर्वाधिक हृदयस्पर्शी रचनाओं में एक।"},
+  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"मदुरई की मीनाक्षी देवी को आठ श्लोक — मत्स्य-नेत्री देवी अपने चरण-कमलों की शरण लेने वाले सभी को मोक्ष और समृद्धि प्रदान करती हैं।"},
+  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"मदुरई की मीनाक्षी की स्तुति में पाँच रत्न श्लोक — शंकर की भारत-परिक्रमा और तमिलनाडु की मत्स्य-नेत्री देवी के प्रति श्रद्धा का प्रमाण।"},
+  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"राज-राजेश्वरी को आठ श्लोक — सृष्टि, पालन और संहार के तीन नगरों पर शासन करने वाली सर्वोच्च रानी।"},
+  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"श्रृंगेरी की शारदा देवी (सरस्वती) को भुजंग स्तुति — जहाँ शंकर ने अपना प्रथम मठ स्थापित किया। अपनी आश्रय देवी को एक गहरी व्यक्तिगत श्रद्धांजलि।"},
+  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"सौन्दर्य लहरी — देवी पार्वती की स्तुति में 100 अलौकिक काव्य श्लोकों का सौन्दर्य-प्रवाह। शाक्त भक्ति में शंकर की सर्वश्रेष्ठ कृति।"},
+  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"श्यामला (मातंगी) — वाणी, संगीत और कलाओं की श्यामल देवी की स्तुति में नवरत्न माला।"},
+  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"त्रिपुरसुन्दरी को आठ श्लोक — तीन नगरों की सुन्दरी, सर्वोच्च तान्त्रिक देवी।"},
+  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"त्रिपुरसुन्दरी की सम्पूर्ण आन्तरिक आराधना — 127 श्लोकों की अत्यन्त विस्तृत मानस पूजा।"},
+  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"त्रिपुरसुन्दरी के चरणों को ही चारों वेद बताने वाले दस श्लोक — देवी का स्वरूप ही वैदिक ज्ञान है।"},
   // LAKSHMI
-  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"एकमात्र आँवला अर्पित करने वाली निर्धन स्त्री के लिए लक्ष्मी का अनुग्रह माँगने को स्वतःस्फूर्त रचित स्तोत्र। आकाश से स्वर्ण-आँवलों की वर्षा हुई।"},
+  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"अपना एकमात्र आँवला अर्पित करने वाली निर्धन स्त्री के लिए लक्ष्मी की कृपा प्राप्त करने हेतु स्वतः रचित स्तोत्र। आकाश से सुवर्ण आँवलों की अद्भुत वर्षा हुई।"},
   // VISHNU
-  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"अच्युत को नौ श्लोक — अक्षय। कभी न गिरने वाले प्रभु की शाश्वत कृपा में शरण माँगने की हृदयस्पर्शी प्रार्थना।"},
-  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"आदिशेष पर विश्व रूप में विश्राम करते नारायण की ध्यानात्मक स्तुति के 18 श्लोक।"},
-  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'गोविन्द को खोजो!' — बुढ़ापे में व्याकरण कंठस्थ करते विद्वान को देख रचित। भ्रम को त्यागने का वज्र-आह्वान।"},
-  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"मत्स्य से कल्कि तक विष्णु के दस अवतारों की स्तुति के दस श्लोक — विकास के चरणों में दिव्य अवतरण।"},
-  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"गोविन्द की महिमा के नौ श्लोक — वृन्दावन के गोपाल कृष्ण, गोपियों के मनमोहक, सभी हृदय हरने वाले बाँसुरी वादक।"},
-  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"हरि (विष्णु) की स्तुति के 44 श्लोक — प्रभु के अवतारों, गुणों, विश्व रूप और मोक्षदायी कृपा को समाहित करने वाली विस्तृत भक्ति रचना।"},
-  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"हरि (विष्णु) के दिव्य नामों को माला में मोतियों सा पिरोते 19 श्लोक — प्रत्येक नाम प्रभु का भिन्न पहलू।"},
-  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"हरि में शरण के आठ श्लोक — शंकर विष्णु के कमल-चरणों में स्वयं को समर्पित करते वैष्णव शरणागति स्तोत्र।"},
-  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"पुरी के जगन्नाथ प्रभु को आठ श्लोक — सबको समान भाव से स्वीकार करने वाले प्रभु, गोवर्धन मठ-स्थापना के समय रचित।"},
-  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"कृष्ण को आठ श्लोक — नीलमेघ श्याम, बाँसुरी वादक, वृन्दावन के माखन चोर। चंचल, मनमोहक बाल देव का चित्रण।"},
-  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"लक्ष्मी नरसिंह को पाँच रत्न श्लोक — विष्णु का प्रचण्ड सिंह-मानव अवतार। नरसिंह भक्ति का संक्षिप्त रत्न।"},
-  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"नारायण की स्तुति के 30 श्लोक — आदिजल पर विश्राम करते विष्णु का विश्व रूप। सभी का उद्गम, पालक और अन्त रूप प्रभु पर विस्तृत ध्यान।"},
-  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"पंढरपुर के पाण्डुरंग (विठ्ठल) को नौ श्लोक — शंकर के अखिल-भारतीय संश्लेषण में महाराष्ट्र भक्ति-परम्परा का समावेश।"},
-  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"अयोध्या में राम के जन्म से रावण-वध तक दिव्य लीलाओं की स्तुति के 29 श्लोकों का सर्पगतिमय स्तोत्र।"},
-  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"श्रीरंगम के रंगनाथ को आठ श्लोक — जब शंकर सबसे महान वैष्णव मन्दिर में शयन-विष्णु के समक्ष खड़े थे तब रचित।"},
-  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"नरसिंह के रक्षक हाथ के लिए आर्त पुकार — 17 श्लोकों में प्रत्येक 'लक्ष्मी नरसिंह, मम देहि कराबलम्बम्' से समाप्त होता है।"},
-  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"मुक्ति की माँग करते विष्णु को तीव्र भक्ति के सात श्लोक — वैष्णव शरणागति के सार को समेटने वाली संक्षिप्त किन्तु शक्तिशाली प्रार्थना।"},
-  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"विष्णु को 14 सर्पगतिमय श्लोक — सृष्टि के आदि में आदिशेष पर विश्राम करते प्रभु का आह्वान।"},
-  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"विष्णु के दिव्य स्वरूप पर 52 श्लोकों का आरोहण ध्यान — कमल-चरणों से शरीर होते तेजोमय मुकुट तक।"},
+  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"अच्युत — अचल प्रभु को नौ श्लोक। जो कभी नहीं गिरता, उसकी शाश्वत कृपा में शरण माँगने वाली भावपूर्ण प्रार्थना।"},
+  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"आदिशेष पर विश्राम करते विश्व-स्वरूप नारायण का ध्यान करने वाले 18 श्लोकों की ध्यान-स्तुति।"},
+  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'गोविन्द को भजो!' — वृद्धावस्था में व्याकरण कण्ठस्थ करते विद्वान को देख रचित। माया त्यागने का वज्र-आह्वान।"},
+  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"मत्स्य से कल्कि तक विष्णु के दस अवतारों की स्तुति करने वाले दस श्लोक — दिव्य अवतरण के विकासात्मक चरण दर्शाते हैं।"},
+  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"वृन्दावन के गोपाल गोविन्द — कृष्ण, गोपियों को मोहित करने वाले, हृदय चुराने वाले बाँसुरी-वादक की स्तुति में नौ श्लोक।"},
+  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"हरि (विष्णु) की स्तुति में 44 श्लोक — प्रभु के अवतारों, गुणों, विश्व-स्वरूप और मोक्ष-प्रदायक कृपा को समेटे विस्तृत भक्ति रचना।"},
+  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"हरि के दिव्य नामों को मोतियों की माला में पिरोने वाले 19 श्लोक — प्रत्येक नाम प्रभु का एक अलग पक्ष।"},
+  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"हरि में शरण लेने वाले आठ श्लोक — शंकर विष्णु के चरण-कमलों में स्वयं को अर्पित करने वाला वैष्णव शरणागति स्तोत्र।"},
+  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"पुरी के जगन्नाथ को आठ श्लोक — जब शंकर ने गोवर्धन मठ की स्थापना की, तब रचित; सभी को समानभाव से स्वीकार करने वाले प्रभु।"},
+  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"कृष्ण — नीले रंग वाले, बाँसुरी-वादक, वृन्दावन के माखन-चोर। क्रीड़ाशील, मनमोहक बाल-देव का चित्रण करने वाले आठ श्लोक।"},
+  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"लक्ष्मी-नरसिंह को पाँच रत्न श्लोक — विष्णु का उग्र सिंह-मानव अवतार। नरसिंह भक्ति का संक्षिप्त किन्तु शक्तिशाली रत्न।"},
+  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"नारायण की स्तुति में 30 श्लोक — आदि जल पर विश्राम करते विष्णु का विश्व-स्वरूप। समस्त सृष्टि का स्रोत, पालक और अन्त।"},
+  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"पण्ढरपुर के पाण्डुरंग (विट्ठल) को नौ श्लोक — महाराष्ट्र की भक्ति परम्परा को अपने अखिल-भारतीय समन्वय में सम्मिलित करने वाली शंकर की रचना।"},
+  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"अयोध्या में जन्म से लेकर रावण-वध तक राम के दिव्य कार्यों की स्तुति करने वाला 29 श्लोकों का भुजंग स्तोत्र।"},
+  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"श्रीरंगम के रंगनाथ को आठ श्लोक — सर्वश्रेष्ठ वैष्णव मन्दिर में शयन-विष्णु के समक्ष खड़े होकर शंकर द्वारा रचित।"},
+  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"नरसिंह का रक्षक हाथ माँगने वाली व्याकुल प्रार्थना — 17 श्लोकों का प्रत्येक 'लक्ष्मी-नरसिंह, मम देहि करावलम्बम्' (कृपया अपना रक्षक हाथ दो) के साथ समाप्त होता है।"},
+  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"मोक्ष माँगने वाली विष्णु भक्ति के सात संक्षिप्त किन्तु शक्तिशाली श्लोक — वैष्णव शरणागति का सार।"},
+  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"विष्णु को 14 भुजंग श्लोक — सृष्टि के आरम्भ में आदिशेष, विश्व-सर्प पर विश्राम करते प्रभु।"},
+  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"विष्णु के दिव्य स्वरूप पर 52 श्लोकों का आरोही ध्यान — चरण-कमल से शरीर के माध्यम से तेजस्वी मुकुट तक।"},
   // HANUMAN
-  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"हनुमान को पाँच रत्न श्लोक — राम के महान भक्त, बाधाओं के विजेता, दुःख के नाशक।"},
+  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"हनुमान को पाँच रत्न श्लोक — राम के महान भक्त, विघ्नों पर विजयी, दुःख के नाशक।"},
   // SACRED SITES
-  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"काशी को भौतिक नगरी नहीं बल्कि ब्रह्म से पहचानने वाले पाँच श्लोक — वास्तविक काशी प्रकाशमान हृदय है, शुद्ध चेतना की नित्य नगरी।"},
-  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"पावन काशी नगरी की स्तुति के नौ श्लोक — जहाँ मृत्यु के क्षण स्वयं शिव तारक मन्त्र देकर मुक्ति प्रदान करते हैं।"},
-  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"मणिकर्णिका घाट पर नौ श्लोक — सर्वाधिक पावन श्मशान, जहाँ शिव मरणासन्न के कान में तारक मन्त्र फूँक कर कर्म से परे मुक्ति देते हैं।"},
-  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"सोमनाथ से ग्रिश्नेश्वर तक बारह ज्योतिर्लिंग तीर्थों की भक्तिमय यात्रा — तेरह श्लोकों में भारत के सभी पावन शिव-स्थलों का भ्रमण।"},
-  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"पावन गंगा को सभी प्राणियों की मुक्तिदायिनी के रूप में स्तुति के नौ श्लोक — शिव की जटाजूट से बह कर सभी पापों को धोने वाली।"},
-  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"नदी गंगा को विस्तृत 14 श्लोकों का स्तोत्र — पावन जल को स्पर्श करने वाले सभी को मोक्ष देने वाली सार्वभौमिक शुद्धिकारिणी।"},
-  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"पावन नर्मदा नदी को आठ श्लोक — शिव की पुत्री, जिनके दर्शन मात्र से शुद्धि होती है, स्पर्श से शुद्ध करने वाली गंगा से भिन्न।"},
-  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"पावन यमुना नदी को आठ श्लोक — वृन्दावन की श्याम, सुन्दर नदी, कृष्ण की प्रिय।"},
+  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"काशी को भौतिक नगर के बजाय ब्रह्म से समीकृत करने वाले पाँच श्लोक — वास्तविक काशी प्रकाशमान हृदय है, शुद्ध चेतना का नित्य नगर।"},
+  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"काशी के पवित्र नगर की स्तुति में नौ श्लोक — जहाँ शिव स्वयं मृत्यु के क्षण में तारक-मन्त्र का उपदेश देकर मोक्ष प्रदान करते हैं।"},
+  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"मणिकर्णिका घाट पर नौ श्लोक — सर्वाधिक पवित्र श्मशान-भूमि जहाँ शिव मरणासन्न के कान में तारक-मन्त्र फूँककर कर्म से परे मोक्ष देते हैं।"},
+  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"सोमनाथ से घृष्णेश्वर तक 12 ज्योतिर्लिंग तीर्थों की भक्ति-यात्रा — भारत के सभी परम-पवित्र शिव-स्थलों का 13 श्लोकों में दर्शन।"},
+  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"पवित्र गंगा की स्तुति में नौ श्लोक — शिव की जटाओं से उद्भूत, सभी पापों को धोने वाली मोक्षदायिनी।"},
+  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"गंगा नदी को विस्तृत 14 श्लोकों का स्तोत्र — पवित्र जल-स्पर्श से मोक्ष देने वाली विश्व की पुण्यस्वरूपा।"},
+  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"पवित्र नर्मदा नदी को आठ श्लोक — शिव की पुत्री, जो मात्र दर्शन से पवित्र कर देती है, जैसे गंगा स्पर्श से।"},
+  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"पवित्र यमुना नदी को आठ श्लोक — वृन्दावन की श्यामल, सुन्दर नदी, कृष्ण की प्रिया।"},
   // MISCELLANEOUS (new!)
-  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"शुभाशीर्वादों की वर्षा — दिव्य अनुग्रह और समृद्धि माँगते 16 श्लोक। समता बुक्स ग्रन्थावली के शंकर के विविध स्तोत्रों में से एक।"},
-  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"नौ रत्नों की माला — साधारण, निर्गुण रूप में परम तत्त्व की स्तुति के दस श्लोक, विशेष देव-रूपों से परे दिव्यत्व का सम्मान।"},
-  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"राजस्थान के पुष्कर पावन सरोवर को आठ श्लोक — भारत का एकमात्र प्रमुख ब्रह्मा मन्दिर, जहाँ सृष्टिकर्ता देव की पूजा होती है।"},
-  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"मन (मनस), वाणी (वाक्) और शरीर (काय) को एक-एक श्लोक — प्रातः समस्त विचार, वचन और कर्म प्रभु को समर्पित करना।"},
-  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"गुरु पादुका को नमन के आठ श्लोक — भारतीय परम्परा की अनूठी पूजा पद्धति, गुरु के चरण-चिह्नों को ही वन्दन।"},
+  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"मंगल-वर्षा — दिव्य कृपा और समृद्धि का आवाहन करने वाले 16 श्लोक। समता बुक्स ग्रन्थावली में शंकर के विविध स्तोत्रों में से एक।"},
+  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"नवरत्न-मालिका — विशिष्ट देवताओं के स्वरूप से परे सर्वोच्च तत्त्व की स्तुति करने वाले सार्वजनिक, अनुभागहीन रूप में दस श्लोक।"},
+  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"राजस्थान में पुष्कर सरोवर को आठ श्लोक — भारत का एकमात्र प्रमुख ब्रह्मा मन्दिर, जहाँ सृष्टिकर्ता देव की पूजा होती है।"},
+  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"तीन प्रभातकालीन श्लोक — मन (मनस्), वाणी (वाक्) और शरीर (काय) के लिए एक-एक — भोर में सभी विचारों, वाणी और कर्मों को प्रभु को अर्पित करना।"},
+  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"गुरु-पादुका स्तोत्र — गुरु की पादुकाओं की वन्दना करने वाले आठ श्लोक। भारतीय परम्परा के लिए अद्वितीय आराधना-रूप।"},
   // PRAKARANA
-  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"विवेक का शिरोमणि — 581 श्लोक, अद्वैत वेदान्त का सर्वाधिक व्यापक मार्गदर्शक। मुक्ति की ओर एक-एक कदम ले चलने वाला गुरु-शिष्य संवाद।"},
-  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"68 स्फटिक-स्पष्ट श्लोकों में आत्म-ज्ञान। अद्वैत वेदान्त का सबसे सुलभ परिचय — आत्मा, माया और मुक्ति को क्रमबद्ध ढंग से समझाना।"},
-  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"वेदान्त श्रेणियों का परिचय — चार साधन, तीन शरीर, पाँच कोश। वेदान्त-अध्ययन आरम्भ करने वाले सभी विद्यार्थियों के लिए अनिवार्य आधार ग्रन्थ।"},
-  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"सहस्र उपदेश — शंकर की एकमात्र निर्विवाद गद्य रचना। आत्म-साक्षात्कार के सम्पूर्ण मार्ग को समेटने वाला गुरु-शिष्य संवाद।"},
-  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"वास्तविकता का प्रत्यक्ष अनुभव — विशिष्ट ध्यान-अभ्यासों सहित आत्मा की तत्काल पहचान के 144 श्लोक।"},
-  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"छह वज्र-श्लोक: 'चिदानन्द रूपः, शिवोऽहम्' — मैं शिव हूँ, शुद्ध चेतना-आनन्द। अब तक लिखी सर्वाधिक प्रसिद्ध आध्यात्मिक रचनाओं में से एक।"},
-  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"एक अछूत ने शंकर का मार्ग रोका तब रचे नौ श्लोक: 'क्या तुम मेरी शाश्वत आत्मा हटाना चाहते हो, या इस मिट्टी के शरीर को?' शंकर ने उन्हें प्रणाम किया।"},
-  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"वेदान्त विश्व-विज्ञान — पाँच सूक्ष्म तत्त्व पंचीकृत होकर स्थूल जगत बनाते हैं। माया के माध्यम से ब्रह्म विश्व बनने की प्रक्रिया।"},
-  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"गुरु गोविन्दपाद ने 'तुम कौन हो?' पूछा तब रचे दस श्लोक — शंकर की अपनी अद्वैत पहचान की स्वतःस्फूर्त घोषणा।"},
-  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"आध्यात्मिक साधन-उपायों को सूचीबद्ध करते पाँच-छह व्यावहारिक श्लोक — साधकों के लिए शंकर का सबसे संक्षिप्त मार्गदर्शन।"},
-  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"सब भौतिक सम्पदाओं से ऊपर केवल गुरु का महत्व बताते दस श्लोक — गुरु के बिना सब व्यर्थ।"},
-  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"केवल कौपीन रखकर सब त्यागने वाले संन्यासी जीवन की महिमा के पाँच आनन्दमय श्लोक — फिर भी आत्मा में विश्राम करने वाला सबसे धनी।"},
-  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"देह में रहते हुए भी सतत आनन्द में जीते, सर्वत्र ब्रह्म देखने वाले जीवन्मुक्त के आनन्द का वर्णन करते 19 श्लोक।"},
-  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"माया के स्वरूप पर पाँच श्लोक — एक को अनेक दिखाने वाला विश्व-भ्रम। अज्ञान का शंकर का सर्वाधिक केन्द्रित विश्लेषण।"},
-  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"महावाक्य 'तत्त्वमसि' (वह तू है) की खोज के 53 श्लोक — प्रत्यक्ष अनुभव से महावाक्यों का विश्लेषण करने वाला तकनीकी अद्वैत ग्रन्थ।"},
-  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"वेदान्त दृष्टि से योग पर 29 श्लोक — शंकर प्राणायाम, ध्यान और अद्वैत ज्ञान को एकीकृत मार्ग में समन्वित करते हैं।"},
+  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"विवेकचूडामणि — अद्वैत वेदान्त का सर्वाधिक व्यापक मार्गदर्शक, 581 श्लोक। गुरु-शिष्य संवाद के रूप में मोक्ष की ओर चरणबद्ध यात्रा।"},
+  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"आत्मबोध — 68 स्फटिक-स्पष्ट श्लोकों में आत्म-ज्ञान। अद्वैत वेदान्त का सर्वाधिक सुलभ परिचय — आत्मा, माया और मोक्ष का क्रमबद्ध विवेचन।"},
+  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"वेदान्तिक श्रेणियों का परिचय — चतुर्विध साधन-सम्पत्ति, तीन शरीर, पंचकोश। वेदान्त अध्ययन आरम्भ करने वाले सभी साधकों के लिए अनिवार्य प्राथमिक ग्रन्थ।"},
+  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"उपदेश-साहस्री — एक सहस्र उपदेश। शंकर की एकमात्र निर्विवाद गद्य रचना। आत्म-साक्षात्कार के सम्पूर्ण पथ को आवृत करने वाला गुरु-शिष्य संवाद।"},
+  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"अपरोक्षानुभूति — यथार्थ का प्रत्यक्ष अनुभव। आत्मा की तत्काल पहचान और विशिष्ट ध्यान-साधनाओं पर 144 श्लोक।"},
+  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"निर्वाण षटकम् — छह वज्र-श्लोक: 'चिदानन्दरूपः, शिवोऽहम्' — मैं शिव हूँ, शुद्ध चेतना-आनन्द। अब तक लिखी गई सर्वाधिक प्रसिद्ध आध्यात्मिक रचनाओं में एक।"},
+  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"मनीषा-पञ्चकम् — एक अस्पृश्य ने शंकर का मार्ग रोका तब रचित नौ श्लोक: 'क्या तुम मेरे नित्य आत्मा को हटाना चाहते हो, या इस मिट्टी के शरीर को?' शंकर ने उन्हें प्रणाम किया।"},
+  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"पञ्चीकरण — वेदान्तिक विश्व-विज्ञान। पाँच सूक्ष्म तत्त्व माया के माध्यम से स्थूल जगत कैसे बनते हैं। ब्रह्म माया से विश्व कैसे बनता है।"},
+  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"दश-श्लोकी — गुरु गोविन्दपाद ने 'तुम कौन हो?' पूछा तब रचित दस श्लोक — शंकर की अपनी अद्वैत पहचान की स्वतःस्फूर्त घोषणा।"},
+  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"साधना-पञ्चकम् — आध्यात्मिक साक्षात्कार के साधन और विधियों को सूचीबद्ध करने वाले पाँच-छह श्लोक — शंकर का सर्वाधिक संक्षिप्त आध्यात्मिक मार्गदर्शन।"},
+  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"गुरु-अष्टकम् — समस्त सांसारिक सम्पदा और उपलब्धियों से ऊपर केवल गुरु ही महत्त्वपूर्ण है, यह उद्घोष करने वाले दस श्लोक — गुरु के बिना सब निरर्थक।"},
+  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"कौपीन-पञ्चकम् — केवल लंगोटी रखने वाले संन्यासी जीवन की महिमा गाने वाले पाँच आनन्दमय श्लोक — फिर भी आत्मा में विश्राम करते हुए सर्वाधिक सम्पन्न।"},
+  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"जीवन्मुक्तानन्द-लहरी — जीवित रहते मुक्त पाने वाले के आनन्द का वर्णन करने वाले 19 श्लोक। जो सर्वत्र ब्रह्म देखता है और शरीर में रहते हुए भी निरन्तर आनन्द में जीता है।"},
+  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"माया-पञ्चकम् — माया के स्वरूप पर पाँच श्लोक। एक को अनेक दिखाने वाला विश्व-भ्रम। अज्ञान का अत्यन्त संक्षिप्त विश्लेषण।"},
+  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"वाक्य-वृत्ति — महावाक्य 'तत् त्वम् असि' (तुम वही हो) की 53 श्लोकों में विवेचना। प्रत्यक्ष अनुभव के माध्यम से महावाक्यों का विश्लेषण करने वाला तकनीकी अद्वैत ग्रन्थ।"},
+  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"योग-तारावली — वेदान्त के दृष्टिकोण से योग पर 29 श्लोक। प्राणायाम, ध्यान और अद्वैत ज्ञान को एकीकृत मार्ग में समन्वित करने वाले शंकर।"},
   // BHASHYA
-  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"शंकर की महान कृति — अद्वैत को वेदान्त शास्त्र की सही व्याख्या के रूप में स्थापित करते बादरायण के 555 ब्रह्मसूत्रों पर भाष्य।"},
-  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"गीता के सभी 18 अध्यायों पर भाष्य — शंकर दिखाते हैं कि ज्ञान ही गीता की परम शिक्षा है।"},
-  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ईश उपनिषद् पर भाष्य — सबसे संक्षिप्त मुख्य उपनिषद्, कर्म और ज्ञान का समन्वय।"},
-  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'मन को कौन निर्देशित करता है?' इस प्रश्न पर भाष्य — समस्त अनुभवों के पीछे साक्षी-चेतना पर शंकर का विचार।"},
-  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"अमर आत्मा के विषय में यम (मृत्यु) से नचिकेता के संवाद पर भाष्य — मृत्यु का प्रत्यक्ष सामना करने वाला उपनिषद्।"},
-  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"परा विद्या (उच्च ज्ञान — ब्रह्म) और अपरा विद्या (निम्न ज्ञान — समस्त विज्ञान) के भेद को दर्शाने वाला भाष्य।"},
-  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 श्लोकों और गौडपाद की कारिका पर भाष्य — चेतना की तीन अवस्थाओं और ओंकार का निर्णायक अद्वैत विवेचन।"},
-  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ऐतरेय उपनिषद् पर भाष्य — सृष्टि की उत्पत्ति और चेतना को ब्रह्म के रूप में पहचानना।"},
-  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"पंचकोशों (पाँच आवरणों) और सत्ता की अन्तरतम परत के रूप में आनन्द के स्वभाव पर प्रसिद्ध शिक्षा को समेटने वाला भाष्य।"},
-  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"'तत्त्वमसि' (वह तू है) वाले उपनिषद् पर भाष्य। इस महावाक्य की निर्णायक व्याख्या।"},
-  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"सबसे प्राचीन और दीर्घ उपनिषद् पर भाष्य — 'अहं ब्रह्मास्मि' (मैं ब्रह्म हूँ) और याज्ञवल्क्य की शिक्षाओं को समाहित।"},
-  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"महाभारत के विष्णु सहस्रनाम पर भाष्य — विष्णु के एक हजार नाम, प्रत्येक अद्वैत ब्रह्म की एक झाँकी।"},
-  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"धृतराष्ट्र को सनत्सुजात की शिक्षाओं पर भाष्य — मृत्यु, अमरत्व और ब्रह्मचर्य मार्ग के विषय में।"},
+  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"शंकर की महत्तम कृति — बादरायण के 555 ब्रह्मसूत्रों पर भाष्य। अद्वैत को समस्त वेदान्त-शास्त्र की सम्यक् व्याख्या के रूप में प्रतिष्ठित करने वाला ग्रन्थ।"},
+  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"गीता के 18 अध्यायों पर भाष्य — शंकर दर्शाते हैं कि ज्ञान गीता की परम शिक्षा है।"},
+  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ईशावास्योपनिषद् भाष्य — सर्वाधिक संक्षिप्त मुख्य उपनिषद् पर भाष्य, कर्म और ज्ञान का समन्वय करता है।"},
+  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'मन को कौन निर्देशित करता है?' पर भाष्य — समस्त अनुभव के पीछे साक्षी-चेतना पर शंकर का विवेचन।"},
+  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"यम (मृत्यु) के साथ नचिकेता के संवाद पर भाष्य — अमर आत्मा के बारे में मृत्यु का सीधे सामना करने वाला उपनिषद्।"},
+  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"परा विद्या (उच्च ज्ञान — ब्रह्म) और अपरा विद्या (निम्न ज्ञान — सभी विज्ञान) का भेद बताने वाला भाष्य।"},
+  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 श्लोकों और गौडपाद-कारिका पर भाष्य — चेतना की तीन अवस्थाओं और ओंकार का निश्चयात्मक अद्वैत विवेचन।"},
+  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ऐतरेय उपनिषद् भाष्य — ब्रह्माण्ड की सृष्टि और चेतना को ब्रह्म से अभिन्न ठहराना।"},
+  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"तैत्तिरीय उपनिषद् भाष्य — पंचकोशों और अस्तित्व की अन्तरतम परत के रूप में आनन्द की प्रसिद्ध शिक्षा।"},
+  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"छान्दोग्य उपनिषद् भाष्य — 'तत् त्वम् असि' (तुम वही हो) धारण करने वाले सबसे बड़े उपनिषद् पर भाष्य। इस महावाक्य की निश्चायक व्याख्या।"},
+  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"बृहदारण्यक उपनिषद् भाष्य — प्राचीनतम और विशालतम उपनिषद् — 'अहम् ब्रह्मास्मि' (मैं ब्रह्म हूँ) और याज्ञवल्क्य की शिक्षाएँ।"},
+  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"महाभारत के विष्णु-सहस्रनाम पर भाष्य — विष्णु के सहस्र नाम, जिनमें से प्रत्येक अद्वैत ब्रह्म की एक झलक।"},
+  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"धृतराष्ट्र को सनत्सुजात की शिक्षाओं पर भाष्य — मृत्यु, अमृतत्व और ब्रह्मचर्य-पथ।"},
   {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Patanjali","Yoga","Meditation"],description:"पतंजलि के योगसूत्रों पर भाष्य — शंकर योग-पद्धति को अद्वैत वेदान्त से समन्वित करते हैं।"},
 ];
 
@@ -1253,8 +1257,8 @@ function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 // ═══════════════════════════════════════════ INIT ═══════════════════════════
 function init(){
   const पुष्टि=WORKS.filter(w=>w.auth==="पुष्टि").length;
-  document.getElementById("statTotal").textContent=WORKS.length;
-  document.getElementById("footerText").textContent=`${WORKS.length} रचनाएँ catalogued · ${पुष्टि} पुष्टि · समता बुक्स ग्रन्थावली के अनुसार सत्यापित`;
+  const stEl=document.getElementById("statTotal"); if(stEl) stEl.textContent=WORKS.length;
+  const el_footerText=document.getElementById("footerText"); if(el_footerText) el_footerText.textContent=`${WORKS.length} रचनाएँ catalogued · ${पुष्टि} पुष्टि · समता बुक्स ग्रन्थावली के अनुसार सत्यापित`;
   buildDeityBar(); buildQuickTags();
   setupWOTD(); renderGrid(); renderQuizStart(); updateStats();
   // Keyboard
@@ -1263,28 +1267,36 @@ function init(){
 
 function updateStats(){
   const bm=loadBM(); const prog=loadProg();
-  document.getElementById("statBm").textContent=bm.length;
+  const bmEl=document.getElementById("statBm"); if(bmEl) bmEl.textContent=bm.length;
   const bmBadgeEl=document.getElementById("bmBadge");
   if(bmBadgeEl){bmBadgeEl.textContent=bm.length;bmBadgeEl.style.display=bm.length>0?"inline":"none";}
   const bnavBadgeEl=document.getElementById("bnavBadge");
   if(bnavBadgeEl){bnavBadgeEl.textContent=bm.length;bnavBadgeEl.style.display=bm.length>0?"inline":"none";}
-  const studied=Object.values(prog).filter(v=>v==="studied"||v==="memorised").length;
-  document.getElementById("statअध्ययन").textContent=studied;
+  const vals=Object.values(prog);
+  const heard=vals.filter(v=>v==="heard").length;
+  const studied=vals.filter(v=>v==="studied").length;
+  const memorised=vals.filter(v=>v==="memorised").length;
+  const heardEl=document.getElementById("statHeard");
+  const studiedEl=document.getElementById("statStudied");
+  const memorisedEl=document.getElementById("statMemorised");
+  if(heardEl) heardEl.textContent=heard;
+  if(studiedEl) studiedEl.textContent=studied;
+  if(memorisedEl) memorisedEl.textContent=memorised;
 }
 
 // ═══════════════════════════════════════════ WOTD ═══════════════════════════
 function setupWOTD(){
   const dayIndex=Math.floor(Date.now()/(1000*60*60*24))%WORKS.length;
   const w=WORKS[dayIndex];
-  document.getElementById("wotdName").textContent=w.name;
+  const el_wotdName=document.getElementById("wotdName"); if(el_wotdName) el_wotdName.textContent=w.name;
   const wotdSubEl=document.getElementById("wotdSub");
   const wotdEmojiEl=document.getElementById("wotdEmoji");
   const d=getDeity(w.deity);
   if(wotdSubEl) wotdSubEl.textContent=d.label+" · "+w.type+(w.श्लोक?" · "+w.श्लोक+" श्लोक":"");
   if(wotdEmojiEl) wotdEmojiEl.innerHTML=deityIcon(w.deity,32);
-  document.getElementById("wotdBanner")._workId=w.id;
+  const wotdBannerEl=document.getElementById("wotdBanner"); if(wotdBannerEl) wotdBannerEl._workId=w.id;
 }
-function openWOTD(){ const id=document.getElementById("wotdBanner")._workId; if(id) openPanel(id); }
+function openWOTD(){ const wb=document.getElementById("wotdBanner"); if(wb&&wb._workId) openPanel(wb._workId); }
 
 // ═══════════════════════════════════════════ DEITY BAR ══════════════════════
 function buildDeityBar(){
@@ -1295,7 +1307,7 @@ function buildDeityBar(){
   DEITIES.forEach(d=>{ const cnt=counts[d.id]||0; if(!cnt)return;
     html+=`<button class="deity-btn" id="dbtn-${d.id}" style="--dc:${d.color};--dbg:${d.bg};color:${d.color}" onclick="setDeity('${d.id}')"><span class="deity-btn-icon" style="color:${d.color}">${deityIcon(d.id,16)}</span><span style="color:rgba(245,240,232,.75)">${d.label}</span> <span style="opacity:.5;font-size:8px">(${cnt})</span></button>`;
   });
-  bar.innerHTML=html;
+  if(bar) bar.innerHTML=html;
 }
 function setDeity(id){
   currentDeity=id;
@@ -1305,7 +1317,7 @@ function setDeity(id){
   renderGrid();
 }
 function buildQuickTags(){
-  document.getElementById("quickTags").innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
+  const qtEl=document.getElementById("quickTags"); if(qtEl) qtEl.innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
 }
 
 // ═══════════════════════════════════════════ SEARCH / SORT ═════════════════
@@ -1336,9 +1348,9 @@ function filterरचनाएँ(){
 function renderGrid(){
   const रचनाएँ=filterरचनाएँ();
   const bm=loadBM(); const prog=loadProg();
-  document.getElementById("countNum").textContent=रचनाएँ.length;
+  const el_countNum=document.getElementById("countNum"); if(el_countNum) el_countNum.textContent=रचनाएँ.length;
   const hasFilter=currentDeity!=="all"||currentSearch;
-  document.getElementById("clearFilters").style.display=hasFilter?"inline":"none";
+  const cfEl=document.getElementById("clearFilters"); if(cfEl) cfEl.style.display=hasFilter?"inline":"none";
   const grid=document.getElementById("रचनाएँGrid");
   const empty=document.getElementById("emptyState");
   if(!रचनाएँ.length){ grid.style.display="none"; empty.style.display="block"; return; }
@@ -1412,9 +1424,9 @@ function setProgress(id,status){
   const btns=document.querySelectorAll(".progress-btn");
   const newProg=loadProg()[id];
   btns.forEach(b=>{
-    b.classList.remove("heard","studied","memorised");
+    b.classList.remove("heard","studied","memorised","active-prog");
     const s=b.dataset.status;
-    b.classList.add(newProg===s?s:"none");
+    if(newProg===s){ b.classList.add(s); b.classList.add("active-prog"); }
   });
   const panelBmBtn=document.querySelector(".panel-bm-btn");
   if(panelBmBtn) panelBmBtn.textContent=(loadBM().includes(id)?"★ बुकमार्क":"☆ बुकमार्क");
@@ -1610,9 +1622,9 @@ function renderQuizScore(){
 function openPanel(id){
   const work=WORKS.find(w=>w.id===id); if(!work)return;
   const d=getDeity(work.deity); const bm=loadBM(); const prog=loadProg(); const isBm=bm.includes(id); const p=prog[id];
-  document.getElementById("panel").style.borderLeft=`4px solid ${d.color}`;
-  document.getElementById("panelHeader").style.background=`linear-gradient(135deg,${d.bg},transparent)`;
-  document.getElementById("panelHeader").innerHTML=`
+  const panEl=document.getElementById("panel"); if(panEl) panEl.style.borderLeft=`4px solid ${d.color}`;
+  const phEl=document.getElementById("panelHeader"); if(phEl) phEl.style.background=`linear-gradient(135deg,${d.bg},transparent)`;
+  const pHdrEl=document.getElementById("panelHeader"); if(pHdrEl) pHdrEl.innerHTML=`
     <div class="panel-header-top">
       <div class="panel-badges">
         <span class="card-deity-icon" style="color:${d.color}">${deityIcon(work.deity,16)}</span>
@@ -1620,7 +1632,6 @@ function openPanel(id){
         ${work.श्लोक?`<span class="badge-श्लोक">${work.श्लोक} श्लोक</span>`:""}
         ${work.auth==="आरोपित"?`<span class="badge-attr">आरोपित</span>`:""}
       </div>
-      <button class="close-btn" onclick="closePanel()">✕ CLOSE</button>
     </div>
     <div class="panel-name">${esc(work.name)}</div>
     ${work.sanskrit?`<div class="panel-sanskrit">${esc(work.sanskrit)}</div>`:""}
@@ -1629,7 +1640,7 @@ function openPanel(id){
       <button class="panel-bm-btn ${isBm?"bookmarked":""}" onclick="toggleBMPanel('${id}')">${isBm?"★ सहेजी":"☆ सहेजें"}</button>
     </div>`;
 
-  document.getElementById("panelBody").innerHTML=`
+  const pBdyEl=document.getElementById("panelBody"); if(pBdyEl) pBdyEl.innerHTML=`
     <div>
       <div class="section-label">परिचय</div>
       <p class="about-text">${esc(work.description)}</p>
@@ -1638,7 +1649,7 @@ function openPanel(id){
     <div>
       <div class="section-label">आपकी प्रगति</div>
       <div class="progress-row">
-        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s:"none"}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ सुना":s==="studied"?"◕ अध्ययन":"● कण्ठस्थ"}</button>`).join("")}
+        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s+' active-prog':''}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ सुना":s==="studied"?"◕ अध्ययन":"● कण्ठस्थ"}</button>`).join("")}
       </div>
     </div>
     <div class="insight-box">
@@ -1657,11 +1668,14 @@ function openPanel(id){
       <div class="section-label">गायन प्रकार से खोजें</div>
       <div id="videoContent"><div class="loading-row"><span class="spinner">✿</span><span class="loading-txt">खोज लिंक बना रहे हैं…</span></div></div>
     </div>
+    <div class="feedback-box-wrapper">
+      ${renderFeedback(id, 'आपकी प्रतिक्रिया', 'इस रचना के बारे में अपने विचार साझा करें…', '✓ सहेजें', '✓ सहेजा गया', 'मिटाएँ')}
+    </div>
     <a class="yt-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent("Adi Shankaracharya "+work.name)}" target="_blank" rel="noopener">सभी खोजें "${esc(work.name)}" YouTube पर ↗</a>
   `;
   document.getElementById("panelOverlay").classList.add("open");
   document.body.style.overflow="hidden";
-  document.getElementById("panel").scrollTop=0;
+  if(panEl) panEl.scrollTop=0;
   loadInsight(work); loadVideos(work,d);
 }
 
@@ -1675,6 +1689,52 @@ function toggleBMPanel(id){
   if(btn){ btn.textContent=isBm?"★ बुकमार्क":"☆ बुकमार्क"; btn.classList.toggle("bookmarked",isBm); }
   renderGrid(); renderBM(); updateStats();
 }
+
+
+// ── Feedback helpers ──────────────────────────────
+const FB_KEY = (id) => `shankara_feedback_${LANG_KEY}_${id}`;
+function loadFeedback(id){ try{ return JSON.parse(localStorage.getItem(FB_KEY(id))||'null')||{stars:0,note:''}; }catch{return{stars:0,note:''};} }
+function saveFeedback(id,stars,note){ localStorage.setItem(FB_KEY(id),JSON.stringify({stars,note,ts:Date.now()})); }
+function clearFeedback(id){ localStorage.removeItem(FB_KEY(id)); }
+
+function renderFeedback(id, fb_label, fb_placeholder, fb_save, fb_saved, fb_clear){
+  const fb = loadFeedback(id);
+  const stars = fb.stars||0; const note = fb.note||'';
+  return `<div class="feedback-box">
+    <div class="section-label">${fb_label}</div>
+    <div class="star-row" id="starRow">
+      ${[1,2,3,4,5].map(n=>`<button class="star-btn${n<=stars?' lit':''}" data-n="${n}" onclick="setStars('${id}',${n})" title="${n}★">★</button>`).join('')}
+    </div>
+    <textarea class="fb-textarea" id="fbNote" placeholder="${fb_placeholder}">${note}</textarea>
+    <div class="fb-actions">
+      <button class="fb-save-btn" id="fbSaveBtn" onclick="doSaveFeedback('${id}','${fb_save}','${fb_saved}')">${fb_save}</button>
+      <button class="fb-clear-btn" onclick="doClearFeedback('${id}','${fb_save}')">${fb_clear}</button>
+    </div>
+  </div>`;
+}
+
+function setStars(id, n){
+  const fb = loadFeedback(id);
+  // Toggle off if clicking same star
+  const newStars = (fb.stars===n)?0:n;
+  saveFeedback(id, newStars, (document.getElementById('fbNote')||{value:''}).value);
+  document.querySelectorAll('.star-btn').forEach(b=>{ b.classList.toggle('lit', parseInt(b.dataset.n)<=newStars); });
+  flashSaved();
+}
+function doSaveFeedback(id, saveLabel, savedLabel){
+  const note = (document.getElementById('fbNote')||{value:''}).value;
+  const stars = document.querySelectorAll('.star-btn.lit').length;
+  saveFeedback(id, stars, note);
+  const btn = document.getElementById('fbSaveBtn');
+  if(btn){ btn.textContent=savedLabel; btn.classList.add('saved'); setTimeout(()=>{ btn.textContent=saveLabel; btn.classList.remove('saved'); },1800); }
+}
+function doClearFeedback(id, saveLabel){
+  clearFeedback(id);
+  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('lit'));
+  const note = document.getElementById('fbNote'); if(note) note.value='';
+  const btn = document.getElementById('fbSaveBtn'); if(btn){ btn.textContent=saveLabel; btn.classList.remove('saved'); }
+}
+function flashSaved(){ /* subtle star flash handled via setStars */ }
 
 function closePanel(){ document.getElementById("panelOverlay").classList.remove("open"); document.body.style.overflow=""; }
 function closePanelOutside(e){ if(e.target===document.getElementById("panelOverlay")) closePanel(); }
@@ -1697,6 +1757,7 @@ async function loadInsight(work){
 }
 
 // ═══ LANGUAGE CONFIG (Hindi) ═════════════════════════════════
+const LANG_KEY = "hindi";
 const LANG_CONFIG = {
   hl: 'hi', gl: 'IN',
   langLabel: 'Hindi',
@@ -1780,14 +1841,13 @@ function switchTab(tab){
   });
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
   document.querySelectorAll(".bnav-btn").forEach(b=>b.classList.toggle("active",b.id==="bnav-"+tab));
+  const df=document.getElementById("deityFilterSection"); if(df) df.style.display=tab==="explore"?"block":"none";
   if(tab==="bookmarks")renderBM();
   if(tab==="progress")renderProgress();
 }
 
 
-const _style=document.createElement("style");
-_style.textContent="@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}";
-document.head.appendChild(_style);
+
 
 // ── TEXT SIZE CONTROL ────────────────────────────────────────────────────────
 function setTextSize(size){
@@ -1805,7 +1865,7 @@ try{
   if(saved) setTextSize(saved);
 }catch(e){}
 
-init();
+document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
 </html>

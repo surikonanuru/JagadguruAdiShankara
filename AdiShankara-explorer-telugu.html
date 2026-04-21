@@ -85,7 +85,7 @@ h1{
   display:flex;justify-content:center;gap:28px;
   flex-wrap:wrap;margin-top:16px;
 }
-.stat-item{text-align:center;cursor:pointer;padding:8px 16px;
+.stat-item{text-align:center;cursor:pointer;padding:6px 10px;
   border:1px solid rgba(212,160,23,.15);transition:border-color .2s}
 .stat-item:hover{border-color:rgba(212,160,23,.4)}
 .stat-n{font-size:1.5rem;font-weight:700;display:block;color:#F0C040;line-height:1.2}
@@ -381,14 +381,14 @@ h1{
 }
 .panel-close-hint{font-size:.82rem;color:rgba(245,240,232,.4);font-style:italic}
 .close-btn{
-  background:rgba(212,160,23,.1);
-  border:2px solid rgba(212,160,23,.35);
-  color:#D4A017;cursor:pointer;padding:10px 20px;
-  font-size:.9rem;letter-spacing:.08em;
+  background:rgba(201,98,107,.15);
+  border:2px solid rgba(201,98,107,.5);
+  color:#E8858C;cursor:pointer;padding:9px 18px;
+  font-size:.88rem;letter-spacing:.1em;
   font-family:Georgia,serif;transition:all .2s;
-  min-height:48px;font-weight:700;
+  min-height:44px;font-weight:700;white-space:nowrap;
 }
-.close-btn:hover{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.6)}
+.close-btn:hover{background:rgba(201,98,107,.3);border-color:#C9626B;color:#fff}
 .panel-header{padding:18px 22px 16px}
 .panel-header-top{
   display:flex;justify-content:space-between;
@@ -833,6 +833,36 @@ footer{
 @media(min-width:661px){
   .bottom-nav{display:none!important}
 }
+
+/* ── Feedback section ──────────────────────────── */
+.feedback-box{background:rgba(16,5,0,.6);border:1px solid rgba(212,160,23,.2);padding:16px 18px;border-radius:2px}
+.star-row{display:flex;gap:6px;margin:10px 0 12px}
+.star-btn{background:none;border:none;font-size:1.6rem;cursor:pointer;color:rgba(212,160,23,.25);padding:2px 4px;transition:color .15s;line-height:1}
+.star-btn.lit{color:#F0C040}
+.star-btn:hover{color:#D4A017}
+.fb-textarea{width:100%;min-height:80px;background:rgba(8,2,0,.8);border:1.5px solid rgba(212,160,23,.2);color:#FAF6EE;font-family:Georgia,serif;font-size:.88rem;padding:10px 12px;resize:vertical;outline:none;transition:border-color .2s;box-sizing:border-box}
+.fb-textarea:focus{border-color:rgba(212,160,23,.5)}
+.fb-actions{display:flex;gap:10px;margin-top:10px}
+.fb-save-btn{flex:1;padding:10px;background:linear-gradient(135deg,rgba(212,160,23,.2),rgba(212,160,23,.1));border:1.5px solid rgba(212,160,23,.4);color:#D4A017;font-family:Georgia,serif;font-size:.85rem;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.fb-save-btn:hover{background:rgba(212,160,23,.25);border-color:#D4A017}
+.fb-save-btn.saved{color:#7EC8A0;border-color:rgba(126,200,160,.4)}
+.fb-clear-btn{padding:10px 14px;background:none;border:1.5px solid rgba(212,160,23,.15);color:rgba(212,160,23,.4);font-family:Georgia,serif;font-size:.8rem;cursor:pointer;transition:all .2s}
+.fb-clear-btn:hover{border-color:rgba(212,160,23,.35);color:rgba(212,160,23,.6)}
+
+
+/* ── Panel progress buttons ─────────────────────── */
+.progress-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.progress-btn{
+  padding:12px 6px;border:2px solid rgba(212,160,23,.18);
+  background:rgba(16,5,0,.6);color:rgba(245,240,232,.45);
+  font-family:Georgia,serif;font-size:.8rem;letter-spacing:.05em;
+  cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;
+}
+.progress-btn:hover{border-color:rgba(212,160,23,.4);color:rgba(245,240,232,.7)}
+.progress-btn.heard,.progress-btn.active-prog.heard{border-color:rgba(91,168,212,.7);background:rgba(91,168,212,.12);color:#5BA8D4;font-weight:700}
+.progress-btn.studied,.progress-btn.active-prog.studied{border-color:rgba(126,200,160,.7);background:rgba(126,200,160,.12);color:#7EC8A0;font-weight:700}
+.progress-btn.memorised,.progress-btn.active-prog.memorised{border-color:#D4A017;background:rgba(212,160,23,.15);color:#F0C040;font-weight:700}
+
 </style>
 </head>
 <body>
@@ -853,51 +883,23 @@ footer{
     <div class="tagline">ఆది శంకరాచార్య సంపూర్ణ రచనలు · క్రీ.శ. ౭౮౮–౮౨౦</div>
     <div class="header-stats">
       <div class="stat-item"><span class="stat-n" id="statTotal" style="color:#F0C040"></span><span class="stat-l">రచనలు</span></div>
-      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">సేవ్ చేసినవి</span></div>
-      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statఅధ్యయనం" style="color:#7EC8A0">0</span><span class="stat-l">అధ్యయనం</span></div>
-    </div>
-  </header>
-
-  <!-- DESKTOP TABS -->
-  <div class="tabs" id="desktopTabs">
-    <div class="tab-btn-wrap"><button class="tab-btn active" data-tab="explore" onclick="switchTab('explore')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h16M4 9h10M4 13h12M4 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="tab-lbl">అన్వేషించు</span></button></div>
-    <div class="tab-btn-wrap" style="position:relative"><button class="tab-btn" data-tab="bookmarks" onclick="switchTab('bookmarks')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><span class="tab-lbl">సేవ్ చేసినవి</span></button><span class="tab-badge" id="bmBadge" style="display:none">0</span></div>
-    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5C9.5 8 10.5 7 12 7s2.5 1 2.5 2.5c0 1.5-1.5 2-2.5 2.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg></span><span class="tab-lbl">క్విజ్</span></button></div>
-    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="progress" onclick="switchTab('progress')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="9" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="4" width="4" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="tab-lbl">పురోగతి</span></button></div>
-  </div>
-
-  <!-- EXPLORE TAB -->
-  <div id="tab-explore">
-
-    <!-- WORK OF THE DAY -->
-    <div class="wotd-banner" id="wotdBanner" onclick="openWOTD()">
-      <div class="wotd-icon" id="wotdEmoji" style="color:#D4A017"></div>
-      <div class="wotd-body">
-        <div class="wotd-label">✦ నేటి రచన</div>
-        <div class="wotd-name" id="wotdName"></div>
-        <div class="wotd-sub" id="wotdSub"></div>
-      </div>
-      <div class="wotd-cta">అన్వేషించు →</div>
-    </div>
-
-    <!-- SEARCH -->
-    <div class="search-hero">
-      <label class="search-label" for="searchInput">పేరు, దేవత లేదా విషయం ద్వారా వెతకండి:</label>
-      <div class="search-wrap">
-        <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-        <input type="text" id="searchInput" placeholder="స్తోత్రాలు, భాష్యాలు, దేవతలు వెతకండి…" oninput="handleSearch()" autocomplete="లోf">
-        <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
-      </div>
-      <div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">సేవ్ చేసిన</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statHeard" style="color:#5BA8D4">0</span><span class="stat-l">◑ విన్నాను</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statStudied" style="color:#7EC8A0">0</span><span class="stat-l">◕ చదివాను</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statMemorised" style="color:#D4A017">0</span><span class="stat-l">● కంఠస్థం</span></div>
+    </div><div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
     </div>
 
     <!-- DEITY FILTER -->
+    <div id="deityFilterSection">
     <div class="deity-filter-label">దేవత ద్వారా వడపోయండి — పక్కకు స్క్రోల్ చేయండి:</div>
     <div class="deity-scroll-wrap">
       <div class="deity-bar" id="deityBar"></div>
     </div>
+    </div><!-- /deityFilterSection -->
 
-    <!-- POPULAR SEARCHES — scrollable -->
+    <div id="tab-explore">
+<!-- POPULAR SEARCHES — scrollable -->
     <div class="quick-tags-wrap">
       <div class="quick-tags" id="quickTags"></div>
     </div>
@@ -926,7 +928,9 @@ footer{
     </div>
   </div>
 
-  <!-- BOOKMARKS TAB -->
+  </div>
+
+<!-- BOOKMARKS TAB -->
   <div id="tab-bookmarks" style="display:none">
     <div class="tab-page-header">
       <div class="tab-page-title" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#D4A017" stroke-width="1.5" stroke-linejoin="round"/></svg> సేవ్ చేసినవి రచనలు</div>
@@ -1108,127 +1112,127 @@ const DEITIES=[
 
 const WORKS=[
   // GANESHA
-  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"గణేశుని స్తుతిలో ఐదు రత్నమైన శ్లోకాలు — అడ్డంకులను నాశనం చేసేవాడు, అన్ని ప్రారంభాల ప్రభువు. ప్రతి పద్యం భక్తి కవిత్వపు రత్నం."},
-  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"భుజంగ మీటర్‌లో గణేశుడికి సర్పగతి స్తోత్రం — భక్తులకు అన్ని మార్గాలు తెరచే తొండం గల భగవంతుడిని ఆహ్వానిస్తుంది."},
+  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"గణేశుడిని స్తుతించే ఐదు రత్న శ్లోకాలు — అడ్డంకులను నాశనం చేసే మరియు అన్ని ప్రారంభాలకు అధిపతి. ప్రతి పద్యమూ భక్తి కావ్యంలో ఒక అమూల్య రత్నం."},
+  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"భుజంగ వృత్తంలో గణేశుని స్తోత్రం — భక్తుల ప్రతి మార్గాన్ని సుగమం చేసే గజాననుని వేడుకునే సర్ప గతి రచన."},
   // SUBRAMANYA
-  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"సుబ్రహ్మణ్యుడికి 33 శ్లోకాల భుజంగ స్తోత్రం — శివుని పుత్రుడు, యుద్ధం మరియు జ్ఞానం యొక్క దేవుడు. అత్యంత సంగీతాత్మకమైన భుజంగం రచనలలో ఒకటి."},
+  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"సుబ్రహ్మణ్యుని గురించి 33 శ్లోకాల భుజంగ స్తోత్రం — శివుని కుమారుడు, యుద్ధం మరియు జ్ఞానం యొక్క దేవత. అత్యంత సంగీతాత్మకమైన భుజంగం రచనలలో ఒకటి."},
   // SHIVA
-  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"అర్ధనారీశ్వరుడిపై తొమ్మిది శ్లోకాలు — ఒకే ఉభయలింగ రూపంలో శివుడు మరియు శక్తి. చైతన్యం మరియు శక్తి యొక్క ఐక్యతపై తాత్విక రత్నం."},
-  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"స్వయం-ప్రకటన పది శ్లోకాలు — శంకరుడు పది సంక్షిప్త, వజ్రం వంటి శ్లోకాలలో ఆత్మ యొక్క అంతిమ స్వభావాన్ని ప్రకటిస్తారు."},
-  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"దక్షిణాభిముఖంగా మౌన గురువుగా శివుడు — బ్రహ్మంలో అద్దంలో కనిపించే నగరం వలె విశ్వం. పరమ అద్వైత స్తోత్రం."},
-  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"దక్షిణామూర్తిపై విస్తృత స్తోత్రం — నాలుగు కుమారులకు మౌనం ద్వారా జ్ఞానం అందించే విశ్వ గురువుగా శివుడిపై 19 శ్లోకాలు."},
-  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"దక్షిణామూర్తిపై 25 శ్లోకాల వర్ణమాల — ప్రతి శ్లోకం అనుక్రమ సంస్కృత అక్షరంతో మొదలవుతుంది."},
-  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"కాశి యొక్క కాలభైరవుడిపై ఎనిమిది తీవ్రమైన శ్లోకాలు — కాలం యొక్క ప్రభువు. వారణాసిలో ఇది పఠించేవారు కాలచక్రం నుండి విముక్తి పొందుతారు."},
-  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"మృత్యుంజయుడి వివరణాత్మక మాన పూజ 46 శ్లోకాలు — మరణాన్ని జయించేవాడు. మనసులో సమర్పించిన ఆచారపూజ యొక్క ప్రతి అంశం."},
-  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"క్షమాపణ కోరే హృదయంగమ స్తోత్రం — శివుడి ముందు శరీరం, వాక్కు, మనసు యొక్క అన్ని లోపాలను ఒప్పుకోవడం. శివ పూజ తర్వాత పూర్ణ శరణాగతిగా పఠిస్తారు."},
-  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"శ్రీశైలంలో రచించిన ఉన్మత్త భక్తి 100 శ్లోకాలు. శంకరుడి అత్యంత విస్తృత శైవ స్తోత్రం — భక్తి, తత్వశాస్త్రం, ఉదాత్త కవిత్వం యొక్క సమ్మేళనం."},
-  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"శివుడి స్వంత సర్పాభరణం యొక్క కదలికను అనుకరించే అలలవంటి మీటర్‌లో శివుడికి నాలుగు భుజంగ శ్లోకాలు — పఠించడానికి మనోహరమైనవి."},
-  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"29 శ్లోకాలలో శివుడి తల నుండి పాదాల వరకు వర్ణన — జటాముకుట చంద్రకళ నుండి కమల పాదాల వరకు. పూర్ణ దృశ్య ధ్యానం."},
-  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"శివుడి మాన పూజ — హృదయంలోనే రత్న సింహాసనం, దివ్య స్నానం, పవిత్ర వస్త్రాలు సమర్పించడం. శంకరుడి అత్యంత కోమలమైన రచనలలో ఒకటి."},
-  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"శివుడి నామాల మాలగా రచించిన తొమ్మిది శ్లోకాలు — భగవంతుడి అనంత స్వభావం యొక్క వివిధ అంశాలను వెల్లడించే దివ్య ఉపమానాల మాల."},
-  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"శివుడి కమల పాదాల నుండి కిరీటం వరకు ఆరోహించే సహచర రచన — దివ్య రూపాన్ని ఆరోహిస్తున్న 41 ఉత్సాహభరిత శ్లోకాలు."},
-  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"నమశివాయ యొక్క ప్రతి అక్షరానికి అర్పించిన ఆరు శ్లోకాలు, శివుడి నామం యొక్క ఐదు అక్షరాల ద్వారా పంచభూతాలను ధ్యానించడం."},
-  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 నక్షత్ర మండలాలను శివుడి గుణాలతో అనుసంధానించే 28 శ్లోకాల నక్షత్ర మాల — జ్యోతిష్యం మరియు శైవ భక్తి యొక్క అపూర్వ సమ్మేళనం."},
-  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"50 శ్లోకాల స్వర్ణ మాల — ప్రతి సంస్కృత అక్షరానికి ఒకటి. సంపూర్ణ వర్ణమాల శివుడి స్తుతిగా మారే అక్షర మాల స్తోత్రం."},
-  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"ఉమా-మహేశ్వరుడిగా శివుడు మరియు పార్వతిని స్తుతించే 13 శ్లోకాలు — దివ్య దంపతుల మిలన అన్ని సృష్టికి మూలం. మానక వివాహ స్తోత్రం."},
-  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"శివుడి స్తుతిలో వేదాల సారాంశం — శివుడిని సాకార దేవుడుగా మరియు నిరాకార బ్రహ్మంగా చూపించే 11 శ్లోకాలు. మహా శివరాత్రి కోసం రచించబడింది."},
+  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"అర్ధనారీశ్వరుని గురించి తొమ్మిది శ్లోకాలు — శివుడు మరియు శక్తి ఒకే ఉభయలింగ రూపంలో. చైతన్యం మరియు శక్తి యొక్క ఏకత్వంపై ఒక తాత్విక రత్నం."},
+  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"ఆత్మ ప్రకటన యొక్క పది శ్లోకాలు — శంకరుడు ఆత్మ యొక్క అంతిమ స్వభావాన్ని పది సంక్షిప్త, వజ్ర వంటి శ్లోకాలలో ప్రకటిస్తున్నారు."},
+  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"దక్షిణాభిముఖ మౌన గురువుగా శివుడు — బ్రహ్మంలో ప్రతిఫలించే నగరంలా విశ్వం అద్దంలో కనిపిస్తుంది. అత్యుత్తమ అద్వైత స్తోత్రం."},
+  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"దక్షిణామూర్తి మీద విస్తరించిన స్తోత్రం — నాలుగు కుమారులకు మౌనం ద్వారా జ్ఞానాన్ని ప్రసారం చేసే విశ్వ గురువు శివుని మీద 19 శ్లోకాలు."},
+  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"దక్షిణామూర్తి మీద 25 శ్లోకాల వర్ణమాల — ప్రతి శ్లోకం వరుస సంస్కృత అక్షరాలతో ప్రారంభమయ్యే అక్రొస్టిక్ రచన."},
+  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"కాశి యొక్క కాలభైరవుని మీద ఎనిమిది ఉగ్ర శ్లోకాలు — కాలపు అధిపతి. వారణాసిలో దీన్ని పఠించేవారు కాలచక్రం నుండి విముక్తి పొందుతారు."},
+  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"మృత్యుంజయుని మానస పూజ — 46 శ్లోకాల విస్తరించిన మానస ఆరాధన. మరణాన్ని జయించేవాని కి ప్రతి ధార్మిక ఉపచారం మనసులో అర్పించబడింది."},
+  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"మన్నింపు కోరే హృదయస్పర్శి స్తుతి — శివుని ముందు శరీరం, వాక్కు, మనసు యొక్క అన్ని లోపాలను అంగీకరించే కావ్యం. శివ పూజ తర్వాత సంపూర్ణ శరణాగతిగా పఠించబడుతుంది."},
+  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"శ్రీశైలంలో రచించిన పరవశ భక్తి యొక్క 100 శ్లోకాలు. భక్తి, తత్వశాస్త్రం, ఉదాత్త కవిత్వం మిళితమైన శంకరుని అత్యంత విస్తరించిన శైవ స్తుతి."},
+  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"శివుని సర్పాభరణం యొక్క కదలికను అనుకరించే అలలాంటి వృత్తంలో నాలుగు సర్ప శ్లోకాలు — పఠించడానికి మంత్రముగ్ధ రచన."},
+  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"శివుని తలనుండి పాదాల వరకు 29 శ్లోకాలలో వర్ణన — జటలో చంద్రకళ నుండి పాదపద్మాల వరకు. సంపూర్ణ దృశ్య ధ్యానం."},
+  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"శివ మానస పూజ — రత్న సింహాసనాలు, దివ్య స్నానం, పవిత్ర వస్త్రాలు అన్నీ హృదయంలోనే అర్పించే మానస ఆరాధన. శంకరుని అత్యంత కోమలమైన రచనలలో ఒకటి."},
+  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"శివుని నామాల హారంలా నిర్మించిన తొమ్మిది శ్లోకాలు — ప్రతి శ్లోకం భగవంతుని అనంత స్వభావం యొక్క వేర్వేరు అంశాలను వెల్లడించే దివ్య విశేషణాల మాల."},
+  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"శివుని పాదపద్మాల నుండి మకుటం వరకు ఆరోహణ — 41 భావోద్వేగపూరిత శ్లోకాలలో దివ్య రూపాన్ని పైకి వర్ణించే సహవర్తి రచన."},
+  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"న-మ-శి-వ-య యొక్క ప్రతి అక్షరానికి ఒక శ్లోకం అంకితం చేసిన ఆరు శ్లోకాలు — శివుని నామం యొక్క పంచాక్షర ద్వారా పంచ భూతాల ధ్యానం."},
+  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 చంద్ర నక్షత్రాలను శివుని నిర్దిష్ట గుణాలతో అనుసంధానించే 28 శ్లోకాల నక్షత్ర మాల — జ్యోతిషం మరియు శైవ భక్తి యొక్క అరుదైన సమ్మేళనం."},
+  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"ప్రతి సంస్కృత అక్షరానికి ఒకటి — 50 శ్లోకాల బంగారు మాల. మొత్తం అక్షరమాల శివుని స్తుతిగా మారే అక్రొస్టిక్ స్తుతి."},
+  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"ఉమా మహేశ్వరునిగా శివుడు మరియు పార్వతిని స్తుతించే 13 శ్లోకాలు — దివ్య జంట యొక్క మిలన్ అన్ని సృష్టికి మూలం. ప్రామాణిక వివాహ స్తుతి."},
+  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"శివుని స్తుతిలో వేదాల సారం — శివుడు సాకార దేవుడు మరియు నిరాకార బ్రహ్మం అని చూపించే 11 శ్లోకాలు. మహా శివరాత్రి కోసం రచించబడింది."},
   // DEVI
-  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Annapoorna","Kashi","Food"],description:"కాశిలో అన్నపూర్ణ దేవికి ఎనిమిది శ్లోకాలు — పోషణ మరియు సమృద్ధి దేవతగా పార్వతి."},
-  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"కాశిలో అన్నపూర్ణకు 12 శ్లోకాలు, శంకరుడి ప్రార్థనతో ముగింపు: 'ఓ పార్వతి, కాశిని నా నివాసంగా చేసి జ్ఞానం యొక్క భిక్షతో నన్ను పోషించుమా.'"},
-  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"భగవతి యొక్క పదకొండు శ్లోకాల మాన పూజ — దివ్య తల్లి — అన్ని పవిత్ర పదార్థాలు మరియు పూజను అంతరంగంలో సమర్పించడం."},
-  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"భవానికి పూర్ణ శరణాగతి తొమ్మిది శ్లోకాలు — ప్రతిటికి పూర్ణ నిస్సహాయతను ఒప్పుకుంటుంది: 'నాకు వేరెవరూ లేరు, ఓ తల్లీ.' అత్యంత తీవ్రమైన శాక్త శరణాగతి."},
-  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"దొర్లే భుజంగ మీటర్‌లో భవానికి 17 శ్లోకాల సర్పగతి స్తోత్రం — అహంకారం అనే రాక్షసులను నాశనం చేసే దేవి యొక్క తీవ్ర శక్తిని జాగృతం చేస్తుంది."},
-  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"భ్రమరాంబకు ఎనిమిది శ్లోకాలు — శ్రీశైలంలో మల్లికార్జుని సహచరి, తేనెటీగ రూపం ధరించే దేవిగా పూజింపబడేది."},
-  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"విశ్వ రూపంలో దేవికి 28 శ్లోకాల సర్పగతి స్తోత్రం — నీటిలో సర్పం వలె ఆమె గుణాల ద్వారా ప్రవహించడం."},
-  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"దేవికి అరవై నాలుగు సేవల మాన అర్పణ 72 శ్లోకాలు — శంకరుడి దేవి పూజా రచనలలో అత్యంత విస్తృతమైనది."},
-  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"దేవి స్తుతిలో ఐదు రత్నమైన శ్లోకాలు — శక్తి, అనుగ్రహం, విముక్తి అనే దేవి గుణాలను కవర్ చేసే సంక్షిప్త కానీ శక్తివంతమైన శాక్త భక్తి రత్నం."},
-  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"అన్ని అతిక్రమణలకు దుర్గ క్షమాపణ కోరే 17 శ్లోకాలు — శివ అపరాధ క్షమాపణ యొక్క శాక్త సమతుల్యం."},
-  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"గౌరికి పది శ్లోకాలు — పార్వతి యొక్క స్వర్ణవర్ణ, మృదువైన రూపం. విశ్వమాతగా దేవి యొక్క మెత్తని, ఆత్మీయ చిత్రణ."},
-  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"హర (శివుడు) మరియు గౌరి (పార్వతి) ఒకసారి స్తుతించే ఎనిమిది శ్లోకాలు — వారి నిత్య మిలన మరియు విశ్వం యొక్క దివ్య తల్లిదండ్రులుగా వారి పాత్ర."},
-  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"కాళి క్షమాపణ కోరే 17 శ్లోకాలు — తీవ్రమైన వినాశకరి కాళికి కూడా తల్లి మనసుందని ఒప్పుకోవడం. భయాన్ని మరియు మృదుత్వాన్ని కలిపే అపూర్వ స్తోత్రం."},
-  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"లలితను స్తుతించే ఐదు రత్నమైన శ్లోకాలు — ఆనందమయ దేవి. ఉదయాన పఠించడం అదృష్టం, జ్ఞానం, సంపద, అపార కీర్తి ఇస్తుంది."},
-  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"ప్రతి సంస్కృత అక్షరాన్ని దేవి యొక్క ఒక రూపంతో అనుసంధానించే మంత్రాల మాల — మంత్రం, భాష, దేవిని అనుసంధానించే తాంత్రిక-భక్తి రచన."},
-  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"శంకరుడి సొంత తల్లికి ఐదు లోతైన వ్యక్తిగత శ్లోకాలు — జీవితం యొక్క బహుమతి, దాన్ని వదులుకునే జ్ఞానానికి కృతజ్ఞత. ఆయన అత్యంత స్పర్శనీయమైన రచనలలో ఒకటి."},
-  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"మదురై మీనాక్షి దేవికి ఎనిమిది శ్లోకాలు — మత్స్య కన్నుల దేవి, ఆమె కమల పాదాలను చేరిన వారికి విముక్తి మరియు సమృద్ధి ఇస్తుంది."},
-  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"మదురై మీనాక్షి స్తుతిలో ఐదు రత్నాలు — శంకరుడి అఖిల భారత యాత్ర మరియు తమిళనాడు మత్స్య కన్నుల దేవిపై ఆయన భక్తికి సాక్ష్యం."},
-  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"రాజ రాజేశ్వరికి ఎనిమిది శ్లోకాలు — సర్వోచ్చ రాణి, సృష్టి, సంరక్షణ, లయం అనే మూడు నగరాలను పాలించే దేవి."},
-  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"శ్రృంగేరిలో శారద (సరస్వతి) దేవికి సర్పగతి స్తోత్రం — శంకరుడు తన మొదటి మఠాన్ని స్థాపించిన చోటు. తన అభీష్ట దేవికి లోతైన వ్యక్తిగత నివాళి."},
-  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"అందపు అలలు — దేవి పార్వతిని స్తుతించే ఉదాత్త కవిత్వం 100 శ్లోకాలు. శాక్త భక్తిలో శంకరుడి అత్యుత్తమ సాధనగా పరిగణించబడుతుంది."},
-  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"శ్యామళ (మాతంగి) స్తుతిలో తొమ్మిది రత్నాల మాల — వాక్కు, సంగీతం, కళల యొక్క నలుపు దేవి."},
-  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"త్రిపురసుందరికి ఎనిమిది శ్లోకాలు — మూడు నగరాల సుందరి, సర్వోచ్చ తాంత్రిక దేవి."},
-  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"127 శ్లోకాలలో శంకరుడి అత్యంత విస్తృతమైన మాన పూజ రచన — త్రిపురసుందరి యొక్క పూర్ణ అంతర వ్యభిచారం."},
-  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"త్రిపురసుందరిని సర్వోచ్చ వేద దేవిగా స్థాపించే పది శ్లోకాలు — ఆమె పాదాలు నాలుగు వేదాలు, ఆమె రూపం వేద జ్ఞానమే."},
+  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Annapoorna","Kashi","Food"],description:"కాశి యొక్క అన్నపూర్ణ దేవికి ఎనిమిది శ్లోకాలు — పోషణ మరియు సమృద్ధి యొక్క దేవిగా పార్వతి."},
+  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"కాశి యొక్క అన్నపూర్ణకు 12 శ్లోకాలు, శంకరుని ప్రార్థనతో ముగుస్తాయి: 'ఓ పార్వతీ, కాశిని నా ఇల్లుగా చేసి జ్ఞాన భిక్ష ఇవ్వమ్మా.'"},
+  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"భగవతి — దివ్య మాత యొక్క మానస పూజ యొక్క పదకొండు శ్లోకాలు. అన్ని పవిత్ర పదార్థాలను మనసులో అర్పించే అంతరంగ ఆరాధన."},
+  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"భవానికి సంపూర్ణ శరణాగతి యొక్క తొమ్మిది శ్లోకాలు — ప్రతి శ్లోకం సంపూర్ణ నిరాశ్రయతను అంగీకరిస్తుంది: 'నాకు వేరే ఎవ్వరూ లేరు, అమ్మా.' అత్యంత తీవ్రమైన శాక్త శరణాగతి."},
+  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"భవాని భుజంగం — 17 శ్లోకాల భుజంగ వృత్త స్తోత్రం. అహంకార రాక్షసులను నాశనం చేసే దేవి యొక్క ఉగ్ర శక్తిని ఆహ్వానిస్తుంది."},
+  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"శ్రీశైలంలో మల్లికార్జునుని భార్య భ్రమరాంబకు ఎనిమిది శ్లోకాలు — తుమ్మెద రూపం తీసుకునే దేవి."},
+  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"దేవి యొక్క విశ్వ రూపానికి 28 శ్లోకాల భుజంగ స్తుతి — నీటిలో సర్పంలా దేవి గుణాల ద్వారా ప్రవహించే స్తుతి."},
+  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"దేవికి 64 సేవలను అర్పించే 72 శ్లోకాల మానస పూజ — శంకరుని దేవీ ఆరాధన రచనలలో అత్యంత విస్తరించినది."},
+  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"దేవిని స్తుతించే ఐదు రత్న శ్లోకాలు — దేవి యొక్క శక్తి, అనుగ్రహం, మోక్ష దాయకత్వ గుణాలను కలిగి ఉన్న సంక్షిప్త కానీ శక్తివంతమైన శాక్త రచన."},
+  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"అన్ని అపరాధాలకు దుర్గ క్షమాపణ కోరే 17 శ్లోకాలు — శివ అపరాధ క్షమాపణ స్తోత్రానికి శాక్త సమతుల్యం."},
+  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"గౌరీ దశకం — పార్వతి యొక్క స్వర్ణ వర్ణ, మృదువైన రూపం. విశ్వ మాత యొక్క మరింత ఆత్మీయ చిత్రణ ఇచ్చే పది శ్లోకాలు."},
+  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"హర (శివుడు) మరియు గౌరీ (పార్వతి) ఇద్దరినీ స్తుతించే ఎనిమిది శ్లోకాలు — విశ్వ తల్లిదండ్రుల శాశ్వత మిలన్ మరియు పాత్ర."},
+  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"కాళికి క్షమాపణ కోరే 17 శ్లోకాలు — ఉగ్ర సంహారక కాళికి కూడా తల్లి హృదయం ఉందని ఒప్పుకునే అరుదైన స్తుతి."},
+  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"లలితను స్తుతించే ఐదు రత్న శ్లోకాలు — ఆనంద దేవి. ఉదయం పఠించడం అదృష్టం, జ్ఞానం, సంపద, అనంత కీర్తి ఇస్తుంది."},
+  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"ప్రతి సంస్కృత అక్షరాన్ని దేవి రూపానికి అనుసంధానించే మంత్ర మాతృకా పుష్పమాల — మంత్రం, భాష, శక్తిని అనుసంధానించే తాంత్రిక-భక్తి రచన."},
+  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"శంకరుని స్వంత తల్లికి ఐదు లోతైన వ్యక్తిగత శ్లోకాలు — జీవితం ఇచ్చినందుకు మరియు దాన్ని త్యజించే జ్ఞానం ఇచ్చినందుకు కృతజ్ఞత. అత్యంత హృదయస్పర్శి రచనలలో ఒకటి."},
+  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"మధురై యొక్క మీనాక్షి దేవికి ఎనిమిది శ్లోకాలు — చేప కన్నుల దేవి తన పాద పద్మాలను చేరే వారికి మోక్షం మరియు సమృద్ధి ప్రసాదిస్తుంది."},
+  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"మధురై మీనాక్షి స్తుతిలో ఐదు రత్న శ్లోకాలు — శంకరుని భారతదేశ పర్యటన మరియు తమిళనాడు మీన కన్నుల దేవి పట్ల గౌరవం."},
+  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"రాజ రాజేశ్వరికి ఎనిమిది శ్లోకాలు — సృష్టి, పరిపాలన, సంహారం యొక్క మూడు నగరాలను పాలించే సర్వోచ్చ రాణి."},
+  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"శృంగేరి యొక్క శారదా దేవి (సరస్వతి) కి భుజంగ స్తుతి — శంకరుడు తన మొదటి మఠాన్ని స్థాపించిన స్థలం. తన ఆదర దేవతకు లోతైన వ్యక్తిగత నివాళి."},
+  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"సౌందర్య లహరి — దేవి పార్వతిని స్తుతించే 100 అతీంద్రియ కవిత్వ శ్లోకాల సౌందర్య తరంగం. శాక్త భక్తిలో శంకరుని అత్యుత్తమ సాధన."},
+  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"శ్యామళా (మాతంగి) — వాక్కు, సంగీతం, కళల కృష్ణ దేవిని స్తుతించే తొమ్మిది రత్న మాల."},
+  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"త్రిపుర సుందరికి ఎనిమిది శ్లోకాలు — మూడు నగరాల సుందరి, సర్వోచ్చ తాంత్రిక దేవి."},
+  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"త్రిపుర సుందరి యొక్క సంపూర్ణ అంతరంగ ఆరాధన — 127 శ్లోకాల అత్యంత విస్తరించిన మానస పూజ."},
+  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"త్రిపుర సుందరి పాదాలే నాలుగు వేదాలు అని స్థాపించే పది శ్లోకాలు — దేవి రూపమే వేద జ్ఞానం."},
   // LAKSHMI
-  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"ఒక్క నెల్లికాయ మాత్రమే సమర్పించిన పేద స్త్రీ కోసం లక్ష్మి అనుగ్రహాన్ని కోరేందుకు స్వయంచాలకంగా రచించిన స్తోత్రం. ఆకాశం నుండి బంగారు నెల్లికాయల వర్షం కురిసింది."},
+  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"ఒకే ఆమ్లపండు అర్పించిన పేద స్త్రీకి లక్ష్మి కృపను పొందేందుకు స్వచ్ఛందంగా రచించిన స్తుతి. ఆకాశం నుండి బంగారు ఆమ్లపండ్లు అద్భుతంగా వర్షించాయి."},
   // VISHNU
-  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"అచ్యుతుడికి తొమ్మిది శ్లోకాలు — అక్షయుడు. ఎప్పుడూ పతనం కాని భగవంతుడి శాశ్వత అనుగ్రహంలో ఆశ్రయం కోసం హృదయపూర్వక ప్రార్థన."},
-  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"ఆదిశేషుడిపై విశ్వ రూపంలో నిద్రిస్తున్న నారాయణుడిపై ధ్యాన స్తుతి 18 శ్లోకాలు."},
-  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'గోవిందుడిని వెతకండి!' — వృద్ధాప్యంలో వ్యాకరణం కంఠస్థం చేస్తున్న పండితుడిని చూసి రచించింది. భ్రమను విడిచిపెట్టమని వజ్రం వంటి పిలుపు."},
-  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"మత్స్యం నుండి కల్కి వరకు విష్ణువు యొక్క పది అవతారాలను స్తుతించే పది శ్లోకాలు — పరిణామ దశలలో దివ్య అవతారం."},
-  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"గోవిందుడిని మహిమపర్చే తొమ్మిది శ్లోకాలు — వృందావన గొల్లవాడు కృష్ణుడు, గోపికల మోహగుణి, అన్ని హృదయాలు దొంగిలించే వేణువాది."},
-  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"హరి (విష్ణువు)కి 44 శ్లోకాల స్తుతి — భగవంతుడి అవతారాలు, గుణాలు, విశ్వ రూపం, మోక్షప్రద అనుగ్రహాన్ని కవర్ చేసే విస్తృత భక్తి రచన."},
-  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"హరి (విష్ణువు) యొక్క దివ్య నామాలను ముత్యాల మాలలో గుచ్చిన 19 శ్లోకాలు — ప్రతి నామం భగవంతుడి వేరొక అంశం."},
-  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"హరిలో శరణు పొందే ఎనిమిది శ్లోకాలు — శంకరుడు విష్ణువు యొక్క కమల పాదాలలో తనను సమర్పించుకునే వైష్ణవ శరణాగతి స్తోత్రం."},
-  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"పూరి జగన్నాథుడికి ఎనిమిది శ్లోకాలు — అందరినీ సమానంగా అంగీకరించే భగవంతుడు, శంకరుడు గోవర్థన మఠం స్థాపించినప్పుడు రచించింది."},
-  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"కృష్ణుడికి ఎనిమిది శ్లోకాలు — నీలమేఘ శ్యామలుడు, వేణువాది, వృందావన వెన్నదొంగ. చిలిపి, మనోహరమైన బాల దేవుడి చిత్రణ."},
-  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"లక్ష్మీ నరసింహుడికి ఐదు రత్నమైన శ్లోకాలు — విష్ణువు యొక్క తీవ్రమైన సింహ-మానవ అవతారం. నరసింహ భక్తి యొక్క సంక్షిప్త రత్నం."},
-  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"నారాయణుడిని స్తుతించే 30 శ్లోకాలు — ఆదిజలాలపై నిద్రిస్తున్న విష్ణువు యొక్క విశ్వ రూపం. అన్నింటి మూలం, పాలకుడు, ముగింపుగా భగవంతుడిపై విస్తృత ధ్యానం."},
-  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"పండరీపురం పాండురంగ (విఠల్)కి తొమ్మిది శ్లోకాలు — శంకరుడి అఖిల భారత సంశ్లేషణలో మహారాష్ట్ర భక్తి సంప్రదాయ చేర్పు."},
-  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"అయోధ్యలో రాముడి జన్మ నుండి రావణ సంహారం వరకు దివ్య కార్యాలు స్తుతించే 29 శ్లోకాల సర్పగతి స్తోత్రం."},
-  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"శ్రీరంగం రంగనాథుడికి ఎనిమిది శ్లోకాలు — శంకరుడు అత్యంత మహా వైష్ణవ దేవాలయంలో పడుకున్న విష్ణువు ముందు నిలబడినప్పుడు రచించింది."},
-  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"నరసింహుడి రక్షక హస్తం కోసం నిస్సహాయ ఆర్తనాదం — 17 శ్లోకాల్లో ప్రతిది 'లక్ష్మీ నరసింహ, మామ దేహి కరావలంబం' తో ముగుస్తుంది."},
-  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"మోక్షం కోసం విష్ణువుకి తీవ్ర భక్తి ఏడు శ్లోకాలు — వైష్ణవ శరణాగతి సారాంశాన్ని కవర్ చేసే సంక్షిప్తమైన కానీ శక్తివంతమైన ప్రార్థన."},
-  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"విష్ణువుకి 14 సర్పగతి శ్లోకాలు — సృష్టి ప్రారంభంలో విశ్వ సర్పమైన ఆదిశేషుడిపై నిద్రిస్తున్న భగవంతుడిని జాగృతం చేస్తుంది."},
-  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"విష్ణువు యొక్క దివ్య రూపంపై 52 శ్లోకాల ఆరోహణ ధ్యానం — కమల పాదాల నుండి శరీరం ద్వారా తేజోమయ కిరీటం వరకు."},
+  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"అచ్యుత — తప్పిపోనివానికి తొమ్మిది శ్లోకాలు. ఎప్పుడూ పడిపోనివాని శాశ్వత కృపలో ఆశ్రయం కోరే హృదయపూర్వక ప్రార్థన."},
+  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"ఆదిశేషుని మీద విశ్రమిస్తున్న విశ్వ రూప నారాయణుని ధ్యానించే 18 శ్లోకాల ధ్యాన స్తుతి."},
+  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'గోవిందుని భజించు!' — వృద్ధాప్యంలో వ్యాకరణం కంఠస్థం చేసే పండితుని చూసి రచించిన కృతి. మాయను త్యజించమని వజ్ర పిలుపు."},
+  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"మత్స్యం నుండి కల్కి వరకు విష్ణుని పది అవతారాలను స్తుతించే పది శ్లోకాలు — దివ్య అవతరణ పరిణామ దశలను చూపుతాయి."},
+  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"వృందావనపు గొర్రెలకాపరి గోవిందుడు — కృష్ణుడు, గోపికలను మోహింపజేసే, హృదయం దొంగిలించే వేణుగానం వాయించే వానిని స్తుతించే తొమ్మిది శ్లోకాలు."},
+  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"హరి (విష్ణు) స్తుతిలో 44 శ్లోకాలు — భగవంతుని అవతారాలు, గుణాలు, విశ్వ రూపం, మోక్ష ప్రసాదక కృప కలిగిన విస్తరించిన భక్తి రచన."},
+  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"హరి యొక్క దివ్య నామాలను ముత్యాల మాలలా కూర్చిన 19 శ్లోకాలు — ప్రతి నామమూ భగవంతుని వేరొక అంశం."},
+  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"హరిలో ఆశ్రయం కోరే ఎనిమిది శ్లోకాలు — శంకరుడు విష్ణుని పాద పద్మాల వద్ద తనను అర్పించుకునే వైష్ణవ శరణాగతి స్తుతి."},
+  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"పూరి జగన్నాథుడికి ఎనిమిది శ్లోకాలు — శంకరుడు గోవర్ధన మఠాన్ని స్థాపించినప్పుడు రచించిన, అందరినీ సమానంగా స్వీకరించే భగవంతుడు."},
+  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"కృష్ణుడు — నీల వర్ణపు, వేణుగానం వాయించేవాడు, వృందావన వెన్న దొంగ. చేష్టలాడే, మనమోహన బాల దేవుడి చిత్రణ ఇచ్చే ఎనిమిది శ్లోకాలు."},
+  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"లక్ష్మీ నరసింహుడికి ఐదు రత్న శ్లోకాలు — విష్ణుని ఉగ్ర సింహ-మనుష్య అవతారం. నరసింహ భక్తి యొక్క సంక్షిప్త కానీ శక్తివంతమైన రత్నం."},
+  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"నారాయణుని స్తుతిలో 30 శ్లోకాలు — ఆదిమ జలాలలో విశ్రమిస్తున్న విష్ణుని విశ్వ రూపం. అన్ని సృష్టికి మూలం, పాలకుడు, అంతం."},
+  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"పండరీపురం పాండురంగ (విఠ్ఠల్) కి తొమ్మిది శ్లోకాలు — మహారాష్ట్ర భక్తి సంప్రదాయాన్ని తన అఖిల భారత సంశ్లేషణలో చేర్చిన శంకరుని రచన."},
+  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"అయోధ్యలో జన్మించినప్పటి నుండి రావణ వధ వరకు రాముని దివ్య కార్యాలను స్తుతించే 29 శ్లోకాల భుజంగ స్తుతి."},
+  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"శ్రీరంగం రంగనాథుడికి ఎనిమిది శ్లోకాలు — గొప్ప వైష్ణవ ఆలయంలో శయన విష్ణువు ముందు నిలబడి శంకరుడు రచించిన కవిత."},
+  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"నరసింహుని రక్షించే చేయి కోరే ఆతుర ప్రార్థన — 17 శ్లోకాలు 'లక్ష్మీ నరసింహ, మమ దేహి కరావలంబం' (దయచేసి మీ రక్షించే చేయి ఇవ్వండి) అని ముగుస్తాయి."},
+  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"మోక్షం కోరే విష్ణు భక్తి యొక్క సంక్షిప్త కానీ శక్తివంతమైన ఏడు శ్లోకాలు — వైష్ణవ శరణాగతి సారం."},
+  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"విష్ణువుకి 14 సర్ప గతి శ్లోకాలు — సృష్టి ప్రారంభంలో ఆదిశేషుడు, విశ్వ సర్పం మీద విశ్రమిస్తున్న భగవంతుడు."},
+  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"విష్ణుని దివ్య రూపం మీద 52 శ్లోకాల ఆరోహణ ధ్యానం — పాద పద్మాల నుండి శరీరం ద్వారా తేజస్వి మకుటం వరకు."},
   // HANUMAN
-  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"హనుమంతుడికి ఐదు రత్నమైన శ్లోకాలు — రాముడి గొప్ప భక్తుడు, అడ్డంకులను అధిగమించేవాడు, దుఃఖాన్ని నాశనం చేసేవాడు."},
+  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"హనుమంతుడికి ఐదు రత్న శ్లోకాలు — రాముని మహా భక్తుడు, అడ్డంకులను అధిగమించేవాడు, దుఃఖాన్ని నాశనం చేసేవాడు."},
   // SACRED SITES
-  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"కాశిని భౌతిక నగరంతో కాదు, బ్రహ్మంతో గుర్తించే ఐదు శ్లోకాలు — నిజమైన కాశి ప్రకాశవంతమైన హృదయం, శుద్ధ చైతన్యం యొక్క శాశ్వత నగరం."},
-  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"పవిత్రమైన కాశి నగరాన్ని స్తుతించే తొమ్మిది శ్లోకాలు — మరణ సమయంలో శివుడే తారక మంత్రం ఉపదేశించి మోక్షమిచ్చే స్థలం."},
-  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"మణికర్ణిక ఘాట్ పై తొమ్మిది శ్లోకాలు — అత్యంత పవిత్రమైన శ్మశాన భూమి, శివుడు మరణిస్తున్న వారి చెవిలో తారక మంత్రం చెప్పి కర్మకు అతీతంగా మోక్షమిచ్చే చోటు."},
-  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"సోమనాథ నుండి గ్రిష్ణేశ్వరం వరకు పన్నెండు జ్యోతిర్లింగ స్థలాల భక్తి యాత్ర — భారతదేశం యొక్క పవిత్ర శివ స్థలాలన్నింటినీ పదమూడు శ్లోకాలలో సందర్శించడం."},
-  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"పవిత్ర గంగను అన్ని జీవుల విముక్తిదాత్రిగా స్తుతించే తొమ్మిది శ్లోకాలు — శివుడి జటాముకుటం నుండి ప్రవహించి అన్ని పాపాలు కడిగే తల్లి."},
-  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"నది గంగకు విస్తృత 14 శ్లోకాల స్తోత్రం — పవిత్ర జలాన్ని తాకిన వారందరికీ మోక్షమిచ్చే సార్వత్రిక శుద్ధికారి."},
-  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"పవిత్ర నర్మద నదికి ఎనిమిది శ్లోకాలు — శివుడి కుమార్తె, కేవలం దర్శనం చేత శుద్ధి చేసే, గంగ స్పర్శతో మాత్రమే శుద్ధి చేసే దాని కంటే భిన్నం."},
-  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"పవిత్ర యమునా నదికి ఎనిమిది శ్లోకాలు — వృందావన యొక్క చీకటి, అందమైన నది, కృష్ణుడు ప్రేమించే నది."},
+  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"కాశిని భౌతిక నగరంగా కాకుండా బ్రహ్మంతో సమీకరించే ఐదు శ్లోకాలు — నిజమైన కాశి ప్రకాశించే హృదయం, శుద్ధ చైతన్యం యొక్క శాశ్వత నగరం."},
+  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"కాశి పవిత్ర నగరాన్ని స్తుతించే తొమ్మిది శ్లోకాలు — శివుడే మరణ సమయంలో తారక మంత్రం ఉపదేశించి మోక్షం ప్రసాదించే స్థలం."},
+  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"మణికర్ణిక ఘాట్ మీద తొమ్మిది శ్లోకాలు — అత్యంత పవిత్ర దహన స్థలం, శివుడు మరణిస్తున్న వారి చెవిలో తారక మంత్రం చెప్పి కర్మను మించిన మోక్షం ఇచ్చే చోటు."},
+  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"సోమనాథం నుండి ఘృష్ణేశ్వరం వరకు 12 జ్యోతిర్లింగ క్షేత్రాల భక్తి యాత్ర — భారతదేశంలో అత్యంత పవిత్ర శివ క్షేత్రాలన్నిటినీ 13 శ్లోకాలలో."},
+  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"పవిత్ర గంగను స్తుతించే తొమ్మిది శ్లోకాలు — శివుని జటలు నుండి ప్రవహించి, అన్ని పాపాలను కడిగే మోక్ష ప్రదాయిని."},
+  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"గంగా నదికి విస్తరించిన 14 శ్లోకాల స్తోత్రం — పవిత్ర జలాలను తాకడం ద్వారా మోక్షం ఇచ్చే విశ్వ శుద్ధికారిణి."},
+  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"పవిత్ర నర్మదా నదికి ఎనిమిది శ్లోకాలు — శివుని కుమార్తె, గంగ తాకడం ద్వారా శుద్ధి చేసేలా, ఇవ్వళ కేవల దర్శనం మాత్రంతో శుద్ధి చేస్తుంది."},
+  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"పవిత్ర యమునా నదికి ఎనిమిది శ్లోకాలు — వృందావనం యొక్క నల్లని, అందమైన నది, కృష్ణుని ప్రియురాలు."},
   // MISCELLANEOUS (new!)
-  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"శుభ ఆశీర్వాదాల వర్షం — దివ్య అనుగ్రహం మరియు సమృద్ధి కోరే 16 శ్లోకాలు. సమత బుక్స్ గ్రంథావళి నుండి శంకరుడి విభిన్న స్తోత్రాలలో ఒకటి."},
-  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"తొమ్మిది రత్నాల మాల — సాధారణ, సాంప్రదాయిక రూపంలో పరమాత్మకు పది శ్లోకాల స్తుతి, నిర్దిష్ట దేవతా రూపాలకు అతీతంగా దైవత్వాన్ని సత్కరించడం."},
-  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"రాజస్థాన్ పుష్కర పవిత్ర సరస్సుకు ఎనిమిది శ్లోకాలు — భారతదేశంలో బ్రహ్మదేవుడికి మాత్రమే ఉన్న ప్రధాన ఆలయం, సృష్టికర్త దేవుడు పూజించబడే చోటు."},
-  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"మనస్సు (మనస్), వాక్కు (వాక్), శరీరం (కాయ)కి ఒక్కొక్క శ్లోకం — తెల్లవారుజామున అన్ని ఆలోచనలు, మాటలు, చర్యలను భగవంతుడికి సమర్పించడం."},
-  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"గురు పాదుకలను వందనించే ఎనిమిది శ్లోకాలు — భారతీయ సంప్రదాయానికి ప్రత్యేకమైన పూజా రూపం, గురువు యొక్క పాద ముద్రలనే సత్కరించడం."},
+  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"శుభ ఆశీర్వాదాల వర్షం — దివ్య కృప మరియు సమృద్ధిని ఆహ్వానించే 16 శ్లోకాలు. సమతా బుక్స్ గ్రంథావళి నుండి శంకరుని వివిధ స్తుతులలో ఒకటి."},
+  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"నవరత్న మాలిక — నిర్దిష్ట దేవతా రూపాలను మించిన సర్వోచ్చ తత్వానికి స్తుతి ఇచ్చే సార్వత్రిక పది శ్లోకాల రచన."},
+  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"రాజస్థాన్ లో పుష్కర తీర్థానికి ఎనిమిది శ్లోకాలు — భారతదేశంలో ఏకైక ప్రధాన బ్రహ్మ దేవాలయం, సృష్టికర్త దేవుడిని ఆరాధించే స్థలం."},
+  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"మూడు ఉదయపు శ్లోకాలు — మనస్ (మనసు), వాక్ (మాట), కాయ (శరీరం) కు ఒక్కొక్కటి — తెల్లవారుజామునే అన్ని ఆలోచనలు, మాటలు, చేతలను భగవంతునికి అర్పించడం."},
+  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"గురు పాదుకా స్తోత్రం — గురువు పాదరక్షలను పూజించే ఎనిమిది శ్లోకాలు. భారతీయ సంప్రదాయానికి ప్రత్యేకమైన ఆరాధనా రూపం."},
   // PRAKARANA
-  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"వివేక యొక్క కిరీట మణి — 581 శ్లోకాలు, అద్వైత వేదాంత యొక్క అత్యంత సమగ్రమైన మార్గదర్శి. మోక్షానికి అడుగడుగు నడిపించే గురు-శిష్య సంవాదం."},
-  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"68 స్ఫటికంలా స్పష్టమైన శ్లోకాలలో ఆత్మ జ్ఞానం. అద్వైత వేదాంతానికి అత్యంత సులభంగా అర్థమయ్యే పరిచయం — ఆత్మ, మాయ, విముక్తిని క్రమపద్ధతిలో వివరించడం."},
-  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"వేదాంత వర్గాలకు పరిచయం — నాలుగు అర్హతలు, మూడు శరీరాలు, ఐదు కోశాలు. వేదాంత అధ్యయనం ప్రారంభించే అందరు విద్యార్థులకు ముఖ్య ప్రవేశిక."},
-  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"వేయి బోధనలు — శంకరుడి ఏకైక వివాదరహిత గద్య రచన. ఆత్మ సాక్షాత్కారానికి పూర్తి మార్గాన్ని కవర్ చేసే నిర్మాణాత్మక గురు-శిష్య సంవాదం."},
-  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"వాస్తవికత యొక్క ప్రత్యక్ష అనుభవం — నిర్దిష్ట ధ్యాన అభ్యాసాలతో సహా ఆత్మ యొక్క తక్షణ గుర్తింపు 144 శ్లోకాలు."},
-  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"ఆరు వజ్రం వంటి శ్లోకాలు: 'చిదానంద రూప:, శివోహమ్' — నేను శివుడు, శుద్ధ చైతన్య-ఆనందం. ఎప్పుడైనా రాసిన అత్యంత ప్రసిద్ధ ఆధ్యాత్మిక రచనలలో ఒకటి."},
-  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"అంటరాని వ్యక్తి శంకరుడి మార్గాన్ని అడ్డుకున్నప్పుడు రచించిన తొమ్మిది శ్లోకాలు: 'మీరు నా శాశ్వత ఆత్మను కదల్చాలనుకుంటున్నారా, ఈ మట్టి శరీరాన్నా?' శంకరుడు అతనికి నమస్కరించారు."},
-  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"వేదాంత విశ్వోత్పత్తి శాస్త్రం — ఐదు సూక్ష్మ తత్వాలు ఐదు రెట్లుగా కలిసి స్థూల పదార్థ ప్రపంచాన్ని ఉత్పత్తి చేసే విధానం. మాయ ద్వారా బ్రహ్మం విశ్వంగా ఎలా అవుతుందో."},
-  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"గురు గోవిందపాదులు 'నీవు ఎవరు?' అని అడిగినప్పుడు రచించిన పది శ్లోకాలు — శంకరుడి స్వంత అద్వైత అస్తిత్వం యొక్క స్వతస్సిద్ధ ప్రకటన."},
-  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"ఆధ్యాత్మిక సాధన యొక్క సాధనాలు మరియు పద్ధతులను జాబితా చేసే ఐదు నుండి ఆరు ఆచరణాత్మక శ్లోకాలు — ఆధ్యాత్మిక సాధకుల కోసం శంకరుడి అత్యంత సంక్షిప్త మార్గదర్శి."},
-  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"అన్ని ప్రాపంచిక సంపదలు మరియు విజయాలకు మించి కేవలం గురువే ముఖ్యమని ప్రకటించే పది శ్లోకాలు — గురువు లేకపోతే మిగతాదంతా వ్యర్థం."},
-  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"ఒక్క కౌపీనం మాత్రమే కలిగి సర్వం వదిలిపెట్టిన సన్యాసి జీవితాన్ని మహిమపర్చే ఐదు ఆనందకరమైన శ్లోకాలు — అయినా ఆత్మలో విశ్రమించేవాడు అందరికంటే ధనవంతుడు."},
-  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"శరీరంలో ఉండగానే నిరంతర ఆనందంలో జీవిస్తూ ఎక్కడా బ్రహ్మం చూసే జీవన్ముక్తుడి ఆనందాన్ని వర్ణించే 19 శ్లోకాలు."},
-  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"మాయ యొక్క స్వభావంపై ఐదు శ్లోకాలు — ఒకదాన్ని అనేకంగా కనిపింపచేసే విశ్వ భ్రమ. అజ్ఞానంపై శంకరుడి అత్యంత కేంద్రీకృత విశ్లేషణ."},
-  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"మహావాక్యమైన 'తత్ త్వమ్ అసి' (అది నీవు) అన్వేషించే 53 శ్లోకాలు — ప్రత్యక్ష అనుభవం ద్వారా మహా వాక్యాలను విశ్లేషించే సాంకేతిక అద్వైత గ్రంథం."},
-  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"వేదాంత దృక్కోణం నుండి యోగాపై 29 శ్లోకాలు — శంకరుడు శ్వాస నియంత్రణ, ధ్యానం, అద్వైత జ్ఞానాన్ని ఏకీకృత మార్గంలో సంగమింపచేస్తారు."},
+  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"వివేకచూడామణి — అద్వైత వేదాంతానికి అత్యంత సమగ్రమైన మార్గదర్శి, 581 శ్లోకాలు. గురు శిష్య సంవాదం రూపంలో మోక్షానికి దశలవారీ మార్గం."},
+  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"ఆత్మ బోధ — 68 స్ఫటిక స్పష్టమైన శ్లోకాలలో ఆత్మ జ్ఞానం. అద్వైత వేదాంతానికి అత్యంత సులభమైన పరిచయం — ఆత్మ, మాయ, మోక్షాన్ని క్రమపద్ధతిలో వివరిస్తుంది."},
+  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"వేదాంత విభాగాలకు పరిచయం — నాలుగు అర్హతలు, మూడు శరీరాలు, పంచ కోశాలు. వేదాంత అధ్యయనం ప్రారంభించే అన్ని విద్యార్థులకు అవసరమైన వాహిక."},
+  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"ఉపదేశ సాహస్రి — వేయి బోధనలు. శంకరుని ఏకైక వివాదరహిత గద్య రచన. ఆత్మసాక్షాత్కారం వైపు సంపూర్ణ మార్గాన్ని కవర్ చేసే గురు శిష్య సంవాదం."},
+  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"అపరోక్షానుభూతి — వాస్తవ యొక్క ప్రత్యక్ష అనుభవం. ఆత్మ యొక్క తక్షణ గుర్తింపు మరియు నిర్దిష్ట ధ్యాన అభ్యాసాలపై 144 శ్లోకాలు."},
+  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"నిర్వాణ షట్కం — ఆరు వజ్ర శ్లోకాలు: 'చిదానంద రూపః, శివో హమ్' — నేను శివుడను, శుద్ధ చైతన్య-ఆనందం. ఎప్పుడైనా రాయబడిన అత్యంత ప్రసిద్ధ ఆధ్యాత్మిక రచనలలో ఒకటి."},
+  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"మణీషా పంచకం — ఒక నిమ్న కులస్తుడు శంకరుని మార్గాన్ని అడ్డుకున్నప్పుడు రచించిన తొమ్మిది శ్లోకాలు: 'నా శాశ్వత ఆత్మను తరలించమంటావా, ఈ మట్టి శరీరాన్నా?' శంకరుడు అతనికి నమస్కరించాడు."},
+  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"పంచీకరణం — వేదాంత విశ్వ శాస్త్రం. ఐదు సూక్ష్మ తత్వాలు మాయ ద్వారా స్థూల ప్రపంచంగా ఎలా అవుతాయి. బ్రహ్మం మాయ ద్వారా విశ్వంగా మారే విధానం."},
+  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"దశ శ్లోకి — గురు గోవిందపాదుడు 'నీవు ఎవరు?' అని అడిగినప్పుడు రచించిన పది శ్లోకాలు — శంకరుని స్వంత అద్వైత గుర్తింపు యొక్క స్వచ్ఛంద ప్రకటన."},
+  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"సాధనా పంచకం — ఆధ్యాత్మిక సాక్షాత్కారానికి సాధనాలు మరియు పద్ధతులను జాబితా చేసే ఐదు నుండి ఆరు శ్లోకాలు — శంకరుని అత్యంత సంక్షిప్త ఆధ్యాత్మిక మార్గదర్శి."},
+  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"గురు అష్టకం — ప్రాపంచిక సంపదలు మరియు సాధనలన్నిటినీ మించి కేవలం గురువు మాత్రమే ముఖ్యం అని ప్రకటించే పది శ్లోకాలు — గురువు లేకుండా మిగతాదంతా నిరర్థకం."},
+  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"కౌపీన పంచకం — ఒక గుడ్డ మాత్రమే ధరించిన సంన్యాసి జీవితాన్ని స్తుతించే ఐదు ఆనందమయ శ్లోకాలు — అయినప్పటికీ ఆత్మలో విశ్రమిస్తూ అత్యంత ధనవంతుడు."},
+  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"జీవన్ముక్తానంద లహరి — జీవంతంగా ముక్తిని పొందిన వారి ఆనందాన్ని వర్ణించే 19 శ్లోకాలు. ఎక్కడైనా బ్రహ్మాన్ని చూసి శరీరంలో ఉన్నప్పటికీ నిరంతర ఆనందంలో జీవించే వ్యక్తి."},
+  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"మాయా పంచకం — మాయ స్వభావంపై ఐదు శ్లోకాలు. ఒకటిని అనేకంగా కనిపించే విశ్వ భ్రమ. అజ్ఞానానికి అత్యంత సంక్షిప్త విశ్లేషణ."},
+  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"వాక్య వృత్తి — 'తత్ త్వం అసి' (అది నీవే) మహావాక్యాన్ని అన్వేషించే 53 శ్లోకాలు. మహా వాక్యాలను ప్రత్యక్ష అనుభవం ద్వారా విశ్లేషించే సాంకేతిక అద్వైత గ్రంథం."},
+  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"యోగ తారావళి — వేదాంత దృక్పథం నుండి యోగపై 29 శ్లోకాలు. ప్రాణాయామం, ధ్యానం, అద్వైత జ్ఞానాన్ని ఏకీకృత మార్గంలో కలిపిన శంకరుని రచన."},
   // BHASHYA
-  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"శంకరుడి మహారచన — అద్వైతాన్ని అన్ని వేదాంత శాస్త్రానికి సరైన వ్యాఖ్యానంగా స్థాపిస్తూ బాదరాయణుడి 555 బ్రహ్మ సూత్రాలపై భాష్యం."},
-  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"గీత యొక్క అన్ని 18 అధ్యాయాలపై భాష్యం — జ్ఞానమే గీత యొక్క అంతిమ బోధన అని శంకరుడు చూపిస్తారు."},
-  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ఈశ ఉపనిషత్ పై భాష్యం — అత్యంత సంక్షిప్తమైన ప్రధాన ఉపనిషత్, కర్మ మరియు జ్ఞాన సమతుల్యం."},
-  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'మనసు ఎవరిచే నిర్దేశించబడుతుంది?' అనే ప్రశ్నపై భాష్యం — అన్ని అనుభవాల వెనుక సాక్షి చైతన్యంపై శంకరుడి చికిత్స."},
-  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"అమర ఆత్మ గురించి యమ (మరణం) తో నాచికేతుడి సంవాదంపై భాష్యం — నేరుగా మరణాన్ని ఎదుర్కొనే ఉపనిషత్."},
-  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"పర విద్య (ఉన్నత జ్ఞానం — బ్రహ్మం) మరియు అపర విద్య (దిగువ జ్ఞానం — అన్ని విజ్ఞానాలు) మధ్య వ్యత్యాసం చూపించే భాష్యం."},
-  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 శ్లోకాలు మరియు గౌడపాదుడి కారిక పై భాష్యం — చైతన్యం యొక్క మూడు స్థితులు మరియు ఓంకారం పై నిర్ణయాత్మక అద్వైత చికిత్స."},
-  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ఐతరేయ ఉపనిషత్ పై భాష్యం — విశ్వం యొక్క సృష్టి మరియు చైతన్యాన్ని బ్రహ్మంతో గుర్తించడం."},
-  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"పంచకోశాలు (ఐదు కవచాలు) మరియు అస్తిత్వం యొక్క లోపలి పొరగా ఆనందం యొక్క స్వభావంపై ప్రసిద్ధ బోధనను కవర్ చేసే భాష్యం."},
-  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"'తత్ త్వమ్ అసి' (అది నీవు) కలిగి ఉన్న ఉపనిషత్తులలో ఒకటైన దానిపై భాష్యం. ఈ మహావాక్యం యొక్క నిర్ణయాత్మక వ్యాఖ్యానం."},
-  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"పురాతనమైన మరియు అతి పెద్ద ఉపనిషత్ పై భాష్యం — 'అహం బ్రహ్మాస్మి' (నేను బ్రహ్మం) మరియు యాజ్ఞవల్క్యుడి బోధనలను కలిగి ఉంది."},
-  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"మహాభారతం యొక్క విష్ణు సహస్రనామంపై భాష్యం — విష్ణువు యొక్క వేయి నామాలు, ప్రతిటికి అద్వైత బ్రహ్మం యొక్క కిటికీ."},
-  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"ధృతరాష్ట్రుడికి సనత్సుజాతుడి బోధనలపై భాష్యం — మరణం, మరణహీనత, బ్రహ్మచర్య మార్గం గురించి."},
-  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Patanjali","Yoga","Meditation"],description:"పతంజలి యొక్క యోగ సూత్రాలపై భాష్యం — శంకరుడు యోగ విధానాన్ని అద్వైత వేదాంతంతో సమతుల్యపరుస్తారు."},
+  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"శంకరుని మహా రచన — బాదరాయణుని 555 బ్రహ్మ సూత్రాలపై భాష్యం. అద్వైతం అన్ని వేదాంత శాస్త్రానికి సరైన వ్యాఖ్యానం అని స్థాపించిన రచన."},
+  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"గీత యొక్క 18 అధ్యాయాలపై భాష్యం — శంకరుడు జ్ఞానం గీత యొక్క అంతిమ బోధన అని చూపించిన రచన."},
+  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ఈశావాస్యోపనిషత్ భాష్యం — అత్యంత సంక్షిప్త ప్రధాన ఉపనిషత్, కర్మ మరియు జ్ఞానాన్ని సమన్వయిస్తుంది."},
+  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'మనసును ఎవరు నిర్దేశిస్తారు?' పై భాష్యం — అన్ని అనుభవానికి వెనుక ఉన్న సాక్షి చైతన్యంపై శంకరుని పరిశీలన."},
+  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"యముడు (మరణం) తో నచికేతుని సంవాదంపై భాష్యం — అమర ఆత్మ గురించి మరణాన్నే నేరుగా ఎదుర్కొనే ఉపనిషత్."},
+  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"పరా విద్య (ఉన్నత జ్ఞానం — బ్రహ్మం) మరియు అపరా విద్య (నిమ్న జ్ఞానం — అన్ని శాస్త్రాలు) తేడాను చూపించే భాష్యం."},
+  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 శ్లోకాలు మరియు గౌడపాద కారికపై భాష్యం — మూడు చైతన్య స్థితులు మరియు ఓంకారం యొక్క నిశ్చిత అద్వైత వ్యాఖ్యానం."},
+  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ఐతరేయ ఉపనిషత్ భాష్యం — విశ్వ సృష్టి మరియు చైతన్యాన్ని బ్రహ్మంతో గుర్తించడం."},
+  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"తైత్తిరీయ ఉపనిషత్ భాష్యం — పంచ కోశాలు మరియు ఉనికి యొక్క అంతరాళ పొరగా ఆనందంపై ప్రసిద్ధ బోధన."},
+  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"ఛాందోగ్య ఉపనిషత్ భాష్యం — 'తత్ త్వం అసి' (అది నీవే) కలిగి ఉన్న అత్యంత పొడవైన ఉపనిషత్ పై భాష్యం. ఈ మహావాక్యం యొక్క నిశ్చిత వ్యాఖ్యానం."},
+  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"బృహదారణ్యక ఉపనిషత్ భాష్యం — పురాతన మరియు పొడవైన ఉపనిషత్ — 'అహం బ్రహ్మాస్మి' (నేను బ్రహ్మాన్ని) మరియు యాజ్ఞవల్క్య బోధనలు."},
+  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"మహాభారతం నుండి విష్ణు సహస్రనామ భాష్యం — విష్ణువి వేయి నామాలు, ప్రతి నామమూ అద్వైత బ్రహ్మంలోకి ఒక కిటికీ."},
+  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"ధృతరాష్ట్రుడికి సనత్సుజాతుని బోధనలపై భాష్యం — మరణం, అమృతత్వం, బ్రహ్మచర్య మార్గం."},
+  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Patanjali","Yoga","Meditation"],description:"పతంజలి యోగ సూత్రాలపై భాష్యం — శంకరుడు యోగ విధానాన్ని అద్వైత వేదాంతంతో సమన్వయించిన రచన."},
 ];
 
 const QUICK_TAGS=["Bhaja Govindam","Soundarya Lahari","Nirvana Shatakam","Manasa Puja","Bhujangam","Jyotirlinga","Liberation","Forgiveness","Very Popular","Key Work"];
@@ -1253,8 +1257,8 @@ function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 // ═══════════════════════════════════════════ INIT ═══════════════════════════
 function init(){
   const నిర్ధారించబడింది=WORKS.filter(w=>w.auth==="నిర్ధారించబడింది").length;
-  document.getElementById("statTotal").textContent=WORKS.length;
-  document.getElementById("footerText").textContent=`${WORKS.length} రచనలు catalogued · ${నిర్ధారించబడింది} నిర్ధారించబడింది · సమత బుక్స్ గ్రంథావళి ఆధారంగా ధృవీకరించబడింది`;
+  const stEl=document.getElementById("statTotal"); if(stEl) stEl.textContent=WORKS.length;
+  const el_footerText=document.getElementById("footerText"); if(el_footerText) el_footerText.textContent=`${WORKS.length} రచనలు catalogued · ${నిర్ధారించబడింది} నిర్ధారించబడింది · సమత బుక్స్ గ్రంథావళి ఆధారంగా ధృవీకరించబడింది`;
   buildDeityBar(); buildQuickTags();
   setupWOTD(); renderGrid(); renderQuizStart(); updateStats();
   // Keyboard
@@ -1263,28 +1267,36 @@ function init(){
 
 function updateStats(){
   const bm=loadBM(); const prog=loadProg();
-  document.getElementById("statBm").textContent=bm.length;
+  const bmEl=document.getElementById("statBm"); if(bmEl) bmEl.textContent=bm.length;
   const bmBadgeEl=document.getElementById("bmBadge");
   if(bmBadgeEl){bmBadgeEl.textContent=bm.length;bmBadgeEl.style.display=bm.length>0?"inline":"none";}
   const bnavBadgeEl=document.getElementById("bnavBadge");
   if(bnavBadgeEl){bnavBadgeEl.textContent=bm.length;bnavBadgeEl.style.display=bm.length>0?"inline":"none";}
-  const studied=Object.values(prog).filter(v=>v==="studied"||v==="memorised").length;
-  document.getElementById("statఅధ్యయనం").textContent=studied;
+  const vals=Object.values(prog);
+  const heard=vals.filter(v=>v==="heard").length;
+  const studied=vals.filter(v=>v==="studied").length;
+  const memorised=vals.filter(v=>v==="memorised").length;
+  const heardEl=document.getElementById("statHeard");
+  const studiedEl=document.getElementById("statStudied");
+  const memorisedEl=document.getElementById("statMemorised");
+  if(heardEl) heardEl.textContent=heard;
+  if(studiedEl) studiedEl.textContent=studied;
+  if(memorisedEl) memorisedEl.textContent=memorised;
 }
 
 // ═══════════════════════════════════════════ WOTD ═══════════════════════════
 function setupWOTD(){
   const dayIndex=Math.floor(Date.now()/(1000*60*60*24))%WORKS.length;
   const w=WORKS[dayIndex];
-  document.getElementById("wotdName").textContent=w.name;
+  const el_wotdName=document.getElementById("wotdName"); if(el_wotdName) el_wotdName.textContent=w.name;
   const wotdSubEl=document.getElementById("wotdSub");
   const wotdEmojiEl=document.getElementById("wotdEmoji");
   const d=getDeity(w.deity);
   if(wotdSubEl) wotdSubEl.textContent=d.label+" · "+w.type+(w.శ్లోకాలు?" · "+w.శ్లోకాలు+" శ్లోకాలు":"");
   if(wotdEmojiEl) wotdEmojiEl.innerHTML=deityIcon(w.deity,32);
-  document.getElementById("wotdBanner")._workId=w.id;
+  const wotdBannerEl=document.getElementById("wotdBanner"); if(wotdBannerEl) wotdBannerEl._workId=w.id;
 }
-function openWOTD(){ const id=document.getElementById("wotdBanner")._workId; if(id) openPanel(id); }
+function openWOTD(){ const wb=document.getElementById("wotdBanner"); if(wb&&wb._workId) openPanel(wb._workId); }
 
 // ═══════════════════════════════════════════ DEITY BAR ══════════════════════
 function buildDeityBar(){
@@ -1295,7 +1307,7 @@ function buildDeityBar(){
   DEITIES.forEach(d=>{ const cnt=counts[d.id]||0; if(!cnt)return;
     html+=`<button class="deity-btn" id="dbtn-${d.id}" style="--dc:${d.color};--dbg:${d.bg};color:${d.color}" onclick="setDeity('${d.id}')"><span class="deity-btn-icon" style="color:${d.color}">${deityIcon(d.id,16)}</span><span style="color:rgba(245,240,232,.75)">${d.label}</span> <span style="opacity:.5;font-size:8px">(${cnt})</span></button>`;
   });
-  bar.innerHTML=html;
+  if(bar) bar.innerHTML=html;
 }
 function setDeity(id){
   currentDeity=id;
@@ -1305,7 +1317,7 @@ function setDeity(id){
   renderGrid();
 }
 function buildQuickTags(){
-  document.getElementById("quickTags").innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
+  const qtEl=document.getElementById("quickTags"); if(qtEl) qtEl.innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
 }
 
 // ═══════════════════════════════════════════ SEARCH / SORT ═════════════════
@@ -1336,9 +1348,9 @@ function filterరచనలు(){
 function renderGrid(){
   const రచనలు=filterరచనలు();
   const bm=loadBM(); const prog=loadProg();
-  document.getElementById("countNum").textContent=రచనలు.length;
+  const el_countNum=document.getElementById("countNum"); if(el_countNum) el_countNum.textContent=రచనలు.length;
   const hasFilter=currentDeity!=="all"||currentSearch;
-  document.getElementById("clearFilters").style.display=hasFilter?"inline":"none";
+  const cfEl=document.getElementById("clearFilters"); if(cfEl) cfEl.style.display=hasFilter?"inline":"none";
   const grid=document.getElementById("రచనలుGrid");
   const empty=document.getElementById("emptyState");
   if(!రచనలు.length){ grid.style.display="none"; empty.style.display="block"; return; }
@@ -1412,9 +1424,9 @@ function setProgress(id,status){
   const btns=document.querySelectorAll(".progress-btn");
   const newProg=loadProg()[id];
   btns.forEach(b=>{
-    b.classList.remove("heard","studied","memorised");
+    b.classList.remove("heard","studied","memorised","active-prog");
     const s=b.dataset.status;
-    b.classList.add(newProg===s?s:"none");
+    if(newProg===s){ b.classList.add(s); b.classList.add("active-prog"); }
   });
   const panelBmBtn=document.querySelector(".panel-bm-btn");
   if(panelBmBtn) panelBmBtn.textContent=(loadBM().includes(id)?"★ బుక్‌మార్క్":"☆ బుక్‌మార్క్");
@@ -1610,9 +1622,9 @@ function renderQuizScore(){
 function openPanel(id){
   const work=WORKS.find(w=>w.id===id); if(!work)return;
   const d=getDeity(work.deity); const bm=loadBM(); const prog=loadProg(); const isBm=bm.includes(id); const p=prog[id];
-  document.getElementById("panel").style.borderLeft=`4px solid ${d.color}`;
-  document.getElementById("panelHeader").style.background=`linear-gradient(135deg,${d.bg},transparent)`;
-  document.getElementById("panelHeader").innerHTML=`
+  const panEl=document.getElementById("panel"); if(panEl) panEl.style.borderLeft=`4px solid ${d.color}`;
+  const phEl=document.getElementById("panelHeader"); if(phEl) phEl.style.background=`linear-gradient(135deg,${d.bg},transparent)`;
+  const pHdrEl=document.getElementById("panelHeader"); if(pHdrEl) pHdrEl.innerHTML=`
     <div class="panel-header-top">
       <div class="panel-badges">
         <span class="card-deity-icon" style="color:${d.color}">${deityIcon(work.deity,16)}</span>
@@ -1620,7 +1632,6 @@ function openPanel(id){
         ${work.శ్లోకాలు?`<span class="badge-శ్లోకాలు">${work.శ్లోకాలు} శ్లోకాలు</span>`:""}
         ${work.auth==="ఆపాదించబడింది"?`<span class="badge-attr">ఆపాదించబడింది</span>`:""}
       </div>
-      <button class="close-btn" onclick="closePanel()">✕ CLOSE</button>
     </div>
     <div class="panel-name">${esc(work.name)}</div>
     ${work.sanskrit?`<div class="panel-sanskrit">${esc(work.sanskrit)}</div>`:""}
@@ -1629,7 +1640,7 @@ function openPanel(id){
       <button class="panel-bm-btn ${isBm?"bookmarked":""}" onclick="toggleBMPanel('${id}')">${isBm?"★ సేవ్ చేసినవి":"☆ సేవ్"}</button>
     </div>`;
 
-  document.getElementById("panelBody").innerHTML=`
+  const pBdyEl=document.getElementById("panelBody"); if(pBdyEl) pBdyEl.innerHTML=`
     <div>
       <div class="section-label">గురించి</div>
       <p class="about-text">${esc(work.description)}</p>
@@ -1638,7 +1649,7 @@ function openPanel(id){
     <div>
       <div class="section-label">మీ పురోగతి</div>
       <div class="progress-row">
-        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s:"none"}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ విన్నాను":s==="studied"?"◕ అధ్యయనం":"● కంఠస్థం"}</button>`).join("")}
+        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s+' active-prog':''}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ విన్నాను":s==="studied"?"◕ అధ్యయనం":"● కంఠస్థం"}</button>`).join("")}
       </div>
     </div>
     <div class="insight-box">
@@ -1657,11 +1668,14 @@ function openPanel(id){
       <div class="section-label">పాడే విధానం వారీగా వెతకు</div>
       <div id="videoContent"><div class="loading-row"><span class="spinner">✿</span><span class="loading-txt">శోధన లింకులు నిర్మిస్తున్నాం…</span></div></div>
     </div>
+    <div class="feedback-box-wrapper">
+      ${renderFeedback(id, 'మీ అభిప్రాయం', 'ఈ రచన గురించి మీ ఆలోచనలు పంచుకోండి…', '✓ సేవ్ చేయి', '✓ సేవ్ చేయబడింది', 'తొలగించు')}
+    </div>
     <a class="yt-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent("Adi Shankaracharya "+work.name)}" target="_blank" rel="noopener">అన్నీ వెతకు "${esc(work.name)}" YouTube లో ↗</a>
   `;
   document.getElementById("panelOverlay").classList.add("open");
   document.body.style.overflow="hidden";
-  document.getElementById("panel").scrollTop=0;
+  if(panEl) panEl.scrollTop=0;
   loadInsight(work); loadVideos(work,d);
 }
 
@@ -1675,6 +1689,52 @@ function toggleBMPanel(id){
   if(btn){ btn.textContent=isBm?"★ బుక్‌మార్క్":"☆ బుక్‌మార్క్"; btn.classList.toggle("bookmarked",isBm); }
   renderGrid(); renderBM(); updateStats();
 }
+
+
+// ── Feedback helpers ──────────────────────────────
+const FB_KEY = (id) => `shankara_feedback_${LANG_KEY}_${id}`;
+function loadFeedback(id){ try{ return JSON.parse(localStorage.getItem(FB_KEY(id))||'null')||{stars:0,note:''}; }catch{return{stars:0,note:''};} }
+function saveFeedback(id,stars,note){ localStorage.setItem(FB_KEY(id),JSON.stringify({stars,note,ts:Date.now()})); }
+function clearFeedback(id){ localStorage.removeItem(FB_KEY(id)); }
+
+function renderFeedback(id, fb_label, fb_placeholder, fb_save, fb_saved, fb_clear){
+  const fb = loadFeedback(id);
+  const stars = fb.stars||0; const note = fb.note||'';
+  return `<div class="feedback-box">
+    <div class="section-label">${fb_label}</div>
+    <div class="star-row" id="starRow">
+      ${[1,2,3,4,5].map(n=>`<button class="star-btn${n<=stars?' lit':''}" data-n="${n}" onclick="setStars('${id}',${n})" title="${n}★">★</button>`).join('')}
+    </div>
+    <textarea class="fb-textarea" id="fbNote" placeholder="${fb_placeholder}">${note}</textarea>
+    <div class="fb-actions">
+      <button class="fb-save-btn" id="fbSaveBtn" onclick="doSaveFeedback('${id}','${fb_save}','${fb_saved}')">${fb_save}</button>
+      <button class="fb-clear-btn" onclick="doClearFeedback('${id}','${fb_save}')">${fb_clear}</button>
+    </div>
+  </div>`;
+}
+
+function setStars(id, n){
+  const fb = loadFeedback(id);
+  // Toggle off if clicking same star
+  const newStars = (fb.stars===n)?0:n;
+  saveFeedback(id, newStars, (document.getElementById('fbNote')||{value:''}).value);
+  document.querySelectorAll('.star-btn').forEach(b=>{ b.classList.toggle('lit', parseInt(b.dataset.n)<=newStars); });
+  flashSaved();
+}
+function doSaveFeedback(id, saveLabel, savedLabel){
+  const note = (document.getElementById('fbNote')||{value:''}).value;
+  const stars = document.querySelectorAll('.star-btn.lit').length;
+  saveFeedback(id, stars, note);
+  const btn = document.getElementById('fbSaveBtn');
+  if(btn){ btn.textContent=savedLabel; btn.classList.add('saved'); setTimeout(()=>{ btn.textContent=saveLabel; btn.classList.remove('saved'); },1800); }
+}
+function doClearFeedback(id, saveLabel){
+  clearFeedback(id);
+  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('lit'));
+  const note = document.getElementById('fbNote'); if(note) note.value='';
+  const btn = document.getElementById('fbSaveBtn'); if(btn){ btn.textContent=saveLabel; btn.classList.remove('saved'); }
+}
+function flashSaved(){ /* subtle star flash handled via setStars */ }
 
 function closePanel(){ document.getElementById("panelOverlay").classList.remove("open"); document.body.style.overflow=""; }
 function closePanelOutside(e){ if(e.target===document.getElementById("panelOverlay")) closePanel(); }
@@ -1697,6 +1757,7 @@ async function loadInsight(work){
 }
 
 // ═══ LANGUAGE CONFIG (Telugu) ════════════════════════════════
+const LANG_KEY = "telugu";
 const LANG_CONFIG = {
   hl: 'te', gl: 'IN',
   langLabel: 'Telugu',
@@ -1780,14 +1841,13 @@ function switchTab(tab){
   });
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
   document.querySelectorAll(".bnav-btn").forEach(b=>b.classList.toggle("active",b.id==="bnav-"+tab));
+  const df=document.getElementById("deityFilterSection"); if(df) df.style.display=tab==="explore"?"block":"none";
   if(tab==="bookmarks")renderBM();
   if(tab==="progress")renderProgress();
 }
 
 
-const _style=document.createElement("style");
-_style.textContent="@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}";
-document.head.appendChild(_style);
+
 
 // ── TEXT SIZE CONTROL ────────────────────────────────────────────────────────
 function setTextSize(size){
@@ -1805,7 +1865,7 @@ try{
   if(saved) setTextSize(saved);
 }catch(e){}
 
-init();
+document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
 </html>

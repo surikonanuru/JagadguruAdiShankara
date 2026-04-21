@@ -85,7 +85,7 @@ h1{
   display:flex;justify-content:center;gap:28px;
   flex-wrap:wrap;margin-top:16px;
 }
-.stat-item{text-align:center;cursor:pointer;padding:8px 16px;
+.stat-item{text-align:center;cursor:pointer;padding:6px 10px;
   border:1px solid rgba(212,160,23,.15);transition:border-color .2s}
 .stat-item:hover{border-color:rgba(212,160,23,.4)}
 .stat-n{font-size:1.5rem;font-weight:700;display:block;color:#F0C040;line-height:1.2}
@@ -381,14 +381,14 @@ h1{
 }
 .panel-close-hint{font-size:.82rem;color:rgba(245,240,232,.4);font-style:italic}
 .close-btn{
-  background:rgba(212,160,23,.1);
-  border:2px solid rgba(212,160,23,.35);
-  color:#D4A017;cursor:pointer;padding:10px 20px;
-  font-size:.9rem;letter-spacing:.08em;
+  background:rgba(201,98,107,.15);
+  border:2px solid rgba(201,98,107,.5);
+  color:#E8858C;cursor:pointer;padding:9px 18px;
+  font-size:.88rem;letter-spacing:.1em;
   font-family:Georgia,serif;transition:all .2s;
-  min-height:48px;font-weight:700;
+  min-height:44px;font-weight:700;white-space:nowrap;
 }
-.close-btn:hover{background:rgba(212,160,23,.2);border-color:rgba(212,160,23,.6)}
+.close-btn:hover{background:rgba(201,98,107,.3);border-color:#C9626B;color:#fff}
 .panel-header{padding:18px 22px 16px}
 .panel-header-top{
   display:flex;justify-content:space-between;
@@ -833,6 +833,36 @@ footer{
 @media(min-width:661px){
   .bottom-nav{display:none!important}
 }
+
+/* ── Feedback section ──────────────────────────── */
+.feedback-box{background:rgba(16,5,0,.6);border:1px solid rgba(212,160,23,.2);padding:16px 18px;border-radius:2px}
+.star-row{display:flex;gap:6px;margin:10px 0 12px}
+.star-btn{background:none;border:none;font-size:1.6rem;cursor:pointer;color:rgba(212,160,23,.25);padding:2px 4px;transition:color .15s;line-height:1}
+.star-btn.lit{color:#F0C040}
+.star-btn:hover{color:#D4A017}
+.fb-textarea{width:100%;min-height:80px;background:rgba(8,2,0,.8);border:1.5px solid rgba(212,160,23,.2);color:#FAF6EE;font-family:Georgia,serif;font-size:.88rem;padding:10px 12px;resize:vertical;outline:none;transition:border-color .2s;box-sizing:border-box}
+.fb-textarea:focus{border-color:rgba(212,160,23,.5)}
+.fb-actions{display:flex;gap:10px;margin-top:10px}
+.fb-save-btn{flex:1;padding:10px;background:linear-gradient(135deg,rgba(212,160,23,.2),rgba(212,160,23,.1));border:1.5px solid rgba(212,160,23,.4);color:#D4A017;font-family:Georgia,serif;font-size:.85rem;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+.fb-save-btn:hover{background:rgba(212,160,23,.25);border-color:#D4A017}
+.fb-save-btn.saved{color:#7EC8A0;border-color:rgba(126,200,160,.4)}
+.fb-clear-btn{padding:10px 14px;background:none;border:1.5px solid rgba(212,160,23,.15);color:rgba(212,160,23,.4);font-family:Georgia,serif;font-size:.8rem;cursor:pointer;transition:all .2s}
+.fb-clear-btn:hover{border-color:rgba(212,160,23,.35);color:rgba(212,160,23,.6)}
+
+
+/* ── Panel progress buttons ─────────────────────── */
+.progress-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.progress-btn{
+  padding:12px 6px;border:2px solid rgba(212,160,23,.18);
+  background:rgba(16,5,0,.6);color:rgba(245,240,232,.45);
+  font-family:Georgia,serif;font-size:.8rem;letter-spacing:.05em;
+  cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;
+}
+.progress-btn:hover{border-color:rgba(212,160,23,.4);color:rgba(245,240,232,.7)}
+.progress-btn.heard,.progress-btn.active-prog.heard{border-color:rgba(91,168,212,.7);background:rgba(91,168,212,.12);color:#5BA8D4;font-weight:700}
+.progress-btn.studied,.progress-btn.active-prog.studied{border-color:rgba(126,200,160,.7);background:rgba(126,200,160,.12);color:#7EC8A0;font-weight:700}
+.progress-btn.memorised,.progress-btn.active-prog.memorised{border-color:#D4A017;background:rgba(212,160,23,.15);color:#F0C040;font-weight:700}
+
 </style>
 </head>
 <body>
@@ -852,52 +882,24 @@ footer{
     <h1>சங்கர ஆய்வகம்</h1>
     <div class="tagline">ஆதி சங்கராசாரியரின் முழுமையான படைப்புகள் · கி.பி. ௭௮௮–௮௨0</div>
     <div class="header-stats">
-      <div class="stat-item"><span class="stat-n" id="statTotal" style="color:#F0C040"></span><span class="stat-l">படைப்புகள்</span></div>
-      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">சேமித்தவை</span></div>
-      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statபடித்தவை" style="color:#7EC8A0">0</span><span class="stat-l">படித்தவை</span></div>
-    </div>
-  </header>
-
-  <!-- DESKTOP TABS -->
-  <div class="tabs" id="desktopTabs">
-    <div class="tab-btn-wrap"><button class="tab-btn active" data-tab="explore" onclick="switchTab('explore')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h16M4 9h10M4 13h12M4 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="tab-lbl">ஆராய</span></button></div>
-    <div class="tab-btn-wrap" style="position:relative"><button class="tab-btn" data-tab="bookmarks" onclick="switchTab('bookmarks')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><span class="tab-lbl">சேமித்தவை</span></button><span class="tab-badge" id="bmBadge" style="display:none">0</span></div>
-    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5C9.5 8 10.5 7 12 7s2.5 1 2.5 2.5c0 1.5-1.5 2-2.5 2.5v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg></span><span class="tab-lbl">வினாடி வினா</span></button></div>
-    <div class="tab-btn-wrap"><button class="tab-btn" data-tab="progress" onclick="switchTab('progress')"><span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="9" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="4" width="4" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="tab-lbl">முன்னேற்றம்</span></button></div>
-  </div>
-
-  <!-- EXPLORE TAB -->
-  <div id="tab-explore">
-
-    <!-- WORK OF THE DAY -->
-    <div class="wotd-banner" id="wotdBanner" onclick="openWOTD()">
-      <div class="wotd-icon" id="wotdEmoji" style="color:#D4A017"></div>
-      <div class="wotd-body">
-        <div class="wotd-label">✦ இன்றைய படைப்பு</div>
-        <div class="wotd-name" id="wotdName"></div>
-        <div class="wotd-sub" id="wotdSub"></div>
-      </div>
-      <div class="wotd-cta">ஆராய →</div>
-    </div>
-
-    <!-- SEARCH -->
-    <div class="search-hero">
-      <label class="search-label" for="searchInput">பெயர், தெய்வம் அல்லது கருப்பொருளால் தேடுக:</label>
-      <div class="search-wrap">
-        <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-        <input type="text" id="searchInput" placeholder="ஸ்தோத்திரம், பாஷ்யம், தெய்வம், கருப்பொருள் தேடுக…" oninput="handleSearch()" autocomplete="இல்f">
-        <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
-      </div>
-      <div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
+      <div class="stat-item"><span class="stat-n" id="statTotal" style="color:#F0C040"></span><span class="stat-l">நூல்கள்</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('bookmarks')"><span class="stat-n" id="statBm" style="color:#D4A017">0</span><span class="stat-l">சேமித்த</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statHeard" style="color:#5BA8D4">0</span><span class="stat-l">◑ கேட்டேன்</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statStudied" style="color:#7EC8A0">0</span><span class="stat-l">◕ படித்தேன்</span></div>
+      <div class="stat-item" style="cursor:pointer" onclick="switchTab('progress')"><span class="stat-n" id="statMemorised" style="color:#D4A017">0</span><span class="stat-l">● மனனம்</span></div>
+    </div><div class="search-hint" id="searchHint">Try: "Bhaja Govindam" · "Manasa Puja" · "Kashi" · "Forgiveness"</div>
     </div>
 
     <!-- DEITY FILTER -->
+    <div id="deityFilterSection">
     <div class="deity-filter-label">தெய்வத்தால் வடிகட்டு — பக்கவாட்டில் உருட்டு:</div>
     <div class="deity-scroll-wrap">
       <div class="deity-bar" id="deityBar"></div>
     </div>
+    </div><!-- /deityFilterSection -->
 
-    <!-- POPULAR SEARCHES — scrollable -->
+    <div id="tab-explore">
+<!-- POPULAR SEARCHES — scrollable -->
     <div class="quick-tags-wrap">
       <div class="quick-tags" id="quickTags"></div>
     </div>
@@ -926,7 +928,9 @@ footer{
     </div>
   </div>
 
-  <!-- BOOKMARKS TAB -->
+  </div>
+
+<!-- BOOKMARKS TAB -->
   <div id="tab-bookmarks" style="display:none">
     <div class="tab-page-header">
       <div class="tab-page-title" style="display:flex;align-items:center;gap:10px"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#D4A017" stroke-width="1.5" stroke-linejoin="round"/></svg> சேமித்தவை படைப்புகள்</div>
@@ -1108,127 +1112,127 @@ const DEITIES=[
 
 const WORKS=[
   // GANESHA
-  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"கணேசனைப் போற்றும் ஐந்து இரத்தினச் செய்யுள்கள் — தடைகளை நீக்குவோன், எல்லா தொடக்கங்களின் தலைவன். ஒவ்வொரு பாடலும் பக்தி கவிதையின் மணி."},
-  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"பக்தர்களுக்கு எல்லா வழிகளையும் திறக்கும் தும்பிக்கை இறைவனை வணங்கும் பாம்பலை போன்ற ஓட்டமுடைய பாடல் — பாம்பு வேகத்தில் கணேசனுக்கு பஜனை."},
+  {id:"g1",deity:"ganesha",name:"Ganesha Pancharatnam",sanskrit:"गणेशपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Auspicious","Very Popular","Daily"],description:"கணேஷனைப் போற்றும் ஐந்து ரத்தின ஸ்லோகங்கள் — தடைகளை அழிக்கும் எல்லா ஆரம்பங்களின் தலைவன். ஒவ்வொரு பாடலும் பக்தி கவிதையின் ஒரு அணிகலன்."},
+  {id:"g2",deity:"ganesha",name:"Ganesha Bhujangam",sanskrit:"गणेशभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Ganesha"],description:"பக்தர்களின் ஒவ்வொரு பாதையையும் தெளிவாக்கும் கஜானனை வேண்டும் பாம்பு நடை (பஜங்க) மீட்டர் சர்ப்ப கதி ஸ்தோத்திரம்."},
   // SUBRAMANYA
-  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"சுப்ரமண்யனுக்கு 33 செய்யுள்களில் பாம்பலை பாடல் — சிவனின் மகன், போர் மற்றும் ஞானத்தின் கடவுள். மிகவும் இசையமைந்த பஜனை இசை."},
+  {id:"m1",deity:"subramanya",name:"Subrahmanya Bhujangam",sanskrit:"सुब्रह्मण्यभुजङ्गम्",verses:33,type:"Bhujangam",auth:"confirmed",tags:["Major Work","South India","33 Verses","Very Popular"],description:"சுப்ரமண்யனை போற்றும் 33 ஸ்லோகங்கள் கொண்ட சர்ப்ப கதி ஸ்தோத்திரம் — சிவனின் மகன், யுத்தம் மற்றும் ஞானத்தின் தேவன். இசையில் மிகவும் அழகான பஜங்கம் இயற்றல்களில் ஒன்று."},
   // SHIVA
-  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"அர்த்தநாரீஸ்வரரைப் பற்றிய ஒன்பது செய்யுள்கள் — ஒரே ஆண்டிர்ஜினஸ் உருவத்தில் சிவனும் சக்தியும். உணர்வு மற்றும் சக்தியின் ஒற்றுமையை விளக்கும் தத்துவ மணி."},
-  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"சுய-அறிவிப்பின் பத்து செய்யுள்கள் — சங்கரர் பத்து சுருக்கமான வஜ்ர வரிகளில் ஆத்மாவின் இறுதி தன்மையை அறிவிக்கிறார்."},
-  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"தெற்கு நோக்கிய மெளன ஆசிரியராக சிவன் — கண்ணாடியில் தெரியும் நகரம் போல் பிரம்மனில் பிரதிபலிக்கும் பிரபஞ்சம். உயரிய அத்வைத ஸ்தோத்திரம்."},
-  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"தக்ஷிணாமூர்த்தியின் விரிவான ஸ்தோத்திரம் — நான்கு குமாரர்களுக்கு மெளனத்தால் ஞானம் அளிக்கும் பிரபஞ்ச ஆசிரியராக சிவன் பற்றிய 19 செய்யுள்கள்."},
-  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"தக்ஷிணாமூர்த்தி பற்றிய 25 செய்யுள்களின் வர்ணமாலை — ஒவ்வொரு செய்யுளும் தொடர்ச்சியான சமஸ்கிருத எழுத்தில் தொடங்கும்."},
-  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"காசியின் காலபைரவர் பற்றிய எட்டு கடுமையான செய்யுள்கள் — காலத்தின் தலைவர். வாரணாசியில் இதை ஓதுவோர் காலசக்கரத்திலிருந்து விடுபடுவர்."},
-  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"மிருத்யுஞ்சயருடைய மாநஸ பூஜையின் 46 செய்யுள்கள் — மரணத்தை வென்றவர். மனதுக்குள்ளேயே அர்ப்பணிக்கப்படும் ஆராதனையின் ஒவ்வொரு அம்சமும்."},
-  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"மன்னிப்பு கோரும் உள்ளார்ந்த பாடல் — சிவன் முன் உடல், வாக்கு, மனதின் குறைகளை ஒப்புக்கொள்வது. சிவ பூஜைக்குப் பின் முழு சரணாகதியாக ஓதப்படும்."},
-  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"ஸ்ரீசைலத்தில் இயற்றப்பட்ட பரவசமான பக்தியின் 100 செய்யுள்கள். சங்கரரின் மிக விரிவான சைவ ஸ்தோத்திரம் — பக்தி, தத்துவம், உயரிய கவிதையின் கலவை."},
-  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"சிவனின் சொந்த பாம்பு ஆபரணத்தின் அசைவை அனுகரிக்கும் அலை போன்ற சந்தத்தில் சிவனுக்கு நான்கு பாம்பலை செய்யுள்கள் — ஓதுவதற்கு மயங்குவிக்கும்."},
-  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"29 செய்யுள்களில் சிவனின் தலையிலிருந்து பாதம் வரை வர்ணனை — சடாமுடியிலுள்ள சந்திரகலையிலிருந்து தாமரை பாதம் வரை. முழுமையான காட்சி தியானம்."},
-  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"சிவனின் மாநஸ பூஜை — ஹிருதயத்திலேயே இரத்தின சிம்மாசனம், தெய்வீக நீராட்டு, புனித ஆடைகளை அர்ப்பணிப்பது. சங்கரரின் மிகவும் மிருதுவான படைப்புகளில் ஒன்று."},
-  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"சிவனின் நாமங்களின் மாலையாக அமைந்த ஒன்பது செய்யுள்கள் — இறைவனின் அனந்த தன்மையின் பல்வேறு அம்சங்களை வெளிப்படுத்தும் தெய்வீக அடைமொழிகளின் மாலை."},
-  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"சிவனின் தாமரை பாதங்களிலிருந்து கிரீடம் வரை ஏறும் துணைப் படைப்பு — தெய்வீக வடிவத்தை ஏறும் 41 பரவசமான செய்யுள்கள்."},
-  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"நமசிவாயவின் ஒவ்வொரு எழுத்திற்கும் அர்ப்பணிக்கப்பட்ட ஆறு செய்யுள்கள், சிவனின் நாமத்தின் ஐந்து எழுத்துக்கள் வழியாக பஞ்சபூதங்களை தியானிப்பது."},
-  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 நட்சத்திர மண்டலங்களை சிவனின் குணங்களுடன் இணைக்கும் 28 செய்யுள்களின் நட்சத்திர மாலை — ஜோதிஷமும் சைவ பக்தியும் இணைந்த அரிய தொகுப்பு."},
-  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"50 செய்யுள்களின் பொன் மாலை — ஒவ்வொரு சமஸ்கிருத எழுத்திற்கும் ஒன்று. முழு அட்சர மாலையும் சிவனைப் போற்றும் அகர வரிசை ஸ்தோத்திரம்."},
-  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"உமா-மகேஸ்வரனாக சிவனையும் பார்வதியையும் போற்றும் 13 செய்யுள்கள் — தெய்வீக தம்பதியரின் மிலனம் எல்லா படைப்பிற்கும் ஆதாரம். திருமண ஸ்தோத்திரம்."},
-  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"சிவனைப் போற்றும் வேதங்களின் சாரம் — சிவனை வடிவ கடவுளாகவும் வடிவமற்ற பிரம்மனாகவும் காட்டும் 11 செய்யுள்கள். மஹா சிவராத்திரிக்காக இயற்றப்பட்டது."},
+  {id:"s1",deity:"shiva",name:"Ardhanariswara Stotram",sanskrit:"अर्धनारीश्वरस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Unity","Shiva-Parvati","Non-Dual"],description:"அர்தநாரீஸ்வரர் மீது ஒன்பது ஸ்லோகங்கள் — சிவன் மற்றும் சக்தி ஒரே ஆண்-பெண் வடிவில். சேதனை மற்றும் ஆற்றலின் ஒற்றுமையை விளக்கும் தத்துவ ரத்தினம்."},
+  {id:"s2",deity:"shiva",name:"Dasa Sloka Stuthi",sanskrit:"दशश्लोकीस्तुति",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Verses","Self-Declaration","Advaita"],description:"ஆத்ம அறிவிப்பின் பத்து ஸ்லோகங்கள் — சங்கரர் ஆத்மாவின் இறுதி இயல்பை சுருக்கமான, இடி போன்ற ஸ்லோகங்களில் அறிவிக்கிறார்."},
+  {id:"s3",deity:"shiva",name:"Dakshinamurthy Ashtakam",sanskrit:"दक्षिणामूर्त्यष्टकम्",verses:10,type:"Ashtakam",auth:"confirmed",tags:["Advaita","Guru","Key Work","Silence"],description:"தெற்கு நோக்கிய மவுன குருவாக சிவன் — பிரம்மத்தில் பிரதிபலிக்கும் நகரத்தைப் போல் அண்டம் கண்ணாடியில் காட்சி. உயரிய அத்வைத ஸ்துதி."},
+  {id:"s4",deity:"shiva",name:"Dakshinamurthy Stotram",sanskrit:"दक्षिणामूर्तिस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Advaita","Guru","Extended","Philosophy"],description:"தட்சிணாமூர்த்தி மீது விரிவான ஸ்தோத்திரம் — நான்கு குமாரர்களுக்கு மௌனம் வழியாக ஞானம் அளிக்கும் பிரபஞ்ச குரு சிவன் மீது 19 ஸ்லோகங்கள்."},
+  {id:"s5",deity:"shiva",name:"Dakshinamurthy Varnamala",sanskrit:"दक्षिणामूर्तिवर्णमाला",verses:25,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","Dakshinamurthy"],description:"தட்சிணாமூர்த்தி மீது 25 ஸ்லோகங்களின் வர்ணமாலை — ஒவ்வொரு ஸ்லோகமும் சமஸ்கிருத எழுத்துக்களின் வரிசையில் தொடங்கும் அட்டவணை."},
+  {id:"s6",deity:"shiva",name:"Kalabhairava Ashtakam",sanskrit:"कालभैरवाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Kashi","Fierce","Time","Liberation"],description:"காசியின் காலபைரவர் மீது எட்டு வலிமையான ஸ்லோகங்கள் — காலத்தின் தலைவன். வாரணாசியில் இதை ஓதுவோர் காலச் சக்கரத்திலிருந்து விடுபடுவர்."},
+  {id:"s7",deity:"shiva",name:"Mrityunjaya Manasa Puja",sanskrit:"मृत्युञ्जयमानसपूजा",verses:46,type:"Manasa Puja",auth:"confirmed",tags:["Death","Liberation","Long Work","Mental Worship"],description:"மிருத்யுஞ்ஜயனின் மானஸ பூஜை — மரணத்தை வெல்பவனை 46 ஸ்லோகங்களில் விரிவான மனத்துள் வழிபாடு. ஒவ்வொரு சடங்கு உபகரணமும் மனத்துள் அர்ப்பணிக்கப்படுகிறது."},
+  {id:"s8",deity:"shiva",name:"Shiva Aparadha Kshamapana",sanskrit:"शिवापराधक्षमापणस्तोत्रम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Forgiveness","Surrender","Post-Puja"],description:"மன்னிப்பை வேண்டும் இதயம் தொட்ட ஸ்துதி — சிவன் முன்பு உடல், வாக்கு, மனம் என்ற அனைத்து குறைகளையும் ஒப்புக்கொள்ளும் கவிதை. சிவ பூஜைக்குப் பின் முழு சரணாகதியாக ஓதப்படுகிறது."},
+  {id:"s9",deity:"shiva",name:"Sivananda Lahari",sanskrit:"शिवानन्दलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Major Work","Bhakti","Srisailam","100 Verses"],description:"ஸ்ரீசைலத்தில் இயற்றப்பட்ட பரவச பக்தியின் 100 ஸ்லோகங்கள். பக்தி, தத்துவம், உன்னத கவிதை கலந்த சங்கரர் இயற்றிய மிகவும் விரிவான சைவ ஸ்துதி."},
+  {id:"s10",deity:"shiva",name:"Shiva Bhujangam",sanskrit:"शिवभुजङ्गम्",verses:4,type:"Bhujangam",auth:"confirmed",tags:["Serpentine Metre","Musical","Short"],description:"சிவனின் பாம்பு அணிகலனின் அசைவை பின்பற்றும் அலைமோதும் மீட்டரில் நான்கு பாம்பு ஸ்லோகங்கள் — ஓதுவதற்கு மந்திர தாக்கம் உள்ளவை."},
+  {id:"s11",deity:"shiva",name:"Shiva Keshadipanta Varnana",sanskrit:"शिवकेशादिपादान्तवर्णन",verses:29,type:"Varnana",auth:"confirmed",tags:["Head to Toe","Visual Meditation","Form of Shiva"],description:"சிவனை தலையிலிருந்து கால்வரை 29 ஸ்லோகங்களில் விவரிக்கும் கவிதை — சடையில் பிறைச் சந்திரனிலிருந்து தாமரை பாதங்கள் வரை. முழுமையான காட்சி தியானம்."},
+  {id:"s12",deity:"shiva",name:"Shiva Manasa Puja",sanskrit:"शिवमानसपूजा",verses:5,type:"Manasa Puja",auth:"confirmed",tags:["Mental Worship","Intimate","Key Work","Heart"],description:"சிவ மானஸ பூஜை — இரத்தின சிம்மாசனம், திவ்ய ஸ்நானம், புனித ஆடை அனைத்தையும் இதயத்திலேயே அர்ப்பணிக்கும் மானஸ வழிபாடு. சங்கரர் இயற்றிய மிக கோமளமான கவிதைகளில் ஒன்று."},
+  {id:"s13",deity:"shiva",name:"Shiva Namavali Ashtakam",sanskrit:"शिवनामावल्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Names of Shiva","Garland","Epithets"],description:"சிவனின் திருநாமங்களின் மாலையாக அமைந்த ஒன்பது ஸ்லோகங்கள் — ஒவ்வொரு ஸ்லோகமும் இறைவனின் அனந்த இயல்பின் வெவ்வேறு அம்சங்களை வெளிப்படுத்தும் திவ்ய அடைமொழிகளின் மாலை."},
+  {id:"s13b",deity:"shiva",name:"Shiva Padadikeshanta Varnana",sanskrit:"शिवपादादिकेशान्तवर्णन",verses:41,type:"Varnana",auth:"confirmed",tags:["Toe to Head","Visual Meditation","Long Work"],description:"சிவனின் தாமரை பாதங்களிலிருந்து மகுடம் வரை ஏறும் — 41 உணர்வு மிகுந்த ஸ்லோகங்களில் திவ்ய வடிவத்தை ஏறுக்கிரமத்தில் வர்ணிக்கும் துணை நூல்."},
+  {id:"s14",deity:"shiva",name:"Shiva Panchakshara Stotram",sanskrit:"शिवपञ्चाक्षरस्तोत्रम्",verses:6,type:"Stotra",auth:"confirmed",tags:["Mantra","Na-Ma-Shi-Va-Ya","Five Elements","Daily"],description:"ந-ம-சி-வ-ய ஒவ்வொரு எழுத்திற்கும் ஒரு ஸ்லோகம் அர்ப்பணித்த ஆறு ஸ்லோகங்கள் — சிவனின் நாமத்தின் பஞ்சாட்சர வழி ஐந்து பூதங்களின் தியானம்."},
+  {id:"s15",deity:"shiva",name:"Shiva Panchakshara Nakshatramala",sanskrit:"शिवपञ्चाक्षरनक्षत्रमाला",verses:28,type:"Nakshatramala",auth:"confirmed",tags:["27 Stars","Astronomy","Unique Structure"],description:"27 நட்சத்திரங்களை சிவனின் குறிப்பிட்ட குணங்களுடன் இணைக்கும் 28 ஸ்லோகங்களின் நட்சத்திர மாலை — ஜோதிடம் மற்றும் சைவ பக்தியின் அரிய இணைப்பு."},
+  {id:"s16",deity:"shiva",name:"Suvarnamala Stuti",sanskrit:"सुवर्णमालास्तुति",verses:50,type:"Stotra",auth:"confirmed",tags:["Alphabet","Acrostic","50 Verses"],description:"ஒவ்வொரு சமஸ்கிருத எழுத்திற்கும் ஒன்று — 50 ஸ்லோகங்களின் தங்க மாலை. முழு வர்ணமாலையும் சிவனின் ஸ்துதியாகும் அட்டவணை ஸ்துதி."},
+  {id:"s17",deity:"shiva",name:"Uma Maheshwara Stotram",sanskrit:"उमामहेश्वरस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["Divine Couple","Marriage","Creation"],description:"உமா மஹேஸ்வரராக சிவன் மற்றும் பார்வதியை போற்றும் 13 ஸ்லோகங்கள் — திவ்ய தம்பதியரின் ஒன்றிணைவு எல்லா படைப்பின் ஊற்று. சடங்கு திருமண ஸ்துதி."},
+  {id:"s18",deity:"shiva",name:"Vedasara Shiva Stotram",sanskrit:"वेदसारशिवस्तोत्रम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Vedas","Shivaratri","Brahman"],description:"சிவனை போற்றும் வேதங்களின் சாரம் — சிவன் சாகார தெய்வம் மற்றும் நிராகார பிரம்மம் என்பதை காட்டும் 11 ஸ்லோகங்கள். மஹா சிவராத்திரிக்காக இயற்றப்பட்டது."},
   // DEVI
-  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Annapoorna","Kashi","Food"],description:"காசியின் அன்னபூரணா தேவிக்கு எட்டு செய்யுள்கள் — ஊட்டம் மற்றும் வளத்தின் தெய்வதையாக பார்வதி."},
-  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"காசியின் அன்னபூரணாவிற்கு 12 செய்யுள்கள், சங்கரரின் பிரார்த்தனையோடு முடிவு: 'ஓ பார்வதி, காசியை என் இல்லமாக்கி ஞானத்தின் பிட்சையால் என்னை வளர்ப்பாயாக.'"},
-  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"பகவதியின் 11 செய்யுள்களில் மாநஸ பூஜை — தெய்வீக தாயார் — எல்லா புனித பொருட்களையும் பூஜையையும் உள்ளத்தில் அர்ப்பணிப்பது."},
-  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"பவானிக்கு முழு சரணாகதியின் ஒன்பது செய்யுள்கள் — ஒவ்வொன்றும் முழு திக்கற்றதன்மையை அறிவிக்கும்: 'என்னிடம் வேறு யாரும் இல்லை, ஓ தாயே.' மிகவும் தீவிரமான சாக்த சரணாகதி."},
-  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"உருளும் பாம்பலை சந்தத்தில் பவானிக்கு 17 செய்யுள்களின் பாம்பலை ஸ்தோத்திரம் — அகம்பாவமாகிய அரக்கர்களை அழிக்கும் தேவியின் கடுமையான சக்தியை உணர்த்துவது."},
-  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"பிரமராம்பாவிற்கு எட்டு செய்யுள்கள் — ஸ்ரீசைலத்தில் மல்லிகார்ஜுனரின் தேவி, வண்டின் உருவம் எடுக்கும் தேவியாக வழிபடப்படுபவள்."},
-  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"பிரபஞ்ச வடிவத்தில் தேவிக்கு 28 செய்யுள்களின் பாம்பலை ஸ்தோத்திரம் — நீரில் பாம்பு போல் அவளது குணங்கள் வழியாக பாய்வது."},
-  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"தேவிக்கு அறுபத்திநான்கு சேவைகளின் மானஸ அர்ப்பணத்தின் 72 செய்யுள்கள் — சங்கரரின் தேவி வழிபாட்டு படைப்புகளில் மிகவும் விரிவானது."},
-  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"தேவியை போற்றும் ஐந்து இரத்தினச் செய்யுள்கள் — சக்தி, அருள், விடுதலை என்னும் தேவியின் குணங்களை உள்ளடக்கிய சுருக்கமான ஆனால் வலிமையான சாக்த பக்தி மணி."},
-  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"எல்லா குற்றங்களுக்கும் துர்க்கையின் மன்னிப்பு கோரும் 17 செய்யுள்கள் — சிவ அபராத க்ஷமாபணத்தின் சாக்த சகோதரி."},
-  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"கௌரிக்கு பத்து செய்யுள்கள் — பார்வதியின் பொன் நிற, மெல்லிய வடிவம். பிரபஞ்ச தாயாக தேவியின் மென்மையான, நெருக்கமான சித்திரம்."},
-  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"ஹரா (சிவன்) மற்றும் கௌரி (பார்வதி) இருவரையும் போற்றும் எட்டு செய்யுள்கள் — அவர்களின் நித்திய மிலனம், பிரபஞ்சத்தின் தெய்வீக பெற்றோர்களாக அவர்களின் பங்கு."},
-  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"காளியின் மன்னிப்பு கோரும் 17 செய்யுள்கள் — கடுமையான அழிவுகரி காளியின் நெஞ்சிலும் தாயின் நெஞ்சம் இருக்கும் என்பதை ஒப்புக்கொள்வது. பயமும் மென்மையும் ஒருங்கிணைந்த அரிய பஜனை."},
-  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"லலிதையை போற்றும் ஐந்து இரத்தினச் செய்யுள்கள் — மகிழ்ச்சியான தேவி. காலையில் ஓதுவோருக்கு அதிர்ஷ்டம், ஞானம், செல்வம், புகழ் கிடைக்கும்."},
-  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"ஒவ்வொரு சமஸ்கிருத எழுத்தையும் தேவியின் ஒரு வடிவத்துடன் இணைக்கும் மந்திரங்களின் மாலை — மந்திரம், மொழி, தேவி ஆகியவற்றை இணைக்கும் தந்திர-பக்தி படைப்பு."},
-  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"சங்கரரின் சொந்த தாயாருக்கு ஆழமான ஐந்து தனிப்பட்ட செய்யுள்கள் — வாழ்வின் கொடை, அதை துறக்கும் ஞானம் ஆகியவற்றுக்கு நன்றி. அவரது மிகவும் நெகிழவைக்கும் படைப்புகளில் ஒன்று."},
-  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"மதுரையின் மீனாட்சி தேவிக்கு எட்டு செய்யுள்கள் — மீன் கண்ணுடைய தேவி, தன் தாமரை பாதங்களை அடைவோருக்கு விடுதலையும் வளமும் அருள்பவள்."},
-  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"மதுரை மீனாட்சியை போற்றும் ஐந்து மணிகள் — சங்கரரின் அகில இந்திய யாத்திரை, தமிழ்நாட்டின் மீன் கண்ணுடைய தேவிமீதான பக்திக்கு சான்று."},
-  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"ராஜ ராஜேஸ்வரிக்கு எட்டு செய்யுள்கள் — உயரிய ராணி, படைப்பு, பாலிப்பு, அழிவு ஆகிய மூன்று உலகங்களை ஆள்பவள்."},
-  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"ஸ்ரிங்கேரியில் சாரதா (சரஸ்வதி) தேவிக்கு பாம்பலை ஸ்தோத்திரம் — சங்கரர் தன் முதல் மடம் நிறுவிய இடம். தன் ஆரிஷ்ட தேவிக்கு ஆழமான தனிப்பட்ட அஞ்சலி."},
-  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"அழகின் அலை — தேவி பார்வதியை போற்றும் உயரிய கவிதையின் 100 செய்யுள்கள். சாக்த பக்தியில் சங்கரரின் உயரிய சாதனையாகக் கருதப்படுவது."},
-  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"சியாமளா (மாதங்கி) பற்றிய ஒன்பது மணிகளின் மாலை — வாக்கு, இசை, கலைகளின் கரிய தேவி."},
-  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"திரிபுரசுந்தரிக்கு எட்டு செய்யுள்கள் — மூன்று நகரங்களின் அழகி, உயரிய தந்திர தேவி."},
-  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"127 செய்யுள்களில் சங்கரரின் மிக விரிவான மாநஸ பூஜை படைப்பு — திரிபுரசுந்தரியின் முழுமையான உள் வழிபாடு."},
-  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"திரிபுரசுந்தரியை உயரிய வேத தேவியாக நிலை நிறுத்தும் பத்து செய்யுள்கள் — அவளின் பாதங்கள் நான்கு வேதங்கள், அவளின் வடிவம் வேத ஞானம்."},
+  {id:"d1",deity:"devi",name:"Annapoorna Ashtakam",sanskrit:"अन्नपूर्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Annapoorna","Kashi","Food"],description:"காசியின் அன்னபூர்ணா தேவிக்கு எட்டு ஸ்லோகங்கள் — ஊட்டம் மற்றும் வளத்தின் தேவியாக பார்வதி."},
+  {id:"d2",deity:"devi",name:"Annapoorna Stotram",sanskrit:"अन्नपूर्णास्तोत्रम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Kashi","Food","Liberation"],description:"காசியின் அன்னபூர்ணாவிற்கு 12 ஸ்லோகங்கள், சங்கரரின் வேண்டுதலுடன் முடிவடையும்: 'ஓ பார்வதி, காசியை என் இல்லமாக்கி ஞான பிட்சை அளிப்பாய்.'"},
+  {id:"d3",deity:"devi",name:"Bhagavathi Manasa Puja",sanskrit:"भगवतीमानसपूजा",verses:11,type:"Manasa Puja",auth:"confirmed",tags:["Devi","Mental Worship"],description:"பகவதி — திவ்ய தாயின் மானஸ பூஜையின் பதினொரு ஸ்லோகங்கள். புனித பொருட்கள் அனைத்தையும் மனதிலேயே அர்ப்பணிக்கும் உள்ளார்ந்த வழிபாடு."},
+  {id:"d4",deity:"devi",name:"Bhavani Ashtakam",sanskrit:"भवान्यष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Surrender","Refugee","Key Work"],description:"பவானிக்கு முழு சரணாகதியின் ஒன்பது ஸ்லோகங்கள் — ஒவ்வொரு ஸ்லோகமும் முழு ஆதரவற்ற நிலையை ஒப்புக்கொள்கிறது: 'என்னிடம் வேறு யாரும் இல்லை, அம்மா.' மிகவும் தீவிரமான சாக்த சரணாகதி."},
+  {id:"d5",deity:"devi",name:"Bhavani Bhujangam",sanskrit:"भवानीभुजङ्गम्",verses:17,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Musical","Bhavani"],description:"பவானி பஜங்கம் — 17 ஸ்லோகங்கள் கொண்ட பாம்பு கதி ஸ்தோத்திரம். அகந்தை என்ற அரக்கர்களை அழிக்கும் தேவியின் உக்கிர சக்தியை வேண்டுகிறது."},
+  {id:"d6",deity:"devi",name:"Bhramaramba Ashtakam",sanskrit:"भ्रमराम्बाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Bhramaramba","Srisailam","Regional"],description:"ஸ்ரீசைலத்தில் மல்லிகார்ஜுனரின் பட்டமகிஷி பிரம்ரம்பாவிற்கு எட்டு ஸ்லோகங்கள் — தேனீ வடிவம் எடுக்கும் தேவி."},
+  {id:"d7",deity:"devi",name:"Devi Bhujangam",sanskrit:"देवीभुजङ्गम्",verses:28,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","Shakti","28 Verses"],description:"தேவியின் பிரபஞ்ச வடிவிற்கு 28 ஸ்லோகங்களின் பாம்பு கதி ஸ்துதி — தண்ணீரில் பாம்பு போல் தேவியின் குணங்கள் வழியாக பாயும் ஸ்துதி."},
+  {id:"d8",deity:"devi",name:"Devi Chatuhshasti Upachara",sanskrit:"देवीचतुःषष्ट्युपचारपूजास्तोत्रम्",verses:72,type:"Manasa Puja",auth:"confirmed",tags:["64 Services","Most Elaborate","Navratri"],description:"தேவிக்கு 64 சேவைகளை அர்ப்பணிக்கும் 72 ஸ்லோகங்களின் மானஸ பூஜை — சங்கரர் இயற்றிய தேவி வழிபாட்டு நூல்களில் மிகவும் விரிவானது."},
+  {id:"d9",deity:"devi",name:"Devi Pancharatnam",sanskrit:"देवीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Five Gems","Devi","Short"],description:"தேவியை போற்றும் ஐந்து ரத்தின ஸ்லோகங்கள் — தேவியின் சக்தி, அருள், மோட்சம் அளிக்கும் குணங்களை உள்ளடக்கிய சுருக்கமான ஆனால் சக்திவாய்ந்த சாக்த நூல்."},
+  {id:"d10",deity:"devi",name:"Durga Aparadha Bhajana Stotram",sanskrit:"दुर्गापराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Forgiveness","Durga","Post-Puja"],description:"அனைத்து குற்றங்களுக்கும் துர்காவிடம் மன்னிப்பு வேண்டும் 17 ஸ்லோகங்கள் — சிவ அபராத க்ஷமாபண ஸ்தோத்திரத்தின் சாக்த சமதுல்யம்."},
+  {id:"d11",deity:"devi",name:"Gouri Dashakam",sanskrit:"गौरीदशकम्",verses:11,type:"Stotra",auth:"confirmed",tags:["Gauri","Parvati","Devotion"],description:"கௌரி தசகம் — பார்வதியின் பொன் நிற, மிருதுவான வடிவம். பிரபஞ்ச தாயின் மிகவும் நெருக்கமான உருவப்படம் தரும் பத்து ஸ்லோகங்கள்."},
+  {id:"d12",deity:"devi",name:"Hara Gouri Ashtakam",sanskrit:"हरगौर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Shiva-Parvati","Together","Marriage"],description:"ஹர (சிவன்) மற்றும் கௌரி (பார்வதி) இருவரையும் போற்றும் எட்டு ஸ்லோகங்கள் — பிரபஞ்ச தாய்தந்தையரின் நித்திய ஒன்றிணைவு மற்றும் பாத்திரம்."},
+  {id:"d13",deity:"devi",name:"Kali Aparadha Bhajana Stotram",sanskrit:"कालीअपराधक्षमापणस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Kali","Forgiveness","Fierce"],description:"காளியிடம் மன்னிப்பு வேண்டும் 17 ஸ்லோகங்கள் — உக்கிர சம்ஹார காளிக்கும் தாயின் இதயம் உண்டு என்ற உணர்வின் அரிய ஸ்துதி."},
+  {id:"d14",deity:"devi",name:"Lalitha Panchakam",sanskrit:"ललिताष्टकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Lalitha","Bliss","Morning"],description:"லலிதையை போற்றும் ஐந்து ரத்தின ஸ்லோகங்கள் — ஆனந்த தேவி. காலையில் ஓதுவது அதிர்ஷ்டம், ஞானம், செல்வம், முடிவற்ற புகழ் தரும்."},
+  {id:"d15",deity:"devi",name:"Mantra Matrika Pushpamala",sanskrit:"मन्त्रमातृकापुष्पमाला",verses:17,type:"Stotra",auth:"confirmed",tags:["Mantra","Sanskrit Alphabet","Tantric"],description:"ஒவ்வொரு சமஸ்கிருத எழுத்தையும் தேவியின் வடிவத்துடன் இணைக்கும் மந்திர மாதிருகா புஷ்பமாலை — மந்திரம், மொழி மற்றும் சக்தியை இணைக்கும் தாந்திரிக படைப்பு."},
+  {id:"d16",deity:"devi",name:"Matru Panchakam",sanskrit:"मातृपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Mother","Gratitude","Personal","Moving"],description:"சங்கரரின் சொந்த தாயிடம் ஐந்து ஆழமான தனிப்பட்ட ஸ்லோகங்கள் — வாழ்வு அளித்ததற்கும் அதை துறக்கும் ஞானம் அளித்ததற்கும் நன்றி. மிகவும் உள்ளம் தொட்ட படைப்புகளில் ஒன்று."},
+  {id:"d17",deity:"devi",name:"Meenakshi Ashtakam",sanskrit:"मीनाक्षीष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Meenakshi","Madurai","South India"],description:"மதுரையின் மீனாட்சி அம்மனுக்கு எட்டு ஸ்லோகங்கள் — மீன் கண்ணுடைய தேவி தனது தாமரை பாதங்களை அணுகுவோர் அனைவருக்கும் மோட்சம் மற்றும் செழிப்பை அளிக்கிறாள்."},
+  {id:"d18",deity:"devi",name:"Meenakshi Pancharatnam",sanskrit:"मीनाक्षीपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Meenakshi","Madurai","Five Gems"],description:"மதுரையின் மீனாட்சி அம்மனை போற்றும் ஐந்து ரத்தின ஸ்லோகங்கள் — சங்கரரின் பாரத யாத்திரை மற்றும் தமிழ்நாட்டின் மீன் கண்ணுடைய தேவிமீது கொண்ட மரியாதையின் சான்று."},
+  {id:"d19",deity:"devi",name:"Raja Rajeshwari Ashtakam",sanskrit:"राजराजेश्वर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Supreme Queen","Sri Vidya"],description:"ராஜ ராஜேஸ்வரிக்கு எட்டு ஸ்லோகங்கள் — படைப்பு, பாதுகாப்பு, சம்ஹாரம் என்ற மூன்று நகரங்களிலும் ஆட்சி செலுத்தும் உயரிய ராணி."},
+  {id:"d20",deity:"devi",name:"Sharada Bhujangam",sanskrit:"शारदाभुजङ्गम्",verses:8,type:"Bhujangam",auth:"confirmed",tags:["Saraswati","Sringeri","Learning"],description:"ஸ்ரிங்கேரியின் சாரதா தேவி (சரஸ்வதி) க்கு பாம்பு கதி ஸ்துதி — சங்கரர் தனது முதல் மடத்தை நிறுவிய இடம். தனது ஆதரவு தெய்வத்திற்கு ஆழமான தனிப்பட்ட அஞ்சலி."},
+  {id:"d21",deity:"devi",name:"Soundarya Lahari",sanskrit:"सौन्दर्यलहरी",verses:100,type:"Lahari",auth:"confirmed",tags:["Masterpiece","Major Work","Beauty","Very Popular"],description:"சௌந்தர்ய லஹரி — தேவி பார்வதியை போற்றும் 100 உன்னத கவிதை ஸ்லோகங்களின் அழகலை. சாக்த பக்தியில் சங்கரரின் உயரிய சாதனை."},
+  {id:"d22",deity:"devi",name:"Syamala Navarathna Malika",sanskrit:"श्यामलानवरत्नमालिका",verses:12,type:"Stotra",auth:"confirmed",tags:["Syamala","Nine Gems","Tantric"],description:"ஸ்யாமளா (மாதங்கி) — வாக்கு, இசை, கலைகளின் கருப்பு தேவியை போற்றும் ஒன்பது ரத்தின மாலை."},
+  {id:"d23",deity:"devi",name:"Tripurasundari Ashtakam",sanskrit:"त्रिपुरसुन्दर्यष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Tripura Sundari","Tantra","Sri Vidya"],description:"திரிபுர சுந்தரிக்கு எட்டு ஸ்லோகங்கள் — மூன்று நகரங்களின் அழகானவள், உயரிய தாந்திரிக தேவி."},
+  {id:"d24",deity:"devi",name:"Tripurasundari Manasa Puja",sanskrit:"त्रिपुरसुन्दरीमानसपूजा",verses:127,type:"Manasa Puja",auth:"confirmed",tags:["127 Verses","Most Extensive","Sri Vidya"],description:"திரிபுர சுந்தரியின் முழுமையான உள்ளார்ந்த வழிபாடு — 127 ஸ்லோகங்களின் மிக விரிவான மானஸ பூஜை."},
+  {id:"d25",deity:"devi",name:"Tripurasundari Veda Pada Stotram",sanskrit:"त्रिपुरसुन्दरीवेदपादस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Vedas","Tripura Sundari","Philosophical"],description:"திரிபுர சுந்தரியின் பாதங்களே நான்கு வேதங்கள் என்று நிறுவும் பத்து ஸ்லோகங்கள் — தேவியின் வடிவமே வேத ஞானம்."},
   // LAKSHMI
-  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"ஒரே ஒரு நெல்லிக்காய் மட்டுமே கொடுத்த ஏழைப் பெண்ணுக்காக லக்ஷ்மியின் அருளை வேண்டி தன்னிச்சையாக இயற்றிய ஸ்தோத்திரம். வானிலிருந்து பொன் நெல்லிக்காய்கள் பொழிந்தன."},
+  {id:"l1",deity:"lakshmi",name:"Kanakadhara Stotram",sanskrit:"कनकधारास्तोत्रम्",verses:21,type:"Stotra",auth:"confirmed",tags:["Miracle","Grace","Golden Amla","Very Popular"],description:"ஒரு ஏழை பெண்மணி தனது ஒரே நெல்லிக்காயை அர்ப்பணித்ததற்காக லக்ஷ்மியின் அருளை வேண்டி தானாக இயற்றிய ஸ்துதி. ஆகாயத்திலிருந்து தங்க நெல்லிக்காய் மழை அதிசயமாக பொழிந்தது."},
   // VISHNU
-  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"அச்யுதனுக்கு ஒன்பது செய்யுள்கள் — வீழாதவன். என்றும் வீழாத இறைவனின் நித்திய அருளில் அடைக்கலம் கோரும் நெஞ்சார்ந்த பிரார்த்தனை."},
-  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"ஆதி சேஷன் மீது பிரபஞ்ச உருவில் அமர்ந்திருக்கும் நாராயணனை தியான பாவனையில் போற்றும் 18 செய்யுள்கள்."},
-  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'கோவிந்தனை நாடுங்கள்!' — முதுமையில் வியாகரணம் மனப்பாடம் செய்யும் அறிஞனைக் கண்டு இயற்றப்பட்டது. மாயையை கைவிட வேண்டும் என்ற இடிமுழக்க அழைப்பு."},
-  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"மச்சத்திலிருந்து கல்கி வரை விஷ்ணுவின் பத்து அவதாரங்களை போற்றும் பத்து செய்யுள்கள் — பரிணாம நிலைகளில் தெய்வீக அவதாரம்."},
-  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"கோவிந்தனை மகிமைப்படுத்தும் ஒன்பது செய்யுள்கள் — வ்ருந்தாவனின் இடையன் கிருஷ்ணன், கோபிகைகளின் மயக்குவோன், எல்லா நெஞ்சங்களையும் கவரும் குழல் இசைஞன்."},
-  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"ஹரி (விஷ்ணு)வை போற்றும் 44 செய்யுள்கள் — இறைவனின் அவதாரங்கள், குணங்கள், பிரபஞ்ச வடிவம், விடுதலை அருள் ஆகியவற்றை உள்ளடக்கும் விரிவான பக்தி படைப்பு."},
-  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"ஹரி (விஷ்ணு)வின் தெய்வீக நாமங்களை முத்துகள் போல் மாலையில் கோர்க்கும் 19 செய்யுள்கள் — ஒவ்வொரு நாமமும் இறைவனின் வேறொரு பரிமாணம்."},
-  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"ஹரியில் சரணடையும் எட்டு செய்யுள்கள் — சங்கரர் விஷ்ணுவின் தாமரை பாதங்களில் தம்மை அர்ப்பணிக்கும் வைணவ சரணாகதி ஸ்தோத்திரம்."},
-  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"பூரியின் ஜகன்நாதனுக்கு எட்டு செய்யுள்கள் — எல்லோரையும் சமத்துவமாக ஏற்கும் இறைவன், சங்கரர் கோவர்த்தன மடம் நிறுவும் போது இயற்றியது."},
-  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"கிருஷ்ணனுக்கு எட்டு செய்யுள்கள் — கருநீல நிறத்தோன், குழல் இசைஞன், வ்ருந்தாவனின் வெண்ணெய் திருடன். விளையாட்டுப் பிரியமான, மயக்கும் பாலக்கடவுளின் சித்திரம்."},
-  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"லக்ஷ்மி நரஸிம்மருக்கு ஐந்து இரத்தினச் செய்யுள்கள் — விஷ்ணுவின் கடுமையான சிங்க-மனிதன் அவதாரம். நரஸிம்ம பக்தியின் சுருக்கமான மணி."},
-  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"நாராயணனை போற்றும் 30 செய்யுள்கள் — ஆதி நீர்களில் அமர்ந்திருக்கும் விஷ்ணுவின் பிரபஞ்ச உருவம். எல்லாவற்றின் ஆதாரம், தாங்குவோன், முடிவாக இறைவன் பற்றிய விரிவான தியானம்."},
-  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"பாண்டர்ப்பூரின் பாண்டுரங்க (வித்தல்)னுக்கு ஒன்பது செய்யுள்கள் — சங்கரரின் அகில இந்திய தொகுப்பில் மஹாராஷ்டிர பக்தி பாரம்பரியத்தின் ஒருங்கிணைப்பு."},
-  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"அயோத்தியில் ராமனின் பிறப்பிலிருந்து ராவணன் வதை வரை தெய்வீக செயல்களை போற்றும் 29 செய்யுள்களின் பாம்பலை ஸ்தோத்திரம்."},
-  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"ஸ்ரீரங்கத்தின் ரங்கநாதனுக்கு எட்டு செய்யுள்கள் — சங்கரர் மிகப்பெரிய வைணவ கோயிலில் சயனித்திருக்கும் விஷ்ணுவின் முன் நின்ற போது இயற்றியது."},
-  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"நரஸிம்மரின் காப்பு கைத்தாங்கலுக்கான ஆர்த்த அழுகை — 17 செய்யுள்கள் ஒவ்வொன்றும் 'லக்ஷ்மி நரஸிம்ம, மம தேஹி கராவலம்பம்' என்று முடியும்."},
-  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"விடுதலை நாடி விஷ்ணுவுக்கு தீவிர பக்தியின் ஏழு செய்யுள்கள் — வைணவ சரணாகதியின் சாரத்தை உள்ளடக்கும் சுருக்கமான ஆனால் வலிமையான பிரார்த்தனை."},
-  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"விஷ்ணுவிற்கு 14 பாம்பலை செய்யுள்கள் — படைப்பின் ஆரம்பத்தில் பிரபஞ்ச பாம்பான ஆதிசேஷன் மீது அமர்ந்திருக்கும் இறைவனை உணர்த்துவது."},
-  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"விஷ்ணுவின் தெய்வீக வடிவத்தில் 52 செய்யுள்களின் ஏறு தியானம் — தாமரை பாதங்களிலிருந்து உடல் வழியாக ஒளிர்மிகு கிரீடம் வரை."},
+  {id:"v1",deity:"vishnu",name:"Achyuta Ashtakam",sanskrit:"अच्युताष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Achyuta","Infallible","Devotion"],description:"அச்யுத — தவறாதவனுக்கு ஒன்பது ஸ்லோகங்கள். எப்போதும் விழாதவன் திருவருளில் அடைக்கலம் தேடும் இதயம் உணரும் பிரார்த்தனை."},
+  {id:"v2",deity:"vishnu",name:"Ardha Dhyana Narayana Stotram",sanskrit:"अर्धध्याननारायणस्तोत्रम्",verses:18,type:"Stotra",auth:"confirmed",tags:["Narayana","Meditation","18 Verses"],description:"ஆதிசேஷன் மீது ஆதி நாராயணன் பள்ளி கொண்ட பிரபஞ்ச வடிவத்தை தியானிக்கும் 18 ஸ்லோகங்கள்."},
+  {id:"v3",deity:"vishnu",name:"Bhaja Govindam",sanskrit:"भजगोविन्दम्",verses:12,type:"Stotra",auth:"confirmed",tags:["Very Popular","Renunciation","Life Lesson"],description:"'கோவிந்தனை பஜி!' — வயதான நிலையில் இலக்கணம் மனப்பாடம் செய்யும் அறிஞரைக் கண்டு இயற்றப்பட்ட கவிதை. மாயையை துறக்க அழைக்கும் இடி போன்ற உரை."},
+  {id:"v4",deity:"vishnu",name:"Dasavatara Stotram",sanskrit:"दशावतारस्तोत्रम्",verses:10,type:"Stotra",auth:"confirmed",tags:["Ten Avatars","Vishnu","Evolution"],description:"மத்ஸ்யமிலிருந்து கல்கி வரை விஷ்ணுவின் பத்து அவதாரங்களை போற்றும் பத்து ஸ்லோகங்கள் — திவ்ய அவதரணத்தின் பரிணாம நிலைகளை காட்டுகின்றன."},
+  {id:"v5",deity:"vishnu",name:"Govinda Ashtakam",sanskrit:"गोविन्दाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Govinda","Krishna","Vrindavana"],description:"வ்ருந்தாவனத்தின் இடையனாகிய கோவிந்தன் — கிருஷ்ணன், கோபிகைகளை வசீகரிக்கும், இதயம் திருடும் புல்லாங்குழல் வாசிப்பவனை போற்றும் ஒன்பது ஸ்லோகங்கள்."},
+  {id:"v6",deity:"vishnu",name:"Hari Mide Stotram",sanskrit:"हरिमीडेस्तोत्रम्",verses:44,type:"Stotra",auth:"confirmed",tags:["Hari","44 Verses","Extended"],description:"ஹரி (விஷ்ணு) வை போற்றும் 44 ஸ்லோகங்கள் — இறைவனின் அவதாரங்கள், குணங்கள், பிரபஞ்ச வடிவம், மோட்சம் அளிக்கும் அருளை உள்ளடக்கிய விரிவான பக்தி நூல்."},
+  {id:"v7",deity:"vishnu",name:"Hari Namavali Stotram",sanskrit:"हरिनामावलीस्तोत्रम्",verses:19,type:"Stotra",auth:"confirmed",tags:["Names of Hari","Garland","Epithets"],description:"ஹரியின் திவ்ய நாமங்களை முத்து மாலையாக கோர்த்த 19 ஸ்லோகங்கள் — ஒவ்வொரு நாமமும் இறைவனின் வெவ்வேறு அம்சம்."},
+  {id:"v8",deity:"vishnu",name:"Hari Sarana Ashtakam",sanskrit:"हरिशरणाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Refuge","Surrender","Sharanagati"],description:"ஹரியிடம் அடைக்கலம் தேடும் எட்டு ஸ்லோகங்கள் — சங்கரர் விஷ்ணுவின் தாமரை பாதங்களில் தன்னை அர்ப்பணிக்கும் வைஷ்ணவ சரணாகதி ஸ்துதி."},
+  {id:"v9",deity:"vishnu",name:"Jagannatha Ashtakam",sanskrit:"जगन्नाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Jagannatha","Puri","Equality"],description:"பூரியின் ஜகன்னாதருக்கு எட்டு ஸ்லோகங்கள் — சங்கரர் கோவர்தன மடத்தை நிறுவியபோது இயற்றிய, அனைவரையும் சமத்துவமாக ஏற்கும் இறைவன்."},
+  {id:"v10",deity:"vishnu",name:"Krishna Ashtakam",sanskrit:"कृष्णाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Krishna","Vrindavana","Butter Thief"],description:"கிருஷ்ணன் — நீல நிறமுடையவன், புல்லாங்குழல் வாசிப்பவன், வ்ருந்தாவனத்தின் வெண்ணெய் திருடன். விளையாட்டான, மனம் கவர்ந்த குழந்தை தெய்வத்தின் உருவப்படம் தரும் எட்டு ஸ்லோகங்கள்."},
+  {id:"v11",deity:"vishnu",name:"Lakshmi Narasimha Pancharatnam",sanskrit:"लक्ष्मीनृसिंहपञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Narasimha","Five Gems","Fierce"],description:"லக்ஷ்மி நரசிம்மருக்கு ஐந்து ரத்தின ஸ்லோகங்கள் — விஷ்ணுவின் உக்கிர சிங்க மனித அவதாரம். நரசிம்ம பக்தியின் சுருக்கமான ஆனால் சக்திவாய்ந்த ரத்தினம்."},
+  {id:"v12",deity:"vishnu",name:"Narayana Stotram",sanskrit:"नारायणस्तोत्रम्",verses:30,type:"Stotra",auth:"confirmed",tags:["Narayana","30 Verses","Cosmic"],description:"நாராயணனை போற்றும் 30 ஸ்லோகங்கள் — ஆதி நீர்களில் படுத்திருக்கும் விஷ்ணுவின் பிரபஞ்ச வடிவம். எல்லா படைப்பின் ஊற்று, பாலகன், முடிவு."},
+  {id:"v13",deity:"vishnu",name:"Panduranga Ashtakam",sanskrit:"पाण्डुरङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Panduranga","Vitthal","Maharashtra"],description:"பாண்டர்பூரின் பாண்டுரங்க (விட்டல்) க்கு ஒன்பது ஸ்லோகங்கள் — மஹாராஷ்டிர பக்தி பாரம்பரியத்தை தனது அகில இந்திய ஒருங்கிணைப்பில் சேர்த்த சங்கரரின் படைப்பு."},
+  {id:"v14",deity:"vishnu",name:"Rama Bhujangam",sanskrit:"रामभुजङ्गम्",verses:29,type:"Bhujangam",auth:"confirmed",tags:["Rama","29 Verses","Serpentine"],description:"அயோத்தியில் பிறந்ததிலிருந்து ராவணன் வதம் வரை ராமரின் திவ்ய செயல்களை போற்றும் 29 ஸ்லோகங்களின் சர்ப்ப கதி ஸ்துதி."},
+  {id:"v15",deity:"vishnu",name:"Ranganatha Ashtakam",sanskrit:"रङ्गनाथाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Ranganatha","Srirangam","Reclining Vishnu"],description:"ஸ்ரீரங்கத்தின் ரங்கநாதருக்கு எட்டு ஸ்லோகங்கள் — சிறந்த வைஷ்ணவ கோவிலில் சயன விஷ்ணுவின் முன்பு சங்கரர் நின்று இயற்றிய கவிதை."},
+  {id:"v16",deity:"vishnu",name:"Lakshmi Narasimha Karavalamba",sanskrit:"लक्ष्मीनृसिंहकरावलम्बस्तोत्रम्",verses:17,type:"Stotra",auth:"confirmed",tags:["Narasimha","Protection","Key Work"],description:"நரசிம்மரின் காக்கும் கரம் வேண்டும் ஆவல் நிறைந்த பிரார்த்தனை — 17 ஸ்லோகங்கள் 'லக்ஷ்மி நரசிம்ம, மம தேஹி கராவலம்பம்' (உங்கள் காக்கும் கரம் அளியும்) என்று முடிகிறது."},
+  {id:"v17",deity:"vishnu",name:"Shatpadi Stotram",sanskrit:"षट्पदीस्तोत्रम्",verses:7,type:"Stotra",auth:"confirmed",tags:["Seven Verses","Liberation","Brief"],description:"மோட்சம் வேண்டும் விஷ்ணு பக்தியின் சுருக்கமான ஆனால் சக்திவாய்ந்த ஏழு ஸ்லோகங்கள் — வைஷ்ணவ சரணாகதியின் சாரம்."},
+  {id:"v18",deity:"vishnu",name:"Vishnu Bhujangam",sanskrit:"विष्णुभुजङ्गम्",verses:14,type:"Bhujangam",auth:"confirmed",tags:["Serpentine","14 Verses","Adi Shesha"],description:"விஷ்ணுவிற்கு 14 சர்ப்ப கதி ஸ்லோகங்கள் — படைப்பின் தொடக்கத்தில் ஆதிசேஷன், பிரபஞ்ச பாம்பின் மீது இளைப்பாறும் இறைவன்."},
+  {id:"v19",deity:"vishnu",name:"Vishnu Padadi Keshanta Stotram",sanskrit:"विष्णुपादादिकेशान्तस्तोत्रम्",verses:52,type:"Varnana",auth:"confirmed",tags:["Toe to Head","52 Verses","Visual Meditation"],description:"விஷ்ணுவின் திவ்ய வடிவத்தில் 52 ஸ்லோகங்களின் ஏறுக்கிரம தியானம் — தாமரை பாதங்களிலிருந்து உடலின் வழியாக ஒளிர்ந்த மகுடம் வரை."},
   // HANUMAN
-  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"ஹனுமானுக்கு ஐந்து இரத்தினச் செய்யுள்கள் — ராமனின் பெரும் பக்தன், தடைகளை வெல்பவன், துக்கத்தை அழிப்பவன்."},
+  {id:"h1",deity:"hanuman",name:"Hanumat Pancharatnam",sanskrit:"हनुमत्पञ्चरत्नम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Hanuman","Five Gems","Protection"],description:"அனுமனுக்கு ஐந்து ரத்தின ஸ்லோகங்கள் — ராமரின் மகா பக்தன், தடைகளை வெல்பவன், துக்கத்தை அழிப்பவன்."},
   // SACRED SITES
-  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"காசியை உடல் நகரத்துடன் அல்ல, பிரம்மனுடன் அடையாளம் காட்டும் ஐந்து செய்யுள்கள் — உண்மையான காசி ஒளிர்மிகு நெஞ்சம், சுத்த உணர்வின் நித்திய நகரம்."},
-  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"புனிதமான காசி நகரை போற்றும் ஒன்பது செய்யுள்கள் — மரண நேரத்தில் சிவன் தாரக மந்திரம் உரைத்து விடுதலை அளிக்கும் இடம்."},
-  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"மணிகர்ணிகா காட்டைப் பற்றிய ஒன்பது செய்யுள்கள் — மிகவும் புனிதமான தகன இடம், சிவன் இறந்தோரின் காதில் தாரக மந்திரம் சொல்லி கர்மத்திற்கு அப்பால் விடுதலை தருவது."},
-  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"சோமனாதத்திலிருந்து கிருஷ்ணேஸ்வரம் வரை பன்னிரண்டு ஜோதிர்லிங்க ஸ்தலங்களுக்கான பக்தி யாத்திரை — இந்தியாவின் புனிதமான சிவ ஸ்தலங்களை பதிமூன்று செய்யுள்களில் சுற்றுதல்."},
-  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"புனித கங்கையை எல்லா உயிர்களின் விடுவிப்பவளாக போற்றும் ஒன்பது செய்யுள்கள் — சிவனின் சடாமுடியிலிருந்து பாய்ந்து எல்லா பாவங்களை கழுவும் தாய்."},
-  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"நதி கங்கைக்கு விரிவான 14 செய்யுள்களின் ஸ்தோத்திரம் — புனிதமான நீரை தொட்ட எல்லோருக்கும் மோட்சம் அளிக்கும் உலகளாவிய தூய்மையாக்குவோள்."},
-  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"புனித நர்மதை நதிக்கு எட்டு செய்யுள்கள் — சிவனின் மகள், வெறும் தரிசனத்தாலேயே தூய்மைப்படுத்துபவள், தொட்டுத் தூய்மைப்படுத்தும் கங்கையைவிட வேறானவள்."},
-  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"புனித யமுனை நதிக்கு எட்டு செய்யுள்கள் — வ்ருந்தாவனின் இருண்ட, அழகான நதி, கிருஷ்ணன் நேசிக்கும் நதி."},
+  {id:"ss1",deity:"sacred",name:"Kasi Panchakam",sanskrit:"काशीपञ्चकम्",verses:5,type:"Panchakam",auth:"confirmed",tags:["Kashi","Non-Dual","Advaita"],description:"காசியை உடல் நகரமாக அல்ல, பிரம்மத்துடன் ஒருங்கிணைத்த ஐந்து ஸ்லோகங்கள் — உண்மையான காசி ஒளிரும் இதயம், சுத்த சேதனத்தின் நித்திய நகரம்."},
+  {id:"ss2",deity:"sacred",name:"Kasi Stotram",sanskrit:"काशीस्तोत्रम्",verses:9,type:"Stotra",auth:"confirmed",tags:["Kashi","Varanasi","Pilgrimage"],description:"காசி திருத்தலத்தை போற்றும் ஒன்பது ஸ்லோகங்கள் — சிவன் இறக்கும் தருணத்தில் தாரக மந்திரம் உபதேசிக்கும் மோட்சம் அளிக்கும் இடம்."},
+  {id:"ss3",deity:"sacred",name:"Manikarnika Ashtakam",sanskrit:"मणिकर्णिकाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Cremation Ghat","Death","Liberation"],description:"மணிகர்ணிகா கட்டின் மீது ஒன்பது ஸ்லோகங்கள் — மிக புனிதமான தகன பூமி, சிவன் மரண வேளையில் தாரக மந்திரம் கூறி கர்மாவை கடந்த மோட்சம் அளிக்கும் இடம்."},
+  {id:"ss4",deity:"sacred",name:"Dvadashalinga Stotram",sanskrit:"द्वादशलिङ्गस्तोत्रम्",verses:13,type:"Stotra",auth:"confirmed",tags:["12 Jyotirlingas","Pilgrimage","Key Work"],description:"சோமநாதத்திலிருந்து க்ருஷ்ணேஸ்வரம் வரை 12 ஜோதிர்லிங்க கோவில்களின் பக்தி யாத்திரை — இந்தியாவின் புனிதமான சிவ தலங்கள் அனைத்தையும் 13 ஸ்லோகங்களில்."},
+  {id:"ss5",deity:"sacred",name:"Gangashtakam",sanskrit:"गङ्गाष्टकम्",verses:9,type:"Ashtakam",auth:"confirmed",tags:["Ganga","River","Purification"],description:"புனித கங்கையை போற்றும் ஒன்பது ஸ்லோகங்கள் — சிவன் சடையிலிருந்து பொழியும், எல்லா பாவங்களையும் கழுவும் மோட்சம் தரும் தேவி."},
+  {id:"ss6",deity:"sacred",name:"Ganga Stotram",sanskrit:"गङ्गास्तोत्रम्",verses:14,type:"Stotra",auth:"confirmed",tags:["Ganga","14 Verses","River Goddess"],description:"கங்கா நதிக்கு விரிவான 14 ஸ்லோகங்கள் — புனித நீரை தொடுவதால் மோட்சம் தரும் உலகின் தூய்மைப்படுத்தும் தேவி."},
+  {id:"ss7",deity:"sacred",name:"Narmadahtakam",sanskrit:"नर्मदाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Narmada","River","Central India"],description:"புனித நர்மதா நதிக்கு எட்டு ஸ்லோகங்கள் — சிவன் மகள், கங்கை தொடுவதால் தூய்மைப்படுத்தும்போது, இவளின் வெறும் தர்சனமே தூய்மைப்படுத்தும்."},
+  {id:"ss8",deity:"sacred",name:"Yamunashtakam",sanskrit:"यमुनाष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Yamuna","Krishna","Vrindavana"],description:"புனித யமுனா நதிக்கு எட்டு ஸ்லோகங்கள் — வ்ருந்தாவனத்தின் கருப்பு, அழகான நதி, கிருஷ்ணன் அன்பானவள்."},
   // MISCELLANEOUS (new!)
-  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"மங்கலமான ஆசிர்வாதங்களின் மழை — தெய்வீக அருளையும் வளத்தையும் வேண்டும் 16 செய்யுள்கள். சங்கரர் இயற்றிய பலதரப்பட்ட ஸ்தோத்திரங்களில் ஒன்று."},
-  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"ஒன்பது மணிகளின் மாலை — பொதுவான, சாம்பிரதாயிக வடிவத்தில் பரம் பொருளை போற்றும் பத்து செய்யுள்கள், குறிப்பிட்ட தெய்வ வடிவங்களுக்கு அப்பால் தெய்வீகத்தை போற்றுவது."},
-  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"ராஜஸ்தானின் புஷ்கர் புனித ஏரிக்கு எட்டு செய்யுள்கள் — இந்தியாவில் பிரம்மாவுக்கு மட்டுமே உள்ள முக்கிய கோயில், படைப்பு கடவுள் வழிபடப்படும் இடம்."},
-  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"மனம் (மனஸ்), வாக்கு, உடல் (காய) ஒவ்வொன்றுக்கும் ஒரு செய்யுள் — விடியலில் எல்லா எண்ணங்களையும், வார்த்தைகளையும், செயல்களையும் இறைவனுக்கு சமர்ப்பிப்பது."},
-  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"குரு பாதுகையை வணங்கும் எட்டு செய்யுள்கள் — இந்திய பாரம்பரியத்திற்கு தனித்துவமான வழிபாட்டு வடிவம், குருவின் பாத முத்திரைகளையே மதிப்பது."},
+  {id:"mc1",deity:"misc",name:"Kalyana Vrishti Stavam",sanskrit:"कल्याणवृष्टिस्तवम्",verses:16,type:"Stotra",auth:"confirmed",tags:["Auspicious","Blessings","Rain of Grace"],description:"மங்களகரமான ஆசீர்வாதங்களின் மழை — திவ்ய அருள் மற்றும் செழிப்பை வேண்டும் 16 ஸ்லோகங்கள். சமத பூக்ஸ் க்ரந்தாவளியில் உள்ள சங்கரரின் இயற்றல்களில் ஒன்று."},
+  {id:"mc2",deity:"misc",name:"Navarathna Malika",sanskrit:"नवरत्नमालिका",verses:10,type:"Stotra",auth:"confirmed",tags:["Nine Gems","General","Praise"],description:"நவரத்தின மாலிகா — குறிப்பிட்ட தெய்வ வடிவங்களை கடந்த பரம சக்திக்கு போற்றல் நல்கும் பொதுவான, பிரிவினையற்ற வடிவில் பத்து ஸ்லோகங்கள்."},
+  {id:"mc3",deity:"misc",name:"Pushkarashtakam",sanskrit:"पुष्कराष्टकम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Pushkar","Rajasthan","Pilgrimage","Brahma"],description:"ராஜஸ்தானில் புஷ்கர் தீர்த்தக்கடவுக்கு எட்டு ஸ்லோகங்கள் — இந்தியாவின் ஒரே பிரதான பிரம்மா கோவில், படைப்பாளர் தேவன் வழிபடும் இடம்."},
+  {id:"mc4",deity:"misc",name:"Pratah Smarana Stotram",sanskrit:"प्रातःस्मरणस्तोत्रम्",verses:3,type:"Stotra",auth:"confirmed",tags:["Morning Prayer","Daily","Surrender","Dawn"],description:"மூன்று அதிகாலை ஸ்லோகங்கள் — மனஸ் (மனம்), வாக் (மொழி), காய (உடல்) ஒவ்வொன்றிற்கும் ஒன்று — விடியலில் எல்லா எண்ணம், சொல், செயலையும் இறைவனிடம் அர்ப்பணித்தல்."},
+  {id:"mc5",deity:"misc",name:"Guru Paduka Stotram",sanskrit:"गुरुपादुकास्तोत्रम्",verses:8,type:"Ashtakam",auth:"confirmed",tags:["Guru","Sandals","Devotion","Tradition"],description:"குரு பாதுகா ஸ்தோத்திரம் — குருவின் பாதணிகளை வணங்கும் எட்டு ஸ்லோகங்கள். இந்திய பாரம்பரியத்திற்கு தனித்துவமான வழிபாட்டு வடிவம்."},
   // PRAKARANA
-  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"விவேகத்தின் கிரீட மணி — 581 செய்யுள்கள், அத்வைத வேதாந்தத்தின் மிக விரிவான வழிகாட்டி. விடுதலைக்கு படிப்படியாக நடத்தும் குரு-சிஷ்ய உரையாடல்."},
-  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"68 படிகம் தெளிவான செய்யுள்களில் ஆத்ம ஞானம். அத்வைத வேதாந்தத்திற்கு மிகவும் அணுகக்கூடிய அறிமுகம் — ஆத்மா, மாயா, விடுதலையை முறையாக விளக்குவது."},
-  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"வேதாந்த வகைமைகளுக்கு அறிமுகம் — நாலு தகுதிகள், மூன்று உடல்கள், ஐந்து கோஷங்கள். வேதாந்த படிப்பை தொடங்கும் எல்லா மாணவர்களுக்கும் அடிப்படை நுழைவாயில்."},
-  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"ஆயிரம் போதனைகள் — சங்கரரின் ஒரே சர்ச்சையற்ற உரைநடை படைப்பு. ஆத்ம உணர்வின் முழு பாதையை உள்ளடக்கும் கட்டமைக்கப்பட்ட குரு-சிஷ்ய உரையாடல்."},
-  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"உண்மையின் நேரடி அனுபவம் — குறிப்பிட்ட தியான பயிற்சிகளை உள்ளடக்கும் ஆத்மாவின் உடனடி உணர்வின் 144 செய்யுள்கள்."},
-  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"ஆறு இடி செய்யுள்கள்: 'சிதானந்த ரூப:, சிவோஹம்' — நான் சிவன், தூய உணர்வு-ஆனந்தம். இதுவரை எழுதப்பட்ட மிகவும் புகழ்பெற்ற ஆன்மிக படைப்புகளில் ஒன்று."},
-  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"ஒரு தாழ்ந்த சாதியினர் சங்கரர் வழியில் தடுத்தபோது இயற்றிய ஒன்பது செய்யுள்கள்: 'என் நித்திய ஆத்மாவையா, இந்த மண் உடலையா நகர்த்த விரும்புகிறீர்?' சங்கரர் அவரிடம் வணங்கினார்."},
-  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"வேதாந்த பிரபஞ்சவியல் — ஐந்து நுட்பமான தனிமங்கள் ஐந்து மடங்கு கலந்து பொருள் உலகை உருவாக்கும் விதம். மாயா வழியாக பிரம்மன் பிரபஞ்சமாகும் ரகசியம்."},
-  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"குரு கோவிந்தபாதர் 'நீ யார்?' என்று கேட்டபோது இயற்றிய பத்து செய்யுள்கள் — சங்கரர் தமது அத்வைத அடையாளத்தை தன்னியல்பாக அறிவிப்பது."},
-  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"ஆன்மிக உணர்வின் வழிகள் மற்றும் முறைகளை பட்டியலிடும் ஐந்து முதல் ஆறு நடைமுறை செய்யுள்கள் — ஆன்மிக தேடுவோருக்கு சங்கரரின் மிகவும் சுருக்கமான வழிகாட்டி."},
-  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"எல்லா உலக சொத்துக்கள் மற்றும் சாதனைகளுக்கும் மேலாக குரு மட்டுமே முக்கியம் என்று அறிவிக்கும் பத்து செய்யுள்கள் — குரு இல்லாமல் மற்றெல்லாம் வீண்."},
-  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"ஒரு கோவணம் மட்டுமே வைத்திருந்தாலும் எல்லாவற்றையும் துறந்த சந்நியாசியின் வாழ்வை மகிமைப்படுத்தும் ஐந்து மகிழ்ச்சியான செய்யுள்கள் — ஆனாலும் ஆத்மாவில் இளைப்பாறுவோன் எல்லாரிலும் செல்வந்தன்."},
-  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"உடலில் இருக்கும்போதும் நிலையான மகிழ்ச்சியில் வாழ்ந்து எங்கும் பிரம்மனை காணும் உயிரில் விடுதலை பெற்றோரின் ஆனந்தத்தை வர்ணிக்கும் 19 செய்யுள்கள்."},
-  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"மாயாவின் தன்மையைப் பற்றிய ஐந்து செய்யுள்கள் — ஒன்றை பலவாக தோற்றுவிக்கும் பிரபஞ்ச மாயை. அஞ்ஞானம் பற்றிய சங்கரரின் மிகவும் கேந்திரமான ஆய்வு."},
-  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"மஹாவாக்கியமான 'தத் த்வம் அஸி' (அது நீ) ஆராயும் 53 செய்யுள்கள் — நேரடி அனுபவம் வழியாக மகா வாக்கியங்களை பகுப்பாய்வு செய்யும் தொழில்நுட்ப அத்வைத நூல்."},
-  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"வேதாந்த கண்ணோட்டத்தில் யோகா பற்றிய 29 செய்யுள்கள் — சங்கரர் மூச்சுக் கட்டுப்பாடு, தியானம், அத்வைத ஞானம் ஆகியவற்றை ஒருங்கிணைந்த பாதையில் சேர்ப்பது."},
+  {id:"p1",deity:"prakarana",name:"Vivekachudamani",sanskrit:"विवेकचूडामणि",verses:581,type:"Prakarana",auth:"attributed",tags:["Major Work","Self-Enquiry","Advaita","581 Verses"],description:"விவேக சூடாமணி — அத்வைத வேதாந்தத்தின் மிக விரிவான வழிகாட்டி, 581 ஸ்லோகங்கள். குரு சீடன் உரையாடல் வடிவில் மோட்சத்தை நோக்கிய கட்ட கட்டமான வழி."},
+  {id:"p2",deity:"prakarana",name:"Atma Bodha",sanskrit:"आत्मबोध",verses:68,type:"Prakarana",auth:"confirmed",tags:["Self","Beginner Friendly","Key Work"],description:"ஆத்ம போதம் — 68 தெளிவான ஸ்லோகங்களில் ஆத்ம ஞானம். அத்வைத வேதாந்தத்திற்கு மிகவும் எளிதான அறிமுகம் — ஆத்மா, மாயா, மோட்சம் என்பவற்றை முறையாக விளக்குகிறது."},
+  {id:"p3",deity:"prakarana",name:"Tattva Bodha",sanskrit:"तत्त्वबोध",verses:42,type:"Prakarana",auth:"attributed",tags:["Primer","Definitions","Beginner"],description:"வேதாந்த பிரிவுகளுக்கு அறிமுகம் — நான்கு தகுதிகள், மூன்று உடல்கள், பஞ்ச கோசங்கள். வேதாந்த படிப்பை தொடங்கும் மாணவர்கள் அனைவருக்கும் அவசியமான வழிகாட்டி."},
+  {id:"p4",deity:"prakarana",name:"Upadesasahasri",sanskrit:"उपदेशसाहस्री",verses:null,type:"Prakarana",auth:"confirmed",tags:["1000 Teachings","Authentic","Prose"],description:"உபதேச சாஹஸ்ரி — ஆயிரம் போதனைகள். சங்கரரின் ஒரே சர்ச்சையற்ற உரைநடை நூல். ஆத்மசாட்சாத்காரத்தை நோக்கிய முழு பாதையை உள்ளடக்கிய குரு சீட உரையாடல்."},
+  {id:"p5",deity:"prakarana",name:"Aparokshanubhuti",sanskrit:"अपरोक्षानुभूति",verses:144,type:"Prakarana",auth:"attributed",tags:["Direct Experience","Meditation","Practice"],description:"அபரோட்சானுபூதி — யதார்த்தத்தின் நேரடி அனுபவம். ஆத்மாவின் உடனடி உணர்வு மற்றும் குறிப்பிட்ட தியான நடைமுறைகளின் மீது 144 ஸ்லோகங்கள்."},
+  {id:"p6",deity:"prakarana",name:"Nirvana Shatakam",sanskrit:"निर्वाणषट्कम्",verses:6,type:"Prakarana",auth:"attributed",tags:["Very Popular","Identity","Shivo Hum","Famous"],description:"நிர்வாண ஷட்கம் — ஆறு இடி ஸ்லோகங்கள்: 'சிதானந்த ரூபஃ, சிவோ ஹம்' — நான் சிவன், சுத்த சேதனை-ஆனந்தம். எப்போதும் எழுதப்பட்ட மிகவும் பிரசித்தமான ஆன்மிக படைப்புகளில் ஒன்று."},
+  {id:"p7",deity:"prakarana",name:"Maneesha Panchakam",sanskrit:"मनीषापञ्चकम्",verses:9,type:"Prakarana",auth:"confirmed",tags:["Equality","Story","Non-Duality","Outcaste"],description:"மணீஷா பஞ்சகம் — ஒரு தாழ்த்தப்பட்டவன் சங்கரரின் பாதையை தடுத்தபோது இயற்றிய ஒன்பது ஸ்லோகங்கள்: 'என்னுடைய நித்திய ஆத்மாவை நகர்த்த விரும்புகிறாயா, மண்ணின் இந்த உடலையா?' சங்கரர் அவன் முன் நமஸ்கரித்தார்."},
+  {id:"p8",deity:"prakarana",name:"Pancheekaranam",sanskrit:"पञ्चीकरणम्",verses:null,type:"Prakarana",auth:"confirmed",tags:["Cosmology","Five Elements","Creation"],description:"பஞ்சீகரணம் — வேதாந்த பிரபஞ்ச அறிவியல். ஐந்து நுண்ணிய தத்துவங்கள் மாயா வழியாக பிரபஞ்சமாகும் விதம். பிரம்மம் மாயா வழியாக அண்டமாவது எவ்வாறு என்பதை விளக்கும் நூல்."},
+  {id:"p9",deity:"prakarana",name:"Dasa Sloki",sanskrit:"दशश्लोकी",verses:10,type:"Prakarana",auth:"confirmed",tags:["Self-Introduction","Guru","Shankara's Own Story"],description:"தச ஸ்லோகி — குரு கோவிந்தபாதர் 'நீ யார்?' என்று கேட்டபோது இயற்றிய பத்து ஸ்லோகங்கள் — சங்கரரின் சொந்த அத்வைத அடையாளத்தின் தன்னிச்சையான அறிவிப்பு."},
+  {id:"p10",deity:"prakarana",name:"Sadhana Panchakam",sanskrit:"साधनापञ्चकम्",verses:6,type:"Prakarana",auth:"confirmed",tags:["Practice","Path","Practical"],description:"சாதனா பஞ்சகம் — ஆன்மிக சாட்சாத்காரத்தின் சாதனங்கள் மற்றும் முறைகளை பட்டியலிடும் ஐந்து முதல் ஆறு ஸ்லோகங்கள் — சங்கரரின் மிக சுருக்கமான ஆன்மிக வழிகாட்டி."},
+  {id:"p11",deity:"prakarana",name:"Guru Ashtakam",sanskrit:"गुर्वष्टकम्",verses:10,type:"Prakarana",auth:"confirmed",tags:["Guru","Gratitude","Teacher","Key Work"],description:"குரு அஷ்டகம் — உலகின் எல்லா சொத்துக்கள் மற்றும் சாதனைகளுக்கும் மேலாக குரு மட்டுமே முக்கியம் என்று அறிவிக்கும் பத்து ஸ்லோகங்கள் — குரு இல்லாமல் மற்றெல்லாம் பயனற்றது."},
+  {id:"p12",deity:"prakarana",name:"Kaupina Panchakam",sanskrit:"कौपीनपञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Sannyasa","Renunciation","Joy"],description:"கௌபீன பஞ்சகம் — ஒரு துண்டு மட்டுமே உடையாக கொண்ட சந்நியாசி வாழ்வை போற்றும் ஐந்து மகிழ்வான ஸ்லோகங்கள் — ஆனாலும் ஆத்மாவில் இளைப்பாறும் மிகவும் செல்வந்தன்."},
+  {id:"p13",deity:"prakarana",name:"Jeevanmuktananda Lahari",sanskrit:"जीवन्मुक्तानन्दलहरी",verses:19,type:"Prakarana",auth:"attributed",tags:["Liberation in Life","Jivanmukta","Bliss"],description:"ஜீவன்முக்தானந்த லஹரி — உடலில் இருந்தபடி விடுதலை பெற்றவரின் ஆனந்தத்தை வர்ணிக்கும் 19 ஸ்லோகங்கள். எங்கும் பிரம்மம் காணும் நிரந்தர ஆனந்தத்தில் வாழும் ஒருவர்."},
+  {id:"p14",deity:"prakarana",name:"Maya Panchakam",sanskrit:"मायापञ्चकम्",verses:5,type:"Prakarana",auth:"confirmed",tags:["Maya","Illusion","Philosophy"],description:"மாயா பஞ்சகம் — மாயையின் இயல்பு மீது ஐந்து ஸ்லோகங்கள். ஒன்றை பலவாக காட்டும் பிரபஞ்ச மாயை. அஞ்ஞானத்தின் மிக சுருக்கமான பகுப்பாய்வு."},
+  {id:"p15",deity:"prakarana",name:"Vakya Vritti",sanskrit:"वाक्यवृत्ति",verses:53,type:"Prakarana",auth:"attributed",tags:["Mahavakya","Tat Tvam Asi","Advanced"],description:"வாக்ய விருத்தி — 'தத் த்வம் அஸி' (அது நீயே) மஹாவாக்யத்தை ஆராயும் 53 ஸ்லோகங்கள். நேரடி அனுபவம் வழியாக மஹா வாக்யங்களை பகுப்பாய்யும் தொழில்நுட்ப அத்வைத நூல்."},
+  {id:"p16",deity:"prakarana",name:"Yoga Taravali",sanskrit:"योगतारावली",verses:29,type:"Prakarana",auth:"attributed",tags:["Yoga","Vedantic Yoga","Breath"],description:"யோக தாராவளி — வேதாந்த கண்ணோட்டத்தில் யோகா மீது 29 ஸ்லோகங்கள். பிராணாயாமம், தியானம், அத்வைத ஞானத்தை ஒருங்கிணைந்த பாதையில் இணைத்த சங்கரர்."},
   // BHASHYA
-  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"சங்கரரின் மகத்தான படைப்பு — அத்வைதம் எல்லா வேதாந்த சாஸ்திரத்தின் சரியான விளக்கம் என நிறுவும் பாதராயணரின் 555 பிரம்ம சூத்திரங்களின் மீதான பாஷ்யம்."},
-  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"கீதையின் எல்லா 18 அத்தியாயங்கள் மீதான பாஷ்யம் — ஞானமே கீதையின் இறுதி போதனை என சங்கரர் காட்டுவது."},
-  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ஈசா உபநிஷத் மீதான பாஷ்யம் — மிகவும் சுருக்கமான முக்கிய உபநிஷத், கர்மம் மற்றும் ஞானத்தை சமன்படுத்துவது."},
-  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'மனதை யார் திசைப்படுத்துகிறார்?' என்ற கேள்விக்கான பாஷ்யம் — எல்லா அறிவுக்கு பின்னுள்ள சாட்சி உணர்வின் சங்கரர் பகுப்பாய்வு."},
-  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"அமர ஆத்மா பற்றி யமனுடன் நாகிகேதனின் உரையாடலின் மீதான பாஷ்யம் — நேரடியாக மரணத்தை எதிர்கொள்ளும் உபநிஷத்."},
-  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"பர வித்யா (உயர் ஞானம் — பிரம்மன்) மற்றும் அபர வித்யா (கீழ் ஞானம் — எல்லா அறிவியல்கள்) வேறுபாட்டை காட்டும் பாஷ்யம்."},
-  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 செய்யுள்கள் மற்றும் கௌடபாதரின் காரிகா மீதான பாஷ்யம் — உணர்வின் மூன்று நிலைகள் மற்றும் ஓம்காரத்தின் இறுதியான அத்வைத சிகிச்சை."},
-  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ஐதரேய உபநிஷத் மீதான பாஷ்யம் — பிரபஞ்சத்தின் படைப்பு மற்றும் உணர்வை பிரம்மனுடன் அடையாளம் காட்டுவது."},
-  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"பஞ்சகோஷங்கள் (ஐந்து ஆடைகள்) மற்றும் இருப்பின் உள்ளான அடுக்காக ஆனந்தத்தின் தன்மை பற்றிய புகழ்பெற்ற போதனையை உள்ளடக்கும் பாஷ்யம்."},
-  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"'தத் த்வம் அஸி' (அது நீ) கொண்ட நீண்ட உபநிஷத்தில் ஒன்றின் மீதான பாஷ்யம். இந்த மஹாவாக்கியத்தின் இறுதி விளக்கம்."},
-  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"மிக பழைமையான மற்றும் நீண்ட உபநிஷத் மீதான பாஷ்யம் — 'அஹம் பிரம்மாஸ்மி' (நான் பிரம்மன்) மற்றும் யாஞ்ஞவல்கியரின் போதனைகளை உள்ளடக்கியது."},
-  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"மஹாபாரதத்தின் விஷ்ணு சஹஸ்ரநாமம் மீதான பாஷ்யம் — விஷ்ணுவின் ஆயிரம் நாமங்கள், ஒவ்வொன்றும் அத்வைத பிரம்மனுக்கான ஒரு ஜன்னல்."},
-  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"தர்மராஜனுக்கு சனத்சுஜாதரின் போதனைகள் மீதான பாஷ்யம் — மரணம், அமரமின்மை, பிரம்மச்சரியத்தின் பாதை பற்றி."},
-  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Patanjali","Yoga","Meditation"],description:"பதஞ்சலியின் யோக சூத்திரங்கள் மீதான பாஷ்யம் — சங்கரர் யோக முறையை அத்வைத வேதாந்தத்துடன் சமன்படுத்துவது."},
+  {id:"b1",deity:"bhashya",name:"Brahma Sutra Bhashya",sanskrit:"ब्रह्मसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Masterwork","Vedanta","Definitive"],description:"சங்கரரின் மிகப்பெரிய படைப்பு — பாதராயணரின் 555 பிரம்ம சூத்திரங்களுக்கு உரை. அத்வைதம் எல்லா வேதாந்த வேதங்களின் சரியான விளக்கம் என்று நிறுவிய நூல்."},
+  {id:"b2",deity:"bhashya",name:"Bhagavad Gita Bhashya",sanskrit:"भगवद्गीताभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Gita","Jnana","Commentary","Foundational"],description:"கீதையின் 18 அத்தியாயங்களுக்கு உரை — சங்கரர் ஞானம் (ஞான மார்க்கம்) கீதையின் இறுதி போதனை என்று காட்டும் நூல்."},
+  {id:"b3",deity:"bhashya",name:"Isa Upanishad Bhashya",sanskrit:"ईशोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Isa","Short"],description:"ஈஷோபநிஷத் உரை — மிக சுருக்கமான பிரதான உபநிஷத், கர்மம் (செயல்) மற்றும் ஞானம் (அறிவு) சமரசப்படுத்துகிறது."},
+  {id:"b4",deity:"bhashya",name:"Kena Upanishad Bhashya",sanskrit:"केनोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Kena","Witness"],description:"'மனதை யார் வழிநடத்துகிறார்?' மீது உரை — எல்லா அறிவின் பின்னுள்ள சாட்சி சேதனையின் சங்கரர் பகுப்பாய்வு."},
+  {id:"b5",deity:"bhashya",name:"Katha Upanishad Bhashya",sanskrit:"कठोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Death","Nachiketa"],description:"யமன் (மரணம்) உடன் நசிகேதனின் உரையாடலின் உரை — அமரத்துவமான ஆத்மாவை நேரடியாக மரணத்தை எதிர்கொள்ளும் உபநிஷத்."},
+  {id:"b6",deity:"bhashya",name:"Mundaka Upanishad Bhashya",sanskrit:"मुण्डकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Higher Knowledge","Brahman"],description:"பரா வித்யா (உயர் ஞானம் — பிரம்மம்) மற்றும் அபரா வித்யா (தாழ் ஞானம் — எல்லா அறிவியல்கள்) வேறுபாட்டை காட்டும் உரை."},
+  {id:"b7",deity:"bhashya",name:"Mandukya Upanishad Bhashya",sanskrit:"माण्डूक्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Upanishad","Three States","Consciousness","AUM"],description:"12 ஸ்லோகங்கள் மற்றும் கௌடபாட கரிகாவிற்கு உரை — மூன்று சேதனை நிலைகள் மற்றும் ஓம்காரத்தின் திட்டமிட்ட அத்வைத விளக்கம்."},
+  {id:"b8",deity:"bhashya",name:"Aitareya Upanishad Bhashya",sanskrit:"ऐतरेयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Rigveda","Consciousness"],description:"ஐதரேய உபநிஷத் உரை — பிரபஞ்ச படைப்பு மற்றும் சேதனையை பிரம்மத்துடன் அடையாளம் காணுதல்."},
+  {id:"b9",deity:"bhashya",name:"Taittiriya Upanishad Bhashya",sanskrit:"तैत्तिरीयोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Five Sheaths","Bliss"],description:"தைத்திரீய உபநிஷத் உரை — பஞ்ச கோசங்கள் மற்றும் இருத்தலின் உள்ளான அடுக்காக ஆனந்தம் பற்றிய பிரசித்தமான போதனை."},
+  {id:"b10",deity:"bhashya",name:"Chandogya Upanishad Bhashya",sanskrit:"छान्दोग्योपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Tat Tvam Asi","Samaveda"],description:"சாந்தோக்ய உபநிஷத் உரை — 'தத் த்வம் அஸி' (அது நீயே) கொண்ட மிக நீண்ட உபநிஷத்திற்கு உரை. இந்த மஹாவாக்யத்தின் திட்டமிட்ட விளக்கம்."},
+  {id:"b11",deity:"bhashya",name:"Brihadaranyaka Upanishad Bhashya",sanskrit:"बृहदारण्यकोपनिषद्भाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Upanishad","Oldest","Aham Brahmasmi"],description:"பிருஹதாரண்யக உபநிஷத் உரை — மிக பழமையான மற்றும் நீண்ட உபநிஷத் — 'அஹம் பிரஹ்மாஸ்மி' (நான் பிரம்மம்) மற்றும் யாஜ்ஞவல்கியரின் போதனைகள்."},
+  {id:"b12",deity:"bhashya",name:"Vishnu Sahasranama Bhashya",sanskrit:"विष्णुसहस्रनामभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["1000 Names","Vishnu","Mahabharat"],description:"மஹாபாரதத்தில் விஷ்ணு சஹஸ்ரநாமத்திற்கு உரை — விஷ்ணுவின் ஆயிரம் நாமங்கள், ஒவ்வொன்றும் அத்வைத பிரம்மத்திற்கு ஒரு சாளரம்."},
+  {id:"b13",deity:"bhashya",name:"Sanatsujatiya Bhashya",sanskrit:"सनत्सुजातीयभाष्यम्",verses:null,type:"Bhashya",auth:"confirmed",tags:["Mahabharat","Death","Brahmacharya"],description:"திருதராஷ்டிரனிடம் சனத்சுஜாதரின் போதனைகளுக்கு உரை — மரணம், அமரத்துவம், பிரம்மச்சரிய பாதை பற்றியது."},
+  {id:"b14",deity:"bhashya",name:"Yoga Sutra Bhashya",sanskrit:"योगसूत्रभाष्यम्",verses:null,type:"Bhashya",auth:"attributed",tags:["Patanjali","Yoga","Meditation"],description:"பதஞ்சலியின் யோக சூத்திரங்களுக்கு உரை — சங்கரர் யோக முறைமையை அத்வைத வேதாந்தத்துடன் சமரசப்படுத்திய நூல்."},
 ];
 
 const QUICK_TAGS=["Bhaja Govindam","Soundarya Lahari","Nirvana Shatakam","Manasa Puja","Bhujangam","Jyotirlinga","Liberation","Forgiveness","Very Popular","Key Work"];
@@ -1253,8 +1257,8 @@ function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 // ═══════════════════════════════════════════ INIT ═══════════════════════════
 function init(){
   const உறுதிப்படுத்தப்பட்டது=WORKS.filter(w=>w.auth==="உறுதிப்படுத்தப்பட்டது").length;
-  document.getElementById("statTotal").textContent=WORKS.length;
-  document.getElementById("footerText").textContent=`${WORKS.length} படைப்புகள் catalogued · ${உறுதிப்படுத்தப்பட்டது} உறுதிப்படுத்தப்பட்டது · சமத புக்ஸ் கிரந்தாவளி ஆதாரமாக சரிபார்க்கப்பட்டது`;
+  const stEl=document.getElementById("statTotal"); if(stEl) stEl.textContent=WORKS.length;
+  const el_footerText=document.getElementById("footerText"); if(el_footerText) el_footerText.textContent=`${WORKS.length} படைப்புகள் catalogued · ${உறுதிப்படுத்தப்பட்டது} உறுதிப்படுத்தப்பட்டது · சமத புக்ஸ் கிரந்தாவளி ஆதாரமாக சரிபார்க்கப்பட்டது`;
   buildDeityBar(); buildQuickTags();
   setupWOTD(); renderGrid(); renderQuizStart(); updateStats();
   // Keyboard
@@ -1263,28 +1267,36 @@ function init(){
 
 function updateStats(){
   const bm=loadBM(); const prog=loadProg();
-  document.getElementById("statBm").textContent=bm.length;
+  const bmEl=document.getElementById("statBm"); if(bmEl) bmEl.textContent=bm.length;
   const bmBadgeEl=document.getElementById("bmBadge");
   if(bmBadgeEl){bmBadgeEl.textContent=bm.length;bmBadgeEl.style.display=bm.length>0?"inline":"none";}
   const bnavBadgeEl=document.getElementById("bnavBadge");
   if(bnavBadgeEl){bnavBadgeEl.textContent=bm.length;bnavBadgeEl.style.display=bm.length>0?"inline":"none";}
-  const studied=Object.values(prog).filter(v=>v==="studied"||v==="memorised").length;
-  document.getElementById("statபடித்தவை").textContent=studied;
+  const vals=Object.values(prog);
+  const heard=vals.filter(v=>v==="heard").length;
+  const studied=vals.filter(v=>v==="studied").length;
+  const memorised=vals.filter(v=>v==="memorised").length;
+  const heardEl=document.getElementById("statHeard");
+  const studiedEl=document.getElementById("statStudied");
+  const memorisedEl=document.getElementById("statMemorised");
+  if(heardEl) heardEl.textContent=heard;
+  if(studiedEl) studiedEl.textContent=studied;
+  if(memorisedEl) memorisedEl.textContent=memorised;
 }
 
 // ═══════════════════════════════════════════ WOTD ═══════════════════════════
 function setupWOTD(){
   const dayIndex=Math.floor(Date.now()/(1000*60*60*24))%WORKS.length;
   const w=WORKS[dayIndex];
-  document.getElementById("wotdName").textContent=w.name;
+  const el_wotdName=document.getElementById("wotdName"); if(el_wotdName) el_wotdName.textContent=w.name;
   const wotdSubEl=document.getElementById("wotdSub");
   const wotdEmojiEl=document.getElementById("wotdEmoji");
   const d=getDeity(w.deity);
   if(wotdSubEl) wotdSubEl.textContent=d.label+" · "+w.type+(w.ஸ்லோகங்கள்?" · "+w.ஸ்லோகங்கள்+" ஸ்லோகங்கள்":"");
   if(wotdEmojiEl) wotdEmojiEl.innerHTML=deityIcon(w.deity,32);
-  document.getElementById("wotdBanner")._workId=w.id;
+  const wotdBannerEl=document.getElementById("wotdBanner"); if(wotdBannerEl) wotdBannerEl._workId=w.id;
 }
-function openWOTD(){ const id=document.getElementById("wotdBanner")._workId; if(id) openPanel(id); }
+function openWOTD(){ const wb=document.getElementById("wotdBanner"); if(wb&&wb._workId) openPanel(wb._workId); }
 
 // ═══════════════════════════════════════════ DEITY BAR ══════════════════════
 function buildDeityBar(){
@@ -1295,7 +1307,7 @@ function buildDeityBar(){
   DEITIES.forEach(d=>{ const cnt=counts[d.id]||0; if(!cnt)return;
     html+=`<button class="deity-btn" id="dbtn-${d.id}" style="--dc:${d.color};--dbg:${d.bg};color:${d.color}" onclick="setDeity('${d.id}')"><span class="deity-btn-icon" style="color:${d.color}">${deityIcon(d.id,16)}</span><span style="color:rgba(245,240,232,.75)">${d.label}</span> <span style="opacity:.5;font-size:8px">(${cnt})</span></button>`;
   });
-  bar.innerHTML=html;
+  if(bar) bar.innerHTML=html;
 }
 function setDeity(id){
   currentDeity=id;
@@ -1305,7 +1317,7 @@ function setDeity(id){
   renderGrid();
 }
 function buildQuickTags(){
-  document.getElementById("quickTags").innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
+  const qtEl=document.getElementById("quickTags"); if(qtEl) qtEl.innerHTML=QUICK_TAGS.map(q=>`<button class="qtag" onclick="setSearch('${esc(q)}')">${esc(q)}</button>`).join("");
 }
 
 // ═══════════════════════════════════════════ SEARCH / SORT ═════════════════
@@ -1336,9 +1348,9 @@ function filterபடைப்புகள்(){
 function renderGrid(){
   const படைப்புகள்=filterபடைப்புகள்();
   const bm=loadBM(); const prog=loadProg();
-  document.getElementById("countNum").textContent=படைப்புகள்.length;
+  const el_countNum=document.getElementById("countNum"); if(el_countNum) el_countNum.textContent=படைப்புகள்.length;
   const hasFilter=currentDeity!=="all"||currentSearch;
-  document.getElementById("clearFilters").style.display=hasFilter?"inline":"none";
+  const cfEl=document.getElementById("clearFilters"); if(cfEl) cfEl.style.display=hasFilter?"inline":"none";
   const grid=document.getElementById("படைப்புகள்Grid");
   const empty=document.getElementById("emptyState");
   if(!படைப்புகள்.length){ grid.style.display="none"; empty.style.display="block"; return; }
@@ -1412,9 +1424,9 @@ function setProgress(id,status){
   const btns=document.querySelectorAll(".progress-btn");
   const newProg=loadProg()[id];
   btns.forEach(b=>{
-    b.classList.remove("heard","studied","memorised");
+    b.classList.remove("heard","studied","memorised","active-prog");
     const s=b.dataset.status;
-    b.classList.add(newProg===s?s:"none");
+    if(newProg===s){ b.classList.add(s); b.classList.add("active-prog"); }
   });
   const panelBmBtn=document.querySelector(".panel-bm-btn");
   if(panelBmBtn) panelBmBtn.textContent=(loadBM().includes(id)?"★ புக்மார்க்":"☆ புக்மார்க்");
@@ -1610,9 +1622,9 @@ function renderQuizScore(){
 function openPanel(id){
   const work=WORKS.find(w=>w.id===id); if(!work)return;
   const d=getDeity(work.deity); const bm=loadBM(); const prog=loadProg(); const isBm=bm.includes(id); const p=prog[id];
-  document.getElementById("panel").style.borderLeft=`4px solid ${d.color}`;
-  document.getElementById("panelHeader").style.background=`linear-gradient(135deg,${d.bg},transparent)`;
-  document.getElementById("panelHeader").innerHTML=`
+  const panEl=document.getElementById("panel"); if(panEl) panEl.style.borderLeft=`4px solid ${d.color}`;
+  const phEl=document.getElementById("panelHeader"); if(phEl) phEl.style.background=`linear-gradient(135deg,${d.bg},transparent)`;
+  const pHdrEl=document.getElementById("panelHeader"); if(pHdrEl) pHdrEl.innerHTML=`
     <div class="panel-header-top">
       <div class="panel-badges">
         <span class="card-deity-icon" style="color:${d.color}">${deityIcon(work.deity,16)}</span>
@@ -1620,7 +1632,6 @@ function openPanel(id){
         ${work.ஸ்லோகங்கள்?`<span class="badge-ஸ்லோகங்கள்">${work.ஸ்லோகங்கள்} ஸ்லோகங்கள்</span>`:""}
         ${work.auth==="கூறப்பட்டது"?`<span class="badge-attr">கூறப்பட்டது</span>`:""}
       </div>
-      <button class="close-btn" onclick="closePanel()">✕ CLOSE</button>
     </div>
     <div class="panel-name">${esc(work.name)}</div>
     ${work.sanskrit?`<div class="panel-sanskrit">${esc(work.sanskrit)}</div>`:""}
@@ -1629,7 +1640,7 @@ function openPanel(id){
       <button class="panel-bm-btn ${isBm?"bookmarked":""}" onclick="toggleBMPanel('${id}')">${isBm?"★ சேமித்தவை":"☆ சேமி"}</button>
     </div>`;
 
-  document.getElementById("panelBody").innerHTML=`
+  const pBdyEl=document.getElementById("panelBody"); if(pBdyEl) pBdyEl.innerHTML=`
     <div>
       <div class="section-label">பற்றி</div>
       <p class="about-text">${esc(work.description)}</p>
@@ -1638,7 +1649,7 @@ function openPanel(id){
     <div>
       <div class="section-label">உங்கள் முன்னேற்றம்</div>
       <div class="progress-row">
-        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s:"none"}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ கேட்டேன்":s==="studied"?"◕ படித்தவை":"● மனப்பாடம்"}</button>`).join("")}
+        ${["heard","studied","memorised"].map(s=>`<button class="progress-btn ${p===s?s+' active-prog':''}" data-status="${s}" onclick="setProgress('${id}','${s}')">${s==="heard"?"◑ கேட்டேன்":s==="studied"?"◕ படித்தவை":"● மனப்பாடம்"}</button>`).join("")}
       </div>
     </div>
     <div class="insight-box">
@@ -1657,11 +1668,14 @@ function openPanel(id){
       <div class="section-label">பாடல் வகையால் தேடுக</div>
       <div id="videoContent"><div class="loading-row"><span class="spinner">✿</span><span class="loading-txt">தேடல் இணைப்புகள் உருவாக்குகிறோம்…</span></div></div>
     </div>
+    <div class="feedback-box-wrapper">
+      ${renderFeedback(id, 'உங்கள் கருத்து', 'இந்த நூல் பற்றிய உங்கள் எண்ணங்களை பகிர்ந்து கொள்ளுங்கள்…', '✓ சேமி', '✓ சேமிக்கப்பட்டது', 'அழி')}
+    </div>
     <a class="yt-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent("Adi Shankaracharya "+work.name)}" target="_blank" rel="noopener">அனைத்தும் தேடு "${esc(work.name)}" YouTube இல் ↗</a>
   `;
   document.getElementById("panelOverlay").classList.add("open");
   document.body.style.overflow="hidden";
-  document.getElementById("panel").scrollTop=0;
+  if(panEl) panEl.scrollTop=0;
   loadInsight(work); loadVideos(work,d);
 }
 
@@ -1675,6 +1689,52 @@ function toggleBMPanel(id){
   if(btn){ btn.textContent=isBm?"★ புக்மார்க்":"☆ புக்மார்க்"; btn.classList.toggle("bookmarked",isBm); }
   renderGrid(); renderBM(); updateStats();
 }
+
+
+// ── Feedback helpers ──────────────────────────────
+const FB_KEY = (id) => `shankara_feedback_${LANG_KEY}_${id}`;
+function loadFeedback(id){ try{ return JSON.parse(localStorage.getItem(FB_KEY(id))||'null')||{stars:0,note:''}; }catch{return{stars:0,note:''};} }
+function saveFeedback(id,stars,note){ localStorage.setItem(FB_KEY(id),JSON.stringify({stars,note,ts:Date.now()})); }
+function clearFeedback(id){ localStorage.removeItem(FB_KEY(id)); }
+
+function renderFeedback(id, fb_label, fb_placeholder, fb_save, fb_saved, fb_clear){
+  const fb = loadFeedback(id);
+  const stars = fb.stars||0; const note = fb.note||'';
+  return `<div class="feedback-box">
+    <div class="section-label">${fb_label}</div>
+    <div class="star-row" id="starRow">
+      ${[1,2,3,4,5].map(n=>`<button class="star-btn${n<=stars?' lit':''}" data-n="${n}" onclick="setStars('${id}',${n})" title="${n}★">★</button>`).join('')}
+    </div>
+    <textarea class="fb-textarea" id="fbNote" placeholder="${fb_placeholder}">${note}</textarea>
+    <div class="fb-actions">
+      <button class="fb-save-btn" id="fbSaveBtn" onclick="doSaveFeedback('${id}','${fb_save}','${fb_saved}')">${fb_save}</button>
+      <button class="fb-clear-btn" onclick="doClearFeedback('${id}','${fb_save}')">${fb_clear}</button>
+    </div>
+  </div>`;
+}
+
+function setStars(id, n){
+  const fb = loadFeedback(id);
+  // Toggle off if clicking same star
+  const newStars = (fb.stars===n)?0:n;
+  saveFeedback(id, newStars, (document.getElementById('fbNote')||{value:''}).value);
+  document.querySelectorAll('.star-btn').forEach(b=>{ b.classList.toggle('lit', parseInt(b.dataset.n)<=newStars); });
+  flashSaved();
+}
+function doSaveFeedback(id, saveLabel, savedLabel){
+  const note = (document.getElementById('fbNote')||{value:''}).value;
+  const stars = document.querySelectorAll('.star-btn.lit').length;
+  saveFeedback(id, stars, note);
+  const btn = document.getElementById('fbSaveBtn');
+  if(btn){ btn.textContent=savedLabel; btn.classList.add('saved'); setTimeout(()=>{ btn.textContent=saveLabel; btn.classList.remove('saved'); },1800); }
+}
+function doClearFeedback(id, saveLabel){
+  clearFeedback(id);
+  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('lit'));
+  const note = document.getElementById('fbNote'); if(note) note.value='';
+  const btn = document.getElementById('fbSaveBtn'); if(btn){ btn.textContent=saveLabel; btn.classList.remove('saved'); }
+}
+function flashSaved(){ /* subtle star flash handled via setStars */ }
 
 function closePanel(){ document.getElementById("panelOverlay").classList.remove("open"); document.body.style.overflow=""; }
 function closePanelOutside(e){ if(e.target===document.getElementById("panelOverlay")) closePanel(); }
@@ -1697,6 +1757,7 @@ async function loadInsight(work){
 }
 
 // ═══ LANGUAGE CONFIG (Tamil) ═════════════════════════════════
+const LANG_KEY = "tamil";
 const LANG_CONFIG = {
   hl: 'ta', gl: 'IN',
   langLabel: 'Tamil',
@@ -1780,14 +1841,13 @@ function switchTab(tab){
   });
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
   document.querySelectorAll(".bnav-btn").forEach(b=>b.classList.toggle("active",b.id==="bnav-"+tab));
+  const df=document.getElementById("deityFilterSection"); if(df) df.style.display=tab==="explore"?"block":"none";
   if(tab==="bookmarks")renderBM();
   if(tab==="progress")renderProgress();
 }
 
 
-const _style=document.createElement("style");
-_style.textContent="@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}";
-document.head.appendChild(_style);
+
 
 // ── TEXT SIZE CONTROL ────────────────────────────────────────────────────────
 function setTextSize(size){
@@ -1805,7 +1865,7 @@ try{
   if(saved) setTextSize(saved);
 }catch(e){}
 
-init();
+document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
 </html>
